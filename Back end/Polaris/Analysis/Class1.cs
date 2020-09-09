@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Analysis
+﻿namespace Analysis
 {
     public class Class1
     {
