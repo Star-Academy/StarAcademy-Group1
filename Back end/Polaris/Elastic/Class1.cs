@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Elastic
+﻿namespace Elastic
 {
     public class Class1
     {
