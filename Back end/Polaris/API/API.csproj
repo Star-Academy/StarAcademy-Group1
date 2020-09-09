@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Back_end</RootNamespace>
-    <UserSecretsId>e99eebf8-6f85-491f-9519-e6da809b1f62</UserSecretsId>
+    <UserSecretsId>59a087a0-f6bf-4ffc-9a70-9cc5fa8a8d7a</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
