@@ -3,7 +3,7 @@ using System;
 
 using Elastic.CustomExceptions;
 
-namespace Elastic.Importer.ElasticCumminucation
+namespace Elastic.Cumminucation
 {
     public static class ElasticClientFactory
     {

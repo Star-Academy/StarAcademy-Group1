@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Elastic.Models;
 
-namespace Elastic.Importer.ElasticCumminucation
+namespace Elastic.Cumminucation
 {
     public class ElasticImporter<E, T> where E : Entity<T>
     {

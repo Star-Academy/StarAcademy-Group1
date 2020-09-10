@@ -1,4 +1,4 @@
-using Elastic.Importer.ElasticCumminucation;
+using Elastic.Cumminucation;
 using Elastic.Models;
 
 namespace Elastic.Importer
