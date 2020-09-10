@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace API.Models
+namespace Elastic.Models
 {
     public abstract class Entity<T>
     {
