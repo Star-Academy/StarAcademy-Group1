@@ -10,7 +10,7 @@ namespace Elastic.Test.Importer
 {
     public class CsvStringParserTest
     {
-        private class Foo : Entity<int>
+        public class Foo : Entity<int>
         {
             public string Name { get; set; }
 
@@ -42,9 +42,10 @@ namespace Elastic.Test.Importer
             csvString.AppendLine("Id,Name");
             csvString.AppendLine($"{firstActual.Id},{firstActual.Name}");
             csvString.AppendLine($"{secondActual.Id},{secondActual.Name}");
-            var parsedFooList = parser.Parse(csvString.ToString()).ToList();
-            Assert.Equal(firstActual, parsedFooList[0]);
-            Assert.Equal(secondActual, parsedFooList[1]);
+            var parsedFoo = (parser.Parse(csvString.ToString()));
+            Assert.Equal(2, parsedFoo.Count());
+            Assert.Equal(firstActual, parsedFoo[0]);
+            Assert.Equal(secondActual, parsedFoo[1]);
         }
     }
 }

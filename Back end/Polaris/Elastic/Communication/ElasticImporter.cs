@@ -9,7 +9,7 @@ namespace Elastic.Cumminucation
     {
         private IElasticClient elasticClient = ElasticClientFactory.GetElasticClient();
 
-        public void BulkList(IEnumerable<E> list, string indexName)
+        public void BulkList(List<E> list, string indexName)
         {
             ValidateIndex(indexName, false);
             var bulk = new BulkDescriptor();
@@ -17,6 +17,7 @@ namespace Elastic.Cumminucation
             {
                 bulk.Index<E>(x => x.Index(indexName).Document(item));
             }
+            elasticClient.Bulk(bulk);
         }
 
         public void ValidateIndex(string indexName, bool recreate)
