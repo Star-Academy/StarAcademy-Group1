@@ -4,11 +4,11 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 
 /** @title Responsive sidenav */
 @Component({
-  selector: 'sidenav-responsive-example',
+  selector: 'app-left-panel',
   templateUrl: 'left-panel.component.html',
   styleUrls: ['left-panel.component.scss'],
 })
-export class SidenavResponsiveExample implements OnDestroy {
+export class LeftPanelComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);

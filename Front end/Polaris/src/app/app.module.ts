@@ -2,23 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GraphScreenModule } from './graph-screen/graph-screen.module';
-import { SearchBarModule } from './search-bar/search-bar.module';
-import { LeftPanelModule } from './left-panel/left-panel.module';
-import { RightPanelModule } from './right-panel/right-panel.module';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { LeftPanelComponent } from './left-panel/left-panel.component';
+import { RightPanelComponent } from './right-panel/right-panel.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LeftPanelComponent
+    LeftPanelComponent,
+    SearchBarComponent,
+    RightPanelComponent
   ],
   imports: [
     BrowserModule,
-    LeftPanelModule,
-    RightPanelModule,
     GraphScreenModule,
-    SearchBarModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
