@@ -1,1 +1,14 @@
-<p>search-bar works!</p>
+<div class="search-wrapper">
+    <form #f="ngForm" (ngSubmit)="onSubmit()"  >
+        
+        <input type="text" placeholder="Search"/>
+        <button type="submit">
+            <fa-icon [icon]="searchIcon"></fa-icon>
+        </button>
+        <button class="close-window">
+            <div>
+                ×
+            </div>
+        </button>
+    </form>
+</div>

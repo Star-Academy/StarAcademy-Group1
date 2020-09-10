@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Polaris"
+    }
+  },
+  "defaultProject": "Polaris",
+  "cli": {
+    "analytics": false
+  }
 }
