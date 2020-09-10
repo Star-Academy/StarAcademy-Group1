@@ -1,44 +1,164 @@
 Endpoint
 
+----------------------------------------------
 GET
-/transaction/{transactionId}
+api/transactions/{transactionId}
+
+Response
 {
-	source
-	target
-	date
-	time
-	trackingId
-  amount
-  type
-  transactionId
+	"source": ...,
+	"target": ...,
+	"date": ...,
+	"time": ...,
+	"trackingId": ...,
+  "amount": ...,
+  "type": ...,
+  "transactionId": ...
 }
 
+----------------------------------------------
 GET
-/account/{accountId}
+api/accounts/{accountId}
+
+Response
 {
-  accountId
-  cardId
-  sheba
-  accountType
-  branchTelephone
-  branchAdress
-  branchName
-  ownerName
-  ownerFamilyName
-  ownerId
+  "accountId": ...,
+  "cardId": ...,
+  "sheba": ...,
+  "accountType": ...,
+  "branchTelephone": ...,
+  "branchAdress": ...,
+  "branchName": ...,
+  "ownerName": ...,
+  "ownerFamilyName": ...,
+  "ownerId": ...
 }
 
+----------------------------------------------
 GET
-/graph/{graphId}
+api/graph
+
+Response
 {
-"edges": [
+  "nodes": [
     {
-      "id": 13337,
-      "source": 8372,
-      "target": 124,
+      "id": 8666,
       "data": {
-        "type": "HAS_MARKET"
-      }
+        ...
+      },
     }
+  ],
+  "edges": [
+      {
+        "id": ...,
+        "source": ...,
+        "target": ...,
+        "data": {
+          ...
+        }
+      }
   ]
+}
+
+GET
+api/graph/nodes?select&filter&pageIndex&pageSize
+[
+
+]
+
+GET
+api/v1/graph/edges?select&filter&pageIndex&pageSize
+[
+
+]
+
+----------------------------------------------
+GET
+/api/v1/graph/paths?from=&to=&maxLength&filter=
+Response
+{
+  "nodes": [
+    {
+      "id": 8666,
+      "data": {
+        ...
+      },
+    }
+  ],
+  "edges": [
+      {
+        "id": ...,
+        "source": ...,
+        "target": ...,
+        "data": {
+          ...
+        }
+      }
+  ]
+}
+
+
+----------------------------------------------
+POST
+/api/v1/graph/flow?from=&to=&maxLength&filter
+
+Response
+{
+  "nodes": [
+    {
+      "id": 8666,
+      "data": {
+        "id": 8666,
+        "flow": ...
+      },
+    }
+  ],
+  "edges": [
+      {
+        "id": ...,
+        "source": ...,
+        "target": ...,
+        "data": {
+          ...
+        }
+      }
+  ]
+}
+
+
+----------------------------------------------
+GET
+/api/v1/graph/expand?nodeId&filter
+
+Response 
+{
+  "nodes": [
+    {
+      "id": 8666,
+      "data": {
+        ...
+      },
+    }
+  ],
+  "edges": [
+      {
+        "id": ...,
+        "source": ...,
+        "target": ...,
+        "data": {
+          ...
+        }
+      }
+  ]
+}
+
+
+----------------------------------------------
+GET
+/api/graph/stats
+
+Response
+{
+  "nodes": 10000,
+  "edges": 11000
 }

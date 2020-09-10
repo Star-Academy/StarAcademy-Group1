@@ -5,7 +5,7 @@ namespace Elastic.Models
     public abstract class Entity<T>
     {
 		[JsonPropertyName("id")] //TODO: "id" should get checked
-		public T Id { get; set; }
+		public virtual T Id { get; set; }
 
 		public override bool Equals(object obj)
 		{
