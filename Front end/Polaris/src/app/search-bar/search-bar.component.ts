@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +9,6 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 export class SearchBarComponent implements OnInit {
 
   searchIcon = faSearch;
-  windowCloseIcon = faWindowClose;
 
   constructor() { }
 
@@ -23,3 +20,5 @@ export class SearchBarComponent implements OnInit {
   }
 
 }
+
+
