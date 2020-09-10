@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { GraphScreenComponent } from './graph-screen/graph-screen.component';
 import { LeftPanelComponent } from './left-panel/left-panel.component';
