@@ -11,13 +11,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { MatListModule} from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectionsComponent } from './left-panel/selections/selections.component';
+import { InformationComponent } from './left-panel/information/information.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeftPanelComponent,
     RightPanelComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SelectionsComponent,
+    InformationComponent
   ],
   imports: [
     BrowserModule,
