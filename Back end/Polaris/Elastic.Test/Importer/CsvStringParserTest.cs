@@ -3,6 +3,7 @@ using Xunit;
 using Elastic.Importer;
 using Elastic.Models;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace Elastic.Test.Importer
@@ -41,7 +42,7 @@ namespace Elastic.Test.Importer
             csvString.AppendLine("Id,Name");
             csvString.AppendLine($"{firstActual.Id},{firstActual.Name}");
             csvString.AppendLine($"{secondActual.Id},{secondActual.Name}");
-            var parsedFooList = parser.Parse(csvString.ToString());
+            var parsedFooList = parser.Parse(csvString.ToString()).ToList();
             Assert.Equal(firstActual, parsedFooList[0]);
             Assert.Equal(secondActual, parsedFooList[1]);
         }
