@@ -8,14 +8,15 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule} from '@angular/material/icon';
-import { MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { InformationComponent } from './left-panel/information/information.component';
 import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
-import {FormsModule} from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageService } from './services/message/message.service';
 
 
 @NgModule({
@@ -36,9 +37,12 @@ import {FormsModule} from '@angular/forms';
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [RandomGraphService],
+  providers: [
+    RandomGraphService,
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
