@@ -15,20 +15,20 @@ export class NodeService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  public getNode(nodeId:string): Observable<string> {
+  public getNode(nodeId:string): Observable<JSON> {
 
     var url = `${this.baseAddress}/nodes/${nodeId}`;
     
     var httpOptions = {
     };
 
-    return this.http.get<string>(url ,httpOptions).pipe(
+    return this.http.get<JSON>(url ,httpOptions).pipe(
       tap(_ => this.log(`got node id=${nodeId}`)),
-      catchError(this.handleError<string>('getNode'))
+      catchError(this.handleError<JSON>('getNode'))
     );
   }
 
-  public deleteNode(nodeId:string): Observable<string>{
+  public deleteNode(nodeId:string): Observable<JSON>{
 
     var url = `${this.baseAddress}/nodes/${nodeId}`;
     
@@ -36,9 +36,9 @@ export class NodeService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.delete<string>(url,httpOptions).pipe(
+    return this.http.delete<JSON>(url,httpOptions).pipe(
       tap(_ => this.log(`deleted node id=${nodeId}`)),
-      catchError(this.handleError<string>('deleteNode'))
+      catchError(this.handleError<JSON>('deleteNode'))
     );
   }
 
@@ -65,6 +65,10 @@ export class NodeService {
       tap(_ => this.log('updated node')),
       catchError(this.handleError<JSON>('updateNode', JSON))
     );
+  }
+
+  public getAddNodes(filter:JSON){
+    // todo
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
