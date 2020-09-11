@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
 import { RandomGraphService } from '../../services/read-ogma-from-random-json.service';
+import { NodeId } from '../../assets/ogma.min.js';
+import * as HoverEvent from '../../assets/ogma.min.js';
 
 @Component({
   selector: 'app-graph-screen',
@@ -10,6 +12,8 @@ import { RandomGraphService } from '../../services/read-ogma-from-random-json.se
 export class GraphScreenComponent implements OnInit, AfterContentInit {
   @ViewChild('ogmaContainer', { static: true })
   private container;
+  hoveredContent: { id: NodeId };
+  hoveredPosition: { x: number, y: number };
   constructor(private randomOgma: RandomGraphService) { }
 
   ngOnInit() {
@@ -18,6 +22,18 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       options: {
         backgroundColor: 'rgb(240, 240, 240)'
       }
+    });
+    this.randomOgma.ogma.events.onHover(({ x, y, target }: HoverEvent) => {
+      if (target.isNode) {
+        this.hoveredContent = {
+          id: target.getId()
+        };
+        this.hoveredPosition = {x, y: y + 20};
+      }
+    });
+
+    this.randomOgma.ogma.events.onUnhover((_: HoverEvent) => {
+      this.hoveredContent = null;
     });
   }
   ngAfterContentInit() {

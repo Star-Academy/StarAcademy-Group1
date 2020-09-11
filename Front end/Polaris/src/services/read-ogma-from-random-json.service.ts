@@ -13,11 +13,10 @@ export class RandomGraphService{
     }
 
     public getJsonGraph() {
-        this.ogma.parse.jsonFromUrl('../assets/data.json').then((graph) => this.setGraph(graph));
+        this.ogma.parse.jsonFromUrl('../assets/data2.json').then((graph) => this.setGraph(graph));
     }
 
     public setGraph(graph) {
         this.ogma.setGraph(graph);
-        this.ogma.view.locateGraph();
     }
 }

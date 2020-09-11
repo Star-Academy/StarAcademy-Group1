@@ -1,0 +1,104 @@
+{
+	"nodes": [
+		{
+			"id": 1,
+			"data": {
+				"name": "saba",
+				"gender": "female"
+			},
+			"attributes": {
+				"text": "saba",
+				"shape": "square",
+				"radius": 8
+			}
+		},
+		{
+			"id": 2,
+			"data": {
+				"name": "aida",
+				"gender": "female"
+			},
+			"attributes":{
+				"text": "aida",
+				"shape": "square",
+				"radius": 8
+			}
+		}, 
+		{
+			"id": 3,
+			"data": {
+				"name": "darya",
+				"gender": "female"
+			},
+			"attributes":{
+				"text": "darya",
+				"shape": "square",
+				"radius": 8
+			}
+		}, 
+		{
+			"id": 4,
+			"data": {
+				"name": "ali",
+				"gender": "male"
+			},
+			"attributes":{
+				"text": "ali",
+				"shape": "square",
+				"radius": 8
+			}
+		}
+	],
+	"edges": [
+		{
+        "id": 5,
+        "source": 1,
+        "target": 3,
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 6,
+        "source": 3,
+        "target": 2,
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 7,
+        "source": 4,
+        "target": 1,
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 8,
+        "source": 1,
+        "target": 3,
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 9,
+        "source": 2,
+        "target": 3,
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      }
+	]
+}
