@@ -9,14 +9,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class NodeService {
 
+  private baseAddress = "https://localhost:5001/api/v1";
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-
   public getNode(nodeId:string): Observable<string> {
 
-    var url = ""
+    var url = `${this.baseAddress}/nodes/${nodeId}`;
     
     var httpOptions = {
     };
@@ -27,10 +28,9 @@ export class NodeService {
     );
   }
 
-
   public deleteNode(nodeId:string): Observable<string>{
 
-    var url = ""
+    var url = `${this.baseAddress}/nodes/${nodeId}`;
     
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -42,8 +42,8 @@ export class NodeService {
     );
   }
 
-  public addNode(node:JSON):Observable<JSON>{//post
-    var url = ""
+  public addNode(node:JSON):Observable<JSON>{
+    var url = `${this.baseAddress}/nodes`;
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -55,8 +55,7 @@ export class NodeService {
   }
 
   public updateNode(node:JSON){
-
-    var url = ""
+    var url = `${this.baseAddress}/nodes`;
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -66,20 +65,12 @@ export class NodeService {
       tap(_ => this.log('updated node')),
       catchError(this.handleError<JSON>('updateNode', JSON))
     );
-
   }
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     }
   }
@@ -87,5 +78,4 @@ export class NodeService {
   private log(message: string) {
     this.messageService.add(`NodeService: ${message}`);
   }
-
 }
