@@ -1,0 +1,1212 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "PolarisApi",
+    "description" : "This is the api for Polaris Data Analysis Project on \n[PolarisGithub](https://github.com/Star-Academy/StarAcademy-Group2/)\n",
+    "license" : {
+      "name" : "MIT License",
+      "url" : "https://github.com/Star-Academy/StarAcademy-Group1/blob/master/LICENSE"
+    },
+    "version" : "v1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:5000/api/v1",
+    "description" : "HTTP local host"
+  }, {
+    "url" : "https://localhost:5001/api/v1",
+    "description" : "HTTPS local host"
+  } ],
+  "tags" : [ {
+    "name" : "nodes",
+    "description" : "Access to nodes of the graph",
+    "externalDocs" : {
+      "description" : "Model Definition",
+      "url" : "http://github.com"
+    }
+  }, {
+    "name" : "edges",
+    "description" : "Access to edges of the graph",
+    "externalDocs" : {
+      "description" : "Model Definition",
+      "url" : "http://github.com"
+    }
+  }, {
+    "name" : "graph",
+    "description" : "Access to the whole graph and analysis logic",
+    "externalDocs" : {
+      "description" : "Model Definition",
+      "url" : "http://github.com"
+    }
+  } ],
+  "paths" : {
+    "/nodes/typing" : {
+      "get" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Get the typing of the nodes",
+        "operationId" : "getNodesTyping",
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Typing"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nodes/{nodeId}" : {
+      "get" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Get Nodes by id",
+        "description" : "Returns a single Node",
+        "operationId" : "getNodeById",
+        "parameters" : [ {
+          "name" : "nodeId",
+          "in" : "path",
+          "description" : "Id of the Node to return",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Node"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Node not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Delete Nodes by id",
+        "operationId" : "deleteNodeById",
+        "parameters" : [ {
+          "name" : "nodeId",
+          "in" : "path",
+          "description" : "Node id to delete",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success"
+          },
+          "404" : {
+            "description" : "node not found"
+          }
+        }
+      }
+    },
+    "/nodes" : {
+      "get" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Get Node(s)",
+        "operationId" : "getNodes",
+        "parameters" : [ {
+          "name" : "filter",
+          "in" : "query",
+          "description" : "Filter on Nodes in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Graph"
+          }
+        }, {
+          "name" : "pageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NodeCollection"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Update an existing Node",
+        "operationId" : "updateNode",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/Node"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Updated"
+          },
+          "404" : {
+            "description" : "Node not found"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "nodes" ],
+        "summary" : "Add a new Node to the dataset",
+        "operationId" : "addNode",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/Node"
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
+    "/edges/{edgeId}" : {
+      "get" : {
+        "tags" : [ "edges" ],
+        "summary" : "Get Edges by Id",
+        "description" : "Returns a single Edge",
+        "operationId" : "getEdgeById",
+        "parameters" : [ {
+          "name" : "edgeId",
+          "in" : "path",
+          "description" : "Id of Edge to return",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Edge"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Edge not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "edges" ],
+        "summary" : "Delete Edges by id",
+        "operationId" : "deleteEdge",
+        "parameters" : [ {
+          "name" : "edgeId",
+          "in" : "path",
+          "description" : "Edge id to delete",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success"
+          },
+          "404" : {
+            "description" : "Edge not found"
+          }
+        }
+      }
+    },
+    "/edges" : {
+      "get" : {
+        "tags" : [ "edges" ],
+        "summary" : "Get Edge(s)",
+        "operationId" : "getEdges",
+        "parameters" : [ {
+          "name" : "filter",
+          "in" : "query",
+          "description" : "Filter on Edges in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "enum" : [ "(numericField) (gt gte lt lte eq) (number)", "(stringField) (eq contains startswith endswith lt lte gte gt) (string)" ]
+            }
+          }
+        }, {
+          "name" : "pageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          }
+        }, {
+          "name" : "pageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Edge"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "edges" ],
+        "summary" : "Update an existing Edge",
+        "operationId" : "updateEdge",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/Edge"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Updated"
+          },
+          "404" : {
+            "description" : "Edge not found"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "edges" ],
+        "summary" : "Add a new Edge to the dataset",
+        "operationId" : "addEdge",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/Edge"
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Created"
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    },
+    "/graph" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get the whole graph",
+        "operationId" : "getGraph",
+        "parameters" : [ {
+          "name" : "nodeFilter",
+          "in" : "query",
+          "description" : "Filter on neighbor nodes of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "edgeFilter",
+          "in" : "query",
+          "description" : "Filter on connected edges of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "nodePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the nodes in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "edgePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the edges in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Graph"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          }
+        }
+      }
+    },
+    "/graph/expansion/{nodeId}" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get the expansion of one node by nodeId",
+        "operationId" : "getNodeExpansionById",
+        "parameters" : [ {
+          "name" : "nodeId",
+          "in" : "path",
+          "description" : "Id of the node to be expanded",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "nodeFilter",
+          "in" : "query",
+          "description" : "Filter on neighbor nodes of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "edgeFilter",
+          "in" : "query",
+          "description" : "Filter on connected edges of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "nodePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the nodes in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "edgePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the edges in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success - returns a bunch of neighbor edges and nodes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Graph"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "404" : {
+            "description" : "node not found"
+          }
+        }
+      }
+    },
+    "/graph/expansion" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get the expansion of a bunch of nodes by nodeId array",
+        "operationId" : "getMultipleNodesExpansionsById",
+        "parameters" : [ {
+          "name" : "nodeIds",
+          "in" : "query",
+          "description" : "Ids of the nodes to be expanded",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "nodeFilter",
+          "in" : "query",
+          "description" : "Filter on neighbor nodes of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "edgeFilter",
+          "in" : "query",
+          "description" : "Filter on connected edges of the node in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "nodePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the nodes in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "edgePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgeOrderBy",
+          "in" : "query",
+          "description" : "ordering of the edges in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success - returns a bunch of neighbor edges and nodes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Graph"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "404" : {
+            "description" : "node not found"
+          }
+        }
+      }
+    },
+    "/graph/paths" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get all the paths between two specified nodes",
+        "operationId" : "getPathsBetweenNodes",
+        "parameters" : [ {
+          "name" : "sourceNodeId",
+          "in" : "query",
+          "description" : "Id of the source of the path",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "targetNodeId",
+          "in" : "query",
+          "description" : "Id of the target of the path",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "nodeFilter",
+          "in" : "query",
+          "description" : "Filter on nodes of the path in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "edgeFilter",
+          "in" : "query",
+          "description" : "Filter on edges of the path in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "nodeOrderby",
+          "in" : "query",
+          "description" : "Order of the nodes each time algorithm selects neighbors in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "edgeOrderby",
+          "in" : "query",
+          "description" : "Order of the edges each time algorithm selects neighbors in \"(field) (asc desc)\" format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "nodePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success - returns an array of graphs that each element itself, is a path",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Graph"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "404" : {
+            "description" : "node not found"
+          }
+        }
+      }
+    },
+    "/graph/flow" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get the flow between two specified nodes",
+        "operationId" : "getFlowBetweenNodes",
+        "parameters" : [ {
+          "name" : "sourceNodeId",
+          "in" : "query",
+          "description" : "Id of the source of the path",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "targetNodeId",
+          "in" : "query",
+          "description" : "Id of the target of the path",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "nodeFilter",
+          "in" : "query",
+          "description" : "Filter on nodes of the path of the flow in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "edgeFilter",
+          "in" : "query",
+          "description" : "Filter on edges of the path of the flow in [\"{field} {operator} {value}\", ...] format",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/Filter"
+          }
+        }, {
+          "name" : "nodePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "nodePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageIndex",
+          "in" : "query",
+          "description" : "Pagination pageIndex",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "edgePageSize",
+          "in" : "query",
+          "description" : "Pagination pageSize",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success - returns an array of graphs that each element itself, is a path",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Graph"
+                  },
+                  "x-content-type" : "application/json"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request"
+          },
+          "404" : {
+            "description" : "node not found"
+          }
+        }
+      }
+    },
+    "/graph/stats" : {
+      "get" : {
+        "tags" : [ "graph" ],
+        "summary" : "Get the stats of the graph",
+        "operationId" : "getGraphStats",
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Node" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Unique id of the node"
+          },
+          "data" : {
+            "type" : "object",
+            "description" : "Data of the entity that is set on the node"
+          }
+        },
+        "description" : "Node of the graph",
+        "example" : {
+          "id" : "6000000198",
+          "data" : {
+            "cardId" : "6104340000000000",
+            "sheba" : "IR120778801496000000198",
+            "accountType" : "پس انداز",
+            "branchTelephone" : "55638667",
+            "branchAdress" : "تهران-خیابان خیام-بالاتر از چهارراه گلوبندک",
+            "branchName" : "گلوبندک",
+            "ownerName" : "افسر",
+            "ownerFamilyName" : "طباطبایی",
+            "ownerId" : "1227114110"
+          }
+        }
+      },
+      "Edge" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Unique id of the edge"
+          },
+          "source" : {
+            "type" : "string",
+            "description" : "Unique id of the source node"
+          },
+          "target" : {
+            "type" : "string",
+            "description" : "Unique id of the target node"
+          },
+          "data" : {
+            "type" : "object",
+            "description" : "Data of the entity that is set on the edge"
+          }
+        },
+        "description" : "Edge of the graph",
+        "example" : {
+          "id" : "38791925753",
+          "source" : "3000000271",
+          "target" : "7000000434",
+          "data" : {
+            "timestamp" : "2018-05-24 6:42:05",
+            "trackingId" : 661520,
+            "amount" : 8370000,
+            "type" : "کارت به کارت"
+          }
+        }
+      },
+      "NodeCollection" : {
+        "type" : "array",
+        "description" : "An array of nodes",
+        "items" : {
+          "$ref" : "#/components/schemas/Node"
+        }
+      },
+      "EdgeCollection" : {
+        "type" : "array",
+        "description" : "An array of edges",
+        "items" : {
+          "$ref" : "#/components/schemas/Edge"
+        }
+      },
+      "Graph" : {
+        "type" : "object",
+        "properties" : {
+          "nodes" : {
+            "$ref" : "#/components/schemas/NodeCollection"
+          },
+          "edges" : {
+            "$ref" : "#/components/schemas/EdgeCollection"
+          }
+        },
+        "description" : "A Set containing unique nodes and unique edges",
+        "example" : {
+          "nodes" : [ {
+            "id" : "6000000198",
+            "data" : {
+              "cardId" : "6104340000000000",
+              "sheba" : "IR120778801496000000198",
+              "accountType" : "پس انداز",
+              "branchTelephone" : "55638667",
+              "branchAdress" : "تهران-خیابان خیام-بالاتر از چهارراه گلوبندک",
+              "branchName" : "گلوبندک",
+              "ownerName" : "افسر",
+              "ownerFamilyName" : "طباطبایی",
+              "ownerId" : "1227114110"
+            }
+          }, {
+            "id" : "6000000198",
+            "data" : {
+              "cardId" : "6104340000000000",
+              "sheba" : "IR120778801496000000198",
+              "accountType" : "پس انداز",
+              "branchTelephone" : "55638667",
+              "branchAdress" : "تهران-خیابان خیام-بالاتر از چهارراه گلوبندک",
+              "branchName" : "گلوبندک",
+              "ownerName" : "افسر",
+              "ownerFamilyName" : "طباطبایی",
+              "ownerId" : "1227114110"
+            }
+          } ],
+          "edges" : [ {
+            "id" : "38791925753",
+            "source" : "3000000271",
+            "target" : "7000000434",
+            "data" : {
+              "timestamp" : "2018-05-24 6:42:05",
+              "trackingId" : 661520,
+              "amount" : 8370000,
+              "type" : "کارت به کارت"
+            }
+          }, {
+            "id" : "38791925753",
+            "source" : "3000000271",
+            "target" : "7000000434",
+            "data" : {
+              "timestamp" : "2018-05-24 6:42:05",
+              "trackingId" : 661520,
+              "amount" : 8370000,
+              "type" : "کارت به کارت"
+            }
+          } ]
+        }
+      },
+      "Filter" : {
+        "type" : "array",
+        "example" : [ "source eq 3000000271", "timestamp gte 2018-24-5 6:42:05", "amount lt 2000000000" ],
+        "items" : {
+          "type" : "string",
+          "enum" : [ "(numericField) (gt gte lt lte eq) (number)", "(stringField) (eq contains startswith endswith lt lte gte gt) (string)" ]
+        }
+      },
+      "Typing" : {
+        "type" : "object",
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "_type" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "field" : "field",
+          "_type" : "_type"
+        }
+      },
+      "inline_response_200" : {
+        "type" : "object",
+        "properties" : {
+          "nodesCount" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "edgesCount" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "example" : {
+          "nodesCount" : 1000,
+          "edgesCount" : 2567
+        }
+      }
+    },
+    "requestBodies" : {
+      "Node" : {
+        "description" : "Node object to be sent",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Node"
+            }
+          }
+        },
+        "required" : true
+      },
+      "Edge" : {
+        "description" : "Edge object to be sent",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Edge"
+            }
+          }
+        },
+        "required" : true
+      },
+      "NodeCollection" : {
+        "description" : "Node array to be sent as a bulk",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/NodeCollection"
+            }
+          }
+        },
+        "required" : true
+      },
+      "EdgeCollection" : {
+        "description" : "Edge array to be sent as a bulk",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/EdgeCollection"
+            }
+          }
+        },
+        "required" : true
+      }
+    }
+  }
+}
