@@ -1,0 +1,33 @@
+.search-wrapper form{
+    display: flex;
+}
+
+
+.search-wrapper button{
+    background-color: white;
+    border: none;
+    outline: none;
+    height: 35px;
+    background-color: #eeeeee;
+    padding: 0 10px 0 10px;
+}
+
+.search-wrapper input {
+    border: none;
+    outline: none;
+    background-color: #eeeeee;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 35px;
+    width: 200px;
+    padding: 0;
+    padding-left: 7px;
+}
+
+.close-window{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 20px;
+    border-left: 1px solid black !important;
+}
+
