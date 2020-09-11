@@ -10,11 +10,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { MatListModule} from '@angular/material/list';
+import { MatMenuModule} from '@angular/material/menu';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { InformationComponent } from './left-panel/information/information.component';
 import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
 import {FormsModule} from '@angular/forms';
+import { RightPanelModule } from './right-panel/right-panel.module' ;
 
 
 
@@ -36,7 +39,12 @@ import {FormsModule} from '@angular/forms';
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    RightPanelModule
+  ],
+  exports: [
+  RightPanelModule
   ],
   providers: [RandomGraphService],
   bootstrap: [AppComponent]
