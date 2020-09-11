@@ -3,25 +3,34 @@ import * as initialGraph from '../../assets/ogma.min.js';
 import { RandomGraphService } from '../../services/read-ogma-from-random-json.service';
 import { NodeId } from '../../assets/ogma.min.js';
 import * as HoverEvent from '../../assets/ogma.min.js';
+import * as RightClickEvent from '../../assets/ogma.min.js';
+import * as ClickEvent from '../../assets/ogma.min.js';
 
 @Component({
   selector: 'app-graph-screen',
   templateUrl: './graph-screen.component.html',
-  styleUrls: ['./graph-screen.component.scss']
+  styleUrls: ['./graph-screen.component.scss'],
 })
 export class GraphScreenComponent implements OnInit, AfterContentInit {
   @ViewChild('ogmaContainer', { static: true })
   private container;
-  hoveredContent: { id: NodeId, accountId: number, name: string, familyName: string };
-  hoveredPosition: { x: number, y: number };
-  constructor(private randomOgma: RandomGraphService) { }
+  hoveredContent: {
+    id: NodeId;
+    accountId: number;
+    name: string;
+    familyName: string;
+  };
+  hoveredPosition: { x: number; y: number };
+  contextMenuPosition: { x: number; y: number };
+  contextMenuContent: { id: NodeId };
+  constructor(private randomOgma: RandomGraphService) {}
 
   ngOnInit() {
     this.randomOgma.initConfig({
       graph: initialGraph,
       options: {
-        backgroundColor: 'rgb(240, 240, 240)'
-      }
+        backgroundColor: 'rgb(240, 240, 240)',
+      },
     });
     this.randomOgma.ogma.events.onHover(({ x, y, target }: HoverEvent) => {
       if (target.isNode) {
@@ -29,15 +38,29 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           id: target.getId(),
           accountId: target.getData('AccountID'),
           name: target.getData('OwnerName'),
-          familyName: target.getData('OwnerFamilyName')
+          familyName: target.getData('OwnerFamilyName'),
         };
-        this.hoveredPosition = {x, y: y + 20};
+        this.hoveredPosition = { x, y: y + 20 };
       }
     });
 
     this.randomOgma.ogma.events.onUnhover((_: HoverEvent) => {
       this.hoveredContent = null;
     });
+
+    this.randomOgma.ogma.events.onClick(({ x, y, target }: RightClickEvent) => {
+      if (target!= null &&  target.isNode) {
+        this.contextMenuContent = {id: target.getId()}
+        this.contextMenuPosition = { x, y: y + 20 };
+      }
+
+    });
+    this.randomOgma.ogma.events.onClick(({x,y,target}: ClickEvent) => {
+      if(target == null || !target.isNode){
+        this.contextMenuContent = null;
+      }
+    });
+
   }
   ngAfterContentInit() {
     this.randomOgma.ogma.setContainer(this.container.nativeElement);
@@ -51,5 +74,4 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     this.randomOgma.getJsonGraph();
     return this.runLayout();
   }
-
 }

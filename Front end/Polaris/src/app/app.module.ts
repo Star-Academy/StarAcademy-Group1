@@ -17,6 +17,7 @@ import { RightNavService } from '../services/nav-side-open-close.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPanelComponent } from './right-panel/filter-panel/filter-panel.component';
 import { SelectionPanelComponent } from './right-panel/selection-panel/selection-panel.component';
+import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.component';
 
 
 
@@ -33,6 +34,7 @@ import { SelectionPanelComponent } from './right-panel/selection-panel/selection
     TooltipComponent,
     FilterPanelComponent,
     SelectionPanelComponent,
+    ContextMenuComponent,
 
   ],
   imports: [

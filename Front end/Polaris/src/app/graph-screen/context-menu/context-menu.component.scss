@@ -1,0 +1,101 @@
+.ogma-context-menu {
+  max-width: 240px;
+  max-height: 280px;
+  background-color: #fff;
+  border: 1px solid #999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  font-family: Arial;
+  font-size: 12px;
+  position: absolute;
+  z-index: 100;
+  display: inline-block;
+}
+
+.ogma-context-menu .icon {
+  font-family: FontAwesome;
+}
+
+.ogma-context-menu-header {
+  font-variant: small-caps;
+  font-size: 120%;
+  color: #000;
+  border-bottom: 1px solid #999;
+  padding: 10px;
+}
+
+.ogma-context-menu-body {
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: inherit;
+  max-height: 180px;
+}
+
+.ogma-context-menu-body th {
+  color: #999;
+  text-align: left;
+}
+
+.ogma-context-menu-footer {
+  padding: 10px;
+  border-top: 1px solid #999;
+}
+
+.ogma-context-menu>.arrow {
+  border-width: 10px;
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.ogma-context-menu.top {
+  margin-top: -12px;
+}
+
+.ogma-context-menu.top>.arrow {
+  left: 50%;
+  bottom: -10px;
+  margin-left: -10px;
+  border-top-color: #999;
+  border-bottom-width: 0;
+}
+
+.ogma-context-menu.bottom {
+  margin-top: 12px;
+}
+
+.ogma-context-menu.bottom>.arrow {
+  left: 50%;
+  top: -10px;
+  margin-left: -10px;
+  border-bottom-color: #999;
+  border-top-width: 0;
+}
+
+.ogma-context-menu.left {
+  margin-left: -12px;
+}
+
+.ogma-context-menu.left>.arrow {
+  top: 50%;
+  right: -10px;
+  margin-top: -10px;
+  border-left-color: #999;
+  border-right-width: 0;
+}
+
+.ogma-context-menu.right {
+  margin-left: 12px;
+}
+
+.ogma-context-menu.right>.arrow {
+  top: 50%;
+  left: -10px;
+  margin-top: -10px;
+  border-right-color: #999;
+  border-left-width: 0;
+}

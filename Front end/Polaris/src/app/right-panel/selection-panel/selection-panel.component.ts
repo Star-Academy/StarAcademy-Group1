@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RightNavService } from '../../../services/nav-side-open-close.service'
 
 @Component({
   selector: 'app-selection-panel',
