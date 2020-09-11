@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { GraphScreenModule } from './graph-screen/graph-screen.module';
+import { GraphScreenComponent } from './graph-screen/graph-screen.component';
 import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -13,6 +13,10 @@ import { MatListModule} from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { InformationComponent } from './left-panel/information/information.component';
+import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
+import {FormsModule} from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -21,19 +25,20 @@ import { InformationComponent } from './left-panel/information/information.compo
     RightPanelComponent,
     SearchBarComponent,
     SelectionsComponent,
-    InformationComponent
+    InformationComponent,
+    GraphScreenComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    GraphScreenModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [RandomGraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
