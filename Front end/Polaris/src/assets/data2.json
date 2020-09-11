@@ -3,48 +3,84 @@
 		{
 			"id": 1,
 			"data": {
-				"name": "saba",
-				"gender": "female"
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "دریا",
+        "OwnerName": "مهدی",
+        "OwnerFamilyName": "خضرایی",
+        "OwnerID": "345623"
 			},
 			"attributes": {
-				"text": "saba",
-				"shape": "square",
+				"text": "مهدی",
+        "shape": "square",
+        "color":"blue",
 				"radius": 8
 			}
 		},
 		{
 			"id": 2,
-			"data": {
-				"name": "aida",
-				"gender": "female"
+      "data": {
+				"AccountID": "3000000406",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "female",
+        "OwnerName": "سارا",
+        "OwnerFamilyName": "رحیمی",
+        "OwnerID": "female"
 			},
 			"attributes":{
-				"text": "aida",
-				"shape": "square",
+				"text": "سارا",
+        "shape": "square",
+        "color":"purple",
 				"radius": 8
 			}
-		}, 
+		},
 		{
 			"id": 3,
-			"data": {
-				"name": "darya",
-				"gender": "female"
+      "data": {
+				"AccountID": "123456896",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "female",
+        "OwnerName": "صبا",
+        "OwnerFamilyName": "ابراهیمی",
+        "OwnerID": "female"
 			},
 			"attributes":{
-				"text": "darya",
-				"shape": "square",
+				"text": "صبا",
+        "shape": "square",
+        "color":"pink",
 				"radius": 8
 			}
-		}, 
+		},
 		{
 			"id": 4,
-			"data": {
-				"name": "ali",
-				"gender": "male"
+      "data": {
+				"AccountID": "156344565496",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "female",
+        "OwnerName": "مهلا",
+        "OwnerFamilyName": "شریفی",
+        "OwnerID": "female"
 			},
 			"attributes":{
-				"text": "ali",
-				"shape": "square",
+				"text": "مهلا",
+        "shape": "circle",
+        "color":"purple",
 				"radius": 8
 			}
 		}
