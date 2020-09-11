@@ -9,33 +9,65 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class NodeService {
 
-  private Url = "";
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
 
-  public getNode(nodeId: string): Observable<string> {
-    return this.http.get<string>(this.Url).pipe(
-      tap(_ => this.log('fetched heroes')),
-      catchError(this.handleError<string>('getNode', ""))
+  public getNode(nodeId:string): Observable<string> {
+
+    var url = ""
+    
+    var httpOptions = {
+    };
+
+    return this.http.get<string>(url ,httpOptions).pipe(
+      tap(_ => this.log(`got node id=${nodeId}`)),
+      catchError(this.handleError<string>('getNode'))
     );
   }
 
 
-  public deleteNode(nodeId: string): Observable<string>{
+  public deleteNode(nodeId:string): Observable<string>{
 
-    return this.http.delete<string>(this.Url,this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${nodeId}`)),
+    var url = ""
+    
+    var httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.delete<string>(url,httpOptions).pipe(
+      tap(_ => this.log(`deleted node id=${nodeId}`)),
       catchError(this.handleError<string>('deleteNode'))
     );
   }
 
+  public addNode(node:JSON):Observable<JSON>{//post
+    var url = ""
+    var httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<JSON>(url, node, httpOptions)
+    .pipe(
+      tap(_ => this.log(`added node`)),
+      catchError(this.handleError<JSON>('addNode', JSON))
+    );
+  }
+
+  public updateNode(node:JSON){
+
+    var url = ""
+    var httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
+    return this.http.put<JSON>(url, node, httpOptions)
+    .pipe(
+      tap(_ => this.log('updated node')),
+      catchError(this.handleError<JSON>('updateNode', JSON))
+    );
+
+  }
 
 
   private handleError<T>(operation = 'operation', result?: T) {
