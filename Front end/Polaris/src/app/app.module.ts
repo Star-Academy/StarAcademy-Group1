@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from './services/message/message.service';
 import { EdgeService } from './services/edge/edge.service';
-
+import { GraphService } from './services/graph/graph.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { EdgeService } from './services/edge/edge.service';
   providers: [
     RandomGraphService,
     MessageService,
-    EdgeService],
+    EdgeService,
+    GraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
