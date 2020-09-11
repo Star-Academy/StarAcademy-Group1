@@ -13,9 +13,11 @@ import { SelectionsComponent } from './left-panel/selections/selections.componen
 import { InformationComponent } from './left-panel/information/information.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
 import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
+import { RightNavService } from '../services/nav-side-open-close.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPanelComponent } from './right-panel/filter-panel/filter-panel.component';
 import { SelectionPanelComponent } from './right-panel/selection-panel/selection-panel.component';
+
 
 
 
@@ -40,7 +42,7 @@ import { SelectionPanelComponent } from './right-panel/selection-panel/selection
     FormsModule,
     MatMenuModule,
   ],
-  providers: [RandomGraphService],
+  providers: [RandomGraphService, RightNavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
