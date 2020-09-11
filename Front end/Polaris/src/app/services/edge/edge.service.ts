@@ -69,6 +69,10 @@ export class EdgeService {
     );
   }
 
+  public getAllEdges(filter:JSON){
+    // todo
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
