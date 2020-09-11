@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectionPanelComponent implements OnInit {
 
+  public hidden = false ;
   constructor() { }
 
   ngOnInit(): void {

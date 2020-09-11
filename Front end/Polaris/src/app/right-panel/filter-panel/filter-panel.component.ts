@@ -7,17 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterPanelComponent implements OnInit {
 
+  public hidden = false;
+
   constructor() { }
 
   ngOnInit(): void {
-  }
-  public openNav() {
-    document.getElementById("mySidenav2").style.width = "250px";
-  }
-
-  /* Set the width of the side navigation to 0 */
-  public closeNav() {
-    document.getElementById("mySidenav2").style.width = "0";
   }
 
 }
