@@ -15,8 +15,9 @@ import { MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { InformationComponent } from './left-panel/information/information.component';
+import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
 import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RightPanelModule } from './right-panel/right-panel.module' ;
 
 
@@ -29,7 +30,8 @@ import { RightPanelModule } from './right-panel/right-panel.module' ;
     SearchBarComponent,
     SelectionsComponent,
     InformationComponent,
-    GraphScreenComponent
+    GraphScreenComponent,
+    TooltipComponent
   ],
   imports: [
     BrowserModule,

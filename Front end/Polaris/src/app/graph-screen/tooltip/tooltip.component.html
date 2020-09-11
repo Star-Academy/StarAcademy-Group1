@@ -1,7 +1,8 @@
-<div class="tooltip" #ngTooltip [style.top.px]="position.y" [style.left.px]="position.x">
-        <h1>content:</h1>
-        <span>{{content.id}}</span>
-        <span>{{position.x}}</span>
-        <span>{{position.y}}</span>
-    </div>
+<div class="ogma-tooltip" #ngTooltip [style.top.px]="position.y" [style.left.px]="position.x">
+        <div class="arrow"></div>
+        <div class="ogma-tooltip-header">{{content.accountId}} {{content.id}}</div>
+        <div class="ogma-tooltip-body">
+                <span>{{content.name}}</span>
+                <span>{{content.familyName}}</span>
+        </div>
 </div>

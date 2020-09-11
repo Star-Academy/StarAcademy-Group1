@@ -1,0 +1,99 @@
+        .ogma-tooltip {
+        max-width: 240px;
+        max-height: 280px;
+        background-color: #fff;
+        border: 1px solid #999;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        cursor: auto;
+        font-family: Arial;
+        font-size: 12px;
+      }
+  
+      .ogma-tooltip .icon {
+        font-family: FontAwesome;
+      }
+  
+      .ogma-tooltip-header {
+        font-variant: small-caps;
+        font-size: 120%;
+        color: #000;
+        border-bottom: 1px solid #999;
+        padding: 10px;
+      }
+  
+      .ogma-tooltip-body {
+        padding: 10px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-width: inherit;
+        max-height: 180px;
+      }
+  
+      .ogma-tooltip-body th {
+        color: #999;
+        text-align: left;
+      }
+  
+      .ogma-tooltip-footer {
+        padding: 10px;
+        border-top: 1px solid #999;
+      }
+  
+      .ogma-tooltip>.arrow {
+        border-width: 10px;
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+      }
+  
+      .ogma-tooltip.top {
+        margin-top: -12px;
+      }
+  
+      .ogma-tooltip.top>.arrow {
+        left: 50%;
+        bottom: -10px;
+        margin-left: -10px;
+        border-top-color: #999;
+        border-bottom-width: 0;
+      }
+  
+      .ogma-tooltip.bottom {
+        margin-top: 12px;
+      }
+  
+      .ogma-tooltip.bottom>.arrow {
+        left: 50%;
+        top: -10px;
+        margin-left: -10px;
+        border-bottom-color: #999;
+        border-top-width: 0;
+      }
+  
+      .ogma-tooltip.left {
+        margin-left: -12px;
+      }
+  
+      .ogma-tooltip.left>.arrow {
+        top: 50%;
+        right: -10px;
+        margin-top: -10px;
+        border-left-color: #999;
+        border-right-width: 0;
+      }
+  
+      .ogma-tooltip.right {
+        margin-left: 12px;
+      }
+  
+      .ogma-tooltip.right>.arrow {
+        top: 50%;
+        left: -10px;
+        margin-top: -10px;
+        border-right-color: #999;
+        border-left-width: 0;
+      }

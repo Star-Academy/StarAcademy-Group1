@@ -12,7 +12,7 @@ import * as HoverEvent from '../../assets/ogma.min.js';
 export class GraphScreenComponent implements OnInit, AfterContentInit {
   @ViewChild('ogmaContainer', { static: true })
   private container;
-  hoveredContent: { id: NodeId };
+  hoveredContent: { id: NodeId, accountId: number, name: string, familyName: string };
   hoveredPosition: { x: number, y: number };
   constructor(private randomOgma: RandomGraphService) { }
 
@@ -26,7 +26,10 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     this.randomOgma.ogma.events.onHover(({ x, y, target }: HoverEvent) => {
       if (target.isNode) {
         this.hoveredContent = {
-          id: target.getId()
+          id: target.getId(),
+          accountId: target.getData('AccountID'),
+          name: target.getData('OwnerName'),
+          familyName: target.getData('OwnerFamilyName')
         };
         this.hoveredPosition = {x, y: y + 20};
       }

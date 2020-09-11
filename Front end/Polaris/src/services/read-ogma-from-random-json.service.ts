@@ -18,5 +18,6 @@ export class RandomGraphService{
 
     public setGraph(graph) {
         this.ogma.setGraph(graph);
+        this.runLayout();
     }
 }

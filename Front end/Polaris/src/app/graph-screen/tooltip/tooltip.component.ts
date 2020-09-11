@@ -7,11 +7,10 @@ import { Component, Input , OnInit} from '@angular/core';
 })
 export class TooltipComponent implements OnInit {
   @Input()
-  content: { id: string };
+  content: { id: string, accountId: string, name: string, familyName: string };
   @Input()
   position: { x: number, y: number };
 
   ngOnInit(): void{
-    console.log("this "+this.content.id + " " + this.position.x + " " + this.position.y);
   }
 }
