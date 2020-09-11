@@ -17,6 +17,7 @@ import { RandomGraphService } from '../services/read-ogma-from-random-json.servi
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from './services/message/message.service';
+import { EdgeService } from './services/edge/edge.service';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MessageService } from './services/message/message.service';
   ],
   providers: [
     RandomGraphService,
-    MessageService],
+    MessageService,
+    EdgeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
