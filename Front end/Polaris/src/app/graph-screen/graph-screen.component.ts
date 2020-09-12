@@ -95,12 +95,16 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       });
     });
 
-    this.randomOgma.ogma.events.onNodesUnSelected(({ target }: ClickEvent) => {
+    this.randomOgma.ogma.events.onNodesUnselected(({ target }: ClickEvent) => {
       this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
         if (this.randomOgma.selectedNodes.includes(element)) {
-          console.log('delete' + element);
+          const index = this.randomOgma.selectedNodes.indexOf(element, 0);
+          if (index > -1) {
+            this.randomOgma.selectedNodes.splice(index, 1);
+          }
         }
       });
+      console.log(this.randomOgma.selectedNodes);
     });
   }
 
