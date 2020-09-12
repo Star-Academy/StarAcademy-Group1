@@ -35,8 +35,21 @@ export class EdgeService {
     });
   }
 
-  public getAllEdges(filter: JSON) {
-    // todo
+  public getAllEdges(
+    filter: Array<string> = [],
+    pageIndex = 0,
+    pageSize = 1
+  ): Promise<JSON> {
+    var url = `${this.baseAddress}/edges?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`;
+
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url, this.httpOptions).pipe(
+        tap(_ => this.log(`got edges`)),
+        catchError(this.handleError<JSON>('getEdge'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
   public async deleteEdge(edgeId: string): Promise<void> {
