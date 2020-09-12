@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NodeInfoPanelComponent } from './node-info-panel.component';
+import { NodeInfoBoxComponent } from './node-info-box.component';
 
-describe('NodeInfoPanelComponent', () => {
-  let component: NodeInfoPanelComponent;
-  let fixture: ComponentFixture<NodeInfoPanelComponent>;
+describe('NodeInfoBoxComponent', () => {
+  let component: NodeInfoBoxComponent;
+  let fixture: ComponentFixture<NodeInfoBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NodeInfoPanelComponent ]
+      declarations: [ NodeInfoBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NodeInfoPanelComponent);
+    fixture = TestBed.createComponent(NodeInfoBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

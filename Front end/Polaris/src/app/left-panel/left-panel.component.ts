@@ -15,5 +15,4 @@ export class LeftPanelComponent implements OnDestroy {
 
   ngOnDestroy(): void {
   }
-  shouldRun = true ;
 }

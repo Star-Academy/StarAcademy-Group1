@@ -18,7 +18,7 @@ import { FilterPanelComponent } from './right-panel/filter-panel/filter-panel.co
 import { SelectionPanelComponent } from './right-panel/selection-panel/selection-panel.component';
 import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.component';
 import { InformationPanelComponent } from './left-panel/information-panel/information-panel.component';
-import { NodeInfoPanelComponent } from './left-panel/information-panel/node-info-panel/node-info-panel.component';
+import { NodeInfoBoxComponent } from './left-panel/node-info-box/node-info-box.component';
 
 
 
@@ -36,7 +36,7 @@ import { NodeInfoPanelComponent } from './left-panel/information-panel/node-info
     SelectionPanelComponent,
     ContextMenuComponent,
     InformationPanelComponent,
-    NodeInfoPanelComponent,
+    NodeInfoBoxComponent,
 
   ],
   imports: [

@@ -1,13 +1,14 @@
-export class Node {
-  public AccountID: string;
-  public CardID: string;
-  public Sheba: number;
-  public AccountType: string;
+export class NodeBox {
+  public accountID: string;
+  public cardID: string;
+  public sheba: string;
+  public accountType: string;
   public branchTelephone: string;
-  public BranchAdress: string;
-  public BranchName: number;
-  public OwnerName: string;
-  public OwnerFamilyName: string;
-  public OwnerID: string;
+  public branchAdress: string;
+  public branchName: string;
+  public ownerName: string;
+  public ownerFamilyName: string;
+  public ownerID: string;
+  public constructor(){}
 
 }
