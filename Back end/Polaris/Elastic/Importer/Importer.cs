@@ -1,16 +1,16 @@
-using Elastic.Cumminucation;
-using Elastic.Models;
+using Elastic.Communication;
+using Models;
 
 namespace Elastic.Importer
 {
-    public class Importer<E, T> where E : Entity<T>
+    public class Importer<M> where M : class, IModel
     {
-        private ElasticImporter<E, T> elasticImporter = new ElasticImporter<E, T>();
+        private NestElaticHandler<M> elasticImporter = new NestElaticHandler<M>();
 
-        public void ImportToElastic(string source, IStringParser<E, T> stringParser, string elasticIndexName)
+        public void ImportToElastic(string source, IStringParser<M> stringParser, string elasticIndexName)
         {
             var list = stringParser.Parse(source);
-            elasticImporter.BulkList(list, elasticIndexName);
+            elasticImporter.BulkInsert(list, elasticIndexName);
         }
     }
 }

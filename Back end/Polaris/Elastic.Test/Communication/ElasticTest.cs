@@ -1,7 +1,7 @@
 using Xunit;
 using System.Collections.Generic;
 
-using Elastic.Cumminucation;
+using Elastic.Communication;
 using Elastic.Test.Importer;
 
 namespace Elastic.Test.Communication
@@ -22,8 +22,8 @@ namespace Elastic.Test.Communication
             InitClient();
             var list = new List<CsvStringParserTest.Foo>();
             list.Add(new CsvStringParserTest.Foo(1, "John Dalton"));
-            var importer = new ElasticImporter<CsvStringParserTest.Foo, int>();
-            importer.BulkList(list, "xunit");
+            var importer = new NestElaticHandler<CsvStringParserTest.Foo>();
+            importer.BulkInsert(list, "xunit");
         }
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-using Elastic.Models;
+using Models;
 
 namespace Elastic.Importer
 {
-    public interface IStringParser<E, T> where E : Entity<T>
+    public interface IStringParser<M> where M : class, IModel
     {
-        List<E> Parse(string source);
+        IEnumerable<M> Parse(string source);
     }
 }

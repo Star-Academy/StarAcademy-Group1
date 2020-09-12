@@ -3,7 +3,7 @@ using System;
 
 using Elastic.CustomExceptions;
 
-namespace Elastic.Cumminucation
+namespace Elastic.Communication
 {
     public static class ElasticClientFactory
     {
