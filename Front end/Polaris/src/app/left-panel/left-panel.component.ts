@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
 
 
 /** @title Responsive sidenav */
@@ -8,8 +8,8 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
   styleUrls: ['left-panel.component.scss'],
 })
 export class LeftPanelComponent implements OnDestroy {
-
-
+@Input()
+public info:string
   constructor() {
   }
 

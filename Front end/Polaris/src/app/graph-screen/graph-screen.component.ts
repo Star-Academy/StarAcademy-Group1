@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
 import { RandomGraphService } from '../../services/read-ogma-from-random-json.service';
+import { ComponentsCommunication } from '../../services/components-communication.service';
 import { NodeId } from '../../assets/ogma.min.js';
 import * as HoverEvent from '../../assets/ogma.min.js';
 import * as RightClickEvent from '../../assets/ogma.min.js';
@@ -23,7 +24,10 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   hoveredPosition: { x: number; y: number };
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
-  constructor(private randomOgma: RandomGraphService) {}
+  constructor(
+    private randomOgma: RandomGraphService,
+    private componentCommunication: ComponentsCommunication
+  ) {}
 
   ngOnInit() {
     this.randomOgma.initConfig({
@@ -48,19 +52,33 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       this.hoveredContent = null;
     });
 
-    this.randomOgma.ogma.events.onClick(({ x, y, target, button }: RightClickEvent) => {
-      if (target != null && target.isNode && button === 'right') {
-        this.contextMenuContent = { id: target.getId() };
-        this.contextMenuPosition = { x, y: y + 20 };
+    this.randomOgma.ogma.events.onClick(
+      ({ x, y, target, button }: RightClickEvent) => {
+        if (target != null && target.isNode && button === 'right') {
+          this.contextMenuContent = { id: target.getId() };
+          this.contextMenuPosition = { x, y: y + 20 };
+        }
       }
-    });
+    );
     this.randomOgma.ogma.events.onClick(({ x, y, target }: ClickEvent) => {
       if (target == null || !target.isNode) {
         this.contextMenuContent = null;
-        this.contextMenuPosition = null ;
+        this.contextMenuPosition = null;
       }
     });
+    this.randomOgma.ogma.events.onDoubleClick(
+      ({ target, button }: ClickEvent) => {
+        if (target != null && target.isNode && button === 'left') {
+          this.componentCommunication.whichPanel = 'nodeInfo';
+          this.componentCommunication.nodeInfo.accountId = '11211';
+          this.componentCommunication.nodeInfo.name = 'nnnamme';
+          this.componentCommunication.nodeInfo.familyName = 'hkjdscfhaeksjd';
+          // this.componentCommunication.nodeInfo.branchName = 'branch';
+        }
+      }
+    );
   }
+
   ngAfterContentInit() {
     this.randomOgma.ogma.setContainer(this.container.nativeElement);
     return this.runLayout();
