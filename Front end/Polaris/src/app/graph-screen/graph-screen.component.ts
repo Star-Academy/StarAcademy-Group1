@@ -88,14 +88,14 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
       }
     );
-    this.randomOgma.ogma.events.onNodesSelected(({ target }: ClickEvent) => {
+    this.randomOgma.ogma.events.onNodesSelected(() => {
 
       this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
         this.randomOgma.addNodeToSelected(element);
       });
     });
 
-    this.randomOgma.ogma.events.onNodesUnselected(({ target }: ClickEvent) => {
+    this.randomOgma.ogma.events.onNodesUnselected(() => {
       this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
         if (this.randomOgma.selectedNodes.includes(element)) {
           const index = this.randomOgma.selectedNodes.indexOf(element, 0);
@@ -104,7 +104,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           }
         }
       });
-      console.log(this.randomOgma.selectedNodes);
     });
   }
 
