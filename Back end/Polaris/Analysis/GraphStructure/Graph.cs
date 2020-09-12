@@ -14,36 +14,49 @@ namespace Analysis.GraphStructure
 
         public List<Node<NID, NDATA>> GetNeighbors(NDATA data)
         {
-            var set = new HashSet<Node<NID, NDATA>>();
+            var node = SearchByData(data);
+            return ReadNeighbors(node);
+        }
 
-            foreach (var it in Adj)
-                if (it.Key.Data.Equals(data))
-                {
-                    foreach (var edge in it.Value)
-                    {
-                        set.Add(edge.Target);
-                    }
-                    break;
-                }
+        private List<Node<NID, NDATA>> ReadNeighbors(Node<NID, NDATA> node)
+        {
+            var set = new HashSet<Node<NID, NDATA>>();
+            foreach (var edge in Adj[node])
+            {
+                set.Add(edge.Target);
+            }
 
             return set.ToList();
         }
 
         public List<Node<NID, NDATA>> GetNeighbors(NID id)
         {
-            var set = new HashSet<Node<NID, NDATA>>();
+            var node = SearchByID(id);
+            return ReadNeighbors(node);
+        }
 
+        private Node<NID, NDATA> SearchByID(NID id)
+        {
+            Node<NID, NDATA> ret = null;
             foreach (var it in Adj)
-                if (it.Key.Data.Equals(id))
+                if (it.Key.Id.Equals(id))
                 {
-                    foreach (var edge in it.Value)
-                    {
-                        set.Add(edge.Target);
-                    }
+                    ret = it.Key;
                     break;
                 }
+            return ret;
+        }
 
-            return set.ToList();
+        private Node<NID, NDATA> SearchByData(NDATA data)
+        {
+            Node<NID, NDATA> ret = null;
+            foreach (var it in Adj)
+                if (it.Key.Data.Equals(data))
+                {
+                    ret = it.Key;
+                    break;
+                }
+            return ret;
         }
     }
 }
