@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ComponentsCommunication } from 'src/services/components-communication.service';
-import { NodeBox } from './../../../node';
 
 @Component({
   selector: 'app-node-info-box',
@@ -10,7 +9,7 @@ import { NodeBox } from './../../../node';
 
 export class NodeInfoBoxComponent implements OnInit {
 
-  constructor(public componentCommunication: ComponentsCommunication) {
+  constructor(public componentsCommunication: ComponentsCommunication) {
 
   }
 

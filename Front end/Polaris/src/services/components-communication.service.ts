@@ -12,5 +12,7 @@ export class ComponentsCommunication {
   };
   public edgeInfo: {
     Id: string;
+    source: string,
+    target: string
   }
 }

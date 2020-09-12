@@ -27,7 +27,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   constructor(
     private randomOgma: RandomGraphService,
     private componentCommunication: ComponentsCommunication
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.randomOgma.initConfig({
@@ -60,7 +60,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
       }
     );
-    this.randomOgma.ogma.events.onClick(({ x, y, target }: ClickEvent) => {
+    this.randomOgma.ogma.events.onClick(({ target }: ClickEvent) => {
       if (target == null || !target.isNode) {
         this.contextMenuContent = null;
         this.contextMenuPosition = null;
@@ -70,10 +70,20 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       ({ target, button }: ClickEvent) => {
         if (target != null && target.isNode && button === 'left') {
           this.componentCommunication.whichPanel = 'nodeInfo';
-          this.componentCommunication.nodeInfo.accountId = '11211';
-          this.componentCommunication.nodeInfo.name = 'nnnamme';
-          this.componentCommunication.nodeInfo.familyName = 'hkjdscfhaeksjd';
-          // this.componentCommunication.nodeInfo.branchName = 'branch';
+          this.componentCommunication.nodeInfo = {
+            accountId: target.getId(),
+            name: target.getData('OwnerName'),
+            familyName: target.getData('OwnerFamilyName'),
+            branchName: target.getData('BranchName')
+          }
+        }
+        else if(target != null && !target.isNode && button === 'left'){
+          this.componentCommunication.whichPanel = 'edgeInfo';
+          this.componentCommunication.edgeInfo = {
+            Id: target.getId(),
+            source: target.getSource().getId(),
+            target: target.getTarget().getId()
+          }
         }
       }
     );

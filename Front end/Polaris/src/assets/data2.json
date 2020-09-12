@@ -1,7 +1,7 @@
 {
 	"nodes": [
 		{
-			"id": "11",
+			"id": "6534454617",
 			"data": {
 				"AccountID": "6534454617",
         "CardID": "6104335000000190",
@@ -22,7 +22,7 @@
 			}
 		},
 		{
-			"id": "sss",
+			"id": "3000000406",
       "data": {
 				"AccountID": "3000000406",
         "CardID": "female",
@@ -30,7 +30,7 @@
         "AccountType": "female",
         "BranchTelephone": "female",
         "BranchAdress": "female",
-        "BranchName": "female",
+        "BranchName": "دیباجی",
         "OwnerName": "سارا",
         "OwnerFamilyName": "رحیمی",
         "OwnerID": "female"
@@ -43,7 +43,7 @@
 			}
 		},
 		{
-			"id": "heloooooooooo",
+			"id": "123456896",
       "data": {
 				"AccountID": "123456896",
         "CardID": "female",
@@ -51,7 +51,7 @@
         "AccountType": "female",
         "BranchTelephone": "female",
         "BranchAdress": "female",
-        "BranchName": "female",
+        "BranchName": "انقلاب",
         "OwnerName": "صبا",
         "OwnerFamilyName": "ابراهیمی",
         "OwnerID": "female"
@@ -64,7 +64,7 @@
 			}
 		},
 		{
-			"id": "aaaaa",
+			"id": "156344565496",
       "data": {
 				"AccountID": "156344565496",
         "CardID": "female",
@@ -72,7 +72,7 @@
         "AccountType": "female",
         "BranchTelephone": "female",
         "BranchAdress": "female",
-        "BranchName": "female",
+        "BranchName": "دروازه دولت",
         "OwnerName": "مهلا",
         "OwnerFamilyName": "شریفی",
         "OwnerID": "female"
@@ -88,8 +88,8 @@
 	"edges": [
 		{
         "id": 5,
-        "source": "heloooooooooo",
-        "target": "aaaaa",
+        "source": "123456896",
+        "target": "156344565496",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -98,8 +98,8 @@
       },
 	  {
         "id": 6,
-        "source": "sss",
-        "target": "aaaaa",
+        "source": "3000000406",
+        "target": "156344565496",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -108,8 +108,8 @@
       },
 	  {
         "id": 7,
-        "source": "sss",
-        "target": "heloooooooooo",
+        "source": "3000000406",
+        "target": "123456896",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -118,8 +118,8 @@
       },
 	  {
         "id": 8,
-        "source": 1,
-        "target": "sss",
+        "source": "6534454617",
+        "target": "3000000406",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -128,8 +128,8 @@
       },
 	  {
         "id": 9,
-        "source": "11",
-        "target": "heloooooooooo",
+        "source": "6534454617",
+        "target": "123456896",
 		"data": { },
         "attributes": {
           "width": 1,

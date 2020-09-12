@@ -8,7 +8,8 @@ import { ComponentsCommunication } from 'src/services/components-communication.s
 })
 export class InformationPanelComponent implements OnInit {
 
-  constructor(public componentCommunication: ComponentsCommunication) {}
+  constructor(public componentCommunication: ComponentsCommunication) {
+  }
 
   ngOnInit(): void {
   }
