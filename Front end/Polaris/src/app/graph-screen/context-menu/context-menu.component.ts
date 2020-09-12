@@ -1,3 +1,4 @@
+import { RandomGraphService } from './../../../services/read-ogma-from-random-json.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,13 +9,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ContextMenuComponent implements OnInit {
 
   @Input()
-  content: { id: string};
+  content: { id: string };
   @Input()
   position: { x: number, y: number };
 
-  constructor() { }
+  constructor(private randomOgma: RandomGraphService) { }
 
   ngOnInit(): void {
   }
-
+  public deleteNode() {
+    let removeOne: string[] = new Array(this.content.id);
+    this.randomOgma.removeGraphNode(removeOne);
+  }
 }

@@ -61,6 +61,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       }
     );
     this.randomOgma.ogma.events.onClick(({ target }: ClickEvent) => {
+      this.hoveredContent = null;
       if (target == null || !target.isNode) {
         this.contextMenuContent = null;
         this.contextMenuPosition = null;
@@ -74,7 +75,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
             accountId: target.getId(),
             name: target.getData('OwnerName'),
             familyName: target.getData('OwnerFamilyName'),
-            branchName: target.getData('BranchName')
+            branchName: target.getData('BranchName'),
           }
         }
         else if(target != null && !target.isNode && button === 'left'){
@@ -99,11 +100,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   }
   public getJs(): Promise<void> {
     this.randomOgma.getJsonGraph();
-    return this.runLayout();
-  }
-
-  public removeNode(): Promise<void> {
-    this.randomOgma.removeGraphNode();
     return this.runLayout();
   }
 }

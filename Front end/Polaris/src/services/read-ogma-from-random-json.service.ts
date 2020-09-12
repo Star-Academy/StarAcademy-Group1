@@ -21,9 +21,7 @@ export class RandomGraphService{
         this.runLayout();
     }
 
-    public removeGraphNode() {
-        let x: Array<string>;
-        x = ['sss', 'aaaaa'];
-        this.ogma.removeNodes(x);
+    public removeGraphNode(removingNodes: string[]) {
+        this.ogma.removeNodes(removingNodes);
     }
 }
