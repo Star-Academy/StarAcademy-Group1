@@ -16,13 +16,13 @@
 			},
 			"attributes": {
 				"text": "مهدی",
-        "shape": "square",
+        "shape": "circle",
         "color":"blue",
 				"radius": 8
 			}
 		},
 		{
-			"id": 2,
+			"id": "sss",
       "data": {
 				"AccountID": "3000000406",
         "CardID": "female",
@@ -37,13 +37,13 @@
 			},
 			"attributes":{
 				"text": "سارا",
-        "shape": "square",
+        "shape": "circle",
         "color":"purple",
 				"radius": 8
 			}
 		},
 		{
-			"id": 3,
+			"id": "heloooooooooo",
       "data": {
 				"AccountID": "123456896",
         "CardID": "female",
@@ -58,13 +58,13 @@
 			},
 			"attributes":{
 				"text": "صبا",
-        "shape": "square",
+        "shape": "circle",
         "color":"pink",
 				"radius": 8
 			}
 		},
 		{
-			"id": 4,
+			"id": "aaaaa",
       "data": {
 				"AccountID": "156344565496",
         "CardID": "female",
@@ -88,8 +88,8 @@
 	"edges": [
 		{
         "id": 5,
-        "source": 1,
-        "target": 3,
+        "source": "heloooooooooo",
+        "target": "aaaaa",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -98,8 +98,8 @@
       },
 	  {
         "id": 6,
-        "source": 3,
-        "target": 2,
+        "source": "sss",
+        "target": "aaaaa",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -108,8 +108,8 @@
       },
 	  {
         "id": 7,
-        "source": 4,
-        "target": 1,
+        "source": "sss",
+        "target": "heloooooooooo",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -119,7 +119,7 @@
 	  {
         "id": 8,
         "source": 1,
-        "target": 3,
+        "target": "sss",
 		"data": { },
         "attributes": {
           "width": 1,
@@ -128,8 +128,8 @@
       },
 	  {
         "id": 9,
-        "source": 2,
-        "target": 3,
+        "source": 1,
+        "target": "heloooooooooo",
 		"data": { },
         "attributes": {
           "width": 1,

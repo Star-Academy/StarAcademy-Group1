@@ -49,15 +49,18 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     });
 
     this.randomOgma.ogma.events.onClick(({ x, y, target }: RightClickEvent) => {
-      if (target!= null &&  target.isNode) {
+      if (target!= null &&  target.isNode ) {
         this.contextMenuContent = {id: target.getId()}
         this.contextMenuPosition = { x, y: y + 20 };
+        this.hoveredContent = null;
+        console.log("hellooo");
       }
 
     });
     this.randomOgma.ogma.events.onClick(({x,y,target}: ClickEvent) => {
       if(target == null || !target.isNode){
         this.contextMenuContent = null;
+        console.log("hellooo22");
       }
     });
 

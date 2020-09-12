@@ -18,15 +18,20 @@
     background-color: #eeeeee;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
     height: 35px;
     width: 200px;
     padding: 0;
     padding-left: 7px;
+    margin-left: 2%;;
 }
 
 .close-window{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
     font-size: 20px;
     border-left: 1px solid black !important;
 }
