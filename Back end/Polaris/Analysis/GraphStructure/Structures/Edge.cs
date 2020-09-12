@@ -1,3 +1,5 @@
+// In The Name Of GOD
+
 using Elastic.Models;
 
 namespace Analysis.GraphStructure.Structures

@@ -1,3 +1,6 @@
+// In The Name Of GOD
+
+using Analysis.GraphStructure.Structures;
 using Elastic.Models;
 using System.Collections.Generic;
 
@@ -7,10 +10,10 @@ namespace Analysis.GraphStructure
     where NODEDATA : Entity<NODEID>
     where EDGEDATA : Entity<EDGEID>
     {
-        Dictionary<NODEDATA, LinkedList<NODEDATA>> Adj{get; set;}
+        Dictionary<Node<NODEID, NODEDATA>, LinkedList<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj{get; set;}
 
-        LinkedList<NODEDATA> GetNeighbors(NODEDATA node);
+        LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
 
-        LinkedList<NODEDATA> GetNeighbors(NODEID nodeId);
+        LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEID nodeId);
     }
 }

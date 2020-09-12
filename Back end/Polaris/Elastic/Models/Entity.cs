@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿// In The Name Of GOD
+
+using System.Text.Json.Serialization;
 
 namespace Elastic.Models
 {
