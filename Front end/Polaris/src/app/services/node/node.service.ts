@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message/message.service';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError,tap } from 'rxjs/operators';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -15,31 +16,28 @@ export class NodeService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  public getNode(nodeId:string): Observable<JSON> {
-
+  public async getNode(nodeId:string): Promise<JSON> {
     var url = `${this.baseAddress}/nodes/${nodeId}`;
-    
-    var httpOptions = {
-    };
-
-    return this.http.get<JSON>(url ,httpOptions).pipe(
-      tap(_ => this.log(`got node id=${nodeId}`)),
-      catchError(this.handleError<JSON>('getNode'))
-    );
+    return new Promise<JSON>((resolve) => {
+      this.http.get(url).subscribe(     (json:JSON)       =>       {
+        resolve(json);
+      });
+    });
   }
 
-  public deleteNode(nodeId:string): Observable<JSON>{
 
+
+
+  public deleteNode(nodeId:string):Observable<JSON>{
     var url = `${this.baseAddress}/nodes/${nodeId}`;
-    
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    return this.http.delete<JSON>(url,httpOptions).pipe(
+    var result = this.http.delete<JSON>(url,httpOptions).pipe(
       tap(_ => this.log(`deleted node id=${nodeId}`)),
       catchError(this.handleError<JSON>('deleteNode'))
     );
+    return result;
   }
 
   public addNode(node:JSON):Observable<JSON>{
