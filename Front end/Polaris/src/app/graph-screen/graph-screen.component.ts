@@ -66,7 +66,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         this.contextMenuPosition = null;
       }
     });
-    this.randomOgma.ogma.events.onDoubleClick(
+    this.randomOgma.ogma.events.onClick(
       ({ target, button }: ClickEvent) => {
         if (target != null && target.isNode && button === 'left') {
           this.componentCommunication.whichPanel = 'nodeInfo';

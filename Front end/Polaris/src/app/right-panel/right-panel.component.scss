@@ -1,1 +1,34 @@
 
+.sidenav {
+  width:350px;
+}
+
+.icons {
+  width:50px;
+  float:left;
+}
+
+.icons .icon:hover {
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.nav-items {
+  width:300px;
+  float:right;
+}
+
+.nav-items {
+  overflow:hidden;
+}
+
+.nav-items ul {
+  margin-top:0px;
+  margin-left:-300px;
+  display:none;
+}
+
+.nav-items li {
+  list-style-type:none;
+  cursor:pointer;
+}

@@ -7,7 +7,6 @@ import { RightPanelComponent } from './right-panel/right-panel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule} from '@angular/material/menu';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
@@ -19,7 +18,7 @@ import { SelectionPanelComponent } from './right-panel/selection-panel/selection
 import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.component';
 import { InformationPanelComponent } from './left-panel/information-panel/information-panel.component';
 import { NodeInfoBoxComponent } from './left-panel/node-info-box/node-info-box.component';
-import { EdgeInfoBoxComponent } from './left-panel/edge-info-box/edge-info-box.component';
+import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-box/edge-info-box.component';
 
 
 
