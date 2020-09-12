@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Analysis.GraphStructure
 {
-    public interface IGraph<IN, EN, IE, EE>
-    where EN : Entity<IN>
-    where EE : Entity<IE>
+    public interface IGraph<NODEID, NODEDATA, EDGEID, EDGEDATA>
+    where NODEDATA : Entity<NODEID>
+    where EDGEDATA : Entity<EDGEID>
     {
-        Dictionary<EN, LinkedList<EN>> Adj{get; set;}
+        Dictionary<NODEDATA, LinkedList<NODEDATA>> Adj{get; set;}
 
-        LinkedList<EN> GetNeighbors(EN node);
+        LinkedList<NODEDATA> GetNeighbors(NODEDATA node);
 
-        LinkedList<EN> GetNeighbors(IN nodeId);
+        LinkedList<NODEDATA> GetNeighbors(NODEID nodeId);
     }
 }
