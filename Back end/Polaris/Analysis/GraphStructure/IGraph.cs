@@ -1,5 +1,4 @@
 using Elastic.Models;
-using Analysis.GraphStructure.Structures;
 using System.Collections.Generic;
 
 namespace Analysis.GraphStructure
