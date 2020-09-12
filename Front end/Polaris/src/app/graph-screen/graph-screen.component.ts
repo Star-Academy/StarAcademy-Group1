@@ -73,4 +73,9 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     this.randomOgma.getJsonGraph();
     return this.runLayout();
   }
+
+  public removeNode(): Promise<void> {
+    this.randomOgma.removeGraphNode();
+    return this.runLayout();
+  }
 }
