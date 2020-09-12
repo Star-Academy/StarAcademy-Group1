@@ -12,8 +12,8 @@ namespace Analysis.GraphStructure
     {
         Dictionary<Node<NODEID, NODEDATA>, LinkedList<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj{get; set;}
 
-        LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
+        List<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
 
-        LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEID nodeId);
+        List<Node<NODEID, NODEDATA>> GetNeighbors(NODEID nodeId);
     }
 }

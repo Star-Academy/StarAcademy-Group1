@@ -2,23 +2,49 @@
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 
 namespace Analysis.GraphStructure
 {
-    public class Graph<NODEID, NODEDATA, EDGEID, EDGEDATA> : IGraph<NODEID, NODEDATA, EDGEID, EDGEDATA>
-    where NODEDATA : Entity<NODEID>
-    where EDGEDATA : Entity<EDGEID>
+    public class Graph<NID, NDATA, EID, EDATA> : IGraph<NID, NDATA, EID, EDATA>
+    where NDATA : Entity<NID>
+    where EDATA : Entity<EID>
     {
-        public Dictionary<Node<NODEID, NODEDATA>, LinkedList<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj { get; set; }
+        public Dictionary<Node<NID, NDATA>, LinkedList<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
 
-        public LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node)
+        public List<Node<NID, NDATA>> GetNeighbors(NDATA data)
         {
-            return null;
+            var set = new HashSet<Node<NID, NDATA>>();
+
+            foreach(var it in Adj)
+                if (it.Key.Data.Equals(data))
+                {
+                    foreach (var edge in it.Value)
+                    {
+                        set.Add(edge.Target);
+                    }
+                    break;
+                }
+
+            return set.ToList();
         }
 
-        public LinkedList<Node<NODEID, NODEDATA>> GetNeighbors(NODEID nodeId)
+        public List<Node<NID, NDATA>> GetNeighbors(NID id)
         {
-            return null;
+            var set = new HashSet<Node<NID, NDATA>>();
+
+            foreach (var it in Adj)
+                if (it.Key.Data.Equals(id))
+                {
+                    foreach (var edge in it.Value)
+                    {
+                        set.Add(edge.Target);
+                    }
+                    break;
+                }
+
+            return set.ToList();
         }
     }
 }
