@@ -1,7 +1,7 @@
 <div class="ogma-context-menu" #ngTooltip [style.top.px]="position.y" [style.left.px]="position.x">
   <div class="arrow"></div>
   <div class="ogma-context-menu-body">
-          <a>Select</a>
+          <a (click)="addNodeToSelected()">Select</a>
           <a>Expand</a>
           <a (click)="deleteNode()">Delete</a>
   </div>

@@ -78,7 +78,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
             branchName: target.getData('BranchName'),
           }
         }
-        else if(target != null && !target.isNode && button === 'left'){
+        else if (target != null && !target.isNode && button === 'left') {
           this.componentCommunication.whichPanel = 'edgeInfo';
           this.componentCommunication.edgeInfo = {
             Id: target.getId(),
@@ -88,6 +88,20 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
       }
     );
+    this.randomOgma.ogma.events.onNodesSelected(({ target }: ClickEvent) => {
+
+      this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
+        this.randomOgma.addNodeToSelected(element);
+      });
+    });
+
+    this.randomOgma.ogma.events.onNodesUnSelected(({ target }: ClickEvent) => {
+      this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
+        if (this.randomOgma.selectedNodes.includes(element)) {
+          console.log('delete' + element);
+        }
+      });
+    });
   }
 
   ngAfterContentInit() {
@@ -102,4 +116,5 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     this.randomOgma.getJsonGraph();
     return this.runLayout();
   }
+
 }
