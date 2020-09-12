@@ -20,4 +20,10 @@ export class RandomGraphService{
         this.ogma.setGraph(graph);
         this.runLayout();
     }
+
+    public removeGraphNode() {
+        let x: Array<string>;
+        x = ['sss', 'aaaaa'];
+        this.ogma.removeNodes(x);
+    }
 }
