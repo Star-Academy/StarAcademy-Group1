@@ -1,5 +1,6 @@
 using Nest;
 using System.Collections.Generic;
+using System.Linq;
 
 using Models;
 
@@ -22,12 +23,27 @@ namespace Elastic.Communication
 
         public IEnumerable<M> FetchAll(string indexName)
         {
-            throw new System.NotImplementedException();
+            var queryContainer = new MatchAllQuery();
+            var response = NestScrollSearch(queryContainer, indexName);
+            var result = new List<M>();
+            var anyDocumentLeft = true;
+            string scrollId;
+            while(anyDocumentLeft)
+            {
+                if (response.IsValid)
+                {
+                    result.AddRange(response.Documents);
+                    scrollId = response.ScrollId;
+                    response = elasticClient.Scroll<M>("2m", scrollId);
+                }
+                anyDocumentLeft = response.Documents.Any();
+            }
+            return result;
         }
 
         public void Insert(M model, string indexName)
         {
-            throw new System.NotImplementedException();
+            elasticClient.Index<M>(model, i => i.Index(indexName));
         }
 
         public void ValidateIndex(string indexName, bool recreate)
@@ -59,6 +75,22 @@ namespace Elastic.Communication
                 .Query(q => container)
                 .Size(pageSize)
                 .From(pageIndex * pageSize)).Documents;
+        }
+
+        private ISearchResponse<M> NestScrollSearch(
+            QueryContainer container,
+            string indexName,
+            string scrollTimeout = "2m",
+            int scrollSize = 10000
+        )
+        {
+            return elasticClient.Search<M>(s => s
+                .Index(indexName)
+                .From(0)
+                .Take(scrollSize)
+                .Query(q => container)
+                .Scroll(scrollTimeout)
+            );
         }
     }
 }
