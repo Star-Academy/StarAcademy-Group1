@@ -3,7 +3,6 @@ using Analysis.GraphStructure.Structures;
 using Elastic.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 
 namespace Analysis.GraphStructure
 {
@@ -17,7 +16,7 @@ namespace Analysis.GraphStructure
         {
             var set = new HashSet<Node<NID, NDATA>>();
 
-            foreach(var it in Adj)
+            foreach (var it in Adj)
                 if (it.Key.Data.Equals(data))
                 {
                     foreach (var edge in it.Value)
