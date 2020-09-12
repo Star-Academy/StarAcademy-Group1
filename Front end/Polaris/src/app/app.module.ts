@@ -10,7 +10,6 @@ import { MatMenuModule} from '@angular/material/menu';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
-import { InformationComponent } from './left-panel/information/information.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
 import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
 import { RightNavService } from '../services/nav-side-open-close.service';
@@ -18,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { FilterPanelComponent } from './right-panel/filter-panel/filter-panel.component';
 import { SelectionPanelComponent } from './right-panel/selection-panel/selection-panel.component';
 import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.component';
+import { InformationPanelComponent } from './left-panel/information-panel/information-panel.component';
+import { NodeInfoPanelComponent } from './left-panel/information-panel/node-info-panel/node-info-panel.component';
 
 
 
@@ -29,12 +30,13 @@ import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.c
     RightPanelComponent,
     SearchBarComponent,
     SelectionsComponent,
-    InformationComponent,
     GraphScreenComponent,
     TooltipComponent,
     FilterPanelComponent,
     SelectionPanelComponent,
     ContextMenuComponent,
+    InformationPanelComponent,
+    NodeInfoPanelComponent,
 
   ],
   imports: [
