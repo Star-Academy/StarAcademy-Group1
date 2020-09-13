@@ -32,6 +32,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AccuountTypeComponent } from './right-panel/filter-panel/accuount-type/accuount-type.component';
 import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name-filter.component';
+import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/branch-filter.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name
     RangeSliderComponent,
     AccuountTypeComponent,
     NameFilterComponent,
+    BranchFilterComponent,
   ],
   imports: [
     BrowserModule,
