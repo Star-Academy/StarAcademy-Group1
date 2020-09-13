@@ -42,11 +42,8 @@ import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.compo
     InformationPanelComponent,
     NodeInfoBoxComponent,
     EdgeInfoBoxComponent,
-<<<<<<< HEAD
     PanelsMenuComponent,
 
-=======
->>>>>>> a93796871fb4f5536a304bc6ce64c423736cd0a4
   ],
   imports: [
     BrowserModule,
