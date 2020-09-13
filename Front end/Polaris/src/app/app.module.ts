@@ -23,7 +23,9 @@ import { InformationPanelComponent } from './left-panel/information-panel/inform
 import { NodeInfoBoxComponent } from './left-panel/node-info-box/node-info-box.component';
 import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-box/edge-info-box.component';
 import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.component';
-
+import { TimeFilterComponent } from './right-panel/filter-panel/time-filter/time-filter.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -43,6 +45,7 @@ import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.compo
     NodeInfoBoxComponent,
     EdgeInfoBoxComponent,
     PanelsMenuComponent,
+    TimeFilterComponent,
 
   ],
   imports: [
@@ -53,9 +56,11 @@ import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.compo
     MatMenuModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxMaterialTimepickerModule,
+    MatNativeDateModule
   ],
-  providers: [RandomGraphService, ComponentsCommunication],
+  providers: [RandomGraphService, ComponentsCommunication,MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
