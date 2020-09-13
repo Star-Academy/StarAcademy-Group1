@@ -22,8 +22,8 @@ export class GraphService {
   public async getGraph(
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
-    pageIndex: number = null,
-    pageSize: number = null
+    pageIndex: number = -1,
+    pageSize: number = -1
   ): Promise<JSON> {
 
     let url = `${this.baseAddress}`;
@@ -40,16 +40,16 @@ export class GraphService {
     });
   }
 
-  public async getExpansion(
+  public async getExpansion( // TODO: discuss default values
     nodeId: string,
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
-    nodePageIndex: number = null,
-    nodePageSize: number = null,
-    nodeOrderBy: string = null,
-    edgePageIndex: number = null,
-    edgePageSize: number = null,
-    edgeOrderBy: string = null
+    nodePageIndex: number = -1,
+    nodePageSize: number = -1,
+    nodeOrderBy: string = 'none',
+    edgePageIndex: number = -1,
+    edgePageSize: number = -1,
+    edgeOrderBy: string = 'none'
   ): Promise<JSON> {
 
     let url = `${this.baseAddress}/expansion/${nodeId}`;
@@ -89,12 +89,12 @@ export class GraphService {
     targetNodeId: string,
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
-    nodeOrderby: string = null,
-    edgeOrderby: string = null,
-    nodePageIndex: number = null,
-    nodePageSize: number = null,
-    edgePageIndex: number = null,
-    edgePageSize: number = null
+    nodeOrderby: string = 'none',
+    edgeOrderby: string = 'none',
+    nodePageIndex: number = -1,
+    nodePageSize: number = -1,
+    edgePageIndex: number = -1,
+    edgePageSize: number = -1
   ): Promise<JSON> {
 
     let url = `${this.baseAddress}/paths`;
@@ -117,10 +117,10 @@ export class GraphService {
     targetNodeId: string,
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
-    nodePageIndex: number = null,
-    nodePageSize: number = null,
-    edgePageIndex: number = null,
-    edgePageSize: number = null
+    nodePageIndex: number = -1,
+    nodePageSize: number = -1,
+    edgePageIndex: number = -1,
+    edgePageSize: number = -1
   ): Promise<JSON> {
 
     let url = `${this.baseAddress}/flow`;
