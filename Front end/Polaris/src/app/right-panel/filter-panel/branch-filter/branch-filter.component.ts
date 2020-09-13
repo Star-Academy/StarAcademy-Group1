@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BranchFilterComponent implements OnInit {
 
   @Input()
-  public branches: string[] = ["hello","hi"];
+  public branches: string[] = ["hello","hi","lala","gggg","saba","mahla","halele"];
 
   constructor() {
    }

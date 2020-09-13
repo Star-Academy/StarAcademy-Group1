@@ -4,9 +4,9 @@
   <ngx-material-timepicker #toggleTimepicker ></ngx-material-timepicker>
 </div>
 <div class="toggle-example">
-  <input [ngxTimepicker]="toggleTimepicker" [disableClick]="false" readonly placeholder="Choose End Time">
-  <ngx-material-timepicker-toggle [for]="toggleTimepicker" style="display: inline-flex;"></ngx-material-timepicker-toggle>
-  <ngx-material-timepicker #toggleTimepicker></ngx-material-timepicker>
+  <input [ngxTimepicker]="toggleTimepicker2" [disableClick]="false" readonly placeholder="Choose End Time">
+  <ngx-material-timepicker-toggle [for]="toggleTimepicker2" style="display: inline-flex;"></ngx-material-timepicker-toggle>
+  <ngx-material-timepicker #toggleTimepicker2></ngx-material-timepicker>
 </div>
 <mat-form-field class="example-full-width" appearance="fill">
   <mat-label>Choose Start Date</mat-label>
@@ -16,7 +16,7 @@
 </mat-form-field>
 <mat-form-field class="example-full-width" appearance="fill">
   <mat-label>Choose End Date</mat-label>
-  <input matInput [matDatepicker]="picker">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker touchUi #picker></mat-datepicker>
+  <input matInput [matDatepicker]="picker2">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker touchUi #picker2></mat-datepicker>
 </mat-form-field>
