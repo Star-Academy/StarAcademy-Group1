@@ -1,6 +1,9 @@
-<app-selection-panel></app-selection-panel>
-<app-filter-panel></app-filter-panel>
-<div class="sidenav">
+
+<span id= "selection-icon" (click)="componentCommunication.whichRightSideNav = 1">open</span>
+<span id="filter-icon"  (click)="componentCommunication.whichRightSideNav = 2"><p>2</p></span>
+<app-selection-panel *ngIf="componentCommunication.whichRightSideNav === 1"></app-selection-panel>
+<app-filter-panel *ngIf="componentCommunication.whichRightSideNav === 2"></app-filter-panel>
+<!-- <div class="sidenav">
   <div class="icons">
     <div class="icon">Nav 1</div>
     <div class="icon">Nav 2</div>
@@ -26,6 +29,6 @@
         <li>One Handed Practice Swords</li>
         <li>Two Handed Practice Swords</li>
       </ul>
-  </div>
+  </div> -->
 
-</div>
+<!-- </div> -->

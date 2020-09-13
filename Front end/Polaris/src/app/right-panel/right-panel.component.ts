@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentsCommunication } from 'src/services/components-communication.service';
 
 @Component({
   selector: 'app-right-panel',
@@ -9,7 +10,7 @@ export class RightPanelComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(public componentCommunication: ComponentsCommunication) { }
 
   ngOnInit(): void {
   }

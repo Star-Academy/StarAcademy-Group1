@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 export class ComponentsCommunication {
 
   public whichPanel: string;
+  public whichRightSideNav : number = 1 ;
 
   public nodeInfo: {
     accountId: string;
