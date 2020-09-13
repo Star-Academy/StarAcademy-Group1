@@ -6,17 +6,17 @@ namespace Elastic.Models
 {
     public abstract class Entity<TYPE>
     {
-		[JsonPropertyName("id")] //TODO: "id" should get checked
-		public virtual TYPE Id { get; set; }
+        [JsonPropertyName("id")] //TODO: "id" should get checked
+        public virtual TYPE Id { get; set; }
 
-		public override bool Equals(object obj)
-		{
-			return obj is Entity<TYPE> other && Id.Equals(other.Id);
-		}
+        public override bool Equals(object obj)
+        {
+            return obj is Entity<TYPE> other && Id.Equals(other.Id);
+        }
 
-		public override int GetHashCode()
-		{
-			return Id.GetHashCode();
-		}
-	}
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+    }
 }

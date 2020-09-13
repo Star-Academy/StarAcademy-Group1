@@ -1,7 +1,6 @@
+using Elastic.CustomExceptions;
 using Nest;
 using System;
-
-using Elastic.CustomExceptions;
 
 namespace Elastic.Cumminucation
 {

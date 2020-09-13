@@ -1,8 +1,7 @@
-using Xunit;
-using System.Collections.Generic;
-
 using Elastic.Cumminucation;
 using Elastic.Test.Importer;
+using System.Collections.Generic;
+using Xunit;
 
 namespace Elastic.Test.Communication
 {

@@ -1,7 +1,6 @@
+using Elastic.Models;
 using Nest;
 using System.Collections.Generic;
-
-using Elastic.Models;
 
 namespace Elastic.Cumminucation
 {

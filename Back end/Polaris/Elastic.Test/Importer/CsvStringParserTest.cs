@@ -1,10 +1,9 @@
-using Xunit;
-
 using Elastic.Importer;
 using Elastic.Models;
 using System;
 using System.Linq;
 using System.Text;
+using Xunit;
 
 namespace Elastic.Test.Importer
 {

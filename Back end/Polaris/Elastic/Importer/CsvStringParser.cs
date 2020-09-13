@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Globalization;
 using CsvHelper;
-
-using System.Linq;
-
 using Elastic.Models;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace Elastic.Importer
 {

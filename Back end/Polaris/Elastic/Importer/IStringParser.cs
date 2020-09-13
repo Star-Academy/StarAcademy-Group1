@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-
 using Elastic.Models;
+using System.Collections.Generic;
 
 namespace Elastic.Importer
 {
