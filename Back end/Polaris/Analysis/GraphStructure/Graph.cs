@@ -11,11 +11,21 @@ namespace Analysis.GraphStructure
     where EDATA : Entity<EID>
     {
         public Dictionary<Node<NID, NDATA>, LinkedList<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
-
+        public Dictionary<NID, Node<NID, NDATA>> IDToNode { get; set; }
+        public Dictionary<NDATA, Node<NID, NDATA>> DataToNode { get; set; }
         public List<Node<NID, NDATA>> GetNeighbors(NDATA data)
         {
-            var node = SearchByData(data);
+            var node = DataToNode[data];
             return ReadNeighbors(node);
+        }
+
+        public Graph()
+        {
+            foreach (var item in Adj)
+            {
+                IDToNode[item.Key.Id] = item.Key;
+                DataToNode[item.Key.Data] = item.Key;
+            }
         }
 
         private List<Node<NID, NDATA>> ReadNeighbors(Node<NID, NDATA> node)
@@ -31,32 +41,8 @@ namespace Analysis.GraphStructure
 
         public List<Node<NID, NDATA>> GetNeighbors(NID id)
         {
-            var node = SearchByID(id);
+            var node = IDToNode[id];
             return ReadNeighbors(node);
-        }
-
-        private Node<NID, NDATA> SearchByID(NID id)
-        {
-            Node<NID, NDATA> ret = null;
-            foreach (var it in Adj)
-                if (it.Key.Id.Equals(id))
-                {
-                    ret = it.Key;
-                    break;
-                }
-            return ret;
-        }
-
-        private Node<NID, NDATA> SearchByData(NDATA data)
-        {
-            Node<NID, NDATA> ret = null;
-            foreach (var it in Adj)
-                if (it.Key.Data.Equals(data))
-                {
-                    ret = it.Key;
-                    break;
-                }
-            return ret;
         }
     }
 }
