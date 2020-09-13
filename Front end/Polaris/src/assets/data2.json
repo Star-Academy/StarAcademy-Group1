@@ -83,6 +83,48 @@
         "color":"purple",
 				"radius": 8
 			}
+    },
+    {
+			"id": "65344ff54617",
+			"data": {
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "tara ",
+        "OwnerName": "arghavani",
+        "OwnerFamilyName": "خضرایی",
+        "OwnerID": "345623"
+			},
+			"attributes": {
+				"text": "مهدی",
+        "shape": "circle",
+        "color":"blue",
+				"radius": 8
+			}
+    },
+    {
+			"id": "65344dd54617",
+			"data": {
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "دریا",
+        "OwnerName": "هاله",
+        "OwnerFamilyName": "رشدی",
+        "OwnerID": "345623"
+			},
+			"attributes": {
+				"text": "مهدی",
+        "shape": "circle",
+        "color":"blue",
+				"radius": 8
+			}
 		}
 	],
 	"edges": [
@@ -129,6 +171,17 @@
 	  {
         "id": 9,
         "source": "6534454617",
+        "target": "123456896",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+
+      {
+        "id": 10,
+        "source": "65344ff54617",
         "target": "123456896",
 		"data": { },
         "attributes": {

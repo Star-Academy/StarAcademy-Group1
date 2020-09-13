@@ -89,21 +89,22 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       }
     );
     this.randomOgma.ogma.events.onNodesSelected(() => {
-
-      this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
-        this.randomOgma.addNodeToSelected(element);
-      });
+      console.log(this.randomOgma.ogma.getSelectedNodes());
+      // this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
+      //   this.randomOgma.addNodeToSelected(element);
+      // });
     });
 
     this.randomOgma.ogma.events.onNodesUnselected(() => {
-      this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
-        if (this.randomOgma.selectedNodes.includes(element)) {
-          const index = this.randomOgma.selectedNodes.indexOf(element, 0);
-          if (index > -1) {
-            this.randomOgma.selectedNodes.splice(index, 1);
-          }
-        }
-      });
+    //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
+    //     if (this.randomOgma.selectedNodes.includes(element)) {
+    //       const index = this.randomOgma.selectedNodes.indexOf(element, 0);
+    //       if (index > -1) {
+    //         this.randomOgma.selectedNodes.splice(index, 1);
+    //       }
+    //     }
+    //   });
+    console.log(this.randomOgma.ogma.getSelectedNodes());
     });
   }
 
