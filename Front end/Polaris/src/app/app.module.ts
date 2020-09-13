@@ -34,6 +34,7 @@ import { AccuountTypeComponent } from './right-panel/filter-panel/accuount-type/
 import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name-filter.component';
 import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/branch-filter.component';
 import { ItemCardComponent } from './right-panel/selection-panel/item-card/item-card.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ItemCardComponent } from './right-panel/selection-panel/item-card/item-
     MatNativeDateModule,
     Ng5SliderModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ScrollingModule
   ],
   providers: [RandomGraphService, ComponentsCommunication, MatNativeDateModule],
   bootstrap: [AppComponent]
