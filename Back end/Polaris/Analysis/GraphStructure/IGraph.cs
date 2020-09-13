@@ -1,4 +1,4 @@
-using Elastic.Models;
+using Models;
 using Analysis.GraphStructure.Structures;
 using System.Collections.Generic;
 

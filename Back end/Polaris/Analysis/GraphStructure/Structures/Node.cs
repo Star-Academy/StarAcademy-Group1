@@ -1,4 +1,4 @@
-using Elastic.Models;
+using Models;
 
 namespace Analysis.GraphStructure.Structures
 {

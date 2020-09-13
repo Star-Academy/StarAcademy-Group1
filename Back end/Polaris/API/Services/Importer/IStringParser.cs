@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Models;
 
-namespace Elastic.Importer
+namespace API.Services.Importer
 {
     public interface IStringParser<M> where M : class, IModel
     {

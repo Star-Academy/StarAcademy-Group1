@@ -6,7 +6,7 @@ using System.Linq;
 
 using Models;
 
-namespace Elastic.Importer
+namespace API.Services.Importer
 {
     public class CsvStringParser<TModel> : IStringParser<TModel> where TModel : class, IModel
     {

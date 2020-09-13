@@ -1,7 +1,7 @@
 using Elastic.Communication.Nest;
 using Models;
 
-namespace Elastic.Importer
+namespace API.Services.Importer
 {
     public class Importer<TModel> where TModel : class, IModel
     {
