@@ -54,14 +54,23 @@ namespace Analysis.Analyser
             {
                 if (paths[0][item.Key.Id].Any() && paths[1][item.Key.Id].Any())
                 {
-                    TakePath(item.Key, ref edges);
+                    TakePath(item.Key, ref edges, ref paths);
                 } 
             }
         }
 
-        private void TakePath(Node<NID, NDATA> node, ref HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> edges)
+        private void TakePath(Node<NID, NDATA> node, ref HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> edges, ref Dictionary<NID, List<LinkedList<NID>>>[] paths)
         {
-
+            foreach(var item in paths[0][node.Id])
+            {
+                for (int i = 0; i + 1 < item.Count(); i++)
+                    edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+            }
+            foreach (var item in paths[1][node.Id])
+            {
+                for (int i = item.Count - 1; i > 0; i--)
+                    edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i - 1)));
+            }
         }
 
         private void BreadthFirstSearch(ref List<LinkedList<NID>> queue, ref Dictionary<NID, List<LinkedList<NID>>> paths, int src = 1)

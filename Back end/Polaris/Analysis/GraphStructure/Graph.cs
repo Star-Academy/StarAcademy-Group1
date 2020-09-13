@@ -62,5 +62,17 @@ namespace Analysis.GraphStructure
 
             return set.ToList();
         }
+
+        internal List<Edge<EID, EDATA, Node<NID, NDATA>>> GetEdges(NID id1, NID id2)
+        {
+            var ret = new List<Edge<EID, EDATA, Node<NID, NDATA>>>();
+            var node = IDToNode[id1];
+            foreach(var item in Adj[node])
+                if (item.Target.Id.Equals(id2))
+                {
+                    ret.Add(item);
+                }
+            return ret;
+        }
     }
 }
