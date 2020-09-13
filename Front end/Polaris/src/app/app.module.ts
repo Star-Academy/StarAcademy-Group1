@@ -33,7 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AccuountTypeComponent } from './right-panel/filter-panel/accuount-type/accuount-type.component';
 import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name-filter.component';
 import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/branch-filter.component';
-
+import {ScrollingModule} from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,8 @@ import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/
     MatNativeDateModule,
     Ng5SliderModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ScrollingModule
   ],
   providers: [RandomGraphService, ComponentsCommunication, MatNativeDateModule],
   bootstrap: [AppComponent]
