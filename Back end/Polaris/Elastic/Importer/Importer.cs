@@ -1,13 +1,13 @@
-using Elastic.Communication;
+using Elastic.Communication.Nest;
 using Models;
 
 namespace Elastic.Importer
 {
-    public class Importer<M> where M : class, IModel
+    public class Importer<TModel> where TModel : class, IModel
     {
-        private NestElaticHandler<M> elasticImporter = new NestElaticHandler<M>();
+        private NestElasticHandler<TModel> elasticImporter = new NestElasticHandler<TModel>();
 
-        public void ImportToElastic(string source, IStringParser<M> stringParser, string elasticIndexName)
+        public void ImportToElastic(string source, IStringParser<TModel> stringParser, string elasticIndexName)
         {
             var list = stringParser.Parse(source);
             elasticImporter.BulkInsert(list, elasticIndexName);

@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 namespace Elastic.Communication
 {
-    public interface IElasticHandler<M>
+    public interface IElasticHandler<TModel>
     {
-         void ValidateIndex(string indexName, bool recreate);
-         
-         void BulkInsert(IEnumerable<M> models, string indexName);
+        void ValidateIndex(string indexName, bool recreate);
 
-         void Insert(M model, string indexName);
+        void BulkInsert(IEnumerable<TModel> models, string indexName);
 
-        IEnumerable<M> FetchAll(string indexName);
+        void Insert(TModel model, string indexName);
+
+        IEnumerable<TModel> FetchAll(string indexName);
     }
 }
