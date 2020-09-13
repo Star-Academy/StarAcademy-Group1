@@ -52,10 +52,14 @@ export class GraphService {
     edgeOrderBy: string = null
   ): Promise<JSON> {
 
-    var url = `${this.baseAddress}/expansion/${nodeId}`;
+    let url = `${this.baseAddress}/expansion/${nodeId}`;
+    let params = `?nodeFilter=${JSON.stringify(nodeFilter)}&edgeFilter=${JSON.stringify(edgeFilter)}`
+      + `&nodePageIndex=${nodePageIndex}&nodePageSize=${nodePageSize}`
+      + `&nodeOrderBy=${nodeOrderBy}&edgePageIndex=${edgePageIndex}`
+      + `&edgePageSize=${edgePageSize}&edgeOrderBy=${edgeOrderBy}`; // TODO: add model (this looks like shit)
 
     return new Promise<JSON>((resolve) => {
-      this.http.get<JSON>(url, this.httpOptions).pipe(
+      this.http.get<JSON>(url + params, this.httpOptions).pipe(
         tap(_ => this.log(`got ${nodeId} expansion`)),
         catchError(this.handleError<JSON>('getNodeExpansion'))
       ).subscribe((result: JSON) => {
@@ -65,10 +69,10 @@ export class GraphService {
   }
 
   public async getNodesExpansion(
-    nodeIds: Array<string>
+    nodeIds: string[]
   ): Promise<JSON> {
 
-    var url = `${this.baseAddress}/expansion`;
+    let url = `${this.baseAddress}/expansion?nodeIds=${JSON.stringify(nodeIds)}`;
 
     return new Promise<JSON>((resolve) => {
       this.http.get<JSON>(url, this.httpOptions).pipe(
@@ -90,9 +94,22 @@ export class GraphService {
     nodePageIndex: number = null,
     nodePageSize: number = null,
     edgePageIndex: number = null,
-    edgePageSize: number = null 
-  ): Promise<void> {
+    edgePageSize: number = null
+  ): Promise<JSON> {
 
+    let url = `${this.baseAddress}/paths`;
+    let params = `?sourceNodeId=${sourceNodeId}&targetNodeId=${targetNodeId}&nodeFilter=${JSON.stringify(nodeFilter)}`
+      + `&edgeFilter=${JSON.stringify(edgeFilter)}&nodeOrderby=${nodeOrderby}&edgeOrderby=${edgeOrderby}`
+      + `&nodePageIndex=${nodePageIndex}&nodePageSize=${nodePageSize}&edgePageIndex=${edgePageIndex}&edgePageSize=${edgePageSize}`;
+
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url + params, this.httpOptions).pipe(
+        tap(_ => this.log(`got paths`)),
+        catchError(this.handleError<JSON>('getPaths'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
   public async getFlow(
@@ -103,13 +120,37 @@ export class GraphService {
     nodePageIndex: number = null,
     nodePageSize: number = null,
     edgePageIndex: number = null,
-    edgePageSize: number = null 
-  ): Promise<void> {
+    edgePageSize: number = null
+  ): Promise<JSON> {
 
+    let url = `${this.baseAddress}/flow`;
+    let params = `?sourceNodeId=${sourceNodeId}&targetNodeId=${targetNodeId}&nodeFilter=${JSON.stringify(nodeFilter)}`
+      + `&edgeFilter=${JSON.stringify(edgeFilter)}&nodePageIndex=${nodePageIndex}`
+      + `&nodePageSize=${nodePageSize}&edgePageIndex=${edgePageIndex}&edgePageSize=${edgePageSize}`;
+
+
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url + params, this.httpOptions).pipe(
+        tap(_ => this.log(`got flow`)),
+        catchError(this.handleError<JSON>('getFlow'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
-  public async getStats(): Promise<void> {
+  public async getStats(): Promise<JSON> {
 
+    let url = `${this.baseAddress}/stats`;
+
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url, this.httpOptions).pipe(
+        tap(_ => this.log(`got stats`)),
+        catchError(this.handleError<JSON>('getStats'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
