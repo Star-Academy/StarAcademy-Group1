@@ -2,7 +2,6 @@
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
-using Elasticsearch.Net;
 using Nest;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,29 +19,33 @@ namespace Analysis.Analyser
             this.graph = graph;
         }
 
+        // filters weren't applied yet
         public void BiDirectionalSearch(Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
         {
             var edges = new HashSet<Edge<EID, EDATA, Node<NID, NDATA>>>();
 
-            Dictionary<NID, List<LinkedList<NID>>>[] paths = new Dictionary<NID, List<LinkedList<NID>>>[2];
+            var paths = new Dictionary<NID, List<LinkedList<NID>>>[2];
             paths[0] = new Dictionary<NID, List<LinkedList<NID>>>();
             paths[1] = new Dictionary<NID, List<LinkedList<NID>>>();
 
-            List<LinkedList<NID>>[] queue = new List<LinkedList<NID>>[2];
+            var queue = new List<LinkedList<NID>>[2];
             queue[0] = new List<LinkedList<NID>>();
             queue[1] = new List<LinkedList<NID>>();
 
-            LinkedList<NID> path = new LinkedList<NID>();
-            path.AddLast(source.Id);
 
-            queue[0].Add(path);
-            paths[0][source.Id].Add(path);
+            {
+                var path = new LinkedList<NID>();
+                path.AddLast(source.Id);
 
-            path.Clear();
-            path.AddLast(target.Id);
+                queue[0].Add(path);
+                paths[0][source.Id].Add(path);
 
-            queue[1].Add(path);
-            paths[1][target.Id].Add(path);
+                path.Clear();
+                path.AddLast(target.Id);
+
+                queue[1].Add(path);
+                paths[1][target.Id].Add(path);
+            }
 
             while (!queue[0].Any() && !queue[1].Any())
             {
