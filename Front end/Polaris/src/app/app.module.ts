@@ -19,6 +19,7 @@ import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.c
 import { InformationPanelComponent } from './left-panel/information-panel/information-panel.component';
 import { NodeInfoBoxComponent } from './left-panel/node-info-box/node-info-box.component';
 import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-box/edge-info-box.component';
+import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.component';
 
 
 
@@ -38,6 +39,7 @@ import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-b
     InformationPanelComponent,
     NodeInfoBoxComponent,
     EdgeInfoBoxComponent,
+    PanelsMenuComponent,
 
   ],
   imports: [
