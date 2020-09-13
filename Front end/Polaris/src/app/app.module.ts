@@ -24,10 +24,10 @@ import { NodeInfoBoxComponent } from './left-panel/node-info-box/node-info-box.c
 import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-box/edge-info-box.component';
 import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.component';
 import { TimeFilterComponent } from './right-panel/filter-panel/time-filter/time-filter.component';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { RangeSliderComponent } from './right-panel/filter-panel/range-slider/range-slider.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     EdgeInfoBoxComponent,
     PanelsMenuComponent,
     TimeFilterComponent,
-
+    RangeSliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,9 +58,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    Ng5SliderModule
   ],
-  providers: [RandomGraphService, ComponentsCommunication,MatNativeDateModule],
+  providers: [RandomGraphService, ComponentsCommunication, MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

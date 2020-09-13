@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunication } from 'src/services/components-communication.service';
-import { MatFormFieldControl, MatFormField } from '@angular/material/form-field';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
