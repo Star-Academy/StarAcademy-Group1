@@ -1,7 +1,6 @@
 // In The Name Of GOD
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -53,7 +52,7 @@ namespace Analysis.GraphStructure
         public List<Node<NID, NDATA>> GetOpositeNeighbors(NID id)
         {
             var node = IDToNode[id];
-            
+
             var set = new HashSet<Node<NID, NDATA>>();
             foreach (var edge in reverseAdj[node])
             {
@@ -67,7 +66,7 @@ namespace Analysis.GraphStructure
         {
             var ret = new List<Edge<EID, EDATA, Node<NID, NDATA>>>();
             var node = IDToNode[id1];
-            foreach(var item in Adj[node])
+            foreach (var item in Adj[node])
                 if (item.Target.Id.Equals(id2))
                 {
                     ret.Add(item);

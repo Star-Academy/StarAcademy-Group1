@@ -12,7 +12,7 @@ namespace Analysis
         {
             First = t;
             Second = v;
-        } 
+        }
 
     }
 }

@@ -17,9 +17,9 @@ namespace Analysis.GraphStructure.Structures
             set
             {
                 Data.Id = value;
-            }    
+            }
         }
-        public NODE Source{get; set;}
-        public NODE Target{get; set;}
+        public NODE Source { get; set; }
+        public NODE Target { get; set; }
     }
 }
