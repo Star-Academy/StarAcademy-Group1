@@ -1,6 +1,6 @@
 using System;
 
-namespace Elastic.CustomExceptions
+namespace Elastic.Exceptions
 {
     public class ClientNotInitializedException : Exception
     {
