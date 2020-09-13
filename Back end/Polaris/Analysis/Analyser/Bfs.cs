@@ -2,7 +2,6 @@
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
-using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +17,7 @@ namespace Analysis.Analyser
         {
             this.graph = graph;
         }
-
+         
         // filters weren't applied yet
         public void BiDirectionalSearch(Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
         {
