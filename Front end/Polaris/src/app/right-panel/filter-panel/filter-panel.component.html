@@ -1,14 +1,24 @@
-
 <div id="mySidenav2" class="sidenav" [hidden]="hidden">
   <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichRightSideNav = 0">&times;</a>
-  <a href="#">man joda hastam</a>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start Date">
+        <input matEndDate formControlName="end" placeholder="End Date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+    
+    <p>Selected range: {{range.value | json}}</p>
+    
+  </div>
 
 </div>
-
-<!-- Use any element to open the sidenav -->
-
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <div id="main">
   ...
 </div>

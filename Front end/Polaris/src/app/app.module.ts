@@ -6,7 +6,10 @@ import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
@@ -38,7 +41,6 @@ import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-b
     InformationPanelComponent,
     NodeInfoBoxComponent,
     EdgeInfoBoxComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -46,8 +48,11 @@ import { EdgeInfoBoxComponent } from './left-panel/information-panel/edge-info-b
     BrowserAnimationsModule,
     FormsModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [RandomGraphService,ComponentsCommunication ],
+  providers: [RandomGraphService, ComponentsCommunication],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
