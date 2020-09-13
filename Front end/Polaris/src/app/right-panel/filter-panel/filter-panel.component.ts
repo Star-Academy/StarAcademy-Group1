@@ -8,12 +8,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./filter-panel.component.scss']
 })
 export class FilterPanelComponent implements OnInit {
-
   public hidden = false;
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
-  });
+  panelOpenState = false;
   constructor(public componentCommunication: ComponentsCommunication) { }
 
   ngOnInit(): void {

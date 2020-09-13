@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
@@ -28,6 +29,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { RangeSliderComponent } from './right-panel/filter-panel/range-slider/range-slider.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AccuountTypeComponent } from './right-panel/filter-panel/accuount-type/accuount-type.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     PanelsMenuComponent,
     TimeFilterComponent,
     RangeSliderComponent,
+    AccuountTypeComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { Ng5SliderModule } from 'ng5-slider';
     MatInputModule,
     NgxMaterialTimepickerModule,
     MatNativeDateModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    MatExpansionModule,
+    MatCheckboxModule
   ],
   providers: [RandomGraphService, ComponentsCommunication, MatNativeDateModule],
   bootstrap: [AppComponent]

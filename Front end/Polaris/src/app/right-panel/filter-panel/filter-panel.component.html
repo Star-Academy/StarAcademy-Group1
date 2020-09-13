@@ -1,5 +1,42 @@
-<div id="mySidenav2" class="sidenav" >
+<div id="mySidenav2" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichRightSideNav = 0">&times;</a>
-  <app-time-filter></app-time-filter>
-  <app-range-slider></app-range-slider>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Date Filter
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        <app-time-filter> </app-time-filter>
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Amount Filter
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        <app-range-slider></app-range-slider>
+      </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Account Type Filter
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        <app-accuount-type></app-accuount-type>
+      </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  
+<br><br><br>
+  <button>Submit Filters</button>
 </div>
