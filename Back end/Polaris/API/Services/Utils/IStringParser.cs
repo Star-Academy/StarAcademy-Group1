@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Models;
 
-namespace API.Services.Importer
+namespace API.Services.Utils
 {
     public interface IStringParser<M> where M : class, IModel
     {

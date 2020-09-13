@@ -5,9 +5,7 @@ using Models;
 
 namespace Elastic.Communication.Nest
 {
-    public class NestEntityHandler<TEntity, TType> : NestElasticHandler<TEntity>,
-    IEntityHandler<TEntity, TType>
-    where TEntity : Entity<TType>
+    public class NestEntityHandler<TType> : NestElasticHandler<Entity<TType>>, IEntityHandler<TType>
     {
         public void DeleteEntity(TType id, string indexName)
         {
@@ -15,7 +13,7 @@ namespace Elastic.Communication.Nest
             DeleteById_(entityId_, indexName);
         }
 
-        public TEntity GetEntity(TType id, string indexName)
+        public Entity<TType> GetEntity(TType id, string indexName)
         {
             var queryContainer = new MatchQuery
 			{
@@ -26,7 +24,7 @@ namespace Elastic.Communication.Nest
             return response;
         }
 
-        public void UpdateEntity(TEntity newEntity, string indexName)
+        public void UpdateEntity(Entity<TType> newEntity, string indexName)
         {
             var entityId_ = GetEntityId_(newEntity.Id, indexName);
             UpdateById_(entityId_, indexName, newEntity);

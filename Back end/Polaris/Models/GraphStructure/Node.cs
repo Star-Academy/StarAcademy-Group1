@@ -1,18 +1,23 @@
 namespace Models.GraphStructure
 {
-    public class Node<T, E> : Entity<T>
-    where E : Entity<T>
+    public class Node<TTypeData> : Entity<TTypeData>
     {
-        public E data;
-        public override T Id
+        public Entity<TTypeData> Data{get; set;}
+
+        public Node(Entity<TTypeData> data)
+        {
+            Data = data;
+        }
+
+        public override TTypeData Id
         {
             get
             {
-                return this.data.Id;
+                return this.Data.Id;
             }
             set
             {
-                this.data.Id = value;
+                this.Data.Id = value;
             }    
         }
     }

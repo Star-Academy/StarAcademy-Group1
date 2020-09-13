@@ -1,22 +1,60 @@
+using System.Text.Json.Serialization;
 
 namespace Models.GraphStructure
 {
-    public class Edge<T, E, N> : Entity<T>
-    where E : Entity<T>
+    public class Edge<TTypeSide, TTypeData> : Entity<TTypeData>
     {
-        public E data;
-        public override T Id
+        public Edge(AmountedEntity<TTypeData, TTypeSide> data)
+        {
+            Data = data;
+        }
+
+        public AmountedEntity<TTypeData, TTypeSide> Data{get; set;}
+        public override TTypeData Id
         {
             get
             {
-                return this.data.Id;
+                return this.Data.Id;
             }
             set
             {
-                this.data.Id = value;
-            }    
+                this.Data.Id = value;
+            }
         }
-        public N Source{get; set;}
-        public N Target{get; set;}
+        public TTypeSide Source
+        {
+            get
+            {
+                return this.Data.Source;
+            }
+            set
+            {
+                this.Data.Source = value;
+            }
+        }
+        public TTypeSide Target
+        {
+            get
+            {
+                return this.Data.Target;
+            }
+            set
+            {
+                this.Data.Target = value;
+            }
+        }
+
+        [JsonIgnore]
+        public double Amount
+        {
+            get
+            {
+                return this.Data.Amount;
+            }
+            set
+            {
+                this.Data.Amount = value;
+            }
+        }
     }
 }

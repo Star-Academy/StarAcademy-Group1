@@ -6,7 +6,7 @@ using System.Linq;
 
 using Models;
 
-namespace API.Services.Importer
+namespace API.Services.Utils
 {
     public class CsvStringParser<TModel> : IStringParser<TModel> where TModel : class, IModel
     {
