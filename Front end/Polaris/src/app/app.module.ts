@@ -6,7 +6,10 @@ import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
@@ -39,8 +42,11 @@ import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.compo
     InformationPanelComponent,
     NodeInfoBoxComponent,
     EdgeInfoBoxComponent,
+<<<<<<< HEAD
     PanelsMenuComponent,
 
+=======
+>>>>>>> a93796871fb4f5536a304bc6ce64c423736cd0a4
   ],
   imports: [
     BrowserModule,
@@ -48,8 +54,11 @@ import { PanelsMenuComponent } from './right-panel/panels-menu/panels-menu.compo
     BrowserAnimationsModule,
     FormsModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [RandomGraphService,ComponentsCommunication ],
+  providers: [RandomGraphService, ComponentsCommunication],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
