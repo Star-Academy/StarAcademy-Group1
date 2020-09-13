@@ -106,7 +106,22 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     //   });
     console.log(this.randomOgma.ogma.getSelectedNodes());
     });
+    this.randomOgma.ogma.events.onDragStart((button :KeyboardEvent)=> {
+      if (button.ctrlKey) {
+        this.randomOgma.ogma.ogma.getSelectedNodes().setSelected(false);
+        this.randomOgma.ogma.ogma.getSelectedEdges().setSelected(false);
+        this.randomOgma.ogma.ogma.tools.rectangleSelect.enable({
+          bothExtremities: true, // only if both endpoints are inside the rectangle
+          callback({ nodes, edges }) {
+            nodes.setSelected(true);
+            edges.setSelected(true);
+          }
+        });
   }
+   console.log(this.randomOgma.ogma.getSelectedNodes());
+});
+  }
+
 
   ngAfterContentInit() {
     this.randomOgma.ogma.setContainer(this.container.nativeElement);
