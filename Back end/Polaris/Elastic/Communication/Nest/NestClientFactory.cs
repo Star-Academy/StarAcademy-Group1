@@ -1,7 +1,7 @@
 using Nest;
 using System;
 
-using Elastic.CustomExceptions;
+using Elastic.Exceptions;
 
 namespace Elastic.Communication.Nest
 {
@@ -12,7 +12,6 @@ namespace Elastic.Communication.Nest
 
         private NestClientFactory()
         {
-
         }
 
         public void CreateInitialClient(string address)

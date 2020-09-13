@@ -4,7 +4,7 @@ namespace Elastic.Communication
 {
     public interface IElasticHandler<TModel>
     {
-        void ValidateIndex(string indexName, bool recreate);
+        void CheckIndex(string indexName, bool recreate);
 
         void BulkInsert(IEnumerable<TModel> models, string indexName);
 

@@ -2,40 +2,52 @@ using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
+using Elastic.Validation;
+using Elastic.Exceptions;
 using Models;
 
 namespace Elastic.Communication.Nest
 {
     public class NestElasticHandler<TModel> : IElasticHandler<TModel> where TModel : class, IModel
     {
-        private IElasticClient elasticClient = NestClientFactory.GetInstance().GetElasticClient();
+        private static IElasticClient elasticClient = NestClientFactory.GetInstance().GetElasticClient();
 
-        public void ValidateIndex(string indexName, bool recreate)
+        public void CheckIndex(string indexName, bool recreate)
         {
-            if (elasticClient.Indices.Exists(indexName).Exists)
+            try
             {
-                if (recreate)
+                ElasticIndexValidator.ValidateIndex(indexName);
+            }
+            catch(InvalidElasticIndexException e)
+            {
+                if(recreate)
                 {
                     elasticClient.Indices.Delete(indexName);
+                    elasticClient.Indices.Create(indexName, i => i.Map<TModel>(x => x.AutoMap()));
+                    // Todo Custom mapping
                 }
                 else
-                {
-                    return;
-                }
+                    throw e;
             }
-            elasticClient.Indices.Create(indexName, i => i.Map<TModel>(x => x.AutoMap()));
-            // Todo Custom mapping
+        }
+
+        public void Insert(TModel model, string indexName)
+        {
+            CheckIndex(indexName, false);
+            var response = elasticClient.Index<TModel>(model, i => i.Index(indexName));
+            ElasticResponseValidator.Validate(response);
         }
 
         public void BulkInsert(IEnumerable<TModel> models, string indexName)
         {
-            ValidateIndex(indexName, false);
+            CheckIndex(indexName, false);
             var bulk = new BulkDescriptor();
             foreach (var model in models)
             {
                 bulk.Index<TModel>(x => x.Index(indexName).Document(model));
             }
-            elasticClient.Bulk(bulk);
+            var response = elasticClient.Bulk(bulk);
+            ElasticResponseValidator.Validate(response);
         }
 
         public IEnumerable<TModel> FetchAll(string indexName)
@@ -52,16 +64,12 @@ namespace Elastic.Communication.Nest
                     result.AddRange(response.Documents);
                     scrollId = response.ScrollId;
                     response = elasticClient.Scroll<TModel>("2m", scrollId);
+                    ElasticResponseValidator.Validate(response);
                 }
                 anyDocumentLeft = response.Documents.Any();
             }
             elasticClient.ClearScroll(new ClearScrollRequest(scrollId));
             return result;
-        }
-
-        public void Insert(TModel model, string indexName)
-        {
-            elasticClient.Index<TModel>(model, i => i.Index(indexName));
         }
 
         protected ISearchResponse<TModel> RetrieveQueryResponse(
@@ -71,11 +79,13 @@ namespace Elastic.Communication.Nest
             int pageSize
         )
         {
-            return elasticClient.Search<TModel>(s => s
+            var response = elasticClient.Search<TModel>(s => s
                 .Index(indexName)
                 .Query(q => container)
                 .Size(pageSize)
                 .From(pageIndex * pageSize));
+            ElasticResponseValidator.Validate(response);
+            return response;
         }
 
         public IReadOnlyCollection<IHit<TModel>> RetrieveQueryHits(
@@ -85,7 +95,9 @@ namespace Elastic.Communication.Nest
             int pageSize = 1
         )
         {
-            return RetrieveQueryResponse(container, indexName, pageIndex, pageSize).Hits;
+            var response = RetrieveQueryResponse(container, indexName, pageIndex, pageSize);
+            ElasticResponseValidator.Validate(response);
+            return response.Hits;
         }
 
         public IEnumerable<TModel> RetrieveQueryDocuments(
@@ -95,7 +107,9 @@ namespace Elastic.Communication.Nest
             int pageSize = 1
         )
         {
-            return RetrieveQueryResponse(container, indexName, pageIndex, pageSize).Documents;
+            var response = RetrieveQueryResponse(container, indexName, pageIndex, pageSize);
+            ElasticResponseValidator.Validate(response);
+            return response.Documents;
         }
 
         private ISearchResponse<TModel> NestScrollSearch(
@@ -105,23 +119,27 @@ namespace Elastic.Communication.Nest
             int scrollSize = 10000
         )
         {
-            return elasticClient.Search<TModel>(s => s
+            var response = elasticClient.Search<TModel>(s => s
                 .Index(indexName)
                 .From(0)
                 .Take(scrollSize)
                 .Query(q => container)
                 .Scroll(scrollTimeout)
             );
+            ElasticResponseValidator.Validate(response);
+            return response;
         }
 
         public void DeleteById_(string id_, string indexName)
         {
             var response = elasticClient.Delete<TModel>(id_, dd => dd.Index(indexName));
+            ElasticResponseValidator.Validate(response);
         }
 
         public void UpdateById_(string id_, string indexName, TModel newModel)
         {
             var response = elasticClient.Update<TModel>(id_, u => u.Index(indexName).Doc(newModel));
+            ElasticResponseValidator.Validate(response);
         }
     }
 }
