@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MessageService } from '../message/message.service';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -36,14 +36,22 @@ export class EdgeService {
   }
 
   public getAllEdges(
-    filter: Array<string> = [],
+    filter: string[] = [],
     pageIndex = 0,
     pageSize = 1
   ): Promise<JSON> {
-    var url = `${this.baseAddress}/edges?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`;
+    var url = `${this.baseAddress}/edges`;
+    // ?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${JSON.stringify(filter)}
+
+    var params = new HttpParams();
+    params = params.append('filter', JSON.stringify(filter));
+    var httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      params: params
+    };
 
     return new Promise<JSON>((resolve) => {
-      this.http.get<JSON>(url, this.httpOptions).pipe(
+      this.http.get<JSON>(url, httpOptions).pipe(
         tap(_ => this.log(`got edges`)),
         catchError(this.handleError<JSON>('getEdge'))
       ).subscribe((result: JSON) => {
@@ -56,9 +64,9 @@ export class EdgeService {
 
     var url = `${this.baseAddress}/edges/${edgeId}`;
 
-    this.http.delete<JSON>(url, this.httpOptions).pipe(
+    this.http.delete<string>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted edge id=${edgeId}`)),
-      catchError(this.handleError<JSON>('deleteEdge'))
+      catchError(this.handleError<string>('deleteEdge'))
     ).subscribe(_ => { }); // Todo: test
   }
 
@@ -68,18 +76,18 @@ export class EdgeService {
     this.http.post<JSON>(url, edge, this.httpOptions)
       .pipe(
         tap(_ => this.log(`added edge`)),
-        catchError(this.handleError<JSON>('addEdge', JSON))
+        catchError(this.handleError<JSON>('addEdge'))
       ).subscribe(_ => { });
   }
 
-  public async updateEdge(edge: JSON): Promise<void> {
+  public async updateEdge(edge: string): Promise<void> {
     var url = `${this.baseAddress}/edges`;
 
-    this.http.put<JSON>(url, edge, this.httpOptions)
+    this.http.put<string>(url, edge, this.httpOptions)
       .pipe(
         tap(_ => this.log('updated edge')),
-        catchError(this.handleError<JSON>('updateEdge', JSON))
-      ).subscribe(_ => { });
+        catchError(this.handleError<string>('updateEdge'))
+      ).subscribe();
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
