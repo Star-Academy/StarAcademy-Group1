@@ -41,7 +41,6 @@ export class EdgeService {
     pageSize = 1
   ): Promise<JSON> {
     var url = `${this.baseAddress}/edges`;
-    // ?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${JSON.stringify(filter)}
 
     var params = new HttpParams();
     params = params.append('filter', JSON.stringify(filter));
@@ -67,10 +66,10 @@ export class EdgeService {
     this.http.delete<string>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted edge id=${edgeId}`)),
       catchError(this.handleError<string>('deleteEdge'))
-    ).subscribe(_ => { }); // Todo: test
+    ).subscribe(_ => { });
   }
 
-  public async addEdge(edge: JSON): Promise<void> { // Todo: error handling ?
+  public async addEdge(edge: JSON): Promise<void> {
     var url = `${this.baseAddress}/edges`;
 
     this.http.post<JSON>(url, edge, this.httpOptions)
