@@ -40,13 +40,11 @@ export class EdgeService {
     pageIndex = 0,
     pageSize = 1
   ): Promise<JSON> {
-    var url = `${this.baseAddress}/edges`;
-
-    var params = new HttpParams();
-    params = params.append('filter', JSON.stringify(filter));
+    var url = `${this.baseAddress}/edges?pageIndex=${pageIndex}&pageIndex=${pageSize}`;
+    
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      params: params
+      params: new HttpParams().append('filter', JSON.stringify(filter))
     };
 
     return new Promise<JSON>((resolve) => {
