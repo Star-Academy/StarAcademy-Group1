@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class EdgeService {
 
-  private baseAddress = "https://localhost:5001/api/v1";
+  private baseAddress = "https://localhost:5001/api/v1/edges";
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -23,7 +23,7 @@ export class EdgeService {
 
   public async getEdge(edgeId: string): Promise<JSON> {
 
-    var url = `${this.baseAddress}/edges/${edgeId}`;
+    var url = `${this.baseAddress}/${edgeId}`;
 
     return new Promise<JSON>((resolve) => {
       this.http.get<JSON>(url, this.httpOptions).pipe(
@@ -40,7 +40,7 @@ export class EdgeService {
     pageIndex = 0,
     pageSize = 1
   ): Promise<JSON> {
-    var url = `${this.baseAddress}/edges?pageIndex=${pageIndex}&pageIndex=${pageSize}`;
+    var url = `${this.baseAddress}?pageIndex=${pageIndex}&pageIndex=${pageSize}`;
     
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -59,7 +59,7 @@ export class EdgeService {
 
   public async deleteEdge(edgeId: string): Promise<void> {
 
-    var url = `${this.baseAddress}/edges/${edgeId}`;
+    var url = `${this.baseAddress}/${edgeId}`;
 
     this.http.delete<string>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted edge id=${edgeId}`)),
@@ -68,7 +68,7 @@ export class EdgeService {
   }
 
   public async addEdge(edge: JSON): Promise<void> {
-    var url = `${this.baseAddress}/edges`;
+    var url = `${this.baseAddress}`;
 
     this.http.post<JSON>(url, edge, this.httpOptions)
       .pipe(
@@ -78,7 +78,7 @@ export class EdgeService {
   }
 
   public async updateEdge(edge: string): Promise<void> {
-    var url = `${this.baseAddress}/edges`;
+    var url = `${this.baseAddress}`;
 
     this.http.put<string>(url, edge, this.httpOptions)
       .pipe(

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message/message.service';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -10,64 +10,106 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class GraphService {
 
-  private baseAddress = "https://localhost:5001/api/v1";
+  private baseAddress = "https://localhost:5001/api/v1/graph";
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  public getGraph(
-    nodeFilter: Array<string> = null,
-    edgeFilter: Array<string> = null,
+  public async getGraph(
+    nodeFilter: string[] = [],
+    edgeFilter: string[] = [],
     pageIndex: number = null,
     pageSize: number = null
-  ): Observable<JSON> {
+  ): Promise<JSON> {
 
-    var url = `${this.baseAddress}/graph`;
+    let url = `${this.baseAddress}`;
+    let params = `?nodeFilter=${JSON.stringify(nodeFilter)}&edgeFilter=${JSON.stringify(edgeFilter)}`
+      + `&pageIndex=${pageIndex}&pageSize=${pageSize}`;
 
-    var httpOptions = {
-    };
-
-    return this.http.get<JSON>(url, httpOptions).pipe(
-      tap(_ => this.log(`got graph`)),
-      catchError(this.handleError<JSON>('getGraph'))
-    );
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url + params, this.httpOptions).pipe(
+        tap(_ => this.log(`got graph`)),
+        catchError(this.handleError<JSON>('getGraph'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
-  public getNodeExpansion(
+  public async getExpansion(
     nodeId: string,
-    nodeFilter: Array<string> = null,
-    edgeFilter: Array<string> = null,
+    nodeFilter: string[] = [],
+    edgeFilter: string[] = [],
     nodePageIndex: number = null,
     nodePageSize: number = null,
     nodeOrderBy: string = null,
     edgePageIndex: number = null,
     edgePageSize: number = null,
     edgeOrderBy: string = null
-  ): Observable<JSON> {
+  ): Promise<JSON> {
 
-    var url = `${this.baseAddress}/graph/expansion/${nodeId}`;
-    var httpOptions = {
-    };
+    var url = `${this.baseAddress}/expansion/${nodeId}`;
 
-    return this.http.get<JSON>(url, httpOptions).pipe(
-      tap(_ => this.log(`got ${nodeId} expansion`)),
-      catchError(this.handleError<JSON>('getNodeExpansion'))
-    );
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url, this.httpOptions).pipe(
+        tap(_ => this.log(`got ${nodeId} expansion`)),
+        catchError(this.handleError<JSON>('getNodeExpansion'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
   }
 
-  public getSelectedNodesExpansion(
-    nodeIds : Array<string>
-  ): Observable<JSON> {
+  public async getNodesExpansion(
+    nodeIds: Array<string>
+  ): Promise<JSON> {
 
-    var url = `${this.baseAddress}/graph/expansion`;
-    var httpOptions = {
-    };
+    var url = `${this.baseAddress}/expansion`;
 
-    return this.http.get<JSON>(url, httpOptions).pipe(
-      tap(_ => this.log(`got ${nodeIds} expansion`)),
-      catchError(this.handleError<JSON>('getNodeExpansion'))
-    );
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url, this.httpOptions).pipe(
+        tap(_ => this.log(`got ${nodeIds} expansion`)),
+        catchError(this.handleError<JSON>('getNodeExpansion'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
+  }
+
+  public async getPaths(
+    sourceNodeId: string,
+    targetNodeId: string,
+    nodeFilter: string[] = [],
+    edgeFilter: string[] = [],
+    nodeOrderby: string = null,
+    edgeOrderby: string = null,
+    nodePageIndex: number = null,
+    nodePageSize: number = null,
+    edgePageIndex: number = null,
+    edgePageSize: number = null 
+  ): Promise<void> {
+
+  }
+
+  public async getFlow(
+    sourceNodeId: string,
+    targetNodeId: string,
+    nodeFilter: string[] = [],
+    edgeFilter: string[] = [],
+    nodePageIndex: number = null,
+    nodePageSize: number = null,
+    edgePageIndex: number = null,
+    edgePageSize: number = null 
+  ): Promise<void> {
+
+  }
+
+  public async getStats(): Promise<void> {
+
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
