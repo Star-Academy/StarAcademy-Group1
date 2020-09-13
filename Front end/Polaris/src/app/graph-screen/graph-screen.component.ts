@@ -89,37 +89,37 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       }
     );
     this.randomOgma.ogma.events.onNodesSelected(() => {
-      console.log(this.randomOgma.ogma.getSelectedNodes());
+      // console.log(this.randomOgma.ogma.getSelectedNodes());
       // this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
       //   this.randomOgma.addNodeToSelected(element);
       // });
     });
 
     this.randomOgma.ogma.events.onNodesUnselected(() => {
-    //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
-    //     if (this.randomOgma.selectedNodes.includes(element)) {
-    //       const index = this.randomOgma.selectedNodes.indexOf(element, 0);
-    //       if (index > -1) {
-    //         this.randomOgma.selectedNodes.splice(index, 1);
-    //       }
-    //     }
-    //   });
-    console.log(this.randomOgma.ogma.getSelectedNodes());
+      //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
+      //     if (this.randomOgma.selectedNodes.includes(element)) {
+      //       const index = this.randomOgma.selectedNodes.indexOf(element, 0);
+      //       if (index > -1) {
+      //         this.randomOgma.selectedNodes.splice(index, 1);
+      //       }
+      //     }
+      //   });
+      // console.log(this.randomOgma.ogma.getSelectedNodes());
     });
-    this.randomOgma.ogma.events.onDragStart((button :KeyboardEvent)=> {
-      if (button.ctrlKey) {
-        this.randomOgma.ogma.ogma.getSelectedNodes().setSelected(false);
-        this.randomOgma.ogma.ogma.getSelectedEdges().setSelected(false);
-        this.randomOgma.ogma.ogma.tools.rectangleSelect.enable({
-          bothExtremities: true, // only if both endpoints are inside the rectangle
+    this.randomOgma.ogma.events.onDragStart(() => {
+      if (this.randomOgma.ogma.keyboard.isKeyPressed('ctrl')) {
+        this.randomOgma.ogma.getSelectedNodes().setSelected(false);
+        this.randomOgma.ogma.getSelectedEdges().setSelected(false);
+        this.randomOgma.ogma.tools.rectangleSelect.enable({
+          bothExtremities: true,
           callback({ nodes, edges }) {
             nodes.setSelected(true);
             edges.setSelected(true);
           }
         });
-  }
-   console.log(this.randomOgma.ogma.getSelectedNodes());
-});
+      }
+      console.log(this.randomOgma.ogma.getSelectedNodes());
+    });
   }
 
 
