@@ -4,6 +4,9 @@ namespace Analysis.Test
 {
     class Data : Entity<int>
     {
-        public int Id { get; set; }
+        public Data(int id)
+        {
+            Id = id;
+        }
     }
 }

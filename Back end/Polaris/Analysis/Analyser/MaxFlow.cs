@@ -15,9 +15,9 @@ namespace Analysis.Analyser
 
         private readonly Graph<NID, NDATA, EID, EDATA> graph;
         private Dictionary<NID, int> level;
-        public MaxFlow()
+        public MaxFlow(Graph<NID, NDATA, EID, EDATA> graph)
         {
-            graph = new Graph<NID, NDATA, EID, EDATA>();
+            this.graph = graph;
             level = new Dictionary<NID, int>();
         }
 

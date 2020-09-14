@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Analysis.Analyser
 {
-    class BFS<NID, NDATA, EID, EDATA>
+    public class BFS<NID, NDATA, EID, EDATA>
         where NDATA : Entity<NID>
         where EDATA : Entity<EID>
     {
@@ -19,7 +19,7 @@ namespace Analysis.Analyser
         }
 
         // filters weren't applied yet
-        public void BiDirectionalSearch(Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
+        public HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> BiDirectionalSearch(Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
         {
             var edges = new HashSet<Edge<EID, EDATA, Node<NID, NDATA>>>();
 
@@ -59,6 +59,8 @@ namespace Analysis.Analyser
                     TakePath(item.Key, ref edges, ref paths);
                 }
             }
+
+            return edges;
         }
 
         private void TakePath(Node<NID, NDATA> node, ref HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> edges, ref Dictionary<NID, List<LinkedList<NID>>>[] paths)
