@@ -17,7 +17,6 @@ export class AccuountTypeComponent implements OnInit {
 
   public changeChecked( field:string ,isChecked :boolean){
     let index = this.filterService.accountTypes.indexOf(field, 0);
-
     if (!isChecked) {
        this.filterService.accountTypes.splice(index, 1);
     }

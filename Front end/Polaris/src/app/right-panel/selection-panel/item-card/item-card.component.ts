@@ -31,6 +31,9 @@ export class ItemCardComponent implements OnInit {
       }
 
     }
+    // console.log( this.ogmaProvider.ogma.getSelectedEdges());
+    console.log( this.ogmaProvider.ogma.getSelectedNodes());
+
 
   }
 

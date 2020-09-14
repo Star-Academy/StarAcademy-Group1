@@ -125,6 +125,9 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           }
         });
       }
+      console.log( this.randomOgma.ogma.getSelectedNodes());
+      console.log( this.randomOgma.ogma.getSelectedEdges());
+
     });
   }
 
