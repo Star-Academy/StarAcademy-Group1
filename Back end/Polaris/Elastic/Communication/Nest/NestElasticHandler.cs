@@ -5,6 +5,7 @@ using System.Linq;
 using Elastic.Validation;
 using Elastic.Exceptions;
 using Models;
+using Models.ResponsePagination;
 
 namespace Elastic.Communication.Nest
 {
@@ -12,7 +13,7 @@ namespace Elastic.Communication.Nest
     {
         private static IElasticClient elasticClient = NestClientFactory.GetInstance().GetElasticClient();
 
-        public void CheckIndex(string indexName, bool recreate)
+        private void CheckIndex(string indexName, bool recreate)
         {
             try
             {
@@ -52,38 +53,20 @@ namespace Elastic.Communication.Nest
 
         public IEnumerable<TModel> FetchAll(string indexName)
         {
-            var queryContainer = new MatchAllQuery();
-            var response = NestScrollSearch(queryContainer, indexName);
-            var result = new List<TModel>();
-            var anyDocumentLeft = true;
-            string scrollId = response.ScrollId;
-            while (anyDocumentLeft)
-            {
-                if (response.IsValid)
-                {
-                    result.AddRange(response.Documents);
-                    scrollId = response.ScrollId;
-                    response = elasticClient.Scroll<TModel>("2m", scrollId);
-                    ElasticResponseValidator.Validate(response);
-                }
-                anyDocumentLeft = response.Documents.Any();
-            }
-            elasticClient.ClearScroll(new ClearScrollRequest(scrollId));
-            return result;
+            return FetchAllByQuery(new MatchAllQuery(), indexName);
         }
 
         protected ISearchResponse<TModel> RetrieveQueryResponse(
             QueryContainer container,
             string indexName,
-            int pageIndex,
-            int pageSize
+            Pagination pagination = null
         )
         {
             var response = elasticClient.Search<TModel>(s => s
                 .Index(indexName)
                 .Query(q => container)
-                .Size(pageSize)
-                .From(pageIndex * pageSize));
+                .Size(pagination.PageSize)
+                .From(pagination.PageIndex * pagination.PageSize));
             ElasticResponseValidator.Validate(response);
             return response;
         }
@@ -91,11 +74,10 @@ namespace Elastic.Communication.Nest
         public IReadOnlyCollection<IHit<TModel>> RetrieveQueryHits(
             QueryContainer container,
             string indexName,
-            int pageIndex = 0,
-            int pageSize = 1
+            Pagination pagination = null
         )
         {
-            var response = RetrieveQueryResponse(container, indexName, pageIndex, pageSize);
+            var response = RetrieveQueryResponse(container, indexName, pagination);
             ElasticResponseValidator.Validate(response);
             return response.Hits;
         }
@@ -103,16 +85,15 @@ namespace Elastic.Communication.Nest
         public IEnumerable<TModel> RetrieveQueryDocuments(
             QueryContainer container,
             string indexName,
-            int pageIndex = 0,
-            int pageSize = 1
+            Pagination pagination = null
         )
         {
-            var response = RetrieveQueryResponse(container, indexName, pageIndex, pageSize);
+            var response = RetrieveQueryResponse(container, indexName, pagination);
             ElasticResponseValidator.Validate(response);
             return response.Documents;
         }
 
-        private ISearchResponse<TModel> NestScrollSearch(
+        private ISearchResponse<TModel> NestScrollSearchInit(
             QueryContainer container,
             string indexName,
             string scrollTimeout = "2m",
@@ -130,16 +111,37 @@ namespace Elastic.Communication.Nest
             return response;
         }
 
-        public void DeleteById_(string id_, string indexName)
+        protected void DeleteById_(string id_, string indexName)
         {
             var response = elasticClient.Delete<TModel>(id_, dd => dd.Index(indexName));
             ElasticResponseValidator.Validate(response);
         }
 
-        public void UpdateById_(string id_, string indexName, TModel newModel)
+        protected void UpdateById_(string id_, string indexName, TModel newModel)
         {
             var response = elasticClient.Update<TModel>(id_, u => u.Index(indexName).Doc(newModel));
             ElasticResponseValidator.Validate(response);
+        }
+
+        public IEnumerable<TModel> FetchAllByQuery(QueryContainer queryContainer, string indexName)
+        {
+            var response = NestScrollSearchInit(queryContainer, indexName);
+            var result = new List<TModel>();
+            var anyDocumentLeft = true;
+            string scrollId = response.ScrollId;
+            while (anyDocumentLeft)
+            {
+                if (response.IsValid)
+                {
+                    result.AddRange(response.Documents);
+                    scrollId = response.ScrollId;
+                    response = elasticClient.Scroll<TModel>("2m", scrollId);
+                    ElasticResponseValidator.Validate(response);
+                }
+                anyDocumentLeft = response.Documents.Any();
+            }
+            elasticClient.ClearScroll(new ClearScrollRequest(scrollId));
+            return result;
         }
     }
 }
