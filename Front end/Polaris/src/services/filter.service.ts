@@ -8,5 +8,5 @@ export class FilterService {
   public maxAmount :string ;
   public accountTypes :string[] = [];
   public name: string;
-  public branches : string[];
+  public branches : string[] = [];
 }
