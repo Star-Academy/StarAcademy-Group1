@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FilterService } from 'src/services/filter.service';
 
 @Component({
@@ -8,11 +8,16 @@ import { FilterService } from 'src/services/filter.service';
 })
 export class NameFilterComponent implements OnInit {
 
-  public value : string ;
   constructor(public filterService : FilterService) { }
 
   ngOnInit(): void {
-    console.log(this.value)
+
   }
+
+  public checkChange(field : string){
+    this.filterService.name = field ;
+    console.log(this.filterService.name);
+  }
+
 
 }
