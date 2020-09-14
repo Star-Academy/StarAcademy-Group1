@@ -35,6 +35,7 @@ import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name
 import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/branch-filter.component';
 import { ItemCardComponent } from './right-panel/selection-panel/item-card/item-card.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FilterService } from 'src/services/filter.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatCheckboxModule,
     ScrollingModule
   ],
-  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule],
+  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule,FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

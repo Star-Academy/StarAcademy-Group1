@@ -9,14 +9,13 @@ import {NodeInfo} from'./NodeInfo'
 
 export class NodeInfoBoxComponent implements OnInit {
 
-  public node : NodeInfo ;
+  public get node () {return this.componentsCommunication.nodeInfo} ;
   //todo : yek class node tarif konid va inja ye object azash besazid ke shooloogh nashe
   constructor(public componentsCommunication: ComponentsCommunicationService) {
 
   }
 
   ngOnInit(): void {
-    this.node = this.componentsCommunication.nodeInfo ;
   }
 
 }

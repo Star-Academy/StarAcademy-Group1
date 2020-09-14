@@ -4,7 +4,7 @@ import { NodeInfo } from 'src/app/left-panel/node-info-box/NodeInfo';
 export class ComponentsCommunicationService {
 
   public whichPanel: string;
-  public whichRightSideNav : number = 1 ;
+  public whichRightSideNav : number = 0 ;
   public graphCreated: boolean = false;
 
   public nodeInfo: NodeInfo
