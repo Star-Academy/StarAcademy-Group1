@@ -25,4 +25,8 @@ export class SelectionPanelComponent implements OnInit {
   public getNodeById(nodeId: string): string {
     return this.randomOgma.ogma.getNode(nodeId).getData('OwnerName') + " " + this.randomOgma.ogma.getNode(nodeId).getData('OwnerFamilyName');
   }
+
+  public isSelectedNodeById(nodeId: string): boolean {
+    return this.randomOgma.ogma.getNode(nodeId).isSelected();
+  }
 }

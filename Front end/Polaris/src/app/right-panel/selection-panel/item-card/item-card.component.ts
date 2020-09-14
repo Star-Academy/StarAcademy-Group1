@@ -10,6 +10,10 @@ export class ItemCardComponent implements OnInit {
   public nodeId:string;
   @Input()
   public nodePerson: string;
+  @Input()
+  public isSelected: boolean; 
+
+  
   constructor() { }
 
   ngOnInit(): void {
