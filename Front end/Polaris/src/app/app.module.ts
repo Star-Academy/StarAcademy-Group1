@@ -29,12 +29,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { RangeSliderComponent } from './right-panel/filter-panel/range-slider/range-slider.component';
 import { Ng5SliderModule } from 'ng5-slider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AccuountTypeComponent } from './right-panel/filter-panel/accuount-type/accuount-type.component';
 import { NameFilterComponent } from './right-panel/filter-panel/name-filter/name-filter.component';
 import { BranchFilterComponent } from './right-panel/filter-panel/branch-filter/branch-filter.component';
 import { ItemCardComponent } from './right-panel/selection-panel/item-card/item-card.component';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
