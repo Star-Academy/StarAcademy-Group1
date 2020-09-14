@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic.Test", "Elastic.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analysis.Test", "Analysis.Test\Analysis.Test.csproj", "{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,8 +21,9 @@ namespace Analysis.GraphStructure
             return ReadNeighbors(node);
         }
 
-        public Graph()
+        public Graph(Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj)
         {
+            this.Adj = Adj;
             foreach (var item in Adj)
             {
                 IDToNode[item.Key.Id] = item.Key;

@@ -11,7 +11,6 @@ namespace Analysis.Analyser
         where NDATA : Entity<NID>
         where EDATA : Entity<EID>
     {
-
         private const Int64 inf = 1_000_000_000_000_000_000;
 
         private readonly Graph<NID, NDATA, EID, EDATA> graph;
