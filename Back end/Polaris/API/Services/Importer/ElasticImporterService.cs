@@ -4,14 +4,14 @@ using API.Services.Utils;
 
 namespace API.Services.Importer
 {
-    public class Importer<TModel> where TModel : class, IModel
+    public class ElasticImporterService<TModel> : IImporterService<TModel> where TModel : class, IModel
     {
         private NestElasticHandler<TModel> elasticImporter = new NestElasticHandler<TModel>();
 
-        public void ImportToElastic(string source, IStringParser<TModel> stringParser, string elasticIndexName)
+        public void Import(string source, IStringParser<TModel> stringParser, string sourceName)
         {
             var list = stringParser.Parse(source);
-            elasticImporter.BulkInsert(list, elasticIndexName);
+            elasticImporter.BulkInsert(list, sourceName);
         }
     }
 }

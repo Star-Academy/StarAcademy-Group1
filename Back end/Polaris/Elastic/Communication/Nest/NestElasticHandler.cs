@@ -12,7 +12,7 @@ namespace Elastic.Communication.Nest
     {
         private static IElasticClient elasticClient = NestClientFactory.GetInstance().GetElasticClient();
 
-        public void CheckIndex(string indexName, bool recreate)
+        private void CheckIndex(string indexName, bool recreate)
         {
             try
             {
