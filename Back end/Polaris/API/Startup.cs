@@ -11,7 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using API.Services.Elastic;
+using Models.Banking;
+using API.Services.Edge;
+using API.Services.Node;
+using API.Services.Graph;
+using API.Services.Importer;
 
 namespace API
 {
@@ -30,7 +34,11 @@ namespace API
             //services.AddScoped<,>(); // TODO
             services.AddControllers();
             services.AddCors();
-            services.AddSingleton<IElasticService, NestService>();
+            services.AddSingleton<IImporterService<BankAccount>, ElasticImporterService<BankAccount>>();
+            services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
+            services.AddSingleton<INodeService<string>, NodeService<string>>();
+            services.AddSingleton<IEdgeService<string, string>, EdgeService<string, string>>();
+            // services.AddSingleton<IGraphService, GraphService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
