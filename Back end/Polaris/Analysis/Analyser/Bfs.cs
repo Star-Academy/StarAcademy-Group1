@@ -2,6 +2,7 @@
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
+using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,12 @@ namespace Analysis.Analyser
             var paths = new Dictionary<NID, List<LinkedList<NID>>>[2];
             paths[0] = new Dictionary<NID, List<LinkedList<NID>>>();
             paths[1] = new Dictionary<NID, List<LinkedList<NID>>>();
+
+            foreach (var item in graph.Adj)
+            {
+                paths[0][item.Key.Id] = new List<LinkedList<NID>>();
+                paths[1][item.Key.Id] = new List<LinkedList<NID>>();
+            }
 
             var queue = new List<LinkedList<NID>>[2];
             queue[0] = new List<LinkedList<NID>>();

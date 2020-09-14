@@ -24,12 +24,19 @@ namespace Analysis.GraphStructure
         public Graph(Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj)
         {
             this.Adj = Adj;
+            IDToNode = new Dictionary<NID, Node<NID, NDATA>>();
+            DataToNode = new Dictionary<NDATA, Node<NID, NDATA>>();
+            reverseAdj = new Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>>();
+            foreach (var item in Adj)
+                reverseAdj[item.Key] = new List<Edge<EID, EDATA, Node<NID, NDATA>>>();
             foreach (var item in Adj)
             {
                 IDToNode[item.Key.Id] = item.Key;
                 DataToNode[item.Key.Data] = item.Key;
                 foreach (var edge in item.Value)
+                {
                     reverseAdj[edge.Target].Add(edge);
+                }
             }
         }
 
