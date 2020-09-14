@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Ogma from '../assets/ogma.min.js';
 @Injectable()
-export class RandomGraphService {
+export class OgmaHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
 

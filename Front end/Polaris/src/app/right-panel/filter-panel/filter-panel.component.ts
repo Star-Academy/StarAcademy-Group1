@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentsCommunication } from 'src/services/components-communication.service';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class FilterPanelComponent implements OnInit {
   public hidden = false;
   panelOpenState = false;
-  constructor(public componentCommunication: ComponentsCommunication) { }
+  constructor(public componentCommunication: ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }

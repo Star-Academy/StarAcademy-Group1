@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
-import { RandomGraphService } from '../../services/read-ogma-from-random-json.service';
-import { ComponentsCommunication } from '../../services/components-communication.service';
+import { OgmaHandlerService } from '../../services/ogma-handler.service';
+import { ComponentsCommunicationService } from '../../services/components-communication.service';
 import { NodeId } from '../../assets/ogma.min.js';
 import * as HoverEvent from '../../assets/ogma.min.js';
 import * as RightClickEvent from '../../assets/ogma.min.js';
@@ -25,8 +25,8 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: RandomGraphService,
-    private componentCommunication: ComponentsCommunication
+    private randomOgma: OgmaHandlerService,
+    private componentCommunication: ComponentsCommunicationService
   ) { }
 
   ngOnInit() {
@@ -72,10 +72,17 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         if (target != null && target.isNode && button === 'left') {
           this.componentCommunication.whichPanel = 'nodeInfo';
           this.componentCommunication.nodeInfo = {
+            ownerName: target.getData('OwnerName'),
+            ownerFamilyName: target.getData('OwnerFamilyName'),
             accountId: target.getId(),
-            name: target.getData('OwnerName'),
-            familyName: target.getData('OwnerFamilyName'),
+            accountType:target.getData('AccountType'),
+            sheba:target.getData('Sheba'),
+            cardId:target.getData('CardId'),
+            ownerId:target.getData('OwnerId'),
             branchName: target.getData('BranchName'),
+            branchAddress:target.getData('BranchAddress'),
+            branchTelephone:target.getData('BranchTelephone'),
+
           }
         }
         else if (target != null && !target.isNode && button === 'left') {

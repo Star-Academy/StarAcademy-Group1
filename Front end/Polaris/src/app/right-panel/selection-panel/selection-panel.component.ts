@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentsCommunication } from 'src/services/components-communication.service';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { ComponentsCommunication } from 'src/services/components-communication.s
 export class SelectionPanelComponent implements OnInit {
 
   public hidden = false ;
-  constructor(public componentCommunication: ComponentsCommunication) { }
+  constructor(public componentCommunication: ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }

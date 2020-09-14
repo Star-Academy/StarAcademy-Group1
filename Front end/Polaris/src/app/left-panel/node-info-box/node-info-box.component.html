@@ -1,33 +1,29 @@
 <span class="node-info">
-  <h1> Account Information </h1>
-  <b>Account ID: {{ componentsCommunication.nodeInfo.accountId}}</b>
-  <p>
-    {{componentsCommunication.nodeInfo.name}}    {{ componentsCommunication.nodeInfo.familyName}}
-  </p>
-  <p>
-    {{componentsCommunication.nodeInfo.branchName}}
-  </p>
-  
-  <!-- <p>
-    {{node.accountType}}
-  </p>
-  <p>
-    {{node.sheba}}
-  </p>
-  <p>
-    {{node.cardID}}
-  </p>
-  <p>
-    {{node.ownerID}}
-  </p>
-  <p>
-    {{node.branchName}}
-  </p>
-  <p>
-    {{node.branchAdress}}
-  </p>
-  <p>
-    {{node.branchTelephone}}
-  </p> -->
+  <h1> اطلاعات حساب</h1>
 
+<p>
+    <h2>{{node.ownerName}} {{ node.ownerFamilyName}}</h2>
+   <p><b>{{ node.accountId}}: شماره حساب  </b></p>
+
+  <p>
+    {{node.accountType}} : نوع حساب
+  </p>
+  <p>
+    {{node.sheba}} : شبا
+  </p>
+  <p>
+    {{node.cardId}} : شماره کارت
+  </p>
+  <p>
+    {{node.ownerId}} : شماره ملی صاحب حساب
+  </p>
+  <p>
+    {{node.branchName}} : نام شعبه
+  </p>
+  <p>
+    {{node.branchAddress}} : ادرس شعبه
+  </p>
+  <p>
+    {{node.branchTelephone}} : تلفن شعبه
+  </p>
 </span>

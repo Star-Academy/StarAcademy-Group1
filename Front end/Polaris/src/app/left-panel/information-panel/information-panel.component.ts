@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentsCommunication } from 'src/services/components-communication.service';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 
 @Component({
   selector: 'app-information-panel',
@@ -8,7 +8,7 @@ import { ComponentsCommunication } from 'src/services/components-communication.s
 })
 export class InformationPanelComponent implements OnInit {
 
-  constructor(public componentCommunication: ComponentsCommunication) {
+  constructor(public componentCommunication: ComponentsCommunicationService) {
   }
 
   ngOnInit(): void {

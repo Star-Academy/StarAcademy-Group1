@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ComponentsCommunication } from 'src/services/components-communication.service';
-
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
+import {NodeInfo} from'./NodeInfo'
 @Component({
   selector: 'app-node-info-box',
   templateUrl: './node-info-box.component.html',
@@ -9,11 +9,14 @@ import { ComponentsCommunication } from 'src/services/components-communication.s
 
 export class NodeInfoBoxComponent implements OnInit {
 
-  constructor(public componentsCommunication: ComponentsCommunication) {
+  public node : NodeInfo ;
+  //todo : yek class node tarif konid va inja ye object azash besazid ke shooloogh nashe
+  constructor(public componentsCommunication: ComponentsCommunicationService) {
 
   }
 
   ngOnInit(): void {
+    this.node = this.componentsCommunication.nodeInfo ;
   }
 
 }

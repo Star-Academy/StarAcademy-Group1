@@ -14,8 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionsComponent } from './left-panel/selections/selections.component';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
-import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
-import { ComponentsCommunication } from '../services/components-communication.service';
+import { OgmaHandlerService } from '../services/ogma-handler.service';
+import { ComponentsCommunicationService } from '../services/components-communication.service';
 import { FormsModule } from '@angular/forms';
 import { FilterPanelComponent } from './right-panel/filter-panel/filter-panel.component';
 import { SelectionPanelComponent } from './right-panel/selection-panel/selection-panel.component';
@@ -75,7 +75,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatCheckboxModule,
     ScrollingModule
   ],
-  providers: [RandomGraphService, ComponentsCommunication, MatNativeDateModule],
+  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
