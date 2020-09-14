@@ -1,3 +1,4 @@
+import { OgmaHandlerService } from './../../../../services/ogma-handler.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,16 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemCardComponent implements OnInit {
   @Input()
-  public nodeId:string;
+  public nodeId: string;
   @Input()
   public nodePerson: string;
   @Input()
-  public isSelected: boolean; 
+  public isSelected: boolean;
 
-  
-  constructor() { }
+  constructor(public ogmaProvider: OgmaHandlerService) { }
 
   ngOnInit(): void {
+  }
+  public changeChecked(isChecked: boolean) {
+    if (isChecked) {
+      this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(true);
+    }
+    else {
+      this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(false);
+    }
   }
 
 }
