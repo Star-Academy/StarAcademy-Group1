@@ -10,7 +10,7 @@ namespace Analysis.GraphStructure
     where NODEDATA : Entity<NODEID>
     where EDGEDATA : Entity<EDGEID>
     {
-        Dictionary<Node<NODEID, NODEDATA>, LinkedList<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj { get; set; }
+        Dictionary<Node<NODEID, NODEDATA>, List<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj { get; set; }
 
         List<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
 

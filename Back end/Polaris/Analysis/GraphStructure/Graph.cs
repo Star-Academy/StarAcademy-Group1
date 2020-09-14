@@ -10,8 +10,8 @@ namespace Analysis.GraphStructure
     where NDATA : Entity<NID>
     where EDATA : Entity<EID>
     {
-        public Dictionary<Node<NID, NDATA>, LinkedList<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
-        private readonly Dictionary<Node<NID, NDATA>, LinkedList<Edge<EID, EDATA, Node<NID, NDATA>>>> reverseAdj;
+        public Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
+        private readonly Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> reverseAdj;
 
         public Dictionary<NID, Node<NID, NDATA>> IDToNode { get; set; }
         public Dictionary<NDATA, Node<NID, NDATA>> DataToNode { get; set; }
@@ -28,7 +28,7 @@ namespace Analysis.GraphStructure
                 IDToNode[item.Key.Id] = item.Key;
                 DataToNode[item.Key.Data] = item.Key;
                 foreach (var edge in item.Value)
-                    reverseAdj[edge.Target].AddLast(edge);
+                    reverseAdj[edge.Target].Add(edge);
             }
         }
 
