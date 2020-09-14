@@ -19,6 +19,9 @@ namespace Analysis.GraphStructure.Structures
                 Data.Id = value;
             }
         }
+
+        public int Amount { get; set; }
+        public int Flow { get; set; }
         public NODE Source { get; set; }
         public NODE Target { get; set; }
     }
