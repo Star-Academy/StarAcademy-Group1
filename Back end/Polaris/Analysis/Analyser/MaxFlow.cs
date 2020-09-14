@@ -2,6 +2,7 @@
 using Elastic.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Analysis.Analyser
 {
@@ -52,7 +53,29 @@ namespace Analysis.Analyser
 
         private bool BFS(NID source, NID target)
         {
-            return false;
+            foreach (var item in graph.Adj)
+                level[item.Key.Id] = -1;
+
+            level[source] = 0;
+            var q = new List<NID>();
+            q.Add(source);
+
+            while (q.Any())
+            {
+                var node = graph.IDToNode[q.Last()];
+                q.RemoveAt(q.Count - 1);
+                foreach(var edge in graph.Adj[node])
+                {
+                    var neighbor = edge.Target.Id;
+                    if (level[neighbor] < 0 && edge.Flow < edge.Amount)
+                    {
+                        level[neighbor] = level[node.Id] + 1;
+                        q.Add(neighbor);
+                    }
+                }
+            }
+
+            return level[target] != -1;
         }
 
     }
