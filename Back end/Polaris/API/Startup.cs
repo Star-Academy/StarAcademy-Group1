@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using Elastic.Communication;
+using Elastic.Communication.Nest;
 using Models.Banking;
 using API.Services.Edge;
 using API.Services.Node;
@@ -34,6 +36,7 @@ namespace API
             //services.AddScoped<,>(); // TODO
             services.AddControllers();
             services.AddCors();
+            services.AddSingleton<IEntityHandler<string>, NestEntityHandler<string>>();
             services.AddSingleton<IImporterService<BankAccount>, ElasticImporterService<BankAccount>>();
             services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
             services.AddSingleton<INodeService<string>, NodeService<string>>();
