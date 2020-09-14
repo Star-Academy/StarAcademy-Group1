@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RangeSliderComponent } from './range-slider.component';
+import { AmountFilterComponent } from './amount-filter.component';
 
-describe('RangeSliderComponent', () => {
-  let component: RangeSliderComponent;
-  let fixture: ComponentFixture<RangeSliderComponent>;
+describe('AmountFilterComponent', () => {
+  let component: AmountFilterComponent;
+  let fixture: ComponentFixture<AmountFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RangeSliderComponent ]
+      declarations: [ AmountFilterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RangeSliderComponent);
+    fixture = TestBed.createComponent(AmountFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

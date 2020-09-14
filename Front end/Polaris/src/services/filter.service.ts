@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 export class FilterService {
   public time1: string;
   public time2: string;
-  public minAmount :string ;
-  public maxAmount :string ;
+  public minAmount :number ;
+  public maxAmount :number ;
   public accountTypes :string[] = [];
   public name: string;
   public branches : string[] = [];
