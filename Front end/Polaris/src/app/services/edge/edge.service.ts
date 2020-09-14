@@ -20,6 +20,19 @@ export class EdgeService {
     private messageService: MessageService
   ) { }
 
+  public async getTyping(): Promise<JSON> {
+
+    var url = `${this.baseAddress}/typing`;
+
+    return new Promise<JSON>((resolve) => {
+      this.http.get<JSON>(url, this.httpOptions).pipe(
+        tap(_ => this.log(`got edges typing`)),
+        catchError(this.handleError<JSON>('getTyping'))
+      ).subscribe((result: JSON) => {
+        resolve(result)
+      })
+    });
+  }
 
   public async getEdge(edgeId: string): Promise<JSON> {
 
