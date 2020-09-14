@@ -25,10 +25,7 @@ export class ItemCardComponent implements OnInit {
     else {
       this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(false);
       for (let oneEdge of this.ogmaProvider.ogma.getSelectedEdges().getId()) {
-        if ((!this.ogmaProvider.ogma.getEdge(oneEdge).getSource().isSelected() && this.ogmaProvider.ogma.getEdge(oneEdge).getTarget().isSelected())
-          || (this.ogmaProvider.ogma.getEdge(oneEdge).getSource().isSelected() && !this.ogmaProvider.ogma.getEdge(oneEdge).getTarget().isSelected())
-          || (!this.ogmaProvider.ogma.getEdge(oneEdge).getSource().isSelected() && !this.ogmaProvider.ogma.getEdge(oneEdge).getTarget().isSelected())
-        ) {
+        if (!this.ogmaProvider.ogma.getEdge(oneEdge).getSource().isSelected() || !this.ogmaProvider.ogma.getEdge(oneEdge).getTarget().isSelected()) {
           this.ogmaProvider.ogma.getEdge(oneEdge).setSelected(false);
         }
       }
