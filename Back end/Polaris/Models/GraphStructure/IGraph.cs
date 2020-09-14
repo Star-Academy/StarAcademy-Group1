@@ -6,7 +6,7 @@ namespace Models.GraphStructure
     where EN : Entity<IN>
     where EE : Entity<IE>
     {
-        Dictionary<EN, LinkedList<EN>> Adj{get; set;}
+        Dictionary<EN, LinkedList<EN>> Adj { get; set; }
 
         LinkedList<EN> GetNeighbors(EN node);
 

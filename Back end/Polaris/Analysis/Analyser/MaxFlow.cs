@@ -1,7 +1,6 @@
 ﻿using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
-using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;

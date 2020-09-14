@@ -14,9 +14,9 @@ namespace Models.GraphStructure
             set
             {
                 this.data.Id = value;
-            }    
+            }
         }
-        public N Source{get; set;}
-        public N Target{get; set;}
+        public N Source { get; set; }
+        public N Target { get; set; }
     }
 }

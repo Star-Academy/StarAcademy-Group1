@@ -13,7 +13,7 @@ namespace Models.GraphStructure
             set
             {
                 this.data.Id = value;
-            }    
+            }
         }
     }
 }
