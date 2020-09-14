@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ComponentsCommunication } from 'src/services/components-communication.service';
 import { RandomGraphService } from './../../../services/read-ogma-from-random-json.service';
+=======
+import { Component, OnInit } from '@angular/core';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
+>>>>>>> 82c391c34bee8ee3a39a8c206ea818abbd5cab2d
 
 
 @Component({

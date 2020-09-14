@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
+import { NodeInfo } from 'src/app/left-panel/node-info-box/NodeInfo';
 @Injectable()
-export class ComponentsCommunication {
+export class ComponentsCommunicationService {
 
   public whichPanel: string;
   public whichRightSideNav : number = 1 ;
   public graphCreated: boolean = false;
 
-  public nodeInfo: {
-    accountId: string;
-    name: string;
-    familyName: string;
-    branchName: string;
-  };
+  public nodeInfo: NodeInfo
   public edgeInfo: {
     Id: string;
     source: string,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentsCommunication } from 'src/services/components-communication.service';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 
 @Component({
   selector: 'app-edge-info-box',
@@ -8,7 +8,7 @@ import { ComponentsCommunication } from 'src/services/components-communication.s
 })
 export class EdgeInfoBoxComponent implements OnInit {
 
-  constructor(public componentsCommunication: ComponentsCommunication) { }
+  constructor(public componentsCommunication: ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
