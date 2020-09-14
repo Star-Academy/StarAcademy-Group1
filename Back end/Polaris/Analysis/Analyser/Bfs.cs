@@ -2,7 +2,6 @@
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
-using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +19,8 @@ namespace Analysis.Analyser
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> BiDirectionalSearch(Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
+        public HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> BiDirectionalSearch
+            (Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
         {
             var edges = new HashSet<Edge<EID, EDATA, Node<NID, NDATA>>>();
 
@@ -46,14 +46,14 @@ namespace Analysis.Analyser
                 queue[0].Add(path);
                 paths[0][source.Id].Add(path);
 
-                path.Clear();
-                path.AddLast(target.Id);
+                var path2 = new LinkedList<NID>();
+                path2.AddLast(target.Id);
 
-                queue[1].Add(path);
-                paths[1][target.Id].Add(path);
+                queue[1].Add(path2);
+                paths[1][target.Id].Add(path2);
             }
 
-            while (!queue[0].Any() && !queue[1].Any())
+            while (queue[0].Any() && queue[1].Any())
             {
                 BreadthFirstSearch(ref queue[0], ref paths[0]);
                 BreadthFirstSearch(ref queue[1], ref paths[1], 0);
@@ -67,7 +67,33 @@ namespace Analysis.Analyser
                 }
             }
 
+            foreach(var item in edges)
+            {
+                item.Address = item.Address;
+            }
+
             return edges;
+        }
+        private void BreadthFirstSearch
+            (ref List<LinkedList<NID>> queue, ref Dictionary<NID, List<LinkedList<NID>>> paths, int src = 1)
+        {
+            var current = queue.First();
+            queue.RemoveAt(0);
+            var last = current.Last();
+            var list = graph.GetNeighbors(last);
+            if (src == 0)
+                list = graph.GetOpositeNeighbors(last);
+            foreach (var node in list)
+            {
+                if (!current.Contains(node.Id))
+                {
+                    LinkedList<NID> newPath = new LinkedList<NID>(current);
+                    newPath.AddLast(node.Id);
+                    if (newPath.Count() > 3 + src) continue;
+                    paths[node.Id].Add(newPath);
+                    queue.Add(newPath);
+                }
+            }
         }
 
         private void TakePath(Node<NID, NDATA> node, ref HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> edges, ref Dictionary<NID, List<LinkedList<NID>>>[] paths)
@@ -84,28 +110,5 @@ namespace Analysis.Analyser
             }
         }
 
-        private void BreadthFirstSearch(ref List<LinkedList<NID>> queue, ref Dictionary<NID, List<LinkedList<NID>>> paths, int src = 1)
-        {
-            while (!queue.Any())
-            {
-                var current = queue.First();
-                queue.RemoveAt(0);
-                var last = current.Last();
-                var list = graph.GetNeighbors(last);
-                if (src == 0)
-                    list = graph.GetOpositeNeighbors(last);
-                foreach (var node in list)
-                {
-                    if (!current.Contains(node.Id))
-                    {
-                        LinkedList<NID> newPath = current;
-                        newPath.AddLast(node.Id);
-                        if (newPath.Count() > 3 + src) continue;
-                        paths[node.Id].Add(newPath);
-                        queue.Add(newPath);
-                    }
-                }
-            }
-        }
     }
 }

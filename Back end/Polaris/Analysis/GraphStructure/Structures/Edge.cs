@@ -10,7 +10,6 @@ namespace Analysis.GraphStructure.Structures
     {
         public Edge()
         {
-
         }
         public Edge(NODE u, NODE v, int flow, long amount, int address)
         {

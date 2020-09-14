@@ -41,10 +41,12 @@ namespace Analysis.Test
         {
             var edge = new Edge<int, Data, Node<int, Data>>();
             var node = new Node<int, Data>();
+            var node2 = new Node<int, Data>();
             node.Data = new Data(src);
+            node2.Data = new Data(tar);
             edge.Source = node;
-            node.Id = tar;
-            edge.Target = node;
+            edge.Target = node2;
+            edge.Data = new Data(new Random().Next());
             return edge;
         }
 
@@ -58,7 +60,10 @@ namespace Analysis.Test
             tar.Data = new Data(5);
             var bfs = new BFS<int, Data, int, Data>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar, null);
-            Console.WriteLine(ret.Count);
+            foreach(var item in ret)
+            {
+                item.Source.Id = item.Source.Id;
+            }
             Assert.IsTrue(ret.Count == 3
                 );
         }
