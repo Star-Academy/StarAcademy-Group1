@@ -28,6 +28,7 @@ namespace Analysis.Test
             AddEdge(1, 3);
             AddEdge(3, 5);
             AddEdge(2, 4);
+            AddEdge(3, 1);
             graph = new Graph<int, Data, int, Data>(dic);
         }
 
@@ -65,6 +66,24 @@ namespace Analysis.Test
                 item.Source.Id = item.Source.Id;
             }
             Assert.IsTrue(ret.Count == 3
+                );
+        }
+
+        [Fact]
+        public void Test2()
+        {
+            Init();
+            var src = new Node<int, Data>();
+            var tar = new Node<int, Data>();
+            src.Data = new Data(0);
+            tar.Data = new Data(1);
+            var bfs = new BFS<int, Data, int, Data>(graph);
+            var ret = bfs.BiDirectionalSearch(src, tar, null);
+            foreach (var item in ret)
+            {
+                item.Source.Id = item.Source.Id;
+            }
+            Assert.IsTrue(ret.Count == 1
                 );
         }
     }
