@@ -25,7 +25,7 @@ export class BranchFilterComponent implements OnInit {
    else{
      this.filterService.branches.splice(index, 1);
    }
-   console.log(this.filterService.branches)
+   console.log(this.filterService.branches);
   }
 
 }
