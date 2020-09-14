@@ -76,7 +76,7 @@ import { FilterService } from 'src/services/filter.service';
     MatCheckboxModule,
     ScrollingModule
   ],
-  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule,FilterService],
+  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

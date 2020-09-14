@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {FilterService} from '../../../../../src/services/filter.service'
+import {FilterService} from 'src/services/filter.service'
 
 @Component({
   selector: 'app-accuount-type',
@@ -8,7 +8,6 @@ import {FilterService} from '../../../../../src/services/filter.service'
 })
 export class AccuountTypeComponent implements OnInit {
 
-  public get accountTypes (){return this.filterService.accountTypes }
 
 
   constructor(public filterService : FilterService) { }
@@ -17,17 +16,15 @@ export class AccuountTypeComponent implements OnInit {
   }
 
   public changeChecked( field:string ,isChecked :boolean){
-
-    let index = this.accountTypes.indexOf(field, 0);
+    let index = this.filterService.accountTypes.indexOf(field, 0);
 
     if (!isChecked) {
-       this.accountTypes.splice(index, 1);
+       this.filterService.accountTypes.splice(index, 1);
     }
     else{
-      this.accountTypes.push(field);
-
+      this.filterService.accountTypes.push(field);
     }
-    console.log(this.accountTypes)
+    console.log(this.filterService.accountTypes)
   }
 
 }
