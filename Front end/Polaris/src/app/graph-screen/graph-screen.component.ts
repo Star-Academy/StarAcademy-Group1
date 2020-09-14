@@ -133,6 +133,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   }
   public getJs(): Promise<void> {
     this.randomOgma.getJsonGraph();
+    this.componentCommunication.graphCreated = true;
     return this.runLayout();
   }
 

@@ -4,6 +4,7 @@ export class ComponentsCommunication {
 
   public whichPanel: string;
   public whichRightSideNav : number = 1 ;
+  public graphCreated: boolean = false;
 
   public nodeInfo: {
     accountId: string;

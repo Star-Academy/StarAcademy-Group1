@@ -1,5 +1,7 @@
 <div id="mySidenav" class="sidenav" [hidden]="hidden">
   <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichRightSideNav = 0">&times;</a>
   <app-search-bar></app-search-bar>
-  <app-item-card></app-item-card>
+  <div *ngIf="componentCommunication.graphCreated">
+    <app-item-card *ngFor="let node of randomOgma.ogma.getNodes().getId()" [nodeId]="node" [nodePerson]="getNodeById(node)"></app-item-card>
+  </div>
 </div>
