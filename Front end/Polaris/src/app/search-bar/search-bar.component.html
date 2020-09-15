@@ -1,7 +1,7 @@
 <div class="search-wrapper">
     <form (ngSubmit)="onSubmit()" #formRef="ngForm" >
 
-        <input type="text" placeholder="Search"/>
+        <input type="text" placeholder="Search" name="search-bar" (keyup)="checkChange($event.target.value)" />
         <button type="submit">
             <fa-icon [icon]="searchIcon"></fa-icon>
         </button>

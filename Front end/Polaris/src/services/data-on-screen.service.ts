@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FilterService } from './filter.service';
 
 @Injectable()
 export class DataOnScreenService {
-
+    public branchSearch:string;
+    public branchList: string[] = ["hello","hi","lala","gggg","saba","mahla","halele"];
 }

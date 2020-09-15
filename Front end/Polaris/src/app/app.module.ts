@@ -36,6 +36,8 @@ import { ItemCardComponent } from './right-panel/selection-panel/item-card/item-
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './right-panel/filter-panel/amount-filter/amount-filter.component';
+import { DataOnScreenService } from './../services/data-on-screen.service';
+
 
 @NgModule({
   declarations: [
@@ -76,7 +78,7 @@ import { AmountFilterComponent } from './right-panel/filter-panel/amount-filter/
     MatCheckboxModule,
     ScrollingModule
   ],
-  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService],
+  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService, DataOnScreenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FilterService } from 'src/services/filter.service';
 
@@ -9,12 +10,13 @@ import { FilterService } from 'src/services/filter.service';
 export class BranchFilterComponent implements OnInit {
 
   @Input()
-  public branches: string[] = ["hello","hi","lala","gggg","saba","mahla","halele"];
+  public branches: string[];
 
-  constructor(public filterService : FilterService) {
+  constructor(public filterService : FilterService, public dataOnScreen: DataOnScreenService) {
    }
 
   ngOnInit(): void {
+    this.branches = this.dataOnScreen.branchList;
   }
   public changeChecked(field:string ,isChecked :boolean){
     let index = this.filterService.branches.indexOf(field, 0);
