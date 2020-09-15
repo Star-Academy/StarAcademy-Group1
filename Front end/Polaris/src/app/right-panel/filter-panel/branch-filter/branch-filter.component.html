@@ -1,6 +1,5 @@
-<!-- <section class="example-section"> -->
 <app-search-bar [searchPosition]="'branchFilter'"></app-search-bar>
 
-<cdk-virtual-scroll-viewport itemSize="50" minBufferPx="100" maxBufferPx="400" class="example-viewport">
+<cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400" class="example-viewport">
   <mat-checkbox *cdkVirtualFor="let branch of dataOnScreen.branchList" class="example-item" (change)="changeChecked(branch,$event.checked)">{{branch}}</mat-checkbox>
 </cdk-virtual-scroll-viewport>

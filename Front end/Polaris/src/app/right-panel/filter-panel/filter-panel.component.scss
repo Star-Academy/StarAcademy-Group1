@@ -1,7 +1,7 @@
 /* The side navigation menu */
 .sidenav {
   height: 100%;
-  width: 28%;
+  width: 24%;
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
@@ -44,6 +44,11 @@
 
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
+}
+
+mat-expansion-panel-header{
+  direction: rtl;
+  font-family: IRANSans, sans-serif;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
