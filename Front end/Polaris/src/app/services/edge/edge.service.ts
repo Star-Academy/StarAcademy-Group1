@@ -48,13 +48,17 @@ export class EdgeService {
     });
   }
 
+  /**
+   * @param filter an array of strings which is stringified while sending to server,
+   * so the specific param in API should be string but in needs to be deserialized as string[] afterwards
+   */
   public getAllEdges(
     filter: string[] = [],
     pageIndex = 0,
     pageSize = 1
   ): Promise<JSON> {
     var url = `${this.baseAddress}?pageIndex=${pageIndex}&pageIndex=${pageSize}`;
-    
+
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       params: new HttpParams().append('filter', JSON.stringify(filter))
