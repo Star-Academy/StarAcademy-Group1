@@ -37,7 +37,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './right-panel/filter-panel/amount-filter/amount-filter.component';
 import { DataOnScreenService } from './../services/data-on-screen.service';
-
+import { DateAdapter,  MAT_DATE_FORMATS,  MAT_DATE_LOCALE } from '@angular/material/core';
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material.persian-date.adapter';
 
 @NgModule({
   declarations: [
@@ -76,9 +77,12 @@ import { DataOnScreenService } from './../services/data-on-screen.service';
     Ng5SliderModule,
     MatExpansionModule,
     MatCheckboxModule,
-    ScrollingModule
+    ScrollingModule,
   ],
-  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService, DataOnScreenService],
+  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService, DataOnScreenService,
+    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

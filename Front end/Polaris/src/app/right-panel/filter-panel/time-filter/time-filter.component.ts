@@ -15,9 +15,8 @@ export class TimeFilterComponent implements OnInit {
   ngOnInit(): void {
   }
   public changeChecked(){
-    // this.filterServerice.star = this.time1 ;
-    // this.filterServerice.time2 = this.time2 ;
-    // console.log(this.filterServerice.time1);
-
+    this.filterServerice.startDate = this.time1 ;
+    this.filterServerice.endDate = this.time2 ;
+    console.log(this.filterServerice.startDate);
   }
 }
