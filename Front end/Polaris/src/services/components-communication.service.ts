@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NodeInfo } from 'src/app/left-panel/node-info-box/NodeInfo';
+import { NodeInfo } from 'src/app/right-panel/node-info-box/NodeInfo';
 @Injectable()
 export class ComponentsCommunicationService {
 
