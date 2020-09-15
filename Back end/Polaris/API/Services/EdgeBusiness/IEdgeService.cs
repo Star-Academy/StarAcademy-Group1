@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
 using Models;
-using Models.GraphStructure;
-using Models.ResponsePagination;
+using Models.Network;
+using Models.Response;
 
 namespace API.Services.EdgeBusiness
 {

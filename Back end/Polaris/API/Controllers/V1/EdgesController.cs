@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 
 //using API.Services.Edge;
-using Models.ResponsePagination;
-using Models.GraphStructure;
+using Models.Response;
+using Models.Network;
 using Elastic.Exceptions;
 
 namespace API.Controllers

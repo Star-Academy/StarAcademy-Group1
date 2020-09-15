@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using API.Services.Node;
-using Models.GraphStructure;
+using API.Services.NodeBusiness;
+using Models.Network;
 using Elastic.Exceptions;
-using Models.ResponsePagination;
+using Models.Response;
 using Models.Banking;
 
 namespace API.Controllers.V1

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
-using Models.ResponsePagination;
-using Models.GraphStructure;
+using Models.Response;
+using Models.Network;
 using Models;
 
 namespace API.Services.NodeBusiness

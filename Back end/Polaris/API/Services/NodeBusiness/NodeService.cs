@@ -6,8 +6,8 @@ using System.Linq;
 
 using Elastic.Communication;
 using Elastic.Communication.Nest;
-using Models.ResponsePagination;
-using Models.GraphStructure;
+using Models.Response;
+using Models.Network;
 using Models;
 
 
