@@ -8,7 +8,7 @@ using Elastic.Exceptions;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[Controller]")]
     public class EdgesController : ControllerBase
     {
         private readonly IEdgeService<string, string> _edgeService;

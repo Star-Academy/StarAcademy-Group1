@@ -13,25 +13,25 @@ using Models.ResponsePagination;
 namespace API.Controllers.V1
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[Controller]")]
     public class NodesController : ControllerBase
     {
         private readonly INodeService<string> _nodeService;
 
-        public NodesController(NodeService<string> nodeService)
+        public NodesController(INodeService<string> nodeService)
         {
             _nodeService = nodeService;
         }
 
         [HttpGet]
-        [Route("/typing")]
+        [Route("typing")]
         public IActionResult GetTyping()
         {
             return Ok("Some fields");
         }
 
         [HttpGet]
-        [Route("/{nodeId}")]
+        [Route("{nodeId}")]
         public IActionResult GetNodeById(string nodeId)
         {
             Node<string> node;
@@ -47,7 +47,7 @@ namespace API.Controllers.V1
         }
 
         [HttpDelete]
-        [Route("/{nodeId}")]
+        [Route("{nodeId}")]
         public IActionResult DeleteNodeById(string nodeId)
         {
             try
