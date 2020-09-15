@@ -90,7 +90,7 @@ namespace Analysis.Test
             tar.Data = new Data(5);
             var bfs = new BFS<int, Data, int, Data>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar, null);
-            foreach(var item in ret)
+            foreach (var item in ret)
             {
                 item.Source.Id = item.Source.Id;
             }
