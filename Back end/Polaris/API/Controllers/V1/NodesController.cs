@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using API.Services.NodeBusiness;
 using Models.Network;
 using Elastic.Exceptions;
-using Models.Response;
 using Models.Banking;
 
 namespace API.Controllers.V1
@@ -61,7 +60,7 @@ namespace API.Controllers.V1
         [HttpGet]
         public IActionResult GetNodesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
         {
-            return Ok(_nodeService.GetNodesByFilter(new string[]{}, null));
+            return Ok(_nodeService.GetNodesByFilter(new string[] { }, null));
         }
 
         [HttpPost]
