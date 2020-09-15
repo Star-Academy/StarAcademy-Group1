@@ -65,9 +65,11 @@ namespace Analysis.Analyser
                 {
                     TakePath(item.Key, ref edges, ref paths);
                 }
+                paths[0][item.Key.Id].Clear();
+                paths[1][item.Key.Id].Clear();
             }
 
-            foreach(var item in edges)
+            foreach (var item in edges)
             {
                 item.Address = item.Address;
             }
@@ -100,8 +102,12 @@ namespace Analysis.Analyser
         {
             foreach (var item in paths[0][node.Id])
             {
+                bool flag = false;
+                int iterator = -1;
+                List<int> rm = new List<int>();
                 foreach(var item2 in paths[1][node.Id])
                 {
+                    iterator++;
                     var set = new HashSet<Node<NID, NDATA>>();
                     foreach (var tmp in item)
                         set.Add(graph.IDToNode[tmp]);
@@ -109,11 +115,17 @@ namespace Analysis.Analyser
                         set.Add(graph.IDToNode[tmp]);
                     if (set.Count != item.Count + item2.Count - 1) 
                         continue;
-                    for (int i = 0; i + 1 < item.Count(); i++)
-                        edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                    flag = true;
+                    rm.Add(iterator);
                     for (int i = item2.Count - 1; i > 0; i--)
                         edges.UnionWith(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
                 }
+                if (flag)
+                    for (int i = 0; i + 1 < item.Count(); i++)
+                        edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                rm.Reverse();
+                foreach (var tmp in rm)
+                    paths[1][node.Id].RemoveAt(tmp);
             }
         }
 
