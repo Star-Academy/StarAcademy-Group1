@@ -2,53 +2,56 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Models.GraphStructure;
 using Nest;
+using System.Linq;
 
 using Elastic.Communication;
 using Elastic.Communication.Nest;
 using Models.ResponsePagination;
+using MG = Models.GraphStructure;
+using Models;
 
 namespace API.Services.Node
 {
-    public class NodeService<TTypeData> : INodeService<TTypeData>
+    public class NodeService<TDataModel, TTypeDataId> : INodeService<TDataModel, TTypeDataId>
+    where TDataModel : Entity<TTypeDataId>
     {
-        private readonly IConfiguration _config;
-        private readonly IEntityHandler<TTypeData> _handler;
+        private readonly IEntityHandler<TDataModel, TTypeDataId> _handler;
         private readonly string _nodeElasticIndexName;
 
-        public NodeService(IConfiguration config, IEntityHandler<TTypeData> handler)
+        public NodeService(IConfiguration config, IEntityHandler<TDataModel, TTypeDataId> handler)
         {
-            _config = config;
-            _handler = handler;
             _nodeElasticIndexName = config["AccountsIndexName"];
+            _handler = handler;
         }
 
-        public void DeleteNodeById(TTypeData id)
+        public void DeleteNodeById(TTypeDataId id)
         {
             _handler.DeleteEntity(id, _nodeElasticIndexName);
         }
 
-        public Node<TTypeData> GetNodeById(TTypeData id)
+        public Node<TDataModel, TTypeDataId> GetNodeById(TTypeDataId id)
         {
-            return _handler.GetEntity(id, _nodeElasticIndexName) as Node<TTypeData>;
+            return new MG.Node<TDataModel, TTypeDataId>(_handler.GetEntity(id, _nodeElasticIndexName));
         }
 
-        public IEnumerable<Node<TTypeData>> GetNodesByFilter(string[] filter, Pagination pagination)
+        public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter, Pagination pagination)
         {
-            return ((NestElasticHandler<Node<TTypeData>>)_handler).RetrieveQueryDocuments(
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 new QueryContainer(),
                 _nodeElasticIndexName,
                 pagination
             );
+            return data.Select(d => new Node<TDataModel, TTypeDataId>(d));
         }
 
-        public void InsertNode(Node<TTypeData> node)
+        public void InsertNode(Node<TDataModel, TTypeDataId> node)
         {
-            _handler.Insert(node, _nodeElasticIndexName);
+            _handler.Insert(node.Data, _nodeElasticIndexName);
         }
 
-        public void UpdateNode(Node<TTypeData> newNode)
+        public void UpdateNode(Node<TDataModel, TTypeDataId> newNode)
         {
-            _handler.UpdateEntity(newNode, _nodeElasticIndexName);
+            _handler.UpdateEntity(newNode.Data, _nodeElasticIndexName);
         }
     }
 }

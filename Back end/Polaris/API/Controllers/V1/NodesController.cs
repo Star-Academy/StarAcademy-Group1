@@ -9,6 +9,7 @@ using API.Services.Node;
 using Models.GraphStructure;
 using Elastic.Exceptions;
 using Models.ResponsePagination;
+using Models.Banking;
 
 namespace API.Controllers.V1
 {
@@ -16,9 +17,9 @@ namespace API.Controllers.V1
     [Route("api/v1/[Controller]")]
     public class NodesController : ControllerBase
     {
-        private readonly INodeService<string> _nodeService;
+        private readonly INodeService<BankAccount, string> _nodeService;
 
-        public NodesController(INodeService<string> nodeService)
+        public NodesController(INodeService<BankAccount, string> nodeService)
         {
             _nodeService = nodeService;
         }
@@ -34,7 +35,7 @@ namespace API.Controllers.V1
         [Route("{nodeId}")]
         public IActionResult GetNodeById(string nodeId)
         {
-            Node<string> node;
+            Node<BankAccount, string> node;
             try
             {
                 node = _nodeService.GetNodeById(nodeId);
@@ -61,14 +62,14 @@ namespace API.Controllers.V1
             return Ok();
         }
 
-        [HttpGet("nodes")]
-        public IActionResult GetNodesByFilter(string[] filter = null, [FromQuery] Pagination pagination = null)
+        [HttpGet]
+        public IActionResult GetNodesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
         {
-            return Ok(_nodeService.GetNodesByFilter(filter, pagination));
+            return Ok(_nodeService.GetNodesByFilter(new string[]{}, null));
         }
 
         [HttpPost]
-        public IActionResult AddNewNode([FromBody] Node<string> node)
+        public IActionResult AddNewNode([FromBody] Node<BankAccount, string> node)
         {
             _nodeService.InsertNode(node);
             Console.WriteLine(ControllerContext.ActionDescriptor.AttributeRouteInfo.Name);
@@ -76,7 +77,7 @@ namespace API.Controllers.V1
         }
 
         [HttpPut]
-        public IActionResult UpdateExistingNode([FromBody] Node<string> newNode)
+        public IActionResult UpdateExistingNode([FromBody] Node<BankAccount, string> newNode)
         {
             try
             {

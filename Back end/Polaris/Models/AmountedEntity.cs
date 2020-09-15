@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Models
 {
-    public abstract class AmountedEntity<TAmountedEntityId, TSideEntityId> : Entity<TAmountedEntityId>, IModel
+    public abstract class AmountedEntity<TAmountedEntityId, TSideEntityId> : Entity<TAmountedEntityId>
     {
         [JsonPropertyName("source")]
         public virtual TSideEntityId Source

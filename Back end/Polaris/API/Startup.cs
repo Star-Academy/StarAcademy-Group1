@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 using Elastic.Communication;
 using Elastic.Communication.Nest;
 using Models.Banking;
-using API.Services.Edge;
+//using API.Services.Edge;
 using API.Services.Node;
-using API.Services.Graph;
 using API.Services.Importer;
 
 namespace API
@@ -37,11 +29,12 @@ namespace API
             //services.AddScoped<,>(); // TODO
             services.AddControllers();
             services.AddCors();
-            services.AddSingleton<IEntityHandler<string>, NestEntityHandler<string>>();
+            services.AddSingleton<IEntityHandler<BankAccount, string>, NestEntityHandler<BankAccount, string>>();
+            services.AddSingleton<IEntityHandler<Transaction, string>, NestEntityHandler<Transaction, string>>();
             services.AddSingleton<IImporterService<BankAccount>, ElasticImporterService<BankAccount>>();
             services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
-            services.AddSingleton<INodeService<string>, NodeService<string>>();
-            services.AddSingleton<IEdgeService<string, string>, EdgeService<string, string>>();
+            services.AddSingleton<INodeService<BankAccount, string>, NodeService<BankAccount, string>>();
+            // services.AddSingleton<IEdgeService<string, string, Transaction>, EdgeService<string, string, Transaction>>();
             // services.AddSingleton<IGraphService, GraphService>();
         }
 
