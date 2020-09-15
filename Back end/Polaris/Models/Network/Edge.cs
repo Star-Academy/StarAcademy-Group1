@@ -9,12 +9,12 @@ namespace Models.Network
         {   
         }
         
-        public Edge(AmountedEntity<TTypeDataId, TTypeSideId> data)
+        public Edge(TDataModel data)
         {
             Data = data;
         }
 
-        public AmountedEntity<TTypeDataId, TTypeSideId> Data{get; set;}
+        public TDataModel Data{get; set;}
 
         [JsonPropertyName("id")]
         public override TTypeDataId Id
