@@ -76,10 +76,12 @@ export class NodeService {
       ).subscribe();
   }
 
-  public async getNodes(filters: string[]): Promise<JSON> {
+  public async getNodes(filters: string[],pageIndex,pageSize): Promise<JSON> {
     var url = `${this.baseAddress}/nodes`;
     var params = new HttpParams();
     params = params.append('filters' , JSON.stringify(filters));
+    params = params.append('pageIndex' , pageIndex);
+    params = params.append('pageSize' , pageSize);
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       params: params
