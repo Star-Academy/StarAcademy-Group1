@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Models.Network
 {
     public class Edge<TDataModel, TTypeDataId, TTypeSideId> : Entity<TTypeDataId>
@@ -14,6 +16,7 @@ namespace Models.Network
 
         public AmountedEntity<TTypeDataId, TTypeSideId> Data{get; set;}
 
+        [JsonPropertyName("id")]
         public override TTypeDataId Id
         {
             get
@@ -26,6 +29,7 @@ namespace Models.Network
             }
         }
 
+        [JsonPropertyName("source")]
         public TTypeSideId Source
         {
             get
@@ -37,6 +41,8 @@ namespace Models.Network
                 this.Data.Source = value;
             }
         }
+        
+        [JsonPropertyName("target")]
         public TTypeSideId Target
         {
             get
@@ -49,6 +55,7 @@ namespace Models.Network
             }
         }
 
+        [JsonPropertyName("amount")]
         public double Amount
         {
             get

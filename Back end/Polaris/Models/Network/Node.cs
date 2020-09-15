@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Models.Network
 {
     public class Node<TDataModel, TTypeDataId> : Entity<TTypeDataId>
@@ -14,6 +16,7 @@ namespace Models.Network
             Data = data;
         }
 
+        [JsonPropertyName("id")]
         public override TTypeDataId Id
         {
             get
