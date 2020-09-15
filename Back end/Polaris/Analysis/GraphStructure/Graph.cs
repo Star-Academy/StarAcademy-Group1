@@ -1,4 +1,5 @@
 // In The Name Of GOD
+
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
 using System;

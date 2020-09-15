@@ -1,3 +1,5 @@
+// In The Name Of GOD
+
 using Analysis.Analyser;
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
