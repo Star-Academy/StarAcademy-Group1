@@ -11,11 +11,22 @@ import { DataOnScreenService } from './../../services/data-on-screen.service';
 export class SearchBarComponent implements OnInit {
   @Input() searchPosition: string = "";
 
+  public placeHolderValue: string = "جست و جو کنید";
+
   searchIcon = faSearch;
 
   constructor(public dataOnScreen: DataOnScreenService) { }
 
   ngOnInit(): void {
+    if (this.searchPosition === 'branchFilter') {
+      this.placeHolderValue = "شعبه مورد نظر خود را انتخاب کنید";
+    }
+    if (this.searchPosition === 'selectionPanel') {
+      this.placeHolderValue = "حساب مورد نظر خود را جست و جو کنید";
+    }
+    if (this.searchPosition === 'mainSearch') {
+      this.placeHolderValue = "در پولاریس جست و جو کنید...";
+    }
   }
 
   onSubmit() {

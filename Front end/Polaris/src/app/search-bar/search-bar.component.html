@@ -1,6 +1,6 @@
 <div class="search-container-all" [ngClass]="searchPosition==='mainSearch'? 'search-wrapper' : 'in-branch-panel'">
   <form (ngSubmit)="onSubmit()" #formRef="ngForm">
-    <input type="text" placeholder="جست و جو کنید..." name="search-bar" (keyup)="checkChange($event.target.value)" />
+    <input type="text" placeholder={{placeHolderValue}} name="search-bar" (keyup)="checkChange($event.target.value)" />
     <button type="submit">
       <fa-icon [icon]="searchIcon"></fa-icon>
     </button>
