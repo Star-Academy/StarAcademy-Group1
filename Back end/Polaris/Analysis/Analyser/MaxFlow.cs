@@ -20,7 +20,7 @@ namespace Analysis.Analyser
             level = new Dictionary<NID, int>();
         }
 
-        public int DinicMaxFlow(NID source, NID target)
+        public Int64 DinicMaxFlow(NID source, NID target)
         {
             if (source.Equals(target))
                 return -1;
@@ -41,7 +41,7 @@ namespace Analysis.Analyser
                 }
             }
 
-            return 0;
+            return result;
         }
 
         private Int64 SendFlow(NID v, Int64 flow, NID target, ref Dictionary<NID, int> start)
@@ -49,6 +49,8 @@ namespace Analysis.Analyser
             if (v.Equals(target))
                 return flow;
             var u = graph.IDToNode[v];
+            if (!start.ContainsKey(v))
+                start[v] = 0;
             for (; start[v] < graph.Adj[u].Count; start[v]++)
             {
                 var edge = graph.Adj[u][start[v]];

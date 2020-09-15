@@ -58,7 +58,7 @@ namespace Analysis.Test
         {
             Init();
             var flow = new MaxFlow<int, Data, int, Data>(graph);
-            Assert.Equals(23, flow.DinicMaxFlow(0, 5));
+            Assert.AreEqual(23, flow.DinicMaxFlow(0, 5));
         }
     }
 }
