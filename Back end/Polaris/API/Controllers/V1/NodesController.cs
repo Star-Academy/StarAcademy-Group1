@@ -16,7 +16,7 @@ namespace API.Controllers.V1
     [Route("api/v1/[controller]")]
     public class NodesController : ControllerBase
     {
-        private readonly NodeService<string> _nodeService;
+        private readonly INodeService<string> _nodeService;
 
         public NodesController(NodeService<string> nodeService)
         {
