@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Models.GraphStructure
+namespace Models.Network
 {
     public interface IGraph<IN, EN, IE, EE>
     where EN : Entity<IN>

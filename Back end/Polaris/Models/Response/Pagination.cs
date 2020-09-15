@@ -1,4 +1,4 @@
-namespace Models.ResponsePagination
+namespace Models.Response
 {
     public class Pagination : IModel
     {

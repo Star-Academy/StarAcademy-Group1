@@ -6,7 +6,7 @@ using System.Linq;
 using Elastic.Validation;
 using Elastic.Exceptions;
 using Models;
-using Models.ResponsePagination;
+using Models.Response;
 
 namespace Elastic.Communication.Nest
 {

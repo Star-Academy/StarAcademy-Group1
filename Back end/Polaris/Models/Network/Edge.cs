@@ -1,8 +1,6 @@
-using System.Text.Json.Serialization;
-
-namespace Models.GraphStructure
+namespace Models.Network
 {
-    public class Edge<TDataModel, TTypeSideId, TTypeDataId> : Entity<TTypeDataId>
+    public class Edge<TDataModel, TTypeDataId, TTypeSideId> : Entity<TTypeDataId>
     where TDataModel : AmountedEntity<TTypeDataId, TTypeSideId>
     {
         public Edge()

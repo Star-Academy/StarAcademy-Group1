@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using Models.GraphStructure;
+
 using Nest;
 using System.Linq;
 
 using Elastic.Communication;
 using Elastic.Communication.Nest;
 using Models.ResponsePagination;
-using MG = Models.GraphStructure;
+using Models.GraphStructure;
 using Models;
 
-namespace API.Services.Node
+
+namespace API.Services.NodeBusiness
 {
     public class NodeService<TDataModel, TTypeDataId> : INodeService<TDataModel, TTypeDataId>
     where TDataModel : Entity<TTypeDataId>
@@ -31,7 +32,7 @@ namespace API.Services.Node
 
         public Node<TDataModel, TTypeDataId> GetNodeById(TTypeDataId id)
         {
-            return new MG.Node<TDataModel, TTypeDataId>(_handler.GetEntity(id, _nodeElasticIndexName));
+            return new Node<TDataModel, TTypeDataId>(_handler.GetEntity(id, _nodeElasticIndexName));
         }
 
         public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter, Pagination pagination)

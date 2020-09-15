@@ -1,4 +1,4 @@
-namespace Models.GraphStructure
+namespace Models.Network
 {
     public class Node<TDataModel, TTypeDataId> : Entity<TTypeDataId>
     where TDataModel : Entity<TTypeDataId>

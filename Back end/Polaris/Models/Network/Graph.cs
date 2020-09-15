@@ -1,4 +1,4 @@
-namespace Models.GraphStructure
+namespace Models.Network
 {
     public class Graph
     {
