@@ -101,6 +101,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       //   this.randomOgma.addNodeToSelected(element);
       // });
     });
+    this.randomOgma.ogma.events.onEdgeSelected(function(evt) {
+      if(!evt.target.getSorce().isSelected)
+      evt.target.getSorce().setAttributes({outline: false});
+      console.log(evt.target.getSorce())  ;
+
+    });
 
     this.randomOgma.ogma.events.onNodesUnselected(() => {
       //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {

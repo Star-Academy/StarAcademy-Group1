@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FilterService {
-  public time1: string;
-  public time2: string;
+  public startDate: string;
+  public endDate : string;
+  public startClock: string;
+  public endClock: string;
   public minAmount :number ;
   public maxAmount :number ;
   public accountTypes :string[] = [];
