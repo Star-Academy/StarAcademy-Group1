@@ -100,13 +100,20 @@ namespace Analysis.Analyser
         {
             foreach (var item in paths[0][node.Id])
             {
-                for (int i = 0; i + 1 < item.Count(); i++)
-                    edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
-            }
-            foreach (var item in paths[1][node.Id])
-            {
-                for (int i = item.Count - 1; i > 0; i--)
-                    edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i - 1)));
+                foreach(var item2 in paths[1][node.Id])
+                {
+                    var set = new HashSet<Node<NID, NDATA>>();
+                    foreach (var tmp in item)
+                        set.Add(graph.IDToNode[tmp]);
+                    foreach (var tmp in item2)
+                        set.Add(graph.IDToNode[tmp]);
+                    if (set.Count != item.Count + item2.Count - 1) 
+                        continue;
+                    for (int i = 0; i + 1 < item.Count(); i++)
+                        edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                    for (int i = item2.Count - 1; i > 0; i--)
+                        edges.UnionWith(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
+                }
             }
         }
 
