@@ -1,0 +1,193 @@
+{
+	"nodes": [
+		{
+			"id": "6534454617",
+			"data": {
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "دریا",
+        "OwnerName": "مهدی",
+        "OwnerFamilyName": "خضرایی",
+        "OwnerID": "345623"
+			},
+			"attributes": {
+				"text": "مهدی",
+        "shape": "circle",
+        "color":"blue",
+				"radius": 8
+			}
+		},
+		{
+			"id": "3000000406",
+      "data": {
+				"AccountID": "3000000406",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "دیباجی",
+        "OwnerName": "سارا",
+        "OwnerFamilyName": "رحیمی",
+        "OwnerID": "female"
+			},
+			"attributes":{
+				"text": "سارا",
+        "shape": "circle",
+        "color":"purple",
+				"radius": 8
+			}
+		},
+		{
+			"id": "123456896",
+      "data": {
+				"AccountID": "123456896",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "انقلاب",
+        "OwnerName": "صبا",
+        "OwnerFamilyName": "ابراهیمی",
+        "OwnerID": "female"
+			},
+			"attributes":{
+				"text": "صبا",
+        "shape": "circle",
+        "color":"pink",
+				"radius": 8
+			}
+		},
+		{
+			"id": "156344565496",
+      "data": {
+				"AccountID": "156344565496",
+        "CardID": "female",
+        "Sheba": "female",
+        "AccountType": "female",
+        "BranchTelephone": "female",
+        "BranchAdress": "female",
+        "BranchName": "دروازه دولت",
+        "OwnerName": "مهلا",
+        "OwnerFamilyName": "شریفی",
+        "OwnerID": "female"
+			},
+			"attributes":{
+				"text": "مهلا",
+        "shape": "circle",
+        "color":"purple",
+				"radius": 8
+			}
+    },
+    {
+			"id": "65344ff54617",
+			"data": {
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "tara ",
+        "OwnerName": "arghavani",
+        "OwnerFamilyName": "خضرایی",
+        "OwnerID": "345623"
+			},
+			"attributes": {
+				"text": "مهدی",
+        "shape": "circle",
+        "color":"blue",
+				"radius": 8
+			}
+    },
+    {
+			"id": "65344dd54617",
+			"data": {
+				"AccountID": "6534454617",
+        "CardID": "6104335000000190",
+        "Sheba": "IR120778801496000000198",
+        "AccountType": "پس انداز",
+        "BranchTelephone": "24357892",
+        "BranchAdress": "کنار دریا",
+        "BranchName": "دریا",
+        "OwnerName": "هاله",
+        "OwnerFamilyName": "رشدی",
+        "OwnerID": "345623"
+			},
+			"attributes": {
+				"text": "مهدی",
+        "shape": "circle",
+        "color":"blue",
+				"radius": 8
+			}
+		}
+	],
+	"edges": [
+		{
+        "id": 5,
+        "source": "123456896",
+        "target": "156344565496",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 6,
+        "source": "3000000406",
+        "target": "156344565496",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 7,
+        "source": "3000000406",
+        "target": "123456896",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 8,
+        "source": "6534454617",
+        "target": "3000000406",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+	  {
+        "id": 9,
+        "source": "6534454617",
+        "target": "123456896",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      },
+
+      {
+        "id": 10,
+        "source": "65344ff54617",
+        "target": "123456896",
+		"data": { },
+        "attributes": {
+          "width": 1,
+          "shape": "arrow"
+        }
+      }
+	]
+}

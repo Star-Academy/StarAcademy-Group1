@@ -1,1 +1,10 @@
-<p>graph-screen works!</p>
+<div class="graph-container">
+  <div #ogmaContainer class="ogma-container"></div>
+    <app-tooltip *ngIf="hoveredContent" [content]="hoveredContent" [position]="hoveredPosition" ></app-tooltip>
+    <app-context-menu *ngIf="contextMenuContent != null" [content]="contextMenuContent" [position]="contextMenuPosition" ></app-context-menu>
+  <div class="text-center">
+    <form class="form" #formRef="ngForm">
+      <button class="btn" (click)="getJs()">Add a graph</button>
+    </form>
+  </div>
+</div>
