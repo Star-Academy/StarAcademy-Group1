@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Models.Network;
 using Nest;
+using System.Linq;
 
 using Elastic.Communication;
 using Elastic.Communication.Nest;
@@ -45,11 +46,12 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByFilter(string[] filter = null, Pagination pagination = null)
         {
-            return ((NestElasticHandler<Edge<TDataModel, TTypeDataId, TTypeSideId>>)_handler).RetrieveQueryDocuments(
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 new QueryContainer(),
                 _edgeElasticIndexName,
                 pagination
             );
+            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
@@ -59,11 +61,12 @@ namespace API.Services.EdgeBusiness
                 Fields = new string[] { "source", "target" },
                 Query = id as string
             };
-            return ((NestElasticHandler<Edge<TDataModel, TTypeDataId, TTypeSideId>>)_handler).RetrieveQueryDocuments(
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,
                 pagination
             );
+            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null)
@@ -73,11 +76,12 @@ namespace API.Services.EdgeBusiness
                 Field = "source", // TODO: check toString()
                 Query = id as string
             };
-            return ((NestElasticHandler<Edge<TDataModel, TTypeDataId, TTypeSideId>>)_handler).RetrieveQueryDocuments(
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,
                 pagination
             );
+            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, Pagination pagination = null)
@@ -87,11 +91,12 @@ namespace API.Services.EdgeBusiness
                 Field = "target",
                 Query = id.ToString()
             };
-            return ((NestElasticHandler<Edge<TDataModel, TTypeDataId, TTypeSideId>>)_handler).RetrieveQueryDocuments(
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,
                 pagination
             );
+            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
         }
     }
 }

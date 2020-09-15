@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Elastic.Communication;
 using Elastic.Communication.Nest;
 using Models.Banking;
-//using API.Services.Edge;
+using API.Services.EdgeBusiness;
 using API.Services.NodeBusiness;
 using API.Services.Importer;
 
@@ -34,8 +34,9 @@ namespace API
             services.AddSingleton<IImporterService<BankAccount>, ElasticImporterService<BankAccount>>();
             services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
             services.AddSingleton<INodeService<BankAccount, string>, NodeService<BankAccount, string>>();
-            // services.AddSingleton<IEdgeService<string, string, Transaction>, EdgeService<string, string, Transaction>>();
-            // services.AddSingleton<IGraphService, GraphService>();
+            services.AddSingleton<IEdgeService<Transaction, string, string>, EdgeService<Transaction, string, string>>();
+            services.AddSingleton<IElasticHandler<BankAccount>, NestElasticHandler<BankAccount>>();
+            services.AddSingleton<IElasticHandler<Transaction>, NestElasticHandler<Transaction>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

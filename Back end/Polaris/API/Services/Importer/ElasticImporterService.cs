@@ -1,6 +1,7 @@
 using Elastic.Communication;
 using Models;
 using API.Services.Utils;
+using Elastic.Communication.Nest;
 
 namespace API.Services.Importer
 {

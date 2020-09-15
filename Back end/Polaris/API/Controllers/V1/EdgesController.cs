@@ -51,9 +51,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEdgesByFilter(string[] filter = null, [FromQuery] Pagination pagination = null)
+        public IActionResult GetEdgesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
         {
-            return Ok(_edgeService.GetEdgesByFilter(filter, pagination));
+            return Ok(_edgeService.GetEdgesByFilter(new string[]{}, null));
         }
 
         [HttpPost]
