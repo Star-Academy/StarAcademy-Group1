@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic", "Elastic\Elastic.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elastic.Test", "Elastic.Test\Elastic.Test.csproj", "{2823A347-973E-49C9-A6DC-35B4A6FD75B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analysis.Test", "Analysis.Test\Analysis.Test.csproj", "{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analysis.Test", "Analysis.Test\Analysis.Test.csproj", "{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{2823A347-973E-49C9-A6DC-35B4A6FD75B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2823A347-973E-49C9-A6DC-35B4A6FD75B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2823A347-973E-49C9-A6DC-35B4A6FD75B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B4A385A-CA2D-4B47-8EBE-1E503AA944DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24AC6093-9C0C-4CCB-934D-EBAD70E2BFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
