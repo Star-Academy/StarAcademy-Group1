@@ -105,7 +105,7 @@ namespace Analysis.Analyser
                 bool flag = false;
                 int iterator = -1;
                 List<int> rm = new List<int>();
-                foreach(var item2 in paths[1][node.Id])
+                foreach (var item2 in paths[1][node.Id])
                 {
                     iterator++;
                     var set = new HashSet<Node<NID, NDATA>>();
@@ -113,7 +113,7 @@ namespace Analysis.Analyser
                         set.Add(graph.IDToNode[tmp]);
                     foreach (var tmp in item2)
                         set.Add(graph.IDToNode[tmp]);
-                    if (set.Count != item.Count + item2.Count - 1) 
+                    if (set.Count != item.Count + item2.Count - 1)
                         continue;
                     flag = true;
                     rm.Add(iterator);

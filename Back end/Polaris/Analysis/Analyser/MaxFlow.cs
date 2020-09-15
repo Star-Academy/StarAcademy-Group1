@@ -1,5 +1,4 @@
 ﻿using Analysis.GraphStructure;
-using Analysis.GraphStructure.Structures;
 using Elastic.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 
 namespace Analysis.Analyser
 {
-    class MaxFlow<NID, NDATA, EID, EDATA>
+    public class MaxFlow<NID, NDATA, EID, EDATA>
         where NDATA : Entity<NID>
         where EDATA : Entity<EID>
     {
@@ -95,8 +94,5 @@ namespace Analysis.Analyser
 
             return level[target] != -1;
         }
-
-        
-
     }
 }
