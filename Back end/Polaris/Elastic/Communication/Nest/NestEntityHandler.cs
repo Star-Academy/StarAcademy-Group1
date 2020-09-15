@@ -2,6 +2,7 @@ using System.Linq;
 using Nest;
 
 using Models;
+using Elastic.Exceptions;
 
 namespace Elastic.Communication.Nest
 {
@@ -20,8 +21,12 @@ namespace Elastic.Communication.Nest
 				Field = "id",
 				Query = id.ToString()
 			};
-			var response = this.RetrieveQueryDocuments(queryContainer, indexName).ToList()[0];
-            return response;
+			var response = RetrieveQueryDocuments(queryContainer, indexName);
+            if (!response.Any())
+            {
+                throw new EntityNotFoundException($"Entity with id: \"{id}\" not found in index \"{indexName}\"");
+            }
+            return response.ToList()[0];
         }
 
         public void UpdateEntity(Entity<TType> newEntity, string indexName)
@@ -37,7 +42,13 @@ namespace Elastic.Communication.Nest
 				Field = "id",
 				Query = id.ToString()
 			};
-            return this.RetrieveQueryHits(queryContainer, indexName).ToList()[0].Id;
+            var response = this.RetrieveQueryHits(queryContainer, indexName);
+
+            if (!response.Any())
+            {
+                throw new EntityNotFoundException($"Entity with id: \"{id}\" not found in index \"{indexName}\"");
+            }
+            return response.ToList()[0].Id;
         }
     }
 }

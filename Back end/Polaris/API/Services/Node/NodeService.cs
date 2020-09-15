@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Models.GraphStructure;
+using Nest;
 
 using Elastic.Communication;
+using Elastic.Communication.Nest;
+using Models.ResponsePagination;
 
 namespace API.Services.Node
 {
@@ -19,14 +22,23 @@ namespace API.Services.Node
             _nodeElasticIndexName = config["AccountsIndexName"];
         }
 
+        public void DeleteNodeById(TTypeData id)
+        {
+            _handler.DeleteEntity(id, _nodeElasticIndexName);
+        }
+
         public Node<TTypeData> GetNodeById(TTypeData id)
         {
             return _handler.GetEntity(id, _nodeElasticIndexName) as Node<TTypeData>;
         }
 
-        public IEnumerable<Node<TTypeData>> GetNodesByFilter(string[] filter, int pageIndex, int pageSize)
+        public IEnumerable<Node<TTypeData>> GetNodesByFilter(string[] filter, Pagination pagination)
         {
-            throw new System.NotImplementedException();
+            return ((NestElasticHandler<Node<TTypeData>>)_handler).RetrieveQueryDocuments(
+                new QueryContainer(),
+                _nodeElasticIndexName,
+                pagination
+            );
         }
 
         public void InsertNode(Node<TTypeData> node)

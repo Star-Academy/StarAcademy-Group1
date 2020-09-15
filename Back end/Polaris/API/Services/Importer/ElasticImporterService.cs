@@ -8,10 +8,10 @@ namespace API.Services.Importer
     {
         private NestElasticHandler<TModel> elasticImporter = new NestElasticHandler<TModel>();
 
-        public void Import(string source, IStringParser<TModel> stringParser, string sourceName)
+        public void Import(string source, IStringParser<TModel> stringParser, string indexName)
         {
             var list = stringParser.Parse(source);
-            elasticImporter.BulkInsert(list, sourceName);
+            elasticImporter.BulkInsert(list, indexName);
         }
     }
 }
