@@ -1,0 +1,3 @@
+<p>Min value: <input type="number" [(ngModel)]="minValue" (change)="changeChecked()"></p>
+<p>Max value: <input type="number" [(ngModel)]="maxValue" (change)="changeChecked()"></p>
+<ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
