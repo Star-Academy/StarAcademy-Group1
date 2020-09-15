@@ -8,6 +8,7 @@ namespace Elastic.Communication.Nest
 {
     public class NestEntityHandler<TType> : NestElasticHandler<Entity<TType>>, IEntityHandler<TType>
     {
+        private static IElasticClient elasticClient = NestClientFactory.GetInstance().GetElasticClient();
         public void DeleteEntity(TType id, string indexName)
         {
             var entityId_ = GetEntityId_(id, indexName);

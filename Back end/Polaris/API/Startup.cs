@@ -26,6 +26,7 @@ namespace API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            NestClientFactory.GetInstance().CreateInitialClient(Configuration["ElasticAddress"]);
         }
 
         public IConfiguration Configuration { get; }

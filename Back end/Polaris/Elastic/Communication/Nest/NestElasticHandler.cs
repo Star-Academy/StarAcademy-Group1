@@ -41,7 +41,7 @@ namespace Elastic.Communication.Nest
 
         public void BulkInsert(IEnumerable<TModel> models, string indexName)
         {
-            CheckIndex(indexName, false);
+            CheckIndex(indexName, true);
             var bulk = new BulkDescriptor();
             foreach (var model in models)
             {
