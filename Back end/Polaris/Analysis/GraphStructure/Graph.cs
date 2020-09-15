@@ -1,6 +1,7 @@
 // In The Name Of GOD
 using Analysis.GraphStructure.Structures;
 using Elastic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -80,6 +81,15 @@ namespace Analysis.GraphStructure
                     ret.Add(item);
                 }
             return ret;
+        }
+
+        public void AddEdgeForFlow(Node<NID, NDATA> u, Node<NID, NDATA> v, Int64 amount)
+        {
+            var edge1 = new Edge<EID, EDATA, Node<NID, NDATA>>(u, v, 0, amount, Adj[v].Count);
+            var edge2 = new Edge<EID, EDATA, Node<NID, NDATA>>(v, u, 0, 0, Adj[u].Count);
+
+            Adj[u].Add(edge1);
+            Adj[v].Add(edge2);
         }
     }
 }

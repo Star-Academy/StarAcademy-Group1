@@ -32,13 +32,13 @@ namespace Analysis.Test
             graph = new Graph<int, Data, int, Data>(dic);
         }
 
-        private void AddEdge(int x, int y)
+        private void AddEdge(int x, int y, Int64 amount)
         {
-            var edge = getEdge(x, y);
+            var edge = getEdge(x, y, amount);
             dic[edge.Source].Add(edge);
         }
 
-        private Edge<int, Data, Node<int, Data>> getEdge(int src, int tar)
+        private Edge<int, Data, Node<int, Data>> getEdge(int src, int tar, Int64 amount)
         {
             var edge = new Edge<int, Data, Node<int, Data>>();
             var node = new Node<int, Data>();
@@ -59,14 +59,6 @@ namespace Analysis.Test
             var tar = new Node<int, Data>();
             src.Data = new Data(0);
             tar.Data = new Data(5);
-            var bfs = new BFS<int, Data, int, Data>(graph);
-            var ret = bfs.BiDirectionalSearch(src, tar, null);
-            foreach (var item in ret)
-            {
-                item.Source.Id = item.Source.Id;
-            }
-            Assert.IsTrue(ret.Count == 3
-                );
         }
     }
 }

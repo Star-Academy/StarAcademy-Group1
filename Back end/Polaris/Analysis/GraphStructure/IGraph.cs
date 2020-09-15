@@ -12,6 +12,7 @@ namespace Analysis.GraphStructure
     {
         Dictionary<Node<NODEID, NODEDATA>, List<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj { get; set; }
 
+        public void AddEdgeForFlow(Node<NODEID, NODEDATA> u, Node<NODEID, NODEDATA> v, long amount);
         List<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
 
         List<Node<NODEID, NODEDATA>> GetNeighbors(NODEID nodeId);

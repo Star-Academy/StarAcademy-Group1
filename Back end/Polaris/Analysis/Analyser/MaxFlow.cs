@@ -96,14 +96,7 @@ namespace Analysis.Analyser
             return level[target] != -1;
         }
 
-        public void AddEdge(Node<NID, NDATA> u, Node<NID, NDATA> v, Int64 amount)
-        {
-            var edge1 = new Edge<EID, EDATA, Node<NID, NDATA>>(u, v, 0, amount, graph.Adj[v].Count);
-            var edge2 = new Edge<EID, EDATA, Node<NID, NDATA>>(v, u, 0, 0, graph.Adj[u].Count);
-
-            graph.Adj[u].Add(edge1);
-            graph.Adj[v].Add(edge2);
-        }
+        
 
     }
 }
