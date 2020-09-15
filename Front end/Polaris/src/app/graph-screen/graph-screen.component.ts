@@ -75,13 +75,13 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
             ownerName: target.getData('OwnerName'),
             ownerFamilyName: target.getData('OwnerFamilyName'),
             accountId: target.getId(),
-            accountType:target.getData('AccountType'),
-            sheba:target.getData('Sheba'),
-            cardId:target.getData('CardId'),
-            ownerId:target.getData('OwnerId'),
+            accountType: target.getData('AccountType'),
+            sheba: target.getData('Sheba'),
+            cardId: target.getData('CardId'),
+            ownerId: target.getData('OwnerId'),
             branchName: target.getData('BranchName'),
-            branchAddress:target.getData('BranchAddress'),
-            branchTelephone:target.getData('BranchTelephone'),
+            branchAddress: target.getData('BranchAddress'),
+            branchTelephone: target.getData('BranchTelephone'),
 
           }
         }
@@ -101,11 +101,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       //   this.randomOgma.addNodeToSelected(element);
       // });
     });
-    this.randomOgma.ogma.events.onEdgeSelected(function(evt) {
-      if(!evt.target.getSorce().isSelected)
-      evt.target.getSorce().setAttributes({outline: false});
-      console.log(evt.target.getSorce())  ;
-
+    this.randomOgma.ogma.events.onEdgesSelected((evt) => {
+      for (let edge of evt.edges.getId()) {
+        if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
+          this.randomOgma.ogma.getEdge(edge).getSource().setAttributes({ outline: false });
+        console.log(this.randomOgma.ogma.getEdge(edge).getSource());
+      }
     });
 
     this.randomOgma.ogma.events.onNodesUnselected(() => {
@@ -131,8 +132,8 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           }
         });
       }
-      console.log( this.randomOgma.ogma.getSelectedNodes());
-      console.log( this.randomOgma.ogma.getSelectedEdges());
+      console.log(this.randomOgma.ogma.getSelectedNodes());
+      console.log(this.randomOgma.ogma.getSelectedEdges());
 
     });
   }
