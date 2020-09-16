@@ -8,46 +8,46 @@ using System.Linq;
 
 namespace Analysis.Analyser
 {
-    public class BFS<NID, NDATA, EID, EDATA>
-        where NDATA : Entity<NID>
-        where EDATA : Entity<EID>
+    public class BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>
+        where TNodeData : Entity<TNodeId>
+        where TEdgeData : Entity<TEdgeId>
     {
-        private readonly Graph<NID, NDATA, EID, EDATA> graph;
+        private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
 
-        public BFS(Graph<NID, NDATA, EID, EDATA> graph)
+        public BFS(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> BiDirectionalSearch
-            (Node<NID, NDATA> source, Node<NID, NDATA> target, Filter filter)
+        public HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>> BiDirectionalSearch
+            (Node<TNodeId, TNodeData> source, Node<TNodeId, TNodeData> target, Filter filter)
         {
-            var edges = new HashSet<Edge<EID, EDATA, Node<NID, NDATA>>>();
+            var edges = new HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>();
 
-            var paths = new Dictionary<NID, List<LinkedList<NID>>>[2];
-            paths[0] = new Dictionary<NID, List<LinkedList<NID>>>();
-            paths[1] = new Dictionary<NID, List<LinkedList<NID>>>();
+            var paths = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>[2];
+            paths[0] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
+            paths[1] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
 
             foreach (var item in graph.Adj)
             {
-                paths[0][item.Key.Id] = new List<LinkedList<NID>>();
-                paths[1][item.Key.Id] = new List<LinkedList<NID>>();
+                paths[0][item.Key.Id] = new List<LinkedList<TNodeId>>();
+                paths[1][item.Key.Id] = new List<LinkedList<TNodeId>>();
             }
 
-            var queue = new List<LinkedList<NID>>[2];
-            queue[0] = new List<LinkedList<NID>>();
-            queue[1] = new List<LinkedList<NID>>();
+            var queue = new List<LinkedList<TNodeId>>[2];
+            queue[0] = new List<LinkedList<TNodeId>>();
+            queue[1] = new List<LinkedList<TNodeId>>();
 
 
             {
-                var path = new LinkedList<NID>();
+                var path = new LinkedList<TNodeId>();
                 path.AddLast(source.Id);
 
                 queue[0].Add(path);
                 paths[0][source.Id].Add(path);
 
-                var path2 = new LinkedList<NID>();
+                var path2 = new LinkedList<TNodeId>();
                 path2.AddLast(target.Id);
 
                 queue[1].Add(path2);
@@ -78,7 +78,7 @@ namespace Analysis.Analyser
             return edges;
         }
         private void BreadthFirstSearch
-            (ref List<LinkedList<NID>> queue, ref Dictionary<NID, List<LinkedList<NID>>> paths, int src = 1)
+            (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int src = 1)
         {
             var current = queue.First();
             queue.RemoveAt(0);
@@ -90,7 +90,7 @@ namespace Analysis.Analyser
             {
                 if (!current.Contains(node.Id))
                 {
-                    LinkedList<NID> newPath = new LinkedList<NID>(current);
+                    LinkedList<TNodeId> newPath = new LinkedList<TNodeId>(current);
                     newPath.AddLast(node.Id);
                     if (newPath.Count() > 3 + src) continue;
                     paths[node.Id].Add(newPath);
@@ -99,7 +99,7 @@ namespace Analysis.Analyser
             }
         }
 
-        private void TakePath(Node<NID, NDATA> node, ref HashSet<Edge<EID, EDATA, Node<NID, NDATA>>> edges, ref Dictionary<NID, List<LinkedList<NID>>>[] paths)
+        private void TakePath(Node<TNodeId, TNodeData> node, ref HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
             foreach (var item in paths[0][node.Id])
             {
@@ -109,7 +109,7 @@ namespace Analysis.Analyser
                 foreach (var item2 in paths[1][node.Id])
                 {
                     iterator++;
-                    var set = new HashSet<Node<NID, NDATA>>();
+                    var set = new HashSet<Node<TNodeId, TNodeData>>();
                     foreach (var tmp in item)
                         set.Add(graph.IDToNode[tmp]);
                     foreach (var tmp in item2)

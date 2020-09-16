@@ -8,29 +8,29 @@ using System.Linq;
 
 namespace Analysis.GraphStructure
 {
-    public class Graph<NID, NDATA, EID, EDATA> : IGraph<NID, NDATA, EID, EDATA>
-    where NDATA : Entity<NID>
-    where EDATA : Entity<EID>
+    public class Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> : IGraph<TNodeId, TNodeData, TEdgeId, TEdgeData>
+    where TNodeData : Entity<TNodeId>
+    where TEdgeData : Entity<TEdgeId>
     {
-        public Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
-        private readonly Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> reverseAdj;
+        public Dictionary<Node<TNodeId, TNodeData>, List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>> Adj { get; set; }
+        private readonly Dictionary<Node<TNodeId, TNodeData>, List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>> reverseAdj;
 
-        public Dictionary<NID, Node<NID, NDATA>> IDToNode { get; set; }
-        public Dictionary<NDATA, Node<NID, NDATA>> DataToNode { get; set; }
-        public List<Node<NID, NDATA>> GetNeighbors(NDATA data)
+        public Dictionary<TNodeId, Node<TNodeId, TNodeData>> IDToNode { get; set; }
+        public Dictionary<TNodeData, Node<TNodeId, TNodeData>> DataToNode { get; set; }
+        public List<Node<TNodeId, TNodeData>> GetNeighbors(TNodeData data)
         {
             var node = DataToNode[data];
             return ReadNeighbors(node);
         }
 
-        public Graph(Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj)
+        public Graph(Dictionary<Node<TNodeId, TNodeData>, List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>> Adj)
         {
             this.Adj = Adj;
-            IDToNode = new Dictionary<NID, Node<NID, NDATA>>();
-            DataToNode = new Dictionary<NDATA, Node<NID, NDATA>>();
-            reverseAdj = new Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>>();
+            IDToNode = new Dictionary<TNodeId, Node<TNodeId, TNodeData>>();
+            DataToNode = new Dictionary<TNodeData, Node<TNodeId, TNodeData>>();
+            reverseAdj = new Dictionary<Node<TNodeId, TNodeData>, List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>>();
             foreach (var item in Adj)
-                reverseAdj[item.Key] = new List<Edge<EID, EDATA, Node<NID, NDATA>>>();
+                reverseAdj[item.Key] = new List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>();
             foreach (var item in Adj)
             {
                 IDToNode[item.Key.Id] = item.Key;
@@ -42,9 +42,9 @@ namespace Analysis.GraphStructure
             }
         }
 
-        private List<Node<NID, NDATA>> ReadNeighbors(Node<NID, NDATA> node)
+        private List<Node<TNodeId, TNodeData>> ReadNeighbors(Node<TNodeId, TNodeData> node)
         {
-            var set = new HashSet<Node<NID, NDATA>>();
+            var set = new HashSet<Node<TNodeId, TNodeData>>();
             foreach (var edge in Adj[node])
             {
                 set.Add(edge.Target);
@@ -53,17 +53,17 @@ namespace Analysis.GraphStructure
             return set.ToList();
         }
 
-        public List<Node<NID, NDATA>> GetNeighbors(NID id)
+        public List<Node<TNodeId, TNodeData>> GetNeighbors(TNodeId id)
         {
             var node = IDToNode[id];
             return ReadNeighbors(node);
         }
 
-        public List<Node<NID, NDATA>> GetOpositeNeighbors(NID id)
+        public List<Node<TNodeId, TNodeData>> GetOpositeNeighbors(TNodeId id)
         {
             var node = IDToNode[id];
 
-            var set = new HashSet<Node<NID, NDATA>>();
+            var set = new HashSet<Node<TNodeId, TNodeData>>();
             foreach (var edge in reverseAdj[node])
             {
                 set.Add(edge.Source);
@@ -72,9 +72,9 @@ namespace Analysis.GraphStructure
             return set.ToList();
         }
 
-        internal List<Edge<EID, EDATA, Node<NID, NDATA>>> GetEdges(NID id1, NID id2)
+        internal List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>> GetEdges(TNodeId id1, TNodeId id2)
         {
-            var ret = new List<Edge<EID, EDATA, Node<NID, NDATA>>>();
+            var ret = new List<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>();
             var node = IDToNode[id1];
             foreach (var item in Adj[node])
                 if (item.Target.Id.Equals(id2))
@@ -84,10 +84,10 @@ namespace Analysis.GraphStructure
             return ret;
         }
 
-        public void AddEdgeForFlow(Node<NID, NDATA> u, Node<NID, NDATA> v, Int64 amount)
+        public void AddEdgeForFlow(Node<TNodeId, TNodeData> u, Node<TNodeId, TNodeData> v, Int64 amount)
         {
-            var edge1 = new Edge<EID, EDATA, Node<NID, NDATA>>(u, v, 0, amount, Adj[v].Count);
-            var edge2 = new Edge<EID, EDATA, Node<NID, NDATA>>(v, u, 0, 0, Adj[u].Count);
+            var edge1 = new Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>(u, v, 0, amount, Adj[v].Count);
+            var edge2 = new Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>(v, u, 0, 0, Adj[u].Count);
 
             Adj[u].Add(edge1);
             Adj[v].Add(edge2);

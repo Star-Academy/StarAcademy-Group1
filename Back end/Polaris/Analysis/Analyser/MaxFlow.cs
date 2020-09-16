@@ -8,21 +8,21 @@ using System.Linq;
 
 namespace Analysis.Analyser
 {
-    public class MaxFlow<NID, NDATA, EID, EDATA>
-        where NDATA : Entity<NID>
-        where EDATA : Entity<EID>
+    public class MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>
+        where TNodeData : Entity<TNodeId>
+        where TEdgeData : Entity<TEdgeId>
     {
         private const Int64 inf = 1_000_000_000_000_000_000;
 
-        private readonly Graph<NID, NDATA, EID, EDATA> graph;
-        private Dictionary<NID, int> level;
-        public MaxFlow(Graph<NID, NDATA, EID, EDATA> graph)
+        private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
+        private Dictionary<TNodeId, int> level;
+        public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
-            level = new Dictionary<NID, int>();
+            level = new Dictionary<TNodeId, int>();
         }
 
-        public Int64 DinicMaxFlow(NID source, NID target)
+        public Int64 DinicMaxFlow(TNodeId source, TNodeId target)
         {
             if (source.Equals(target))
                 return -1;
@@ -31,7 +31,7 @@ namespace Analysis.Analyser
 
             while (BFS(source, target))
             {
-                var start = new Dictionary<NID, int>();
+                var start = new Dictionary<TNodeId, int>();
 
                 {
                     Int64 flow = 0;
@@ -46,7 +46,7 @@ namespace Analysis.Analyser
             return result;
         }
 
-        private Int64 SendFlow(NID v, Int64 flow, NID target, ref Dictionary<NID, int> start)
+        private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target, ref Dictionary<TNodeId, int> start)
         {
             if (v.Equals(target))
                 return flow;
@@ -72,13 +72,13 @@ namespace Analysis.Analyser
         }
 
 
-        private bool BFS(NID source, NID target)
+        private bool BFS(TNodeId source, TNodeId target)
         {
             foreach (var item in graph.Adj)
                 level[item.Key.Id] = -1;
 
             level[source] = 0;
-            var q = new List<NID>();
+            var q = new List<TNodeId>();
             q.Add(source);
 
             while (q.Any())
