@@ -25,6 +25,8 @@ namespace Models.Network
             reverseAdj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
             foreach (var item in Adj)
                 reverseAdj[item.Key] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            Nodes = new List<TNodeId>();
+            Edges = new List<TEdgeId>();
             foreach (var item in Adj)
             {
                 foreach (var edge in item.Value)
