@@ -8,7 +8,7 @@ namespace Models.Network
         public Edge()
         {   
         }
-        
+
         public Edge(TDataModel data)
         {
             Data = data;
