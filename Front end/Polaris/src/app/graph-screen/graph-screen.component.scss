@@ -2,15 +2,16 @@
     position: fixed;
     top: 0;
     bottom: 0;
+    left:28%;
 }
 .text-center{
-    display: inline-block;
     top: 10px;
     position: absolute;
     width: fit-content;
 }
+
 .ogma-container{
-    width: 800px; 
-    height: 100%; 
-    display: inline-block;
+    position: relative;
+    width: 800px;
+    height: 100%;
 }

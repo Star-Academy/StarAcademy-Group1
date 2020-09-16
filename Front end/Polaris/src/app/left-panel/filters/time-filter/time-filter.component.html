@@ -1,0 +1,29 @@
+
+  <mat-form-field appearance="fill" class="example-full-width time-start">
+    <mat-label>زمان شروع</mat-label>
+    <input matInput [ngxTimepicker]="toggleTimepicker" [disableClick]="false">
+    <ngx-material-timepicker-toggle matSuffix [for]="toggleTimepicker">
+    </ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #toggleTimepicker></ngx-material-timepicker>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>زمان پایان</mat-label>
+    <input matInput [ngxTimepicker]="toggleTimepicker2" [disableClick]="false">
+    <ngx-material-timepicker-toggle matSuffix [for]="toggleTimepicker2">
+    </ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #toggleTimepicker2></ngx-material-timepicker>
+  </mat-form-field>
+<mat-form-field class="example-full-width time-start" appearance="fill">
+  <mat-label>تاریخ شروع</mat-label>
+  <input matInput [matDatepicker]="picker" name="time1" [(ngModel)]="time1" (dateChange)="changeChecked()"
+    (keyup)="changeChecked()" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>تاریخ پایان</mat-label>
+  <input matInput [matDatepicker]="picker2" name="time2" [(ngModel)]="time2" (dateChange)="changeChecked()"
+    (keyup)="changeChecked()" />
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>

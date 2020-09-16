@@ -522,3 +522,7 @@ $RECYCLE.BIN/
 
 # Vs Code
 .vscode/**
+
+# Compiled files
+**/obj/**
+**/bin/**

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 
 @Component({
   selector: 'app-right-panel',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./right-panel.component.scss']
 })
 export class RightPanelComponent implements OnInit {
+
+
 
   constructor() { }
 
