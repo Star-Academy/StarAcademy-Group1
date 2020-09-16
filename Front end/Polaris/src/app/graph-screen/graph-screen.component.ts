@@ -90,7 +90,10 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           this.componentCommunication.edgeInfo = {
             Id: target.getId(),
             source: target.getSource().getId(),
-            target: target.getTarget().getId()
+            target: target.getTarget().getId(),
+            type: target.getData('type'),
+            amount: target.getData('amount'),
+            date: target.getData('date')
           }
         }
       }

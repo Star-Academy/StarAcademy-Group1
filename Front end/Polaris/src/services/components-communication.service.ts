@@ -11,7 +11,10 @@ export class ComponentsCommunicationService {
   public edgeInfo: {
     Id: string;
     source: string,
-    target: string
+    target: string,
+    date: string,
+    amount: number,
+    type: string
   }
 
   public filtersToShowMap = new Map([
