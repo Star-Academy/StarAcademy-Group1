@@ -1,12 +1,13 @@
-import { OgmaHandlerService } from './../../../../services/ogma-handler.service';
+
 import { Component, OnInit, Input } from '@angular/core';
+import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
-  selector: 'app-item-card',
-  templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.scss']
+  selector: 'app-node-card',
+  templateUrl: './node-card.component.html',
+  styleUrls: ['./node-card.component.scss']
 })
-export class ItemCardComponent implements OnInit {
+export class NodeCardComponent implements OnInit {
   @Input()
   public nodeId: string;
   @Input()

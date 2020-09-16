@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemCardComponent } from './item-card.component';
+import { RealTimeSearchBarComponent } from './real-time-search-bar.component';
 
-describe('ItemCardComponent', () => {
-  let component: ItemCardComponent;
-  let fixture: ComponentFixture<ItemCardComponent>;
+describe('RealTimeSearchBarComponent', () => {
+  let component: RealTimeSearchBarComponent;
+  let fixture: ComponentFixture<RealTimeSearchBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemCardComponent ]
+      declarations: [ RealTimeSearchBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemCardComponent);
+    fixture = TestBed.createComponent(RealTimeSearchBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

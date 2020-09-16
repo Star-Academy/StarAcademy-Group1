@@ -1,10 +1,9 @@
 <div id="mySidenav" class="sidenav" [hidden]="hidden">
-  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
-  <div class="selection-search-bar-container">
-    <app-search-bar [searchPosition]="'selectionPanel'"></app-search-bar>
-  </div>
-  <div *ngIf="componentCommunication.graphCreated">
-    <!-- <app-item-card *ngFor="let node of randomOgma.ogma.getNodes().getId()" [nodeId]="node"
-      [nodePerson]="getNodeById(node)" [isSelected]="isSelectedNodeById(node)"></app-item-card> -->
-  </div>
+  <span class="selection-search-bar-container">
+    <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
+  </span>
+  <span *ngIf="componentCommunication.graphCreated">
+    <app-node-card *ngFor="let node of nodes" [nodeId]="node"
+      [nodePerson]="getNodeById(node)" [isSelected]="isSelectedNodeById(node)"></app-node-card>
+  </span>
 </div>

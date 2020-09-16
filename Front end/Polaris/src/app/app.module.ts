@@ -30,7 +30,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AccuountTypeComponent } from './left-panel/filters/accuount-type-filter/accuount-type-filter.component';
 import { NameFilterComponent } from './left-panel/filters/name-filter/name-filter.component';
 import { BranchFilterComponent } from './left-panel/filters/branch-filter/branch-filter.component';
-import { ItemCardComponent } from './right-panel/view-panel/item-card/item-card.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
@@ -50,6 +49,9 @@ import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-inf
 import { MessageService } from './services/message/message.service';
 import { EdgeService } from './services/edge/edge.service';
 import { GraphService } from './services/graph/graph.service';
+import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
+import { EdgCardComponent } from './right-panel/view-panel/edges-view-panel/edg-card/edg-card.component';
+import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,6 @@ import { GraphService } from './services/graph/graph.service';
     AccuountTypeComponent,
     NameFilterComponent,
     BranchFilterComponent,
-    ItemCardComponent,
     AmountFilterComponent,
     ExpansionPanelComponent,
     MaxFlowPanelComponent,
@@ -77,8 +78,10 @@ import { GraphService } from './services/graph/graph.service';
     ViewPanelComponent,
     NodesViewPanelComponent,
     EdgesViewPanelComponent,
-    ItemCardComponent,
     GraphInfoBoxComponent,
+    RealTimeSearchBarComponent,
+    EdgCardComponent,
+    NodeCardComponent,
   ],
   imports: [
     BrowserModule,
