@@ -1,4 +1,8 @@
 
-<app-panels-menu></app-panels-menu>
-<app-selection-panel *ngIf="componentCommunication.whichRightSideNav === 1"></app-selection-panel>
-<app-filter-panel *ngIf="componentCommunication.whichRightSideNav === 2"></app-filter-panel>
+
+
+
+<div class="sidenav">
+  <app-search-bar [searchPosition]="'mainSearch'"></app-search-bar>
+  <app-information-panel ></app-information-panel>
+</div>

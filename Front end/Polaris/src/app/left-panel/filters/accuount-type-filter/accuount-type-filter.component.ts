@@ -3,8 +3,8 @@ import {FilterService} from 'src/services/filter.service'
 
 @Component({
   selector: 'app-accuount-type',
-  templateUrl: './accuount-type.component.html',
-  styleUrls: ['./accuount-type.component.scss']
+  templateUrl: './accuount-type-filter.component.html',
+  styleUrls: ['./accuount-type-filter.component.scss']
 })
 export class AccuountTypeComponent implements OnInit {
 

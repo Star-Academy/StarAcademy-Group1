@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectionPanelComponent } from './selection-panel.component';
+import { RealTimeSearchBarComponent } from './real-time-search-bar.component';
 
-describe('SelectionPanelComponent', () => {
-  let component: SelectionPanelComponent;
-  let fixture: ComponentFixture<SelectionPanelComponent>;
+describe('RealTimeSearchBarComponent', () => {
+  let component: RealTimeSearchBarComponent;
+  let fixture: ComponentFixture<RealTimeSearchBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectionPanelComponent ]
+      declarations: [ RealTimeSearchBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectionPanelComponent);
+    fixture = TestBed.createComponent(RealTimeSearchBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

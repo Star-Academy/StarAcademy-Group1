@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccuountTypeComponent } from './accuount-type.component';
+import { EdgesViewPanelComponent } from './edges-view-panel.component';
 
-describe('AccuountTypeComponent', () => {
-  let component: AccuountTypeComponent;
-  let fixture: ComponentFixture<AccuountTypeComponent>;
+describe('EdgesViewPanelComponent', () => {
+  let component: EdgesViewPanelComponent;
+  let fixture: ComponentFixture<EdgesViewPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccuountTypeComponent ]
+      declarations: [ EdgesViewPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccuountTypeComponent);
+    fixture = TestBed.createComponent(EdgesViewPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
