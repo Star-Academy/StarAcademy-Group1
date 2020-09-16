@@ -20,7 +20,7 @@ namespace Analysis.Analyser
 
         // filters weren't applied yet
         public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch
-            (TNodeId source, TNodeData target/*, Filter filter*/)
+            (TNodeId source, TNodeId target/*, Filter filter*/)
         {
             var edges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
 
@@ -47,10 +47,10 @@ namespace Analysis.Analyser
                 paths[0][source].Add(path);
 
                 var path2 = new LinkedList<TNodeId>();
-                path2.AddLast(target.Id);
+                path2.AddLast(target);
 
                 queue[1].Add(path2);
-                paths[1][target.Id].Add(path2);
+                paths[1][target].Add(path2);
             }
 
             while (queue[0].Any() && queue[1].Any())
