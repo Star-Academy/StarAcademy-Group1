@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 
 namespace Models.Network
@@ -6,8 +7,20 @@ namespace Models.Network
     where TDataModel : AmountedEntity<TTypeDataId, TTypeSideId>
     {
         public Edge()
-        {   
+        {
         }
+        public Edge(TTypeSideId u, TTypeSideId v, Int64 flow, long amount, int address)
+        {
+            Source = u;
+            Target = v;
+            Flow = flow;
+            Amount = amount;
+            Address = address;
+        }
+        [JsonIgnore]
+        public Int64 Flow { get; set; }
+        [JsonIgnore]
+        public int Address { get; set; }
 
         public Edge(TDataModel data)
         {
@@ -21,11 +34,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Id;
+                return Data.Id;
             }
             set
             {
-                this.Data.Id = value;
+                Data.Id = value;
             }
         }
 
@@ -34,11 +47,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Source;
+                return Data.Source;
             }
             set
             {
-                this.Data.Source = value;
+                Data.Source = value;
             }
         }
         
@@ -47,11 +60,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Target;
+                return Data.Target;
             }
             set
             {
-                this.Data.Target = value;
+                Data.Target = value;
             }
         }
 
@@ -60,11 +73,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Amount;
+                return Data.Amount;
             }
             set
             {
-                this.Data.Amount = value;
+                Data.Amount = value;
             }
         }
     }

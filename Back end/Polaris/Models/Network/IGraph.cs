@@ -1,21 +1,17 @@
 using System.Collections.Generic;
 
-using Models;
-
 namespace Models.Network
 {
     public interface IGraph<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
-        Dictionary<TNodeData, LinkedList<TNodeData>> Adj{get; set;}
+        List<TNodeId> GetNeighbors(TNodeData node);
 
-        LinkedList<TNodeData> GetNeighbors(TNodeData node);
+        List<TNodeId> GetNeighbors(TNodeId nodeId);
 
-        LinkedList<TNodeData> GetNeighbors(TNodeId nodeId);
+        List<TNodeId> Nodes{get; set;}
 
-        List<TNodeData> Nodes{get; set;}
-
-        List<TEdgeData> Edges{get; set;}
+        List<TEdgeId> Edges{get; set;}
     }
 }
