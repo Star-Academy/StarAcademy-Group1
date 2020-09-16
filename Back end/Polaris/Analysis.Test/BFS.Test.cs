@@ -3,7 +3,6 @@
 using Analysis.Analyser;
 using Models;
 using Models.Network;
-using System;
 using System.Collections.Generic;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
