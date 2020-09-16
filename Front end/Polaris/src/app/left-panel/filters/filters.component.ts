@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-filters',
@@ -8,6 +7,9 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
+  @Input()
+  whichToShow : boolean[];
+
   public hidden = false;
   panelOpenState = false;
   constructor(public componentCommunication: ComponentsCommunicationService) { }
