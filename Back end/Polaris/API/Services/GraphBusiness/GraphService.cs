@@ -1,7 +1,7 @@
-namespace API.Services.Graph
+namespace API.Services.GraphBusiness
 {
     public class GraphService : IGraphService
     {
-        
+
     }
 }

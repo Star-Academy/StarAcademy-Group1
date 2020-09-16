@@ -1,21 +1,23 @@
+// In The Name Of GOD
+
 using Models;
 
 namespace Analysis.GraphStructure.Structures
 {
-    public class Node<T, E> : Entity<T>
-    where E : Entity<T>
+    public class Node<ID, DATA> : Entity<ID>
+    where DATA : Entity<ID>
     {
-        public E data;
-        public override T Id
+        public DATA Data { get; set; }
+        public override ID Id
         {
             get
             {
-                return this.data.Id;
+                return Data.Id;
             }
             set
             {
-                this.data.Id = value;
-            }    
+                Data.Id = value;
+            }
         }
     }
 }

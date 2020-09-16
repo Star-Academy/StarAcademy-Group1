@@ -1,16 +1,23 @@
 using System.Text.Json.Serialization;
 
-namespace Models.GraphStructure
+namespace Models.Network
 {
-    public class Edge<TTypeSide, TTypeData> : Entity<TTypeData>
+    public class Edge<TDataModel, TTypeDataId, TTypeSideId> : Entity<TTypeDataId>
+    where TDataModel : AmountedEntity<TTypeDataId, TTypeSideId>
     {
-        public Edge(AmountedEntity<TTypeData, TTypeSide> data)
+        public Edge()
+        {   
+        }
+
+        public Edge(TDataModel data)
         {
             Data = data;
         }
 
-        public AmountedEntity<TTypeData, TTypeSide> Data{get; set;}
-        public override TTypeData Id
+        public TDataModel Data{get; set;}
+
+        [JsonPropertyName("id")]
+        public override TTypeDataId Id
         {
             get
             {
@@ -21,7 +28,9 @@ namespace Models.GraphStructure
                 this.Data.Id = value;
             }
         }
-        public TTypeSide Source
+
+        [JsonPropertyName("source")]
+        public TTypeSideId Source
         {
             get
             {
@@ -32,7 +41,9 @@ namespace Models.GraphStructure
                 this.Data.Source = value;
             }
         }
-        public TTypeSide Target
+        
+        [JsonPropertyName("target")]
+        public TTypeSideId Target
         {
             get
             {
@@ -44,7 +55,7 @@ namespace Models.GraphStructure
             }
         }
 
-        [JsonIgnore]
+        [JsonPropertyName("amount")]
         public double Amount
         {
             get

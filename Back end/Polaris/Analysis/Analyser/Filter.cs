@@ -1,4 +1,5 @@
 ﻿// In The Name Of GOD
+
 namespace Analysis.Analyser
 {
     public class Filter

@@ -4,14 +4,15 @@ using System.Collections.Generic;
 
 namespace Analysis.GraphStructure
 {
-    public interface IGraph<IN, EN, IE, EE>
-    where EN : Entity<IN>
-    where EE : Entity<IE>
+    public interface IGraph<NID, NDATA, EID, EDATA>
+    where NDATA : Entity<NID>
+    where EDATA : Entity<EID>
     {
-        Dictionary<EN, LinkedList<EN>> Adj{get; set;}
+        Dictionary<Node<NID, NDATA>, List<Edge<EID, EDATA, Node<NID, NDATA>>>> Adj { get; set; }
 
-        LinkedList<EN> GetNeighbors(EN node);
+        public void AddEdgeForFlow(Node<NID, NDATA> u, Node<NID, NDATA> v, long amount);
+        List<Node<NID, NDATA>> GetNeighbors(NDATA node);
 
-        LinkedList<EN> GetNeighbors(IN nodeId);
+        List<Node<NID, NDATA>> GetNeighbors(NID nodeId);
     }
 }
