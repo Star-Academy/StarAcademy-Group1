@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FilterService} from 'src/services/filter.service'
 
 @Component({
-  selector: 'app-accuount-type',
+  selector: 'app-accuount-type-filter',
   templateUrl: './accuount-type-filter.component.html',
   styleUrls: ['./accuount-type-filter.component.scss']
 })
