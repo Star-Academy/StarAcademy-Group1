@@ -3,7 +3,13 @@
     max-width: 500px;
     width: 100%;
   }
-  
+
   .example-full-width {
     width: 100%;
   }
+
+mat-label, input, mat-form-field{
+  font-family: IRANSans, sans-serif;
+  direction: rtl;
+  text-align: right !important;
+}

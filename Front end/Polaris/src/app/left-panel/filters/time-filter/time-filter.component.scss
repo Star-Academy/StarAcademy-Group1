@@ -1,4 +1,14 @@
-.example-full-width{
-    font-family: IRANSans, sans-serif;
-    text-align: right;
+.example-full-width {
+  font-family: IRANSans, sans-serif;
+  text-align: right;
+  width: 140px;
+}
+
+mat-label {
+  font-family: IRANSans, sans-serif;
+  font-size: small;
+}
+
+.time-start {
+  margin-right: 15px;
 }
