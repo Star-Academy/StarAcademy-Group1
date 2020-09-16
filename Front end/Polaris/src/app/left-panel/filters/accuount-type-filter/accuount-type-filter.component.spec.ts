@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemCardComponent } from './item-card.component';
+import { AccuountTypeComponent } from './accuount-type-filter.component';
 
-describe('ItemCardComponent', () => {
-  let component: ItemCardComponent;
-  let fixture: ComponentFixture<ItemCardComponent>;
+describe('AccuountTypeComponent', () => {
+  let component: AccuountTypeComponent;
+  let fixture: ComponentFixture<AccuountTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemCardComponent ]
+      declarations: [ AccuountTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemCardComponent);
+    fixture = TestBed.createComponent(AccuountTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

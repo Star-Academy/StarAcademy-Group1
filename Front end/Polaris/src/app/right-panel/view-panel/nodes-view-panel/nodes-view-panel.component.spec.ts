@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectionsComponent } from './selections.component';
+import { NodesViewPanelComponent } from './nodes-view-panel.component';
 
-describe('SelectionsComponent', () => {
-  let component: SelectionsComponent;
-  let fixture: ComponentFixture<SelectionsComponent>;
+describe('NodesViewPanelComponent', () => {
+  let component: NodesViewPanelComponent;
+  let fixture: ComponentFixture<NodesViewPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectionsComponent ]
+      declarations: [ NodesViewPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectionsComponent);
+    fixture = TestBed.createComponent(NodesViewPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

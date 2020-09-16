@@ -3,11 +3,11 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-filter-panel',
-  templateUrl: './filter-panel.component.html',
-  styleUrls: ['./filter-panel.component.scss']
+  selector: 'app-filters',
+  templateUrl: './filters.component.html',
+  styleUrls: ['./filters.component.scss']
 })
-export class FilterPanelComponent implements OnInit {
+export class FiltersComponent implements OnInit {
   public hidden = false;
   panelOpenState = false;
   constructor(public componentCommunication: ComponentsCommunicationService) { }
