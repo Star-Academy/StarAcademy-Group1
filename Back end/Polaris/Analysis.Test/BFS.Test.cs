@@ -3,6 +3,7 @@
 using Analysis.Analyser;
 using Models;
 using Models.Network;
+using System;
 using System.Collections.Generic;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
@@ -68,6 +69,7 @@ namespace Analysis.Test
         {
             var edge = new Edge<AmountedEntity<int, int>, int, int>();
             edge.Data = new AmountedData(src, tar, 0);
+            edge.Id = new Random().Next();
             return edge;
         }
 

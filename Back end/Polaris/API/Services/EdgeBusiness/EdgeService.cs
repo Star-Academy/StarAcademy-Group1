@@ -1,13 +1,12 @@
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using Models.Network;
-using Nest;
-using System.Linq;
-
 using Elastic.Communication;
 using Elastic.Communication.Nest;
-using Models.Response;
+using Microsoft.Extensions.Configuration;
 using Models;
+using Models.Network;
+using Models.Response;
+using Nest;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace API.Services.EdgeBusiness

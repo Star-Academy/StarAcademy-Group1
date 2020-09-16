@@ -1,15 +1,14 @@
+using API.Services.EdgeBusiness;
+using API.Services.Importer;
+using API.Services.NodeBusiness;
+using Elastic.Communication;
+using Elastic.Communication.Nest;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using Elastic.Communication;
-using Elastic.Communication.Nest;
 using Models.Banking;
-using API.Services.EdgeBusiness;
-using API.Services.NodeBusiness;
-using API.Services.Importer;
 
 namespace API
 {

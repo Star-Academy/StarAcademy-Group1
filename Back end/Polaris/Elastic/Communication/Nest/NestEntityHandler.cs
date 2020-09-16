@@ -1,8 +1,7 @@
-using System.Linq;
-using Nest;
-
-using Models;
 using Elastic.Exceptions;
+using Models;
+using Nest;
+using System.Linq;
 
 namespace Elastic.Communication.Nest
 {
@@ -21,11 +20,11 @@ namespace Elastic.Communication.Nest
         public TModel GetEntity(TType id, string indexName)
         {
             var queryContainer = new MatchQuery
-			{
-				Field = "id",
-				Query = id.ToString()
-			};
-			var response = RetrieveQueryDocuments(queryContainer, indexName);
+            {
+                Field = "id",
+                Query = id.ToString()
+            };
+            var response = RetrieveQueryDocuments(queryContainer, indexName);
             if (!response.Any())
             {
                 throw new EntityNotFoundException($"Entity with id: \"{id}\" not found in index \"{indexName}\"");
@@ -42,10 +41,10 @@ namespace Elastic.Communication.Nest
         private string GetEntityId_(TType id, string indexName)
         {
             var queryContainer = new MatchQuery
-			{
-				Field = "id",
-				Query = id.ToString()
-			};
+            {
+                Field = "id",
+                Query = id.ToString()
+            };
             var response = this.RetrieveQueryHits(queryContainer, indexName);
 
             if (!response.Any())

@@ -26,8 +26,10 @@ namespace Analysis.Test
 
         private void AddEdgeForFlow(int from, int to, Int64 amount)
         {
-            var edge1 = new Edge<AmountedEntity<int, int>, int, int>(from, to, 0, amount, dic[to].Count);
-            var edge2 = new Edge<AmountedEntity<int, int>, int, int>(to, from, 0, 0, dic[from].Count);
+            var edge1 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(from, to, amount), 0, dic[to].Count);
+            var edge2 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(to, from, 0), 0, dic[from].Count);
+            edge1.Id = new Random().Next();
+            edge2.Id = new Random().Next();
 
             dic[from].Add(edge1);
             dic[to].Add(edge2);
@@ -65,7 +67,7 @@ namespace Analysis.Test
             AddEdgeForFlow(2, 5, 4);
             AddEdgeForFlow(3, 5, 3);
             AddEdgeForFlow(4, 5, 7);
-            AddEdgeForFlow(0, 4, 10); 
+            AddEdgeForFlow(0, 4, 10);
             graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
             var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
             Assert.AreEqual(14, flow.DinicMaxFlow(0, 5));
@@ -85,7 +87,7 @@ namespace Analysis.Test
             AddEdgeForFlow(4, 3, 6);
             AddEdgeForFlow(4, 5, 10);
             graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
-            var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph); 
+            var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
             Assert.AreEqual(19, flow.DinicMaxFlow(0, 5));
         }
     }

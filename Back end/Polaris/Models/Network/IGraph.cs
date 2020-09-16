@@ -10,8 +10,8 @@ namespace Models.Network
 
         List<TNodeId> GetNeighbors(TNodeId nodeId);
 
-        List<TNodeId> Nodes{get; set;}
+        List<TNodeId> Nodes { get; set; }
 
-        List<TEdgeId> Edges{get; set;}
+        List<TEdgeId> Edges { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿// In The Name Of GOD
 
-
 using Models;
 
 namespace Analysis.Test
