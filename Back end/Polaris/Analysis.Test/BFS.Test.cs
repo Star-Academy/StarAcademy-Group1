@@ -96,8 +96,7 @@ namespace Analysis.Test
             {
                 item.Source.Id = item.Source.Id;
             }
-            Assert.IsTrue(ret.Count == 3
-                );
+            Assert.IsTrue(ret.Count == 3);
         }
 
         [Fact]
@@ -114,8 +113,7 @@ namespace Analysis.Test
             {
                 item.Source.Id = item.Source.Id;
             }
-            Assert.IsTrue(ret.Count == 1
-                );
+            Assert.IsTrue(ret.Count == 1);
         }
 
         [Fact]
@@ -132,8 +130,7 @@ namespace Analysis.Test
             {
                 item.Source.Id = item.Source.Id;
             }
-            Assert.IsTrue(ret.Count == 0
-                );
+            Assert.IsTrue(ret.Count == 0);
         }
 
         [Fact]
@@ -150,8 +147,7 @@ namespace Analysis.Test
             {
                 item.Source.Id = item.Source.Id;
             }
-            Assert.IsTrue(ret.Count == 8
-                );
+            Assert.IsTrue(ret.Count == 8);
         }
     }
 }

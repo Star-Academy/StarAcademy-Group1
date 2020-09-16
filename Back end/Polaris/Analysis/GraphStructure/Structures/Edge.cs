@@ -1,12 +1,12 @@
 // In The Name Of GOD
 
-using Elastic.Models;
+using Models;
 using System;
 
 namespace Analysis.GraphStructure.Structures
 {
-    public class Edge<T, E, N> : Entity<T>
-    where E : Entity<T>
+    public class Edge<ID, DATA, NODE> : Entity<ID>
+    where DATA : Entity<ID>
     {
         public Edge()
         {
@@ -25,7 +25,7 @@ namespace Analysis.GraphStructure.Structures
         {
             get
             {
-                return this.data.Id;
+                return Data.Id;
             }
             set
             {

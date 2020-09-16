@@ -2,7 +2,7 @@
 
 using Analysis.GraphStructure;
 using Analysis.GraphStructure.Structures;
-using Elastic.Models;
+using Models;
 using System.Collections.Generic;
 using System.Linq;
 

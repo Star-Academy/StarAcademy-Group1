@@ -1,6 +1,7 @@
 ﻿// In The Name Of GOD
 
-using Elastic.Models;
+
+using Models;
 
 namespace Analysis.Test
 {
