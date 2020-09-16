@@ -20,9 +20,4 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  logFilters(): void {
-    console.log(this.filterService);
-  }
-
 }
