@@ -30,7 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AccuountTypeComponent } from './left-panel/filters/accuount-type-filter/accuount-type-filter.component';
 import { NameFilterComponent } from './left-panel/filters/name-filter/name-filter.component';
 import { BranchFilterComponent } from './left-panel/filters/branch-filter/branch-filter.component';
-// import { ItemCardComponent } from './left-panel/selection-panel/item-card/item-card.component';
+import { ItemCardComponent } from './right-panel/view-panel/item-card/item-card.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
@@ -43,7 +43,7 @@ import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.compon
 
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
-import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
+import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +62,7 @@ import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
     AccuountTypeComponent,
     NameFilterComponent,
     BranchFilterComponent,
-    // ItemCardComponent,
+    ItemCardComponent ,
     AmountFilterComponent,
     ExpansionPanelComponent,
     MaxFlowPanelComponent,
@@ -70,6 +70,7 @@ import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
     ViewPanelComponent,
     NodesViewPanelComponent,
     EdgesViewPanelComponent,
+    ItemCardComponent,
   ],
   imports: [
     BrowserModule,

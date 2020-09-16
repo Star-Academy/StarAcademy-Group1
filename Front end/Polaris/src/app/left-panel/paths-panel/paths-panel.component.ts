@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./paths-panel.component.scss']
 })
 export class PathsPanelComponent implements OnInit {
-
-  whichFiltersToShow = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
   
   constructor() { }
 
