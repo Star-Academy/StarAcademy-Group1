@@ -1,7 +1,7 @@
 ﻿// In The Name Of GOD
 
-using Analysis.GraphStructure;
 using Models;
+using Models.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Analysis.Analyser
 {
     public class MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>
-        where TEdgeData : Entity<TEdgeId>
+        where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         private const Int64 inf = 1_000_000_000_000_000_000;
 
@@ -50,16 +50,15 @@ namespace Analysis.Analyser
         {
             if (v.Equals(target))
                 return flow;
-            var u = graph.IDToNode[v];
             if (!start.ContainsKey(v))
                 start[v] = 0;
-            for (; start[v] < graph.Adj[u].Count; start[v]++)
+            for (; start[v] < graph.Adj[v].Count; start[v]++)
             {
-                var edge = graph.Adj[u][start[v]];
-                if (level[edge.Target.Id] == level[v] + 1 && edge.Flow < edge.Amount)
+                var edge = graph.Adj[v][start[v]];
+                if (level[edge.Target] == level[v] + 1 && edge.Flow < edge.Amount)
                 {
-                    Int64 currFlow = Math.Min(flow, edge.Amount - edge.Flow);
-                    Int64 tempFlow = SendFlow(edge.Target.Id, currFlow, target, ref start);
+                    Int64 currFlow = (Int64)Math.Min(flow, edge.Amount - edge.Flow);
+                    Int64 tempFlow = SendFlow(edge.Target, currFlow, target, ref start);
                     if (tempFlow > 0)
                     {
                         edge.Flow += tempFlow;
@@ -75,7 +74,7 @@ namespace Analysis.Analyser
         private bool BFS(TNodeId source, TNodeId target)
         {
             foreach (var item in graph.Adj)
-                level[item.Key.Id] = -1;
+                level[item.Key] = -1;
 
             level[source] = 0;
             var q = new List<TNodeId>();
@@ -83,14 +82,14 @@ namespace Analysis.Analyser
 
             while (q.Any())
             {
-                var node = graph.IDToNode[q.Last()];
+                var nodeId = q.Last();
                 q.RemoveAt(q.Count - 1);
-                foreach (var edge in graph.Adj[node])
+                foreach (var edge in graph.Adj[nodeId])
                 {
-                    var neighbor = edge.Target.Id;
+                    var neighbor = edge.Target;
                     if (level[neighbor] < 0 && edge.Flow < edge.Amount)
                     {
-                        level[neighbor] = level[node.Id] + 1;
+                        level[neighbor] = level[nodeId] + 1;
                         q.Add(neighbor);
                     }
                 }
