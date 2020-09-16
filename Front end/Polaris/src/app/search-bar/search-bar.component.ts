@@ -33,9 +33,10 @@ export class SearchBarComponent implements OnInit {
     console.log("submit!");
   }
 
-  public checkChange(field: string) {
+  public checkChange(query: string) {
     if (this.searchPosition === 'branchFilter') {
-      this.dataOnScreen.branchSearch = field;
+      this.dataOnScreen.branchFirstInit = false;
+      this.dataOnScreen.updateResult(query);
     }
     if (this.searchPosition === 'selectionPanel') {
       console.log('selection panel change');

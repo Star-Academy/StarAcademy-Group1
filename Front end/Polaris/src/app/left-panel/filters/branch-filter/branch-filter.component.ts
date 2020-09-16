@@ -12,22 +12,22 @@ export class BranchFilterComponent implements OnInit {
   @Input()
   public branches: string[];
 
-  constructor(public filterService : FilterService, public dataOnScreen: DataOnScreenService) {
-   }
+  constructor(public filterService: FilterService, public dataOnScreen: DataOnScreenService) {
+  }
 
   ngOnInit(): void {
     this.branches = this.dataOnScreen.branchList;
   }
-  public changeChecked(field:string ,isChecked :boolean){
+  public changeChecked(field: string, isChecked: boolean) {
     let index = this.filterService.branches.indexOf(field, 0);
 
     if (isChecked) {
       this.filterService.branches.push(field);
-   }
-   else{
-     this.filterService.branches.splice(index, 1);
-   }
-   console.log(this.filterService.branches);
+    }
+    else {
+      this.filterService.branches.splice(index, 1);
+    }
+    console.log(this.filterService.branches);
   }
 
 }

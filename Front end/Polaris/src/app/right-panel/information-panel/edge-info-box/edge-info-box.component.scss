@@ -1,14 +1,19 @@
 .edge-info {
   left: 1%;
   top: 0%;
-  // color: rgb(222, 222, 226);
   direction: rtl;
   text-align: right;
   font-family: IRANSans, sans-serif;
+  margin: 0;
+  border-bottom: 1px solid black;
 }
 .edge-info h1{
   font-family: IRANSans, sans-serif;
-}
-.edge-id{
+  font-size: 16px;
+  margin: 0;
   font-weight: bold;
+}
+.edge-info p{
+  margin: 0;
+  font-size: 12px;
 }
