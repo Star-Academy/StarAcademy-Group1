@@ -12,13 +12,13 @@ namespace Elastic.Filtering.Criteria
 {
     public class NumericNestCriteria : NestCriteria
     {
-        private static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> registry = RegisterAllOperators();
+        private static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> registry = GetRegistry();
 
         public NumericNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
         }
 
-        public static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> RegisterAllOperators()
+        public static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> GetRegistry()
         {
             var registry = new Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>>();
             var methods = typeof(NumericNestCriteria)
@@ -28,6 +28,7 @@ namespace Elastic.Filtering.Criteria
                 var pair = BuildMethodDelegate(method);
                 registry[pair.Key] = pair.Value;
             }
+
             return registry;
         }
 
@@ -39,7 +40,11 @@ namespace Elastic.Filtering.Criteria
             var lambdaExpression = Expression.Lambda<Func<NumericNestCriteria, string, string, QueryContainer>>(
                 Expression.Call(null, method, fieldInput, valueInput), objectInput, fieldInput, valueInput)
                 .Compile();
-            return new KeyValuePair<string, Func<NumericNestCriteria, string, string, QueryContainer>>(method.Name, lambdaExpression);
+
+            return new KeyValuePair<string, Func<NumericNestCriteria, string, string, QueryContainer>>(
+                ((NestOperator)method.GetCustomAttribute(typeof(NestOperator), false)).Abbrv,
+                lambdaExpression
+            );
         }
 
         [NestOperator("gte")]
@@ -54,8 +59,11 @@ namespace Elastic.Filtering.Criteria
 
         public override QueryContainer Interpret()
         {
-            var clauses = registry.Values.Select(func => func.Invoke(null, this.Field, this.Value)).ToList();
-            return (QueryContainer) new BoolQuery{ Must = clauses};
+            Console.WriteLine($"Entered invoke, {Operator}, {Field}, {Value}");
+            foreach(var item in registry)
+                Console.WriteLine(item.Key, item.Value);
+            
+            return registry[Operator].Invoke(null, Field, Value);
         }
     }
 }
