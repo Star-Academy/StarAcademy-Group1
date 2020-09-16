@@ -11,9 +11,9 @@ namespace Elastic.Filtering.Criteria
             Value = value;
         }
 
-        string Field { get; set; }
-        string Operator { get; set; }
-        string Value { get; set; }
+        protected string Field { get; set; }
+        protected string Operator { get; set; }
+        protected string Value { get; set; }
 
         public abstract QueryContainer Interpret();
     }
