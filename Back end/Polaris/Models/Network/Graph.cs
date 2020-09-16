@@ -75,14 +75,5 @@ namespace Models.Network
                 }
             return ret;
         }
-
-        public void AddEdgeForFlow(TNodeId u, TNodeId v, Int64 amount)
-        {
-            var edge1 = new Edge<TEdgeData, TEdgeId, TNodeId>(u, v, 0, amount, Adj[v].Count);
-            var edge2 = new Edge<TEdgeData, TEdgeId, TNodeId>(v, u, 0, 0, Adj[u].Count);
-
-            Adj[u].Add(edge1);
-            Adj[v].Add(edge2);
-        }
     }
 }

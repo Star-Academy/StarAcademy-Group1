@@ -26,8 +26,8 @@ namespace Analysis.Test
 
         private void AddEdgeForFlow(int from, int to, Int64 amount)
         {
-            var edge1 = new Edge<AmountedEntity<int, int>, int, int>(from, to, 0, amount, dic[to].Count);
-            var edge2 = new Edge<AmountedEntity<int, int>, int, int>(to, from, 0, 0, dic[from].Count);
+            var edge1 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(from, to, amount), 0, dic[to].Count);
+            var edge2 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(to, from, 0), 0, dic[from].Count);
             edge1.Id = new Random().Next();
             edge2.Id = new Random().Next();
 

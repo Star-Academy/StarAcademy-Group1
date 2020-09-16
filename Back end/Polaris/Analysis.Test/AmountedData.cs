@@ -1,14 +1,13 @@
 ﻿using Models;
+using System;
 
 namespace Analysis.Test
 {
     class AmountedData : AmountedEntity<int, int>
     {
-        public AmountedData(int source, int target, int amount)
+        public AmountedData(int source, int target, Int64 amount) : base(source, target, amount)
         {
-            Source = source;
-            Target = target;
-            Amount = amount;
+            
         }
     }
 }

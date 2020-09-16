@@ -9,12 +9,10 @@ namespace Models.Network
         public Edge()
         {
         }
-        public Edge(TTypeSideId u, TTypeSideId v, Int64 flow, long amount, int address)
+        public Edge(TDataModel data, Int64 flow, int address)
         {
-            Source = u;
-            Target = v;
+            Data = data;
             Flow = flow;
-            Amount = amount;
             Address = address;
         }
         [JsonIgnore]
@@ -69,7 +67,7 @@ namespace Models.Network
         }
 
         [JsonPropertyName("amount")]
-        public double Amount
+        public Int64 Amount
         {
             get
             {
