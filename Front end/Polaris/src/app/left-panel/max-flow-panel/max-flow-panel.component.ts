@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaxFlowPanelComponent implements OnInit {
   
-  whichFiltersToShow = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
+  MaxFlowFilters = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
 
   constructor() { }
 

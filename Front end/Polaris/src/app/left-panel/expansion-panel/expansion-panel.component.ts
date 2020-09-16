@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpansionPanelComponent implements OnInit {
 
-  whichFiltersToShow = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
+  expansionPanelFilters = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
   
   constructor() { }
 
