@@ -12,49 +12,36 @@ namespace Elastic.Filtering.Criteria
 {
     public class NumericNestCriteria : NestCriteria
     {
-        private static Dictionary<string, MethodInfo> registry = Init();
-
-        private static Dictionary<string, Func<QueryContainer>> Init()
-        {
-            var nnc = new NumericNestCriteria("field", "gte", "value");
-            
-        }
-
+        private static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> registry = RegisterAllOperators();
 
         public NumericNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
         }
 
-        public override QueryContainer Interpret()
+        public static Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>> RegisterAllOperators()
         {
-            // QueryContainer query = new NumericRangeQuery();
-            // typeof(NumericNestCriteria).GetMethod("method").Invoke(null, new object[]{});
-            // var invokable = new MethodInfo();
-            // invokable.invoke();
-            // Dictionary<string, >
-            // foreach (var method in methods)
-            // {
-            // }
-            // return query;
+            var registry = new Dictionary<string, Func<NumericNestCriteria, string, string, QueryContainer>>();
+            var methods = typeof(NumericNestCriteria)
+                .GetMethods(BindingFlags.Public | BindingFlags.Static)
+                .Where(m => m.GetCustomAttributes(typeof(NestOperator), false).Length > 0);
+            foreach(var method in methods){
+                var pair = BuildMethodDelegate(method);
+                registry[pair.Key] = pair.Value;
+            }
+            return registry;
         }
 
-        private static void RegisterMethod(string methodName)
+        private static KeyValuePair<string, Func<NumericNestCriteria, string, string, QueryContainer>> BuildMethodDelegate(MethodInfo method)
         {
-
-            var input = Expression.Parameter(typeof(object), "input");
-            var method = NumericNestCriteria.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
-            //you should check for null *and* make sure the return type is string here.
-            Assert.IsFalse(method == null && !method.ReturnType.Equals(typeof(string)));
-
-            //now build a dynamic bit of code that does this:
-            //(object o) => ((TestType)o).GetName();
-            Func<object, string> result = Expression.Lambda<Func<object, string>>(
-                Expression.Call(Expression.Convert(input, o.GetType()), method), input).Compile();
-
-            string str = result(o);
-            Assert.AreEqual("hello world!", str);
+            var objectInput = Expression.Parameter(typeof(NumericNestCriteria), "criteria");
+            var fieldInput = Expression.Parameter(typeof(string), "field");
+            var valueInput = Expression.Parameter(typeof(string), "value");
+            var lambdaExpression = Expression.Lambda<Func<NumericNestCriteria, string, string, QueryContainer>>(
+                Expression.Call(null, method, fieldInput, valueInput), objectInput, fieldInput, valueInput)
+                .Compile();
+            return new KeyValuePair<string, Func<NumericNestCriteria, string, string, QueryContainer>>(method.Name, lambdaExpression);
         }
-        
+
         [NestOperator("gte")]
         public static QueryContainer GreaterThanOrEqual(string field, string value)
         {
@@ -63,6 +50,12 @@ namespace Elastic.Filtering.Criteria
                 Field = field,
                 GreaterThanOrEqualTo = Convert.ToDouble(value)
             };
+        }
+
+        public override QueryContainer Interpret()
+        {
+            var clauses = registry.Values.Select(func => func.Invoke(null, this.Field, this.Value)).ToList();
+            return (QueryContainer) new BoolQuery{ Must = clauses};
         }
     }
 }
