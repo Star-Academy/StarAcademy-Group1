@@ -11,6 +11,9 @@ namespace Models.Network
         public Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> Adj { get; set; }
         private readonly Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> reverseAdj;
 
+        public List<TNodeId> Nodes { get; set; }
+
+        public List<TEdgeId> Edges { get; set; }
         public List<TNodeId> GetNeighbors(TNodeData data)
         {
             return ReadNeighbors(data.Id);
@@ -27,7 +30,9 @@ namespace Models.Network
                 foreach (var edge in item.Value)
                 {
                     reverseAdj[edge.Target].Add(edge);
+                    Edges.Add(edge.Id);
                 }
+                Nodes.Add(item.Key);
             }
         }
 

@@ -20,9 +20,7 @@ namespace Models.Network
         [JsonIgnore]
         public Int64 Flow { get; set; }
         [JsonIgnore]
-        internal int Address { get; set; }
-
-
+        public int Address { get; set; }
 
         public Edge(TDataModel data)
         {
@@ -36,11 +34,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Id;
+                return Data.Id;
             }
             set
             {
-                this.Data.Id = value;
+                Data.Id = value;
             }
         }
 
@@ -49,11 +47,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Source;
+                return Data.Source;
             }
             set
             {
-                this.Data.Source = value;
+                Data.Source = value;
             }
         }
         
@@ -62,11 +60,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Target;
+                return Data.Target;
             }
             set
             {
-                this.Data.Target = value;
+                Data.Target = value;
             }
         }
 
@@ -75,11 +73,11 @@ namespace Models.Network
         {
             get
             {
-                return this.Data.Amount;
+                return Data.Amount;
             }
             set
             {
-                this.Data.Amount = value;
+                Data.Amount = value;
             }
         }
     }

@@ -6,12 +6,12 @@ namespace Models.Network
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
-        LinkedList<TNodeId> GetNeighbors(TNodeData node);
+        List<TNodeId> GetNeighbors(TNodeData node);
 
-        LinkedList<TNodeId> GetNeighbors(TNodeId nodeId);
+        List<TNodeId> GetNeighbors(TNodeId nodeId);
 
-        List<TNodeData> Nodes{get; set;}
+        List<TNodeId> Nodes{get; set;}
 
-        List<TEdgeData> Edges{get; set;}
+        List<TEdgeId> Edges{get; set;}
     }
 }

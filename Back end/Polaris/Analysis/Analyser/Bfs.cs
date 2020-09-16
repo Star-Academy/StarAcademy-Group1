@@ -1,8 +1,7 @@
 ﻿// In The Name Of GOD
 
-using Analysis.GraphStructure;
-using Analysis.GraphStructure.Structures;
 using Models;
+using Models.Network;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +9,7 @@ namespace Analysis.Analyser
 {
     public class BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>
-        where TEdgeData : Entity<TEdgeId>
+        where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
 
@@ -20,10 +19,10 @@ namespace Analysis.Analyser
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>> BiDirectionalSearch
-            (Node<TNodeId, TNodeData> source, Node<TNodeId, TNodeData> target, Filter filter)
+        public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch
+            (TNodeId source, TNodeData target/*, Filter filter*/)
         {
-            var edges = new HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>>();
+            var edges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
 
             var paths = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>[2];
             paths[0] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
@@ -31,8 +30,8 @@ namespace Analysis.Analyser
 
             foreach (var item in graph.Adj)
             {
-                paths[0][item.Key.Id] = new List<LinkedList<TNodeId>>();
-                paths[1][item.Key.Id] = new List<LinkedList<TNodeId>>();
+                paths[0][item.Key] = new List<LinkedList<TNodeId>>();
+                paths[1][item.Key] = new List<LinkedList<TNodeId>>();
             }
 
             var queue = new List<LinkedList<TNodeId>>[2];
@@ -42,10 +41,10 @@ namespace Analysis.Analyser
 
             {
                 var path = new LinkedList<TNodeId>();
-                path.AddLast(source.Id);
+                path.AddLast(source);
 
                 queue[0].Add(path);
-                paths[0][source.Id].Add(path);
+                paths[0][source].Add(path);
 
                 var path2 = new LinkedList<TNodeId>();
                 path2.AddLast(target.Id);
@@ -62,17 +61,12 @@ namespace Analysis.Analyser
 
             foreach (var item in graph.Adj)
             {
-                if (paths[0][item.Key.Id].Any() && paths[1][item.Key.Id].Any())
+                if (paths[0][item.Key].Any() && paths[1][item.Key].Any())
                 {
                     TakePath(item.Key, ref edges, ref paths);
                 }
-                paths[0][item.Key.Id].Clear();
-                paths[1][item.Key.Id].Clear();
-            }
-
-            foreach (var item in edges)
-            {
-                item.Address = item.Address;
+                paths[0][item.Key].Clear();
+                paths[1][item.Key].Clear();
             }
 
             return edges;
