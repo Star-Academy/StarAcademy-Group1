@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 
 namespace Models.Network
@@ -6,8 +7,22 @@ namespace Models.Network
     where TDataModel : AmountedEntity<TTypeDataId, TTypeSideId>
     {
         public Edge()
-        {   
+        {
         }
+        public Edge(TTypeSideId u, TTypeSideId v, Int64 flow, long amount, int address)
+        {
+            Source = u;
+            Target = v;
+            Flow = flow;
+            Amount = amount;
+            Address = address;
+        }
+        [JsonIgnore]
+        public Int64 Flow { get; set; }
+        [JsonIgnore]
+        internal int Address { get; set; }
+
+
 
         public Edge(TDataModel data)
         {
