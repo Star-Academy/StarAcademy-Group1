@@ -4,7 +4,7 @@ import { NodeInfo } from 'src/app/right-panel/information-panel/node-info-box/No
 export class ComponentsCommunicationService {
 
   public whichPanel: string;
-  public whichLeftSideNav : number = 0 ;
+  public whichLeftSideNav: number = 0;
   public graphCreated: boolean = false;
 
   public nodeInfo: NodeInfo
@@ -13,4 +13,11 @@ export class ComponentsCommunicationService {
     source: string,
     target: string
   }
+
+  public filtersToShowMap = new Map([
+    // Account, Amount, Branch, Name, Time
+    ["expansion", [true, true, true, true, true]],
+    ["flow", [true, true, true, true, true]],
+    ["path", [true, true, true, true, true]]
+  ]);
 }

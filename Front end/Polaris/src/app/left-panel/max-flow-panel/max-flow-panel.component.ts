@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./max-flow-panel.component.scss']
 })
 export class MaxFlowPanelComponent implements OnInit {
-  
-  MaxFlowFilters = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
 
   constructor() { }
 

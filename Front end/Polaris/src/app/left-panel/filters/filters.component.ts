@@ -8,7 +8,7 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 })
 export class FiltersComponent implements OnInit {
   @Input()
-  whichToShow : boolean[];
+  panel : string;
 
   public hidden = false;
   panelOpenState = false;
