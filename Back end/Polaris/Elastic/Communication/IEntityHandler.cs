@@ -2,10 +2,11 @@ using Models;
 
 namespace Elastic.Communication
 {
-    public interface IEntityHandler<TType> : IElasticHandler<Entity<TType>>
+    public interface IEntityHandler<TModel, TType> : IElasticHandler<TModel>
+    where TModel : Entity<TType>
     {
-        Entity<TType> GetEntity(TType id, string indexName);
-        void UpdateEntity(Entity<TType> newEntity, string indexName);
+        TModel GetEntity(TType id, string indexName);
+        void UpdateEntity(TModel newEntity, string indexName);
         void DeleteEntity(TType id, string indexName);
     }
 }
