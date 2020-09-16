@@ -8,7 +8,7 @@ import { FilterService } from 'src/services/filter.service';
 })
 export class TimeFilterComponent implements OnInit {
 
-  time1: string;
+  time1: string ;
   time2: string;
   constructor(public filterServerice : FilterService) { }
 
