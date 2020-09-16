@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PathsPanelComponent implements OnInit {
 
+  whichFiltersToShow = [true, true, true, true, true]; // Account, Amount, Branch, Name, Time
+  
   constructor() { }
 
   ngOnInit(): void {
