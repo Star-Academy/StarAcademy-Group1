@@ -44,6 +44,7 @@ import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.compon
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
 import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component';
+import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-info-box/graph-info-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
     NodesViewPanelComponent,
     EdgesViewPanelComponent,
     ItemCardComponent,
+    GraphInfoBoxComponent,
   ],
   imports: [
     BrowserModule,

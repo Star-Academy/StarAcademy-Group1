@@ -96,6 +96,9 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
             date: target.getData('date')
           }
         }
+        else if ((target === null || !target.isNode) && button === 'left'){
+          this.componentCommunication.whichPanel = 'graphInfo';
+        }
       }
     );
     this.randomOgma.ogma.events.onNodesSelected(() => {
