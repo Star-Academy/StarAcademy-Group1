@@ -8,9 +8,10 @@ namespace Analysis.GraphStructure
     where EN : Entity<IN>
     where EE : Entity<IE>
     {
-        Dictionary<EN, LinkedList<EN>> Adj{get; set;}
+        Dictionary<Node<NODEID, NODEDATA>, List<Edge<EDGEID, EDGEDATA, Node<NODEID, NODEDATA>>>> Adj { get; set; }
 
-        LinkedList<EN> GetNeighbors(EN node);
+        public void AddEdgeForFlow(Node<NODEID, NODEDATA> u, Node<NODEID, NODEDATA> v, long amount);
+        List<Node<NODEID, NODEDATA>> GetNeighbors(NODEDATA node);
 
         LinkedList<EN> GetNeighbors(IN nodeId);
     }
