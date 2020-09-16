@@ -19,8 +19,7 @@ namespace Analysis.Analyser
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch
-            (TNodeId source, TNodeId target/*, Filter filter*/)
+        public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
         {
             var edges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
 
@@ -77,8 +76,10 @@ namespace Analysis.Analyser
             var current = queue.First();
             queue.RemoveAt(0);
             var last = current.Last();
-            var list = graph.GetNeighbors(last);
-            if (src == 0)
+            List<TNodeId> list;
+            if (src == 1)
+                list = graph.GetNeighbors(last);
+            else
                 list = graph.GetOpositeNeighbors(last);
             foreach (var adjId in list)
             {
@@ -93,7 +94,8 @@ namespace Analysis.Analyser
             }
         }
 
-        private void TakePath(TNodeId nodeId, ref HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
+        private void TakePath
+            (TNodeId nodeId, ref HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
             foreach (var item in paths[0][nodeId])
             {

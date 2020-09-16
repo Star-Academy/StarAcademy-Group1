@@ -28,6 +28,8 @@ namespace Analysis.Test
         {
             var edge1 = new Edge<AmountedEntity<int, int>, int, int>(from, to, 0, amount, dic[to].Count);
             var edge2 = new Edge<AmountedEntity<int, int>, int, int>(to, from, 0, 0, dic[from].Count);
+            edge1.Id = new Random().Next();
+            edge2.Id = new Random().Next();
 
             dic[from].Add(edge1);
             dic[to].Add(edge2);
