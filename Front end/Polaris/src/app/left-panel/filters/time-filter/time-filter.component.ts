@@ -8,15 +8,15 @@ import { FilterService } from 'src/services/filter.service';
 })
 export class TimeFilterComponent implements OnInit {
 
-  time1: string ;
+  time1: string;
   time2: string;
-  constructor(public filterServerice : FilterService) { }
+  constructor(public filterService: FilterService) { }
 
   ngOnInit(): void {
   }
-  public changeChecked(){
-    this.filterServerice.startDate = this.time1 ;
-    this.filterServerice.endDate = this.time2 ;
-    console.log(this.filterServerice.startDate);
+  public changeChecked() {
+    this.filterService.startDate = this.time1;
+    this.filterService.endDate = this.time2;
+    console.log(this.filterService.startDate);
   }
 }

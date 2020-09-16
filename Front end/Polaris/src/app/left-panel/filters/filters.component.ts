@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
+import { FilterService } from 'src/services/filter.service';
 
 @Component({
   selector: 'app-filters',
@@ -8,13 +9,20 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 })
 export class FiltersComponent implements OnInit {
   @Input()
-  panel : string;
+  panel: string;
 
   public hidden = false;
   panelOpenState = false;
-  constructor(public componentCommunication: ComponentsCommunicationService) { }
+  constructor(
+    public componentCommunication: ComponentsCommunicationService,
+    public filterService: FilterService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logFilters(): void {
+    console.log(this.filterService);
   }
 
 }
