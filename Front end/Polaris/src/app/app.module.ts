@@ -6,6 +6,13 @@ import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { InformationComponent } from './left-panel/information/information.component';
+import { RandomGraphService } from '../services/read-ogma-from-random-json.service';
+import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -40,10 +47,14 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/mater
 import { ExpansionPanelComponent } from './left-panel/expansion-panel/expansion-panel.component';
 import { MaxFlowPanelComponent } from './left-panel/max-flow-panel/max-flow-panel.component';
 import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.component';
-
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
-import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
+import { ViewPanelComponent } from './right-panel/view-panel/view-panel.component'
+
+import { MessageService } from './services/message/message.service';
+import { EdgeService } from './services/edge/edge.service';
+import { GraphService } from './services/graph/graph.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +80,7 @@ import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
     PathsPanelComponent,
     ViewPanelComponent,
     NodesViewPanelComponent,
-    EdgesViewPanelComponent,
+    EdgesViewPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +97,18 @@ import {ViewPanelComponent} from './right-panel/view-panel/view-panel.component'
     MatExpansionModule,
     MatCheckboxModule,
     ScrollingModule,
+    HttpClientModule
   ],
-  providers: [OgmaHandlerService, ComponentsCommunicationService, MatNativeDateModule, FilterService, DataOnScreenService,
+  providers: [
+    OgmaHandlerService,
+    ComponentsCommunicationService,
+    MatNativeDateModule,
+    FilterService,
+    DataOnScreenService,
+    RandomGraphService,
+    MessageService,
+    EdgeService,
+    GraphService,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
