@@ -67,7 +67,7 @@ namespace Analysis.Test
             AddEdgeForFlow(2, 5, 4);
             AddEdgeForFlow(3, 5, 3);
             AddEdgeForFlow(4, 5, 7);
-            AddEdgeForFlow(0, 4, 10); 
+            AddEdgeForFlow(0, 4, 10);
             graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
             var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
             Assert.AreEqual(14, flow.DinicMaxFlow(0, 5));
@@ -87,7 +87,7 @@ namespace Analysis.Test
             AddEdgeForFlow(4, 3, 6);
             AddEdgeForFlow(4, 5, 10);
             graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
-            var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph); 
+            var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
             Assert.AreEqual(19, flow.DinicMaxFlow(0, 5));
         }
     }

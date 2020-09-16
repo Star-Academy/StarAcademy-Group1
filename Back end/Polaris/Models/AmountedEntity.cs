@@ -22,7 +22,7 @@ namespace Models
 
         [JsonPropertyName("target")]
         public virtual TSideEntityId Target { get; set; }
-        
+
         [JsonPropertyName("amount")]
         public virtual Int64 Amount { get; set; }
     }

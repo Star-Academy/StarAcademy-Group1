@@ -6,7 +6,6 @@ using Models.Network;
 using System;
 using System.Collections.Generic;
 using Xunit;
-using Xunit.Sdk;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Analysis.Test

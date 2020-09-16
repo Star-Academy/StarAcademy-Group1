@@ -25,7 +25,7 @@ namespace Models.Network
             Data = data;
         }
 
-        public TDataModel Data{get; set;}
+        public TDataModel Data { get; set; }
 
         [JsonPropertyName("id")]
         public override TTypeDataId Id
@@ -52,7 +52,7 @@ namespace Models.Network
                 Data.Source = value;
             }
         }
-        
+
         [JsonPropertyName("target")]
         public TTypeSideId Target
         {

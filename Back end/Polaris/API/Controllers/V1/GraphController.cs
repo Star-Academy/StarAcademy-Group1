@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
-
 using API.Services.GraphBusiness;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.V1
 {

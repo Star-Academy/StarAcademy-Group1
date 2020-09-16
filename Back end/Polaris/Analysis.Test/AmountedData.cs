@@ -1,4 +1,6 @@
-﻿using Models;
+﻿//In The Name Of GOD
+
+using Models;
 using System;
 
 namespace Analysis.Test
@@ -7,7 +9,7 @@ namespace Analysis.Test
     {
         public AmountedData(int source, int target, Int64 amount) : base(source, target, amount)
         {
-            
+
         }
     }
 }

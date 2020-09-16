@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-
 using Models;
 using Models.Network;
 using Models.Response;
+using System.Collections.Generic;
 
 namespace API.Services.EdgeBusiness
 {

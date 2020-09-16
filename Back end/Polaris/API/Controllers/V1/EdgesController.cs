@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-
 using API.Services.EdgeBusiness;
-using Models.Response;
-using Models.Network;
 using Elastic.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Models.Banking;
+using Models.Network;
 
 namespace API.Controllers
 {
@@ -53,7 +51,7 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult GetEdgesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
         {
-            return Ok(_edgeService.GetEdgesByFilter(new string[]{}, null));
+            return Ok(_edgeService.GetEdgesByFilter(new string[] { }, null));
         }
 
         [HttpPost]
