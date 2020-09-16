@@ -1,11 +1,10 @@
+using Elastic.Exceptions;
 using Nest;
 using System;
 
-using Elastic.Exceptions;
-
 namespace Elastic.Communication.Nest
 {
-    public class NestClientFactory: IElasticClientFactory<IElasticClient>
+    public class NestClientFactory : IElasticClientFactory<IElasticClient>
     {
         private static NestClientFactory singletonInstance = new NestClientFactory();
         private IElasticClient client = null;

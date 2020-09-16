@@ -1,17 +1,22 @@
-using Elastic.Communication.Nest;
-using Models;
 using API.Services.Utils;
+using Elastic.Communication;
+using Models;
 
 namespace API.Services.Importer
 {
     public class ElasticImporterService<TModel> : IImporterService<TModel> where TModel : class, IModel
     {
-        private NestElasticHandler<TModel> elasticImporter = new NestElasticHandler<TModel>();
+        private readonly IElasticHandler<TModel> _handler;
 
-        public void Import(string source, IStringParser<TModel> stringParser, string sourceName)
+        public ElasticImporterService(IElasticHandler<TModel> handler)
+        {
+            _handler = handler;
+        }
+
+        public void Import(string source, IStringParser<TModel> stringParser, string indexName)
         {
             var list = stringParser.Parse(source);
-            elasticImporter.BulkInsert(list, sourceName);
+            _handler.BulkInsert(list, indexName);
         }
     }
 }

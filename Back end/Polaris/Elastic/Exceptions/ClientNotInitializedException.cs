@@ -4,7 +4,7 @@ namespace Elastic.Exceptions
 {
     public class ClientNotInitializedException : Exception
     {
-        public ClientNotInitializedException() : 
+        public ClientNotInitializedException() :
             base("Initialize elastic client before using it.")
         {
         }

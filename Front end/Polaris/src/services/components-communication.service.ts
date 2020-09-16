@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NodeInfo } from 'src/app/right-panel/node-info-box/NodeInfo';
+import { NodeInfo } from 'src/app/right-panel/information-panel/node-info-box/NodeInfo';
 @Injectable()
 export class ComponentsCommunicationService {
 
   public whichPanel: string;
-  public whichRightSideNav : number = 0 ;
+  public whichLeftSideNav : number = 0 ;
   public graphCreated: boolean = false;
 
   public nodeInfo: NodeInfo

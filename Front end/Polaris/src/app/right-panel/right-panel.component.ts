@@ -10,7 +10,7 @@ export class RightPanelComponent implements OnInit {
 
 
 
-  constructor(public componentCommunication: ComponentsCommunicationService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

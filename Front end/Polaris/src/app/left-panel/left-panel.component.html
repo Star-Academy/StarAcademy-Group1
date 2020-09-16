@@ -1,6 +1,5 @@
-<div class="sidenav">
-  <app-search-bar [searchPosition]="'mainSearch'"></app-search-bar>
-  <app-information-panel ></app-information-panel>
-</div>
-
+<app-panels-menu></app-panels-menu>
+<app-expansion-panel *ngIf="componentCommunication.whichLeftSideNav === 1"></app-expansion-panel>
+<app-paths-panel *ngIf="componentCommunication.whichLeftSideNav === 2"></app-paths-panel>
+<app-max-flow-panel *ngIf="componentCommunication.whichLeftSideNav === 3"></app-max-flow-panel>
 
