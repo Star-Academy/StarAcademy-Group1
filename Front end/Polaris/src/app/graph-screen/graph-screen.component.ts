@@ -98,6 +98,10 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
         else if ((target === null || !target.isNode) && button === 'left'){
           this.componentCommunication.whichPanel = 'graphInfo';
+          this.componentCommunication.graphInfo = {
+            graphSize: this.randomOgma.ogma.getNodes().size,
+            edgeSize: this.randomOgma.ogma.getEdges().size
+          }
         }
       }
     );

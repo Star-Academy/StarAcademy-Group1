@@ -1,3 +1,4 @@
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graph-info-box.component.scss']
 })
 export class GraphInfoBoxComponent implements OnInit {
-
-  constructor() { }
+  public get graph () {return this.componentsCommunication.graphInfo} ;
+  constructor(public componentsCommunication: ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
