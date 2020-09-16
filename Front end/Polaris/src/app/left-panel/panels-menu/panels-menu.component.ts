@@ -10,8 +10,6 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
 })
 export class PanelsMenuComponent implements OnInit {
 
-  filterIcon = faFilter;
-  checkIcon = faCheck;
   constructor(public componentCommunication: ComponentsCommunicationService) { }
 
   ngOnInit(): void {
