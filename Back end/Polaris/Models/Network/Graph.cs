@@ -63,7 +63,7 @@ namespace Models.Network
             return set.ToList();
         }
 
-        internal List<Edge<TEdgeData, TEdgeId, TNodeId>> GetEdges(TNodeId id1, TNodeId id2)
+        public List<Edge<TEdgeData, TEdgeId, TNodeId>> GetEdges(TNodeId id1, TNodeId id2)
         {
             var ret = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
             foreach (var item in Adj[id1])

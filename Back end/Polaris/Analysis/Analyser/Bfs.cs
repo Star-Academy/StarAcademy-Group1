@@ -80,34 +80,34 @@ namespace Analysis.Analyser
             var list = graph.GetNeighbors(last);
             if (src == 0)
                 list = graph.GetOpositeNeighbors(last);
-            foreach (var node in list)
+            foreach (var adjId in list)
             {
-                if (!current.Contains(node.Id))
+                if (!current.Contains(adjId))
                 {
                     LinkedList<TNodeId> newPath = new LinkedList<TNodeId>(current);
-                    newPath.AddLast(node.Id);
+                    newPath.AddLast(adjId);
                     if (newPath.Count() > 3 + src) continue;
-                    paths[node.Id].Add(newPath);
+                    paths[adjId].Add(newPath);
                     queue.Add(newPath);
                 }
             }
         }
 
-        private void TakePath(Node<TNodeId, TNodeData> node, ref HashSet<Edge<TEdgeId, TEdgeData, Node<TNodeId, TNodeData>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
+        private void TakePath(TNodeId nodeId, ref HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
-            foreach (var item in paths[0][node.Id])
+            foreach (var item in paths[0][nodeId])
             {
                 bool flag = false;
                 int iterator = -1;
                 List<int> rm = new List<int>();
-                foreach (var item2 in paths[1][node.Id])
+                foreach (var item2 in paths[1][nodeId])
                 {
                     iterator++;
-                    var set = new HashSet<Node<TNodeId, TNodeData>>();
+                    var set = new HashSet<TNodeId>();
                     foreach (var tmp in item)
-                        set.Add(graph.IDToNode[tmp]);
+                        set.Add(tmp);
                     foreach (var tmp in item2)
-                        set.Add(graph.IDToNode[tmp]);
+                        set.Add(tmp);
                     if (set.Count != item.Count + item2.Count - 1)
                         continue;
                     flag = true;
@@ -120,7 +120,7 @@ namespace Analysis.Analyser
                         edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
                 rm.Reverse();
                 foreach (var tmp in rm)
-                    paths[1][node.Id].RemoveAt(tmp);
+                    paths[1][nodeId].RemoveAt(tmp);
             }
         }
 
