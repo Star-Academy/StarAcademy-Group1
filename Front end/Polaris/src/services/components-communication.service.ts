@@ -16,6 +16,10 @@ export class ComponentsCommunicationService {
     amount: number,
     type: string
   }
+  public graphInfo: {
+    graphSize: number,
+    edgeSize: number
+  }
 
   public filtersToShowMap = new Map([
     // Account, Amount, Branch, Name, Time

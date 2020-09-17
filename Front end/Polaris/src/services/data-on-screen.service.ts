@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 export class DataOnScreenService {
     public resultArr;
     public branchFirstInit: boolean = true;
+    public nodeViewFirstInit: boolean = true;
+    public edgeViewFirstInit: boolean = true;
     constructor() {
         this.resultArr = new Array<string>();
     }

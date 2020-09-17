@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './services/main-graph.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -26,15 +27,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { Ng5SliderModule } from 'ng5-slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 import { AccuountTypeComponent } from './left-panel/filters/accuount-type-filter/accuount-type-filter.component';
 import { NameFilterComponent } from './left-panel/filters/name-filter/name-filter.component';
 import { BranchFilterComponent } from './left-panel/filters/branch-filter/branch-filter.component';
-import { ItemCardComponent } from './right-panel/view-panel/item-card/item-card.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
 import { DataOnScreenService } from './../services/data-on-screen.service';
-import { DateAdapter,  MAT_DATE_FORMATS,  MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material.persian-date.adapter';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './left-panel/filters/filters.component';
@@ -49,6 +50,9 @@ import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-inf
 import { MessageService } from './services/message/message.service';
 import { EdgeService } from './services/edge/edge.service';
 import { GraphService } from './services/graph/graph.service';
+import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
+import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
+import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,6 @@ import { GraphService } from './services/graph/graph.service';
     AccuountTypeComponent,
     NameFilterComponent,
     BranchFilterComponent,
-    ItemCardComponent ,
     AmountFilterComponent,
     ExpansionPanelComponent,
     MaxFlowPanelComponent,
@@ -76,8 +79,11 @@ import { GraphService } from './services/graph/graph.service';
     ViewPanelComponent,
     NodesViewPanelComponent,
     EdgesViewPanelComponent,
-    ItemCardComponent,
     GraphInfoBoxComponent,
+    RealTimeSearchBarComponent,
+    EdgeCardComponent,
+    NodeCardComponent,
+    EdgeCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +99,7 @@ import { GraphService } from './services/graph/graph.service';
     Ng5SliderModule,
     MatExpansionModule,
     MatCheckboxModule,
+    MatButtonModule,
     ScrollingModule,
     HttpClientModule
   ],
@@ -106,6 +113,7 @@ import { GraphService } from './services/graph/graph.service';
     MessageService,
     EdgeService,
     GraphService,
+    GraphHandlerService,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
