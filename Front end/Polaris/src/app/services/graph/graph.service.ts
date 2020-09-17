@@ -69,15 +69,27 @@ export class GraphService {
   }
 
   public async getNodesExpansion(
-    nodeIds: string[]
+    nodeIds: string[],
+    nodeFilter: string[] = [],
+    edgeFilter: string[] = [],
+    nodePageIndex: number = -1,
+    nodePageSize: number = -1,
+    nodeOrderBy: string = 'desc',
+    edgePageIndex: number = -1,
+    edgePageSize: number = -1,
+    edgeOrderBy: string = 'desc'
   ): Promise<JSON> {
 
-    let url = `${this.baseAddress}/expansion?nodeIds=${JSON.stringify(nodeIds)}`;
+    let url = `${this.baseAddress}/expansion`;
+    let params = `?nodeIds=${JSON.stringify(nodeIds)}&nodeFilter=${JSON.stringify(nodeFilter)}`
+    + `&edgeFilter=${JSON.stringify(edgeFilter)}&nodePageIndex=${nodePageIndex}&nodePageSize=${nodePageSize}`
+    + `&nodeOrderBy=${nodeOrderBy}&edgePageIndex=${edgePageIndex}`
+    + `&edgePageSize=${edgePageSize}&edgeOrderBy=${edgeOrderBy}`; // TODO: add model (this looks like shit)
 
     return new Promise<JSON>((resolve) => {
-      this.http.get<JSON>(url, this.httpOptions).pipe(
+      this.http.get<JSON>(url + params, this.httpOptions).pipe(
         tap(_ => this.log(`got ${nodeIds} expansion`)),
-        catchError(this.handleError<JSON>('getNodeExpansion'))
+        catchError(this.handleError<JSON>('getNodesExpansion'))
       ).subscribe((result: JSON) => {
         resolve(result)
       })
