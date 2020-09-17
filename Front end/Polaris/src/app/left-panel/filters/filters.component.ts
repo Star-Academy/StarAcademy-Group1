@@ -54,6 +54,7 @@ export class FiltersComponent implements OnInit {
       icon: 'error',
       title: 'خطا!',
       text: 'مقادیر خواسته شده را وارد نمایید...',
+      confirmButtonText: 'حله'
     })
   }
 }
