@@ -44,7 +44,8 @@ namespace Elastic.Filtering
         {
             var match = FilterPattern.Match(filterQuery);
             var selectedField = match.Groups["field"].Value;
-            string @operator, value;
+            string @operator;
+            string value;
 
             switch (mapping[selectedField])
             {
