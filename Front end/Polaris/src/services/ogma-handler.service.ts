@@ -8,6 +8,7 @@ export class OgmaHandlerService {
   public initConfig(configuration = {}) {
     this.ogma = new Ogma(configuration);
     this.selectedNodes = new Array<string>();
+    this.ogma.styles.setSelectedNodeAttributes({outerStroke:null})
   }
 
   public runLayout(): Promise<void> {

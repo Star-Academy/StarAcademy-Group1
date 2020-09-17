@@ -105,16 +105,16 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
       }
     );
-    this.randomOgma.ogma.events.onNodesSelected(() => {
-      // console.log(this.randomOgma.ogma.getSelectedNodes());
-      // this.randomOgma.ogma.getSelectedNodes().getId().forEach(element => {
-      //   this.randomOgma.addNodeToSelected(element);
-      // });
+    this.randomOgma.ogma.events.onNodesSelected((evt) => {
+      for (let edge of evt.nodes.getId()) {
+        if (this.randomOgma.ogma.getNode(edge).isSelected())
+          this.randomOgma.ogma.getNode(edge).setAttributes({outerStroke:{color:"red"}});
+      }
     });
     this.randomOgma.ogma.events.onEdgesSelected((evt) => {
       for (let edge of evt.edges.getId()) {
         if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
-          this.randomOgma.ogma.getEdge(edge).getSource().setAttributes({ outline: false });
+          this.randomOgma.ogma.getEdge(edge).getSource().setAttributes({outerStroke:null},{color:"black"},{innerStroke:null});
         console.log(this.randomOgma.ogma.getEdge(edge).getSource());
       }
     });
