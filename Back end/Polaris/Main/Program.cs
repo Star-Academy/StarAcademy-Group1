@@ -4,10 +4,16 @@ using System.Reflection;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using JsonSerializer.Serialize;
+using System.Text.Json;
+using Nest;
 
 namespace Main
 {
+    class Person
+    {
+        public int Age{get; set;}
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -23,7 +29,7 @@ namespace Main
 
             var filter = new NestFilter(queries, mapping);
 
-            Console.WriteLine(JsonSerializer.Serialize(filter.Interpret()));
+            Console.WriteLine(JsonSerializer.Serialize((NumericRangeQuery)filter.Interpret()));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Elastic.Filtering
     public class NestFilter : INestInterpretable
     {
         static readonly Regex FilterPattern = new Regex(
-            @"\s*(?<field>\S+?)\s+(?<operator>\S+?)\s+(?<value>\S+?)\s*",
+            @"\s*(?<field>\S+)\s+(?<operator>\S+)\s+(?<value>\S+)\s*",
             RegexOptions.Compiled | RegexOptions.IgnoreCase
         );
 

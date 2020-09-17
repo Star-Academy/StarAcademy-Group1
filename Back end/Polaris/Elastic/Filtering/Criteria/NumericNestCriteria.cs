@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Collections.Generic;
-
+using System.Text.Json;
 using Elastic.Filtering.Attributes;
 
 
@@ -48,13 +48,15 @@ namespace Elastic.Filtering.Criteria
         }
 
         [NestOperator("gte")]
-        public static QueryContainer GreaterThanOrEqual(string field, string value)
+        public static NumericRangeQuery GreaterThanOrEqual(string field, string value)
         {
-            return new NumericRangeQuery
+            var query = new NumericRangeQuery
             {
                 Field = field,
                 GreaterThanOrEqualTo = Convert.ToDouble(value)
             };
+            Console.WriteLine($"Entered gte {query}, {field}, {JsonSerializer.Serialize(query)}");
+            return query;
         }
 
         public override QueryContainer Interpret()
