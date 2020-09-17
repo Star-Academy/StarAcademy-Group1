@@ -27,7 +27,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   constructor(
     private randomOgma: OgmaHandlerService,
     private componentCommunication: ComponentsCommunicationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.randomOgma.initConfig({
@@ -67,54 +67,58 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         this.contextMenuPosition = null;
       }
     });
-    this.randomOgma.ogma.events.onClick(
-      ({ target, button }: ClickEvent) => {
-        if (target != null && target.isNode && button === 'left') {
-          this.componentCommunication.whichPanel = 'nodeInfo';
-          this.componentCommunication.nodeInfo = {
-            ownerName: target.getData('OwnerName'),
-            ownerFamilyName: target.getData('OwnerFamilyName'),
-            accountId: target.getId(),
-            accountType: target.getData('AccountType'),
-            sheba: target.getData('Sheba'),
-            cardId: target.getData('CardId'),
-            ownerId: target.getData('OwnerId'),
-            branchName: target.getData('BranchName'),
-            branchAddress: target.getData('BranchAddress'),
-            branchTelephone: target.getData('BranchTelephone'),
-
-          }
-        }
-        else if (target != null && !target.isNode && button === 'left') {
-          this.componentCommunication.whichPanel = 'edgeInfo';
-          this.componentCommunication.edgeInfo = {
-            Id: target.getId(),
-            source: target.getSource().getId(),
-            target: target.getTarget().getId(),
-            type: target.getData('type'),
-            amount: target.getData('amount'),
-            date: target.getData('date')
-          }
-        }
-        else if ((target === null || !target.isNode) && button === 'left'){
-          this.componentCommunication.whichPanel = 'graphInfo';
-          this.componentCommunication.graphInfo = {
-            graphSize: this.randomOgma.ogma.getNodes().size,
-            edgeSize: this.randomOgma.ogma.getEdges().size
-          }
-        }
+    this.randomOgma.ogma.events.onClick(({ target, button }: ClickEvent) => {
+      if (target != null && target.isNode && button === 'left') {
+        this.componentCommunication.whichPanel = 'nodeInfo';
+        this.componentCommunication.nodeInfo = {
+          ownerName: target.getData('OwnerName'),
+          ownerFamilyName: target.getData('OwnerFamilyName'),
+          accountId: target.getId(),
+          accountType: target.getData('AccountType'),
+          sheba: target.getData('Sheba'),
+          cardId: target.getData('CardId'),
+          ownerId: target.getData('OwnerId'),
+          branchName: target.getData('BranchName'),
+          branchAddress: target.getData('BranchAddress'),
+          branchTelephone: target.getData('BranchTelephone'),
+        };
+      } else if (target != null && !target.isNode && button === 'left') {
+        this.componentCommunication.whichPanel = 'edgeInfo';
+        this.componentCommunication.edgeInfo = {
+          Id: target.getId(),
+          source: target.getSource().getId(),
+          target: target.getTarget().getId(),
+          type: target.getData('type'),
+          amount: target.getData('amount'),
+          date: target.getData('date'),
+        };
+      } else if ((target === null || !target.isNode) && button === 'left') {
+        this.componentCommunication.whichPanel = 'graphInfo';
+        this.componentCommunication.graphInfo = {
+          graphSize: this.randomOgma.ogma.getNodes().size,
+          edgeSize: this.randomOgma.ogma.getEdges().size,
+        };
       }
-    );
+    });
     this.randomOgma.ogma.events.onNodesSelected((evt) => {
       for (let edge of evt.nodes.getId()) {
         if (this.randomOgma.ogma.getNode(edge).isSelected())
-          this.randomOgma.ogma.getNode(edge).setAttributes({outerStroke:{color:"red"}});
+          this.randomOgma.ogma
+            .getNode(edge)
+            .setAttributes({ outerStroke: { color: 'red' } });
       }
     });
     this.randomOgma.ogma.events.onEdgesSelected((evt) => {
       for (let edge of evt.edges.getId()) {
         if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
-          this.randomOgma.ogma.getEdge(edge).getSource().setAttributes({outerStroke:null},{color:"black"},{innerStroke:null});
+          this.randomOgma.ogma
+            .getEdge(edge)
+            .getSource()
+            .setAttributes(
+              { outerStroke: null },
+              { color: 'black' },
+              { innerStroke: null }
+            );
         console.log(this.randomOgma.ogma.getEdge(edge).getSource());
       }
     });
@@ -139,15 +143,13 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           callback({ nodes, edges }) {
             nodes.setSelected(true);
             edges.setSelected(true);
-          }
+          },
         });
       }
       console.log(this.randomOgma.ogma.getSelectedNodes());
       console.log(this.randomOgma.ogma.getSelectedEdges());
-
     });
   }
-
 
   ngAfterContentInit() {
     this.randomOgma.ogma.setContainer(this.container.nativeElement);
@@ -162,5 +164,4 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
     this.componentCommunication.graphCreated = true;
     return this.runLayout();
   }
-
 }

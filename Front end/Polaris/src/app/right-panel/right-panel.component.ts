@@ -4,15 +4,10 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 @Component({
   selector: 'app-right-panel',
   templateUrl: './right-panel.component.html',
-  styleUrls: ['./right-panel.component.scss']
+  styleUrls: ['./right-panel.component.scss'],
 })
 export class RightPanelComponent implements OnInit {
+  constructor() {}
 
-
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

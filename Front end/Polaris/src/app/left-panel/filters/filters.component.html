@@ -1,61 +1,71 @@
 <div id="mySidenav2" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
+  <a
+    href="javascript:void(0)"
+    class="closebtn"
+    (click)="componentCommunication.whichLeftSideNav = 0"
+    >&times;</a
+  >
 
   <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال تاریخ
-        </mat-panel-title>
+        <mat-panel-title> اعمال تاریخ </mat-panel-title>
       </mat-expansion-panel-header>
-      <p style="text-align: right;">
+      <p style="text-align: right">
         <app-time-filter> </app-time-filter>
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال مقدار
-        </mat-panel-title>
+        <mat-panel-title> اعمال مقدار </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         <app-amount-filter></app-amount-filter>
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال نوع حساب
-        </mat-panel-title>
+        <mat-panel-title> اعمال نوع حساب </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         <app-accuount-type-filter></app-accuount-type-filter>
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال نام و نام خانوادگی
-        </mat-panel-title>
+        <mat-panel-title> اعمال نام و نام خانوادگی </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         <app-name-filter></app-name-filter>
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]"
+    >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال شعبه
-        </mat-panel-title>
+        <mat-panel-title> اعمال شعبه </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         <app-branch-filter></app-branch-filter>

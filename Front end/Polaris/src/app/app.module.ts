@@ -44,7 +44,7 @@ import { MaxFlowPanelComponent } from './left-panel/max-flow-panel/max-flow-pane
 import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.component';
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { ViewPanelComponent } from './right-panel/view-panel/view-panel.component';
 import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-info-box/graph-info-box.component';
 import { MessageService } from './services/message/message.service';
@@ -83,7 +83,7 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     RealTimeSearchBarComponent,
     EdgeCardComponent,
     NodeCardComponent,
-    EdgeCardComponent,
+    EdgeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +101,8 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     MatCheckboxModule,
     MatButtonModule,
     ScrollingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [
     OgmaHandlerService,
