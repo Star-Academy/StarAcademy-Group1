@@ -1,3 +1,4 @@
+import { DataOnScreenService } from './../../services/data-on-screen.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { OgmaHandlerService } from 'src/services/ogma-handler.service';
@@ -11,7 +12,7 @@ export class RealTimeSearchBarComponent implements OnInit {
 
 
   searchIcon = faSearch;
-  constructor(public ogmaProvider: OgmaHandlerService) { }
+  constructor(public ogmaProvider: OgmaHandlerService, public dataOnScreen: DataOnScreenService) { }
 
   @Output()
   public searched = new EventEmitter<string>();
@@ -21,9 +22,10 @@ export class RealTimeSearchBarComponent implements OnInit {
     // this.resultArr = this.ogmaProvider.ogma.getNodes().map((element) => {
     //       this.resultArr.push(element.getId());
     //   });
-    }
-    public checkForEnter(event: KeyboardEvent) {
-        this.searched.emit(this.value);
-    }
+  }
+  public checkForEnter(event: KeyboardEvent) {
+    this.dataOnScreen.nodeViewFirstInit = false;
+    this.searched.emit(this.value);
+  }
 
 }

@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './services/main-graph.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -111,6 +112,7 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     MessageService,
     EdgeService,
     GraphService,
+    GraphHandlerService,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],

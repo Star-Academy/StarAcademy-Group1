@@ -11,13 +11,13 @@ import { OgmaHandlerService } from './../../../../services/ogma-handler.service'
 })
 export class NodesViewPanelComponent implements OnInit {
 
-  public flag : boolean = true ;
-  public nodes  ;
+  public flag: boolean = true;
+  public nodes;
   public hidden = false;
   constructor(public componentCommunication: ComponentsCommunicationService, public ogmaProvider: OgmaHandlerService) { }
 
   ngOnInit(): void {
-    this.nodes = this.ogmaProvider.ogma.getNodes().getId() ;
+    this.nodes = this.ogmaProvider.ogma.getNodes().getId();
   }
 
 
@@ -28,15 +28,15 @@ export class NodesViewPanelComponent implements OnInit {
   public isSelectedNodeById(nodeId: string): boolean {
     return this.ogmaProvider.ogma.getNode(nodeId).isSelected();
   }
-  public updateResult(input : string) {
-    if(this.flag )
+  public updateResult(input: string) {
+    if (this.flag)
       this.nodes = this.ogmaProvider.ogma.getNodes().getId();
 
-   this.nodes = [];
+    this.nodes = [];
     this.ogmaProvider.ogma.getNodes().getId().forEach(element => {
-      if( element.indexOf(input)!=-1 || this.getNodeById(element).indexOf(input)!=-1 )
-          this.nodes.push(element);
+      if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
+        this.nodes.push(element);
     });
     console.log(this.ogmaProvider.ogma.getNodes().getId());
-}
+  }
 }

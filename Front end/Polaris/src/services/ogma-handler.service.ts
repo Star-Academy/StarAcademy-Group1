@@ -30,18 +30,11 @@ export class OgmaHandlerService {
   }
 
   public addNodeToSelected(id: string) {
-    // if (!this.selectedNodes.includes(id)) {
-    //   this.selectedNodes.push(id);
-    // }
     this.ogma.getNode(id).setSelected(true);
     console.log(this.ogma.getSelectedNodes());
   }
 
   public deleteNodeFromSelected(id: string) {
-    // const index = this.selectedNodes.indexOf(id, 0);
-    // if (index > -1) {
-    //   this.selectedNodes.splice(index, 1);
-    // }
     this.ogma.getNode(id).setSelected(false);
   }
 }
