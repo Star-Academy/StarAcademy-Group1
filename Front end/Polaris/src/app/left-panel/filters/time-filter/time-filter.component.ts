@@ -12,11 +12,11 @@ export class TimeFilterComponent implements OnInit {
   startDate: string;
   endDate: string;
 
-  constructor(public filterService: FilterService) {}
+  constructor(public filterService: FilterService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
   public changeChecked() {
-    console.log('change detected');
     this.filterService.startDate = this.startDate;
     this.filterService.endDate = this.endDate;
     this.filterService.startTime = this.startTime;
