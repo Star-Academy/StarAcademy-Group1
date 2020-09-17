@@ -46,10 +46,10 @@ export class GraphService {
     edgeFilter: string[] = [],
     nodePageIndex: number = -1,
     nodePageSize: number = -1,
-    nodeOrderBy: string = 'none',
+    nodeOrderBy: string = 'desc',
     edgePageIndex: number = -1,
     edgePageSize: number = -1,
-    edgeOrderBy: string = 'none'
+    edgeOrderBy: string = 'desc'
   ): Promise<JSON> {
 
     let url = `${this.baseAddress}/expansion/${nodeId}`;
@@ -89,8 +89,8 @@ export class GraphService {
     targetNodeId: string,
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
-    nodeOrderby: string = 'none',
-    edgeOrderby: string = 'none',
+    nodeOrderby: string = 'desc',
+    edgeOrderby: string = 'desc',
     nodePageIndex: number = -1,
     nodePageSize: number = -1,
     edgePageIndex: number = -1,
