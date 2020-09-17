@@ -1,7 +1,10 @@
 using System;
 using Nest;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Elastic.Filtering.Attributes;
+using Elastic.Exceptions;
+
 
 namespace Elastic.Filtering.Criteria
 {
@@ -10,10 +13,15 @@ namespace Elastic.Filtering.Criteria
     public class NumericNestCriteria : NestCriteria
     {
         private static OperatorToFunctionDict registry = GetRegistry<NumericNestCriteria>();
+        protected static readonly Regex ValuePattern = new Regex(
+            @"^[+-]?([1-9][0-9]*(\.[0-9]+)?)|(0\.[0-9]+)$",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase
+        );
 
         public NumericNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
-
+            if(ValuePattern.Match(value) != null)
+                throw new InvalidNestFilterException($"\"{value}\" is invalid for TextCriteria");
         }
 
         [NestOperator("gte")]
@@ -90,8 +98,8 @@ namespace Elastic.Filtering.Criteria
 
         public override QueryContainer Interpret()
         {
-            foreach(var item in registry)
-                Console.WriteLine(item.Key, item.Value);   
+            if(registry.ContainsKey(Operator))
+                throw new InvalidNestFilterException($"Operator: \"{Operator}\" is not registered in NumericCriteria");
             return registry[Operator].Invoke(null, Field, Value);
         }
     }
