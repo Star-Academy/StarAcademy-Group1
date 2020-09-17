@@ -45,7 +45,8 @@ namespace Elastic.Filtering.Criteria
         [NestOperator("sw")]
         public static QueryContainer StartsWith(string field, string value)
         {
-            return new PrefixQuery {
+            return new PrefixQuery
+            {
                 Field = field,
                 Value = value
             };
@@ -54,9 +55,20 @@ namespace Elastic.Filtering.Criteria
         [NestOperator("ew")]
         public static QueryContainer EndsWith(string field, string value)
         {
-            return new RegexpQuery {
+            return new RegexpQuery
+            {
                 Field = field,
                 Value = "*." + value
+            };
+        }
+
+        [NestOperator("cnt")]
+        public static QueryContainer Contains(string field, string value)
+        {
+            return new RegexpQuery
+            {
+                Field = field,
+                Value = "*." + value + "*."
             };
         }
 
