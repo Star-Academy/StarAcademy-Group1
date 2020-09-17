@@ -29,8 +29,8 @@ export class ComponentsCommunicationService {
   ]);
 
   public buttonTextMap = new Map([
-    ["expansion", "اکسپند کن"],
-    ["flow", "فلو رو ببین جون بابا"],
+    ["expansion", "اکسپند کن :-؟"],
+    ["flow", "محاسبه فلو :-؟"],
     ["path", "نمایش مسیر :-؟"]
   ]);
 }

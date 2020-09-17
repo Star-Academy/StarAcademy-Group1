@@ -24,16 +24,21 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendData() {
+  sendData(): void {
+    let filtersArray = this.filterService.getArray();
     switch (this.panel) {
       case "expansion":
+        // expand(filtersArray)
         break;
 
       case "path":
+        // path(sourceId, targetId, filtersArray)
         break;
 
       case "flow":
+        // flow(sourceId, targetId, filtersArray)
         break;
     }
   }
+
 }
