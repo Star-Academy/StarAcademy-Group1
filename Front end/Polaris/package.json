@@ -33,6 +33,7 @@
     "ng5-slider": "^1.2.4",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.5.5",
+    "sweetalert2": "^10.1.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

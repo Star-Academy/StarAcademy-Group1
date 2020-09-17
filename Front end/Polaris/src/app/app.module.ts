@@ -44,7 +44,7 @@ import { MaxFlowPanelComponent } from './left-panel/max-flow-panel/max-flow-pane
 import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.component';
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ViewPanelComponent } from './right-panel/view-panel/view-panel.component';
 import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-info-box/graph-info-box.component';
 import { MessageService } from './services/message/message.service';
@@ -53,7 +53,7 @@ import { GraphService } from './services/graph/graph.service';
 import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
 import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
