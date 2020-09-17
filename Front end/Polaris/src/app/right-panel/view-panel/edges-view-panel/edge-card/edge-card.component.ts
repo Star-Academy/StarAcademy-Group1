@@ -28,20 +28,15 @@ export class EdgeCardComponent implements OnInit {
     }
     public showInfo(){
       this.componentCommunication.whichPanel = "nodeInfo";
-        let node = this.ogmaProvider.ogma.getNode(this.edgeId)
-        this.componentCommunication.nodeInfo = {
-          ownerName: node.getData('OwnerName'),
-          ownerFamilyName: node.getData('OwnerFamilyName'),
-          accountId: node.getId(),
-          accountType: node.getData('AccountType'),
-          sheba: node.getData('Sheba'),
-          cardId: node.getData('CardId'),
-          ownerId: node.getData('OwnerId'),
-          branchName: node.getData('BranchName'),
-          branchAddress: node.getData('BranchAddress'),
-          branchTelephone: node.getData('BranchTelephone'),
+        let edge = this.ogmaProvider.ogma.getEdge(this.edgeId)
+        this.componentCommunication.edgeInfo = {
+          Id: edge.getId(),
+          source: edge.getSource().getId(),
+          target: edge.getTarget().getId(),
+          type: edge.getData('type'),
+          amount: edge.getData('amount'),
+          date: edge.getData('date')
         }
-        console.log( this.componentCommunication.whichPanel);
-      }
   }
+}
 
