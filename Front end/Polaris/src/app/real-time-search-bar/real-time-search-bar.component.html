@@ -1,6 +1,12 @@
 <div class="search-container-all">
-  <form  #formRef="ngForm">
-    <input type="text" placeholder="در بین نودها جست و جو کنید" name="real-timesearch-bar" [(ngModel)]="value" (keyup)="checkForEnter($event)" />
-      <fa-icon [icon]="searchIcon"></fa-icon>
+  <form #formRef="ngForm">
+    <input
+      type="text"
+      placeholder="در بین نودها جست و جو کنید"
+      name="real-timesearch-bar"
+      [(ngModel)]="value"
+      (keyup)="checkForEnter($event)"
+    />
+    <fa-icon [icon]="searchIcon"></fa-icon>
   </form>
 </div>

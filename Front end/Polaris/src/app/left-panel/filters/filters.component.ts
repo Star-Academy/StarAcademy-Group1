@@ -5,7 +5,7 @@ import { FilterService } from 'src/services/filter.service';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss']
+  styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
   @Input()
@@ -16,8 +16,7 @@ export class FiltersComponent implements OnInit {
   constructor(
     public componentCommunication: ComponentsCommunicationService,
     public filterService: FilterService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
