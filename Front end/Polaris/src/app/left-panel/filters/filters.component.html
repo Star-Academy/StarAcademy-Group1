@@ -63,6 +63,17 @@
     </mat-expansion-panel>
   </mat-accordion>
 
-  <br><br><br>
-  <button mat-raised-button color="primary">اعمال فیلترها</button>
+  <br>
+  <form class="example-form" *ngIf="panel !== 'expansion'" style="background-color: darkcyan; border-radius: 10px;">
+    <mat-form-field class="example-full-width">
+      <mat-label>رأس مبدا</mat-label>
+      <input matInput name="sourceId" [(ngModel)]="sourceId">
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <mat-label>رأس مقصد</mat-label>
+      <input matInput name="targetId" [(ngModel)]="targetId">
+    </mat-form-field>
+  </form>
+  <br><br>
+  <button mat-raised-button color="primary" (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
 </div>

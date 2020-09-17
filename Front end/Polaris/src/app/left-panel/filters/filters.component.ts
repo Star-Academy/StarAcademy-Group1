@@ -11,6 +11,9 @@ export class FiltersComponent implements OnInit {
   @Input()
   panel: string;
 
+  public sourceId: number;
+  public targetId: number;
+
   public hidden = false;
   panelOpenState = false;
   constructor(
@@ -19,5 +22,18 @@ export class FiltersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  sendData() {
+    switch (this.panel) {
+      case "expansion":
+        break;
+
+      case "path":
+        break;
+
+      case "flow":
+        break;
+    }
   }
 }
