@@ -25,6 +25,7 @@ export class RealTimeSearchBarComponent implements OnInit {
   }
   public checkForEnter(event: KeyboardEvent) {
     this.dataOnScreen.nodeViewFirstInit = false;
+    this.dataOnScreen.edgeViewFirstInit = false;
     this.searched.emit(this.value);
   }
 

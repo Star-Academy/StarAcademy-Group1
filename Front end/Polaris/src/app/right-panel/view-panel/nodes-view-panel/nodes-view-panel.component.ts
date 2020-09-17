@@ -1,3 +1,4 @@
+import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 
 import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class NodesViewPanelComponent implements OnInit {
   public flag: boolean = true;
   public nodes;
   public hidden = false;
-  constructor(public componentCommunication: ComponentsCommunicationService, public ogmaProvider: OgmaHandlerService) { }
+  constructor(public componentCommunication: ComponentsCommunicationService, public ogmaProvider: OgmaHandlerService, public dataOnScreen: DataOnScreenService) { }
 
   ngOnInit(): void {
     this.nodes = this.ogmaProvider.ogma.getNodes().getId();

@@ -3,7 +3,12 @@
     <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
   </span>
   <span *ngIf="componentCommunication.graphCreated">
-    <app-node-card *ngFor="let edge of edges" [nodeId]="edge"
-     [isSelected]="isEdgeSelected(edge)"></app-node-card>
+    <span *ngIf="!dataOnScreen.edgeViewFirstInit">
+      <app-node-card *ngFor="let edge of edges" [nodeId]="edge" [isSelected]="isEdgeSelected(edge)"></app-node-card>
+    </span>
+    <span *ngIf="dataOnScreen.edgeViewFirstInit">
+      <app-node-card *ngFor="let edge of ogmaProvider.ogma.getEdges().getId()" [nodeId]="edge"
+        [isSelected]="isEdgeSelected(edge)"></app-node-card>
+    </span>
   </span>
 </div>
