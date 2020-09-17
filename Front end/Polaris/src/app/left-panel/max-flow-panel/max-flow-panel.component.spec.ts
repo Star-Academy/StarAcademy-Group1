@@ -8,9 +8,8 @@ describe('MaxFlowPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MaxFlowPanelComponent ]
-    })
-    .compileComponents();
+      declarations: [MaxFlowPanelComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

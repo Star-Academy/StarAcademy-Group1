@@ -31,10 +31,9 @@ width: 100%;
 }
 
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 20px;
 }
-
 #first-tab {
   margin-top: 200px;
   top: 200px;
@@ -43,14 +42,12 @@ width: 100%;
 .selection-search-bar-container {
   margin-bottom: 10px;
   text-align: center;
-
 }
 
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
   }
-
   .sidenav a {
     font-size: 18px;
   }

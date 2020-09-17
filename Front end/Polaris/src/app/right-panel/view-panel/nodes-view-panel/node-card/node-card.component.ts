@@ -1,5 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
+import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class NodeCardComponent implements OnInit {
   @Input()
   public isSelected: boolean;
 
-  constructor(public ogmaProvider: OgmaHandlerService) { }
+  constructor(public ogmaProvider: OgmaHandlerService , public componentCommunication : ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +33,23 @@ export class NodeCardComponent implements OnInit {
       }
 
     }
+  }
+  public showInfo(){
+  this.componentCommunication.whichPanel = "nodeInfo";
+    let node = this.ogmaProvider.ogma.getNode(this.nodeId)
+    this.componentCommunication.nodeInfo = {
+      ownerName: node.getData('OwnerName'),
+      ownerFamilyName: node.getData('OwnerFamilyName'),
+      accountId: node.getId(),
+      accountType: node.getData('AccountType'),
+      sheba: node.getData('Sheba'),
+      cardId: node.getData('CardId'),
+      ownerId: node.getData('OwnerId'),
+      branchName: node.getData('BranchName'),
+      branchAddress: node.getData('BranchAddress'),
+      branchTelephone: node.getData('BranchTelephone'),
+    }
+    console.log( this.componentCommunication.whichPanel);
   }
 
 }

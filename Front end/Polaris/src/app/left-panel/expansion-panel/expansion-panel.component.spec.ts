@@ -8,9 +8,8 @@ describe('ExpansionPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExpansionPanelComponent ]
-    })
-    .compileComponents();
+      declarations: [ExpansionPanelComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
