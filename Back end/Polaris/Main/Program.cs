@@ -23,13 +23,15 @@ namespace Main
             };
 
             var mapping = new Dictionary<string, string>{
-                {"age", "numeric"},
-                {"count", "numeric"}
+                {"age", "numeric"}
             };
 
             var filter = new NestFilter(queries, mapping);
+            var interpreted = filter.Interpret();
+            Console.WriteLine(interpreted.GetType());
+            Console.WriteLine(JsonSerializer.Serialize(interpreted));
 
-            Console.WriteLine(JsonSerializer.Serialize((NumericRangeQuery)filter.Interpret()));
+            // var json = elasticClient.RequestResponseSerializer.SerializeToString(request);
         }
     }
 }

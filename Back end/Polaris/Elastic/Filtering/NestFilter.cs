@@ -46,7 +46,7 @@ namespace Elastic.Filtering
             var selectedField = match.Groups["field"].Value;
             string @operator;
             string value;
-
+            
             switch (mapping[selectedField])
             {
                 case "text":
