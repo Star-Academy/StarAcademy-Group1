@@ -53,10 +53,12 @@ namespace Elastic.Filtering
                     @operator = match.Groups["operator"].Value;
                     value = match.Groups["value"].Value;
                     return new TextNestCriteria(selectedField, @operator, value);
+
                 case "numeric":
                     @operator = match.Groups["operator"].Value;
                     value = match.Groups["value"].Value;
                     return new NumericNestCriteria(selectedField, @operator, value);
+                    
                 default:
                     throw new InvalidNestFilterException($"Field: \"{selectedField}\" not in valid fields: [{mapping.Keys}]");
             }
