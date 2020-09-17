@@ -1,10 +1,7 @@
 .sidenav {
-  height: 65%;
-  width: 16%; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  height: 100%;
+  width: 100%; /* 0 width - change this with JavaScript */
   z-index: 0; /* Stay on top */
-  bottom: 0; /* Stay at the top */
-  right: 0;
   background-color: rgb(241, 170, 170); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */

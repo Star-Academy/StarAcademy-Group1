@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewPanelComponent implements OnInit {
 
+  public backColor: string = 'black';
+  public mainColor: string = 'white';
   constructor() { }
 
   ngOnInit(): void {
