@@ -1,7 +1,6 @@
 <div class="selectCheckBox">
   <section class="example-section">
-    <span class="nodePersonStyle">{{nodeId}} {{nodePerson}}</span>
-    <mat-checkbox class="example-margin" [checked]="isSelected" (change)="changeChecked($event.checked)">
-    </mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="isSelected" (change)="changeChecked($event.checked)"></mat-checkbox>
+    <span class="nodePersonStyle" (click)="showInfo()">{{nodePerson}} </span>
   </section>
 </div>
