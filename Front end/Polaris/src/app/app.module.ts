@@ -53,6 +53,7 @@ import { GraphService } from './services/graph/graph.service';
 import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
 import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     MatButtonModule,
     ScrollingModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
   ],
   providers: [
     OgmaHandlerService,
