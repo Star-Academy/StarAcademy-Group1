@@ -11,4 +11,8 @@ export class FilterService {
   public accountTypes: string[] = [];
   public name: string;
   public branches: string[] = [];
+
+  public getArray(): string[] {
+    return [];
+  }
 }

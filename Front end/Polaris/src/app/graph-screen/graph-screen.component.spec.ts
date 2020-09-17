@@ -8,9 +8,8 @@ describe('GraphScreenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphScreenComponent ]
-    })
-    .compileComponents();
+      declarations: [GraphScreenComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

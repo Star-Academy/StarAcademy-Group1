@@ -8,9 +8,8 @@ describe('AccuountTypeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccuountTypeComponent ]
-    })
-    .compileComponents();
+      declarations: [AccuountTypeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
