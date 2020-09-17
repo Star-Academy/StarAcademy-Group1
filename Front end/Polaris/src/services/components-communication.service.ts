@@ -17,14 +17,14 @@ export class ComponentsCommunicationService {
   }
 
   public buttonTextMap = new Map([
-    ["expansion", "اکسپند کن :-؟"],
+    ["expansion", "بسط بده"],
     ["flow", "محاسبه فلو :-؟"],
-    ["path", "نمایش مسیر :-؟"]
+    ["path", "نمایش مسیرها"]
   ]);
 
   public filtersToShowMap = new Map([
     // Account, Amount, Branch, Name, Time
-    ["expansion", [true, true, true, true, true]],
+    ["expansion", [false, true, false, true, true]],
     ["flow", [true, true, true, true, true]],
     ["path", [true, true, true, true, true]]
   ]);

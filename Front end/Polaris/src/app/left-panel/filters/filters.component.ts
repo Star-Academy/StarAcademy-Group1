@@ -14,6 +14,7 @@ export class FiltersComponent implements OnInit {
 
   public sourceId: number;
   public targetId: number;
+  public maxLength: number; // default = 5
 
   public hidden = false;
   panelOpenState = false;
@@ -39,7 +40,7 @@ export class FiltersComponent implements OnInit {
         break;
 
       case "path":
-        // path(sourceId, targetId, filtersArray)
+        // path(sourceId, targetId, maxLength, filtersArray)
         break;
 
       case "flow":

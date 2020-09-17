@@ -83,6 +83,10 @@
       <mat-label>رأس مقصد</mat-label>
       <input matInput name="targetId" [(ngModel)]="targetId">
     </mat-form-field>
+    <mat-form-field class="example-full-width" *ngIf="panel === 'path'">
+      <mat-label>حداکثر طول مسیر</mat-label>
+      <input matInput name="maxLength" [(ngModel)]="maxLength" placeholder="5">
+    </mat-form-field>
   </form>
   <br><br>
   <button mat-raised-button color="primary" (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
