@@ -25,7 +25,7 @@ export class FiltersComponent implements OnInit {
   }
 
   sendData(): void {
-    let filtersArray = this.filterService.getArray();
+    let filtersArray = this.filterService.getFilter();
     switch (this.panel) {
       case "expansion":
         // expand(filtersArray)

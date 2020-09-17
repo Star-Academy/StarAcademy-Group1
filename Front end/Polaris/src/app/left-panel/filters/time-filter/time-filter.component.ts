@@ -7,8 +7,8 @@ import { FilterService } from 'src/services/filter.service';
   styleUrls: ['./time-filter.component.scss'],
 })
 export class TimeFilterComponent implements OnInit {
-  startClock: string;
-  endClock: string;
+  startTime: string;
+  endTime: string;
   startDate: string;
   endDate: string;
 
@@ -19,7 +19,7 @@ export class TimeFilterComponent implements OnInit {
     console.log('change detected');
     this.filterService.startDate = this.startDate;
     this.filterService.endDate = this.endDate;
-    this.filterService.startClock = this.startClock;
-    this.filterService.endClock = this.endClock;
+    this.filterService.startTime = this.startTime;
+    this.filterService.endTime = this.endTime;
   }
 }
