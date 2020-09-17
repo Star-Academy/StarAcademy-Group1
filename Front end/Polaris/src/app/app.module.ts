@@ -51,7 +51,7 @@ import { MessageService } from './services/message/message.service';
 import { EdgeService } from './services/edge/edge.service';
 import { GraphService } from './services/graph/graph.service';
 import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
-import { EdgCardComponent } from './right-panel/view-panel/edges-view-panel/edg-card/edg-card.component';
+import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
 
 @NgModule({
@@ -81,8 +81,9 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     EdgesViewPanelComponent,
     GraphInfoBoxComponent,
     RealTimeSearchBarComponent,
-    EdgCardComponent,
+    EdgeCardComponent,
     NodeCardComponent,
+    EdgeCardComponent,
   ],
   imports: [
     BrowserModule,

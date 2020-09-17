@@ -1,1 +1,9 @@
-<p>edges-view-panel works!</p>
+<div id="mySidenav" class="sidenav" [hidden]="hidden">
+  <span class="selection-search-bar-container">
+    <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
+  </span>
+  <span *ngIf="componentCommunication.graphCreated">
+    <app-node-card *ngFor="let edge of edges" [nodeId]="edge"
+     [isSelected]="isEdgeSelected(edge)"></app-node-card>
+  </span>
+</div>

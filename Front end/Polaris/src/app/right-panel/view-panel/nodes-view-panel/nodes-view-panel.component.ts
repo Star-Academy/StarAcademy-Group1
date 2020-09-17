@@ -25,7 +25,7 @@ export class NodesViewPanelComponent implements OnInit {
     return this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerName') + " " + this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerFamilyName');
   }
 
-  public isSelectedNodeById(nodeId: string): boolean {
+  public isNodeSelected(nodeId: string): boolean {
     return this.ogmaProvider.ogma.getNode(nodeId).isSelected();
   }
   public updateResult(input: string) {

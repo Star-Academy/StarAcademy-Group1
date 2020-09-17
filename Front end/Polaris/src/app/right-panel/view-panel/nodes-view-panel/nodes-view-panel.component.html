@@ -4,6 +4,6 @@
   </span>
   <span *ngIf="componentCommunication.graphCreated">
     <app-node-card *ngFor="let node of nodes" [nodeId]="node"
-      [nodePerson]="getNodeById(node)" [isSelected]="isSelectedNodeById(node)"></app-node-card>
+      [nodePerson]="getNodeById(node)" [isSelected]="isNodeSelected(node)"></app-node-card>
   </span>
 </div>
