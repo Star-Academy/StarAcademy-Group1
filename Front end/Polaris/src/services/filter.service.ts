@@ -8,7 +8,7 @@ export class FilterService {
   public endClock: string;
   public minAmount: number;
   public maxAmount: number;
-  public accountTypes: string[];
+  public accountTypes: string[] = [];
   public name: string;
-  public branches: string[];
+  public branches: string[] = [];
 }

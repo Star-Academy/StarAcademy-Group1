@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { FilterService } from 'src/services/filter.service';
 
-//todo : engar yekhorde gir dare
 @Component({
   selector: 'app-amount-filter',
   templateUrl: './amount-filter.component.html',
@@ -16,13 +15,13 @@ export class AmountFilterComponent implements OnInit {
     ceil: 25000000000,
     step: 10
   };
-  constructor(public filterService : FilterService) { }
+  constructor(public filterService: FilterService) { }
 
   ngOnInit(): void {
   }
-  public changeChecked(){
-    this.filterService.maxAmount = this.maxValue ;
-    this.filterService.minAmount = this.minValue ;
+  public changeChecked() {
+    this.filterService.maxAmount = this.maxValue;
+    this.filterService.minAmount = this.minValue;
   }
 
 }
