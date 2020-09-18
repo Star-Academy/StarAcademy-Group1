@@ -8,9 +8,8 @@ describe('RealTimeSearchBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RealTimeSearchBarComponent ]
-    })
-    .compileComponents();
+      declarations: [RealTimeSearchBarComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

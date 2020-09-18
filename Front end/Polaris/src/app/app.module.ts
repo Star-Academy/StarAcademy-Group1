@@ -10,10 +10,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import {
+  MatFormFieldModule,
+  MatFormFieldControl,
+} from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
+import { TooltipComponent } from './graph-screen/tooltip/tooltip.component';
 import { OgmaHandlerService } from '../services/ogma-handler.service';
 import { ComponentsCommunicationService } from '../services/components-communication.service';
 import { FormsModule } from '@angular/forms';
@@ -35,8 +38,15 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
 import { DataOnScreenService } from './../services/data-on-screen.service';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material.persian-date.adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import {
+  MaterialPersianDateAdapter,
+  PERSIAN_DATE_FORMATS,
+} from './shared/material.persian-date.adapter';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './left-panel/filters/filters.component';
 import { ExpansionPanelComponent } from './left-panel/expansion-panel/expansion-panel.component';
@@ -86,7 +96,7 @@ import {MatCardModule} from '@angular/material/card';
     RealTimeSearchBarComponent,
     EdgeCardComponent,
     NodeCardComponent,
-    EdgeCardComponent
+    EdgeCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,9 +130,13 @@ import {MatCardModule} from '@angular/material/card';
     EdgeService,
     GraphService,
     GraphHandlerService,
-    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
+    {
+      provide: DateAdapter,
+      useClass: MaterialPersianDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
