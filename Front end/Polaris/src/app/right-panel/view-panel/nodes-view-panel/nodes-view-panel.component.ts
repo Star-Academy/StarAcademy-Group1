@@ -1,9 +1,8 @@
+import { GraphHandlerService } from './../../../services/main-graph.service';
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 
-import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-import { OgmaHandlerService } from './../../../../services/ogma-handler.service';
 
 @Component({
   selector: 'app-nodes-view-panel',
@@ -15,18 +14,17 @@ export class NodesViewPanelComponent implements OnInit {
   public hidden = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public getNodeById(nodeId: string): string {
     return (
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerName') +
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerName') +
       ' ' +
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerFamilyName')
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerFamilyName')
     );
   }
 
@@ -40,6 +38,5 @@ export class NodesViewPanelComponent implements OnInit {
       if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
           this.nodes.push(element);
       });
-    console.log(this.ogmaProvider.ogma.getNodes().getId());
   }
 }

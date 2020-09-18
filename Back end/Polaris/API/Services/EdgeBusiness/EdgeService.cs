@@ -55,17 +55,10 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
         {
-            var queryContainer = (QueryContainer)new MultiMatchQuery
-            {
-                Fields = new string[] { "source", "target" },
-                Query = id as string
-            };
-            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
-                queryContainer,
-                _edgeElasticIndexName,
-                pagination
-            );
-            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            var result = new List<Edge<TDataModel, TTypeDataId, TTypeSideId>>();
+            result.AddRange(GetEdgesBySourceId(id, pagination));
+            result.AddRange(GetEdgesByTargetId(id, pagination));
+            return result;
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null)
@@ -73,8 +66,9 @@ namespace API.Services.EdgeBusiness
             var queryContainer = new MatchQuery
             {
                 Field = "source", // TODO: check toString()
-                Query = id as string
+                Query = id.ToString()
             };
+            System.Console.WriteLine("****" + System.Text.Json.JsonSerializer.Serialize(queryContainer));
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,
