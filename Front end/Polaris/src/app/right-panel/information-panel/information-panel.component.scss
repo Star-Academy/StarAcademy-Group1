@@ -1,5 +1,12 @@
+$bordercolor: blue;
+
 .info-container {
-  width: 100%;
-  height: auto;
-  background-color: blue;
+  width: auto;
+  height: 300px;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: $bordercolor;
+  border-color: $bordercolor;
+  margin: 10px;
+  font-size: 30px;
 }
