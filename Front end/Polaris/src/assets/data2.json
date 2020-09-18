@@ -16,7 +16,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "blue",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -36,7 +36,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "purple",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -56,7 +56,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "pink",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -76,7 +76,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "purple",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -96,7 +96,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "blue",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -116,7 +116,7 @@
       },
       "attributes": {
         "shape": "circle",
-        "color": "blue",
+        "color": "gray",
         "radius": 8
       }
     },
@@ -136,7 +136,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -156,7 +156,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "purple",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -176,7 +176,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "pink",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -196,7 +196,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "purple",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -216,7 +216,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -236,7 +236,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -256,7 +256,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -276,7 +276,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "purple",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -296,7 +296,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "pink",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -316,7 +316,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "purple",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -336,7 +336,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -356,7 +356,7 @@
         },
         "attributes": {
           "shape": "circle",
-          "color": "blue",
+          "color": "gray",
           "radius": 8
         }
       },
@@ -376,7 +376,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "blue",
+            "color": "gray",
             "radius": 8
           }
         },
@@ -396,7 +396,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "purple",
+            "color": "gray",
             "radius": 8
           }
         },
@@ -416,7 +416,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "pink",
+            "color": "gray",
             "radius": 8
           }
         },
@@ -436,7 +436,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "purple",
+            "color": "gray",
             "radius": 8
           }
         },
@@ -456,7 +456,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "blue",
+            "color": "gray",
             "radius": 8
           }
         },
@@ -476,7 +476,7 @@
           },
           "attributes": {
             "shape": "circle",
-            "color": "blue",
+            "color": "gray",
             "radius": 8
           }
         }
