@@ -1,6 +1,12 @@
 <div class="search-container-all">
   <form #formRef="ngForm">
-    <input class="input-style" type="text" placeholder="find node..." name="real-timesearch-bar" [(ngModel)]="value"
-      (keyup)="checkForEnter($event)" />
+    <input
+      class="input-style"
+      type="text"
+      placeholder="find node..."
+      name="real-timesearch-bar"
+      [(ngModel)]="value"
+      (keyup)="checkForEnter($event)"
+    />
   </form>
 </div>

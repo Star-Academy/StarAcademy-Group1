@@ -4,14 +4,10 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 @Component({
   selector: 'app-information-panel',
   templateUrl: './information-panel.component.html',
-  styleUrls: ['./information-panel.component.scss']
+  styleUrls: ['./information-panel.component.scss'],
 })
 export class InformationPanelComponent implements OnInit {
+  constructor(public componentCommunication: ComponentsCommunicationService) {}
 
-  constructor(public componentCommunication: ComponentsCommunicationService) {
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

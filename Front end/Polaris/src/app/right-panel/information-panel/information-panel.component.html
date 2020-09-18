@@ -1,5 +1,14 @@
 <div class="info-container">
-  <app-node-info-box class="info-panel-style" *ngIf="componentCommunication.whichPanel === 'nodeInfo'"></app-node-info-box>
-  <app-edge-info-box class="info-panel-style" *ngIf="componentCommunication.whichPanel === 'edgeInfo'"></app-edge-info-box>
-  <app-graph-info-box class="info-panel-style" *ngIf="componentCommunication.whichPanel === 'graphInfo'"></app-graph-info-box>
+  <app-node-info-box
+    class="info-panel-style"
+    *ngIf="componentCommunication.whichPanel === 'nodeInfo'"
+  ></app-node-info-box>
+  <app-edge-info-box
+    class="info-panel-style"
+    *ngIf="componentCommunication.whichPanel === 'edgeInfo'"
+  ></app-edge-info-box>
+  <app-graph-info-box
+    class="info-panel-style"
+    *ngIf="componentCommunication.whichPanel === 'graphInfo'"
+  ></app-graph-info-box>
 </div>
