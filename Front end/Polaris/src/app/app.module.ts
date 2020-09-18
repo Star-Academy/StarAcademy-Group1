@@ -66,6 +66,7 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PathCardComponent } from './left-panel/paths-panel/path-card/path-card.component';
 import {MatCardModule} from '@angular/material/card';
+import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +98,7 @@ import {MatCardModule} from '@angular/material/card';
     EdgeCardComponent,
     NodeCardComponent,
     EdgeCardComponent,
+    AddNodePanelComponent,
   ],
   imports: [
     BrowserModule,

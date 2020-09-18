@@ -1,8 +1,8 @@
+import { GraphHandlerService } from './../../../services/main-graph.service';
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-import { OgmaHandlerService } from './../../../../services/ogma-handler.service';
 
 @Component({
   selector: 'app-edges-view-panel',
@@ -15,7 +15,7 @@ export class EdgesViewPanelComponent implements OnInit {
   public hidden = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 
