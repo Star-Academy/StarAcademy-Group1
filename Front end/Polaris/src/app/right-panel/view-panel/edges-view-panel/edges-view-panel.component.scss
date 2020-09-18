@@ -1,10 +1,20 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
 .sidenav {
   height: 100%;
-  width: 100%; /* 0 width - change this with JavaScript */
+  width: auto; /* 0 width - change this with JavaScript */
   z-index: 0; /* Stay on top */
-  background-color: rgb(241, 170, 170); /* Black*/
+  background-color: $third; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: $third;
+  padding-top: 20px;
+  margin: 15px;
 }
 
 .sidenav a {
@@ -39,6 +49,7 @@
 
 .selection-search-bar-container {
   margin-bottom: 10px;
+  margin-top: 10px;
   text-align: center;
 }
 

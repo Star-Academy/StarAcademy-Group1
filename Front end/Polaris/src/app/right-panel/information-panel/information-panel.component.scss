@@ -1,12 +1,20 @@
-$bordercolor: blue;
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
 
 .info-container {
   width: auto;
-  height: 300px;
+  height: auto;
   border-style: solid;
   border-radius: 10px;
-  background-color: $bordercolor;
-  border-color: $bordercolor;
+  background-color: $first;
+  border-color: $first;
   margin: 10px;
-  font-size: 30px;
+  font-size: 16;
+  text-align: center;
+}
+.test{
+  margin: 5px;
 }
