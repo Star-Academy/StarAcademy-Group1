@@ -55,11 +55,12 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
         {
-            var queryContainer = (QueryContainer)new MultiMatchQuery
+            var myList = new List<QueryContainer>{new MatchQuery{Field = "target", Query = id as string}, new MatchQuery{Field = "source", Query = id as string}};
+            var queryContainer = (QueryContainer)new BoolQuery
             {
-                Fields = new string[] { "source", "target" },
-                Query = id as string
+                Must = myList
             };
+            
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,
