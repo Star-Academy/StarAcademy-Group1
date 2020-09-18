@@ -38,15 +38,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
 import { DataOnScreenService } from './../services/data-on-screen.service';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-import {
-  MaterialPersianDateAdapter,
-  PERSIAN_DATE_FORMATS,
-} from './shared/material.persian-date.adapter';
+import {DateAdapter,MAT_DATE_FORMATS,MAT_DATE_LOCALE,} from '@angular/material/core';
+import {MaterialPersianDateAdapter,PERSIAN_DATE_FORMATS} from './shared/material.persian-date.adapter';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './left-panel/filters/filters.component';
 import { ExpansionPanelComponent } from './left-panel/expansion-panel/expansion-panel.component';
@@ -65,7 +58,8 @@ import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edg
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PathCardComponent } from './left-panel/paths-panel/path-card/path-card.component';
-import {MatCardModule} from '@angular/material/card';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {ConstValuesService} from './../services/const-values.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,7 +111,7 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     MatTabsModule,
     MatTooltipModule,
-    MatCardModule
+    MatButtonToggleModule
   ],
   providers: [
     OgmaHandlerService,
@@ -130,6 +124,7 @@ import {MatCardModule} from '@angular/material/card';
     EdgeService,
     GraphService,
     GraphHandlerService,
+    ConstValuesService,
     {
       provide: DateAdapter,
       useClass: MaterialPersianDateAdapter,

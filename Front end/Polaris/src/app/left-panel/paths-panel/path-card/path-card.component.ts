@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ConstValuesService } from 'src/services/const-values.service';
 import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
@@ -15,39 +16,39 @@ export class PathCardComponent implements OnInit {
   edgeIds : string[]=[];
 
   public amount: number = 0;
-  public shouldShow : boolean = false;
-  constructor(public ogmaHandler: OgmaHandlerService) {  }
+  public show : boolean = true;
+  constructor(public ogmaHandler: OgmaHandlerService , public constValues : ConstValuesService) {  }
 
   ngOnInit(): void {
     // this.findAmount();
   }
 
   public checkChange(){
+    this.show =!this.show ;
     this.changeAppreanceOfEdges();
     this.changeAppreanceOfNodes();
+    console.log("helloooo");
+
   }
   public changeAppreanceOfEdges(){
-    console.log("helooo");
-    if(this.shouldShow)
+
     for(let edgeId of this.edgeIds){
-      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes({color:"black"});
-    }
-    else
-    for(let edgeId of this.edgeIds){
-      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes({color:"gray"});
-    }
+
+      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes(
+        {color : function(edge){return this.show ? this.constValues.inPathEdgeColor : this.constValues.standardEdgeColor }});
+
+   }
   }
   public changeAppreanceOfNodes(){
-    for(let edgeId of this.edgeIds){
-      this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes({color:"black"});
-      this.ogmaHandler.ogma.getEdge(edgeId).getTarget().setAttributes({color:"black"});
-    }
-    else
-      for(let edgeId of this.edgeIds){
-        this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes({color:"gray"});
-        this.ogmaHandler.ogma.getEdge(edgeId).getTarget().setAttributes({color:"gray"});
-    }
-    this.shouldShow = !this.shouldShow ;
 
-}
+    for(let edgeId of this.edgeIds){
+
+      this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes(
+        {color : function(node){return this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor }});
+
+      this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes(
+         {color : function(node){return this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor }});
+
+    }
+  }
 }
