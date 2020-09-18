@@ -42,8 +42,8 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         this.hoveredContent = {
           id: target.getId(),
           accountId: target.getId(),
-          name: target.getData('ownerName'),
-          familyName: target.getData('ownerFamilyName'),
+          name: target.getData('OwnerName'),
+          familyName: target.getData('OwnerFamilyName'),
         };
         this.hoveredPosition = { x, y: y + 20 };
       }
@@ -72,7 +72,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target != null && target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'nodeInfo';
         this.componentCommunication.nodeInfo = {
-          ownerName: target.getData('ownerName'),
+          ownerName: target.getData('OwnerName'),
           ownerFamilyName: target.getData('OwnerFamilyName'),
           accountId: target.getId(),
           accountType: target.getData('AccountType'),
