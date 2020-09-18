@@ -1,21 +1,15 @@
 <div id="mySidenav" class="sidenav" [hidden]="hidden">
   <span class="selection-search-bar-container">
-    <app-real-time-search-bar
-      (searched)="updateResult($event)"
-    ></app-real-time-search-bar>
+    <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
   </span>
   <span *ngIf="componentCommunication.graphCreated">
     <span *ngIf="!dataOnScreen.nodeViewFirstInit">
-      <app-node-card
-        *ngFor="let node of nodes"
-        [nodeId]="node"
-        [nodePerson]="getNodeById(node)"
-        [isSelected]="isNodeSelected(node)"
+      <app-node-card *ngFor="let node of nodes" [nodeId]="node"[nodePerson]="getNodeById(node)"[isSelected]="isNodeSelected(node)"
       ></app-node-card>
     </span>
     <span *ngIf="dataOnScreen.nodeViewFirstInit">
       <app-node-card
-        *ngFor="let node of ogmaProvider.ogma.getNodes().getId()"
+        *ngFor="let node of ogmaProvider.ogma.getEdges().getId()"
         [nodeId]="node"
         [nodePerson]="getNodeById(node)"
         [isSelected]="isNodeSelected(node)"

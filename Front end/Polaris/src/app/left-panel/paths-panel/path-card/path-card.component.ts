@@ -27,6 +27,7 @@ export class PathCardComponent implements OnInit {
     this.changeAppreanceOfNodes();
   }
   public changeAppreanceOfEdges(){
+    console.log("helooo");
     if(this.shouldShow)
     for(let edgeId of this.edgeIds){
       this.ogmaHandler.ogma.getEdge(edgeId).setAttributes({color:"black"});
@@ -37,7 +38,6 @@ export class PathCardComponent implements OnInit {
     }
   }
   public changeAppreanceOfNodes(){
-    if(this.shouldShow)
     for(let edgeId of this.edgeIds){
       this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes({color:"black"});
       this.ogmaHandler.ogma.getEdge(edgeId).getTarget().setAttributes({color:"black"});

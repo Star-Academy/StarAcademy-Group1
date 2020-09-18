@@ -1,4 +1,3 @@
-import { GraphHandlerService } from './../services/main-graph.service';
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
 import { OgmaHandlerService } from '../../services/ogma-handler.service';
@@ -26,12 +25,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: GraphHandlerService,
+    private randomOgma: OgmaHandlerService,
     private componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
-    this.randomOgma.initOgma({
+    this.randomOgma.initConfig({
       graph: initialGraph,
       options: {
         backgroundColor: 'rgb(240, 240, 240)',
@@ -41,7 +40,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target.isNode) {
         this.hoveredContent = {
           id: target.getId(),
-          accountId: target.getId(),
+          accountId: target.getData('AccountID'),
           name: target.getData('OwnerName'),
           familyName: target.getData('OwnerFamilyName'),
         };
@@ -100,35 +99,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           edgeSize: this.randomOgma.ogma.getEdges().size,
         };
       }
-    });
-    // this.randomOgma.ogma.events.onNodesSelected((evt) => {
-
-    // });
-    // this.randomOgma.ogma.events.onEdgesSelected((evt) => {
-    //   for (let edge of evt.edges.getId()) {
-    //     if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
-    //       this.randomOgma.ogma
-    //         .getEdge(edge)
-    //         .getSource()
-    //         .setAttributes(
-    //           { outerStroke: null },
-    //           { color: 'black' },
-    //           { innerStroke: null }
-    //         );
-    //     console.log(this.randomOgma.ogma.getEdge(edge).getSource());
-    //   }
-    // });
-
-    this.randomOgma.ogma.events.onNodesUnselected(() => {
-      //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
-      //     if (this.randomOgma.selectedNodes.includes(element)) {
-      //       const index = this.randomOgma.selectedNodes.indexOf(element, 0);
-      //       if (index > -1) {
-      //         this.randomOgma.selectedNodes.splice(index, 1);
-      //       }
-      //     }
-      //   });
-      // console.log(this.randomOgma.ogma.getSelectedNodes());
     });
     this.randomOgma.ogma.events.onDragStart(() => {
       if (this.randomOgma.ogma.keyboard.isKeyPressed('ctrl')) {
