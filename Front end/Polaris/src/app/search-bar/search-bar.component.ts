@@ -34,7 +34,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit() {
-    this.graphHandler.addNode(this.graphHandler.getNodeByid(this.searchInput));
+    this.graphHandler.addNode(this.searchInput);
   }
 
   public checkChange(query: string) {

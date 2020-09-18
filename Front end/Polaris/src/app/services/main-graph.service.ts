@@ -10,7 +10,7 @@ export class GraphHandlerService {
   public nodeColor: string;
   public edgeColor: string;
   constructor(public nodeService: NodeService, public graphService: GraphService){
-    
+
   }
 
   public initOgma(configuration = {}) {
@@ -34,8 +34,9 @@ export class GraphHandlerService {
     return graphJson;
   }
 
-  public async addNode(node: Promise<JSON>) {
-    this.ogma.addNode(node);
+  public async addNode(id:string) {
+    let nodeResult = await this.getNodeByid(id);
+    this.ogma.addNode(nodeResult);
   }
 
   public expandNodes(
