@@ -52,7 +52,7 @@ namespace API.Controllers.V1
         [Route("stats")]
         public ActionResult GetStats()
         {
-            throw new System.NotImplementedException();
+            return Ok(_graphService.Stats());
         }
     }
 }
