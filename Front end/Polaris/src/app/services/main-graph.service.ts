@@ -7,10 +7,11 @@ import { isDataSource } from '@angular/cdk/collections';
 export class GraphHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
-  public nodeService: NodeService;
-  public graphService: GraphService;
   public nodeColor: string;
   public edgeColor: string;
+  constructor(public nodeService: NodeService, public graphService: GraphService){
+    
+  }
 
   public initOgma(configuration = {}) {
     this.ogma = new Ogma(configuration);
@@ -33,7 +34,7 @@ export class GraphHandlerService {
     return graphJson;
   }
 
-  public async addNode(node: JSON) {
+  public async addNode(node: Promise<JSON>) {
     this.ogma.addNode(node);
   }
 

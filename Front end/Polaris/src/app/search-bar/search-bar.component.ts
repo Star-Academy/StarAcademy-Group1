@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../services/main-graph.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { DataOnScreenService } from './../../services/data-on-screen.service';
@@ -15,7 +16,10 @@ export class SearchBarComponent implements OnInit {
 
   public searchIcon = faSearch;
 
-  constructor(public dataOnScreen: DataOnScreenService) {}
+  constructor(
+    public dataOnScreen: DataOnScreenService,
+    public graphHandler: GraphHandlerService
+  ) {}
 
   ngOnInit(): void {
     if (this.searchPosition === 'branchFilter') {
@@ -30,8 +34,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit!');
-
+    this.graphHandler.addNode(this.graphHandler.getNodeByid(this.searchInput));
   }
 
   public checkChange(query: string) {
@@ -44,7 +47,6 @@ export class SearchBarComponent implements OnInit {
     }
     if (this.searchPosition === 'mainSearch') {
       this.searchInput = query;
-      console.log(this.searchInput);
     }
   }
 }

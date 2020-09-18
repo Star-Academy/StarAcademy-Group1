@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../services/main-graph.service';
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
 import { OgmaHandlerService } from '../../services/ogma-handler.service';
@@ -25,12 +26,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: OgmaHandlerService,
+    private randomOgma: GraphHandlerService,
     private componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
-    this.randomOgma.initConfig({
+    this.randomOgma.initOgma({
       graph: initialGraph,
       options: {
         backgroundColor: 'rgb(240, 240, 240)',
