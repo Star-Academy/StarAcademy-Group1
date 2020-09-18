@@ -11,8 +11,9 @@ export class SearchBarComponent implements OnInit {
   @Input() searchPosition: string = '';
 
   public placeHolderValue: string = 'جست و جو کنید';
+  public searchInput: string;
 
-  searchIcon = faSearch;
+  public searchIcon = faSearch;
 
   constructor(public dataOnScreen: DataOnScreenService) {}
 
@@ -30,6 +31,7 @@ export class SearchBarComponent implements OnInit {
 
   onSubmit() {
     console.log('submit!');
+
   }
 
   public checkChange(query: string) {
@@ -41,7 +43,8 @@ export class SearchBarComponent implements OnInit {
       console.log('selection panel change');
     }
     if (this.searchPosition === 'mainSearch') {
-      console.log('main search change');
+      this.searchInput = query;
+      console.log(this.searchInput);
     }
   }
 }
