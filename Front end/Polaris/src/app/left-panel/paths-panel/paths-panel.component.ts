@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./paths-panel.component.scss']
 })
 export class PathsPanelComponent implements OnInit {
-  
+
+
+   public paths : string[][]=[["10","9","8"],["7","8","9"]];
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

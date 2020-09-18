@@ -54,7 +54,8 @@ import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-sea
 import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { PathCardComponent } from './left-panel/paths-panel/path-card/path-card.component';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BranchFilterComponent,
     AmountFilterComponent,
     ExpansionPanelComponent,
+    PathCardComponent,
     MaxFlowPanelComponent,
     PathsPanelComponent,
     ViewPanelComponent,
@@ -104,7 +106,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ScrollingModule,
     HttpClientModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
   ],
   providers: [
     OgmaHandlerService,

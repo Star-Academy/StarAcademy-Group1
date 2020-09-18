@@ -8,31 +8,46 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 })
 export class PathCardComponent implements OnInit {
 
-  @Input()
-  id : number
+  // @Input()
+  // pathId : number
 
   @Input()
-  edges : string[]
-
-  @Input()
-  nodes : string[]
+  edgeIds : string[]=[];
 
   public amount: number = 0;
-
+  public shouldShow : boolean = false;
   constructor(public ogmaHandler: OgmaHandlerService) {  }
 
   ngOnInit(): void {
-    this.findAmount();
+    // this.findAmount();
   }
 
-  public findAmount(){
-    for(let edgeId of this.edges){
-      this.amount+= this.ogmaHandler.ogma.getEdge(edgeId).getData('amount');
+  public checkChange(){
+    this.changeAppreanceOfEdges();
+    this.changeAppreanceOfNodes();
+  }
+  public changeAppreanceOfEdges(){
+    if(this.shouldShow)
+    for(let edgeId of this.edgeIds){
+      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes({color:"black"});
     }
-    this.amount /= 1000000;
+    else
+    for(let edgeId of this.edgeIds){
+      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes({color:"gray"});
+    }
   }
-  public getHoverData(): string{
+  public changeAppreanceOfNodes(){
+    if(this.shouldShow)
+    for(let edgeId of this.edgeIds){
+      this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes({color:"black"});
+      this.ogmaHandler.ogma.getEdge(edgeId).getTarget().setAttributes({color:"black"});
+    }
+    else
+      for(let edgeId of this.edgeIds){
+        this.ogmaHandler.ogma.getEdge(edgeId).getSource().setAttributes({color:"gray"});
+        this.ogmaHandler.ogma.getEdge(edgeId).getTarget().setAttributes({color:"gray"});
+    }
+    this.shouldShow = !this.shouldShow ;
 
-  }
-
+}
 }
