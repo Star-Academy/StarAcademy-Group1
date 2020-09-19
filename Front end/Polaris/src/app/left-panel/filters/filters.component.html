@@ -72,9 +72,8 @@
       </p>
     </mat-expansion-panel>
   </mat-accordion>
-
   <br>
-  <form class="example-form" *ngIf="panel !== 'expansion'" style="background-color: darkcyan; border-radius: 10px;">
+  <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'" style="background-color: darkcyan; border-radius: 10px;">
     <mat-form-field class="example-full-width">
       <mat-label>رأس مبدا</mat-label>
       <input matInput name="sourceId" [(ngModel)]="sourceId">

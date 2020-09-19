@@ -6,9 +6,8 @@ import { EdgeInfo } from 'src/app/right-panel/information-panel/edge-info-box/Ed
 export class ComponentsCommunicationService {
 
   public whichPanel: string;
-  public whichLeftSideNav: number = 2;
+  public whichLeftSideNav: number = 0;
   public graphCreated: boolean = false;
-
   public nodeInfo: NodeInfo
   public edgeInfo: EdgeInfo
   public graphInfo: {
@@ -19,13 +18,15 @@ export class ComponentsCommunicationService {
   public buttonTextMap = new Map([
     ["expansion", "بسط بده"],
     ["flow", "محاسبه فلو :-؟"],
-    ["path", "نمایش مسیرها"]
+    ["path", "نمایش مسیرها"],
+    ["addNode", "اضافه کردن راس"]
   ]);
 
   public filtersToShowMap = new Map([
     // Account, Amount, Branch, Name, Time
     ["expansion", [false, true, false, true, true]],
     ["flow", [true, true, true, true, true]],
-    ["path", [true, true, true, true, true]]
+    ["path", [true, true, true, true, true]],
+    ["addNode", [true, true, true, true, true]]
   ]);
 }

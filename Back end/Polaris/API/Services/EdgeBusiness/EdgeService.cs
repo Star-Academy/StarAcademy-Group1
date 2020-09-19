@@ -68,7 +68,6 @@ namespace API.Services.EdgeBusiness
                 Field = "source", // TODO: check toString()
                 Query = id.ToString()
             };
-            System.Console.WriteLine("****" + System.Text.Json.JsonSerializer.Serialize(queryContainer));
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 queryContainer,
                 _edgeElasticIndexName,

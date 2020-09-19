@@ -27,9 +27,6 @@ export class NodeCardComponent implements OnInit {
     else {
       this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(false);
       for (let oneEdge of this.ogmaProvider.ogma.getSelectedEdges().getId()) {
-        // if (!this.ogmaProvider.ogma.getEdge(oneEdge).getSource().isSelected() || !this.ogmaProvider.ogma.getEdge(oneEdge).getTarget().isSelected()) {
-        //   this.ogmaProvider.ogma.getEdge(oneEdge).setSelected(false);
-        // }
       }
 
     }
@@ -38,18 +35,17 @@ export class NodeCardComponent implements OnInit {
   this.componentCommunication.whichPanel = "nodeInfo";
     let node = this.ogmaProvider.ogma.getNode(this.nodeId)
     this.componentCommunication.nodeInfo = {
-      ownerName: node.getData('ownerName'),
-      ownerFamilyName: node.getData('ownerFamilyName'),
+      ownerName: node.getData('OwnerName'),
+      ownerFamilyName: node.getData('OwnerFamilyName'),
       accountId: node.getId(),
-      accountType: node.getData('accountType'),
-      sheba: node.getData('sheba'),
-      cardId: node.getData('cardId'),
-      ownerId: node.getData('ownerId'),
-      branchName: node.getData('branchName'),
-      branchAddress: node.getData('branchAddress'),
-      branchTelephone: node.getData('branchTelephone'),
+      accountType: node.getData('AccountType'),
+      sheba: node.getData('Sheba'),
+      cardId: node.getData('CardId'),
+      ownerId: node.getData('OwnerId'),
+      branchName: node.getData('BranchName'),
+      branchAddress: node.getData('BranchAddress'),
+      branchTelephone: node.getData('BranchTelephone'),
     }
-    console.log( this.componentCommunication.whichPanel);
   }
 
 }

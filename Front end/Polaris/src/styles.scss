@@ -71,10 +71,14 @@
 html,
 body {
   height: 100%;
-  font-family: IRANSans, sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
 }
-body {  
+
+*{
+  font-family: IRANSans, sans-serif !important;
+}
+
+body {
   margin: 0;
 }
