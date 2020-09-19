@@ -4,6 +4,7 @@ using Nest;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Linq;
 
 namespace Elastic.Communication.Nest
 {
@@ -36,6 +37,8 @@ namespace Elastic.Communication.Nest
 
         public IEnumerable<TModel> GetEntities(TType[] ids, string indexName)
         {
+            if (ids.Any())
+                return new List<TModel> { };
             var value = new StringBuilder();
             foreach (var id in ids)
             {
