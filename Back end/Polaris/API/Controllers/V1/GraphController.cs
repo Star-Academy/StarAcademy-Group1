@@ -1,5 +1,8 @@
 using API.Services.GraphBusiness;
 using Microsoft.AspNetCore.Mvc;
+using Models.Network;
+using Models.Banking;
+
 
 namespace API.Controllers.V1
 {
@@ -7,9 +10,9 @@ namespace API.Controllers.V1
     [Route("api/v1/[Controller]")]
     public class GraphController : ControllerBase
     {
-        private readonly IGraphService _graphService;
+        private readonly IGraphService<string, BankAccount, string, Transaction> _graphService;
 
-        public GraphController(IGraphService graphService)
+        public GraphController(IGraphService<string, BankAccount, string, Transaction> graphService)
         {
             _graphService = graphService;
         }
