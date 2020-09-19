@@ -7,6 +7,7 @@ using Models.Banking;
 using API.Services.NodeBusiness;
 using Models.Network;
 using Models;
+using Analysis.Analyser;
 
 
 namespace API.Services.GraphBusiness
@@ -22,6 +23,8 @@ namespace API.Services.GraphBusiness
         {
             _nodeService = nodeService;
             _edgeService = edgeService;
+            var bfs = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges));
+
         }
 
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = true, bool target = true)
@@ -42,7 +45,9 @@ namespace API.Services.GraphBusiness
 
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
         {
-            throw new System.NotImplementedException();
+            var edges = _edgeService.GetEdgesByFilter();
+            var nodes = _nodeService.GetNodesByFilter();
+            //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
         }
 
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)

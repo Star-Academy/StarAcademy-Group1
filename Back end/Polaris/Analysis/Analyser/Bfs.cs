@@ -99,7 +99,7 @@ namespace Analysis.Analyser
         {
             foreach (var item in paths[0][nodeId])
             {
-                bool flag = false;
+                bool isPath = false;
                 int iterator = -1;
                 List<int> rm = new List<int>();
                 foreach (var item2 in paths[1][nodeId])
@@ -112,12 +112,12 @@ namespace Analysis.Analyser
                         set.Add(tmp);
                     if (set.Count != item.Count + item2.Count - 1)
                         continue;
-                    flag = true;
+                    isPath = true;
                     rm.Add(iterator);
                     for (int i = item2.Count - 1; i > 0; i--)
                         edges.UnionWith(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
                 }
-                if (flag)
+                if (isPath)
                     for (int i = 0; i + 1 < item.Count(); i++)
                         edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
                 rm.Reverse();
