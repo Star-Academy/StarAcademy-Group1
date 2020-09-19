@@ -25,18 +25,36 @@ namespace API.Controllers.V1
 
         [HttpGet]
         [Route("expansion/{nodeId}")]
-        public ActionResult GetNodeExpansions(string nodeId, bool source = false,
-            bool target = false, string[] filter = null, Pagination pagination = null)
+        public ActionResult GetNodeExpansions(
+            string nodeId,
+            bool isSource = false,
+            bool isTarget = false,
+            [FromQuery(Name = "node")] string[] nodeFilter = null,
+            [FromQuery(Name = "edge")] string[] edgeFilter = null,
+            [FromQuery(Name = "node")] Pagination nodePagination = null,
+            [FromQuery(Name = "edge")] Pagination edgePagination = null
+        )
         {
-            return Ok(_graphService.GetExpansion(nodeId, source, target, filter, pagination));
+            return Ok(_graphService
+                .GetNodeExpansions(nodeId, isSource, isTarget,
+                    nodeFilter, edgeFilter, nodePagination, edgePagination));
         }
 
         [HttpGet]
         [Route("expansion")]
-        public ActionResult GetNodesExpansions()
+        public ActionResult GetNodesExpansions(
+            string[] nodesIds,
+            bool isSource = false,
+            bool isTarget = false,
+            [FromQuery(Name = "node")] string[] nodeFilter = null,
+            [FromQuery(Name = "edge")] string[] edgeFilter = null,
+            [FromQuery(Name = "node")] Pagination nodePagination = null,
+            [FromQuery(Name = "edge")] Pagination edgePagination = null
+        )
         {
-            //return Ok(_graphService.GetExpansions());
-            throw new System.NotImplementedException();
+            return Ok(_graphService
+                .GetNodesExpansions(nodesIds, isSource, isTarget,
+                    nodeFilter, edgeFilter, nodePagination, edgePagination));
         }
 
         [HttpGet]
@@ -44,11 +62,14 @@ namespace API.Controllers.V1
         public ActionResult GetPaths(
             string sourceNodeId,
             string targetNodeId,
-            string[] filter = null,
-            Pagination pagination = null
+            [FromQuery(Name = "node")] string[] nodeFilter = null,
+            [FromQuery(Name = "edge")] string[] edgeFilter = null,
+            [FromQuery(Name = "node")] Pagination nodePagination = null,
+            [FromQuery(Name = "edge")] Pagination edgePagination = null
         )
         {
-            return Ok(_graphService.GetPaths(sourceNodeId, targetNodeId, filter, pagination));
+            return Ok(_graphService
+                .GetPaths(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, nodePagination, edgePagination));
         }
 
         [HttpGet]
@@ -56,11 +77,14 @@ namespace API.Controllers.V1
         public ActionResult GetMaxFlow(
             string sourceNodeId,
             string targetNodeId,
-            string[] filter = null,
-            Pagination pagination = null
+            [FromQuery(Name = "node")] string[] nodeFilter = null,
+            [FromQuery(Name = "edge")] string[] edgeFilter = null,
+            [FromQuery(Name = "node")] Pagination nodePagination = null,
+            [FromQuery(Name = "edge")] Pagination edgePagination = null
         )
         {
-            return Ok(_graphService.GetMaxFlow(sourceNodeId, targetNodeId, filter, pagination));
+            return Ok(_graphService
+                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, nodePagination, edgePagination));
         }
 
         [HttpGet]

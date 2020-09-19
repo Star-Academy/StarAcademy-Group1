@@ -13,9 +13,12 @@ namespace API.Services.EdgeBusiness
         void InsertEdge(Edge<TDataModel, TTypeDataId, TTypeSideId> edge);
         void UpdateEdge(Edge<TDataModel, TTypeDataId, TTypeSideId> newEdge);
         void DeleteEdgeById(TTypeDataId id);
-        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null);
-        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null);
-        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, string[] filter = null, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, string[] filter = null, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, string[] filter = null, Pagination pagination = null);
         IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByFilter(string[] filter = null, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetIds(TTypeSideId[] ids, string[] filter = null, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceIds(TTypeSideId[] ids, string[] filter = null, Pagination pagination = null);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(TTypeSideId[] ids, string[] filter = null, Pagination pagination = null);
     }
 }
