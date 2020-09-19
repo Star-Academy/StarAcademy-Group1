@@ -8,7 +8,7 @@ using API.Services.NodeBusiness;
 using Models.Network;
 using Models;
 using Analysis;
-
+using Models.Response;
 
 namespace API.Services.GraphBusiness
 {
@@ -23,11 +23,15 @@ namespace API.Services.GraphBusiness
         {
             _nodeService = nodeService;
             _edgeService = edgeService;
-            //var bfs = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges));
-
         }
 
-        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = true, bool target = true)
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(
+            TNodeId nodeId,
+            bool source = true,
+            bool target = true,
+            string[] filter = null,
+            Pagination pagination = null
+        )
         {
             // if (!source && !target)
             //     throw new BadExpansionRequest("Either \"source\" or \"target\" must be true");
@@ -36,6 +40,18 @@ namespace API.Services.GraphBusiness
             // else if (source)
             //     return _edgeService.GetEdgesBySourceId(nodeId);
             throw new System.NotImplementedException();
+        }
+
+        public MaxFlowResult<TEdgeId> GetFlow(
+            TNodeId sourceNodeId,
+            TNodeId targetNodeId
+        )
+        {
+            var edges = _edgeService.GetEdgesByFilter().ToList();
+            var nodes = _nodeService.GetNodesByFilter().ToList();
+            return new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges))
+                .GetMaxFlow(sourceNodeId, targetNodeId);
         }
 
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
@@ -50,17 +66,13 @@ namespace API.Services.GraphBusiness
             return stats;
         }
 
-        MaxFlowResult<TEdgeId> IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>.GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        List<List<TEdgeId>> IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>.GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
+        public List<List<TEdgeId>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
         {
             var edges = _edgeService.GetEdgesByFilter();
             var nodes = _nodeService.GetNodesByFilter();
             //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
             throw new System.NotImplementedException();
         }
+
     }
 }

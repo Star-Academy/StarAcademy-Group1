@@ -6,13 +6,13 @@ namespace Models.Network
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
-        public GraphContainer(List<TNodeData> nodes, List<TEdgeData> edges)
+        public GraphContainer(List<Node<TNodeData, TNodeId>> nodes, List<Edge<TEdgeData, TEdgeId, TNodeId>> edges)
         {
             Nodes = nodes;
             Edges = edges;
         }
 
-        List<TNodeData> Nodes { get; set; }
-        List<TEdgeData> Edges { get; set; }
+        List<Node<TNodeData, TNodeId>> Nodes { get; set; }
+        List<Edge<TEdgeData, TEdgeId, TNodeId>> Edges { get; set; }
     }
 }
