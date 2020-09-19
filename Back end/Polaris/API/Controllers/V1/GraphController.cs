@@ -25,7 +25,7 @@ namespace API.Controllers.V1
 
         [HttpGet]
         [Route("expansion/{nodeId}")]
-        public ActionResult ExpandSingleNode(string nodeId, bool source = false,
+        public ActionResult GetNodeExpansions(string nodeId, bool source = false,
             bool target = false, string[] filter = null, Pagination pagination = null)
         {
             return Ok(_graphService.GetExpansion(nodeId, source, target, filter, pagination));
@@ -33,8 +33,9 @@ namespace API.Controllers.V1
 
         [HttpGet]
         [Route("expansion")]
-        public ActionResult ExpandNodes()
+        public ActionResult GetNodesExpansions()
         {
+            //return Ok(_graphService.GetExpansions());
             throw new System.NotImplementedException();
         }
 

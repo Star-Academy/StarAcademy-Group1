@@ -52,12 +52,7 @@ namespace API.Services.GraphBusiness
                 edges = _edgeService.GetEdgesByTargetId(nodeId).ToHashSet();
 
             var nodes = _nodeService.GetNodesById(
-                edges.SelectMany(
-                    edge => new TNodeId[]
-                    {
-                        edge.Source,
-                        edge.Target
-                    })
+                edges.SelectMany(edge => new TNodeId[]{edge.Source, edge.Target})
                     .ToHashSet()
                     .ToArray()
             );
