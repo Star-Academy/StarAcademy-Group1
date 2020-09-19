@@ -6,7 +6,8 @@
     <span *ngIf="!dataOnScreen.nodeViewFirstInit">
       <app-node-card *ngFor="let nodeId of ogmaProvider.ogma.getNodes().getId()" [nodeId]="nodeId"
         [nodePerson]="getNodeById(nodeId)" [isSelected]="isNodeSelected(nodeId)"></app-node-card>
-    </span>
+
+      </span>
     <span *ngIf="dataOnScreen.nodeViewFirstInit">
       <app-node-card *ngFor="let nodeId of ogmaProvider.ogma.getNodes().getId()" [nodeId]="nodeId"
         [nodePerson]="getNodeById(nodeId)" [isSelected]="isNodeSelected(nodeId)"></app-node-card>
