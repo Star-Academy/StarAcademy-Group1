@@ -17,25 +17,46 @@ namespace Analysis
 
         private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
         private Dictionary<TNodeId, int> level;
+        private MaxFlowResult<TEdgeId> Result { get; set; }
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
             level = new Dictionary<TNodeId, int>();
         }
 
-        public MaxFlow(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> container)
+        public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph, List<Edge<TEdgeData, TEdgeId, TNodeId>> edges)
         {
-            var edge = new Edge<TEdgeData, TEdgeId, TNodeId>();
+            foreach (var edge in edges)
+                Result.EdgeToFlow.Add(edge.Id, 0);
+            this.graph = graph;
+            level = new Dictionary<TNodeId, int>();
+            init();
+        }
+
+        private void init()
+        {
+            foreach (var adjList in graph.Adj)
+                foreach (var edge in adjList.Value)
+                {
+                    var edge2 = new Edge<TEdgeData, TEdgeId, TNodeId>();
+                    edge2.Source = edge.Target;
+                    edge2.Target = edge.Source;
+                    edge2.Amount = 0;
+                    edge2.Flow = 0;
+                    edge2.Address = graph.Adj[edge.Source].Count;
+                    edge.Address = graph.Adj[edge.Target].Count;
+                    graph.Adj[edge.Target].Add(edge2);
+                }
         }
 
         public MaxFlowResult<TEdgeId> DinicMaxFlow(TNodeId source, TNodeId target)
         {
-            var result = new MaxFlowResult<TEdgeId>();
+            Result = new MaxFlowResult<TEdgeId>();
 
             if (source.Equals(target))
             {
-                result.MaxFlowAmount = -1;
-                return result;
+                Result.MaxFlowAmount = -1;
+                return Result;
             }
 
             while (BFS(source, target))
@@ -47,12 +68,19 @@ namespace Analysis
                     do
                     {
                         flow = SendFlow(source, inf, target, ref start);
-                        result.MaxFlowAmount += flow;
+                        Result.MaxFlowAmount += flow;
                     } while (flow > 0);
                 }
             }
 
-            return result;
+            foreach(var adjList in graph.Adj)
+                foreach(var edge in adjList.Value)
+                    if (Result.EdgeToFlow.ContainsKey(edge.Id))
+                    {
+                        Result.EdgeToFlow[edge.Id] = edge.Flow;
+                    }
+
+            return Result;
         }
 
         private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target, ref Dictionary<TNodeId, int> start)

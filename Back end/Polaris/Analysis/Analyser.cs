@@ -20,8 +20,8 @@ namespace Analysis
 
         public MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target)
         {
-            var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graphContainer);
-            throw new System.NotImplementedException();
+            var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph, graphContainer.Edges);
+            return maxFlowSolver.DinicMaxFlow(source, target);
 
         }
 

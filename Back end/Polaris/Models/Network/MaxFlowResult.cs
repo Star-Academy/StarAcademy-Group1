@@ -10,7 +10,7 @@ namespace Models.Network
 
         public MaxFlowResult()
         {
-
+            EdgeToFlow = new Dictionary<TEdgeId, long>();
         }
     }
 }
