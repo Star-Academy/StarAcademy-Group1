@@ -43,7 +43,7 @@ namespace Analysis.Test
         {
             Init();
             AddEdgeForFlow(0, 1, 16);
-            AddEdgeForFlow(0, 2, 13);
+            AddEdgeForFlow(0, 2, 13); 
             AddEdgeForFlow(1, 2, 10);
             AddEdgeForFlow(1, 3, 12);
             AddEdgeForFlow(2, 1, 4);
