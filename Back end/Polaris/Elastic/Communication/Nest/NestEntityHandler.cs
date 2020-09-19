@@ -37,7 +37,7 @@ namespace Elastic.Communication.Nest
 
         public IEnumerable<TModel> GetEntities(TType[] ids, string indexName)
         {
-            if (ids.Any())
+            if (!ids.Any())
                 return new List<TModel> { };
             var value = new StringBuilder();
             foreach (var id in ids)
