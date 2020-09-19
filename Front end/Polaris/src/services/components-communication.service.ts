@@ -27,6 +27,6 @@ export class ComponentsCommunicationService {
     ["expansion", [false, true, false, true, true]],
     ["flow", [true, true, true, true, true]],
     ["path", [true, true, true, true, true]],
-    ["addNode", [true, true, true, true, true]]
+    ["addNode", [false, false, true, true, true]]
   ]);
 }

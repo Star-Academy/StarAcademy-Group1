@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../../../services/main-graph.service';
 
 
 import { Component, OnInit, Input } from '@angular/core';
@@ -15,7 +16,7 @@ export class EdgeCardComponent implements OnInit {
   @Input()
   public isSelected: boolean;
 
-  constructor(public ogmaProvider: OgmaHandlerService , public componentCommunication : ComponentsCommunicationService) { }
+  constructor(public ogmaProvider: GraphHandlerService , public componentCommunication : ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }

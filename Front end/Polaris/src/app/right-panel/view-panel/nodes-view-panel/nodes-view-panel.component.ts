@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../../services/main-graph.service';
 
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 
@@ -15,7 +16,7 @@ export class NodesViewPanelComponent implements OnInit {
   public hidden = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 
@@ -23,9 +24,9 @@ export class NodesViewPanelComponent implements OnInit {
 
   public getNodeById(nodeId: string): string {
     return (
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerName') +
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerName') +
       ' ' +
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerFamilyName')
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerFamilyName')
     );
   }
 
@@ -40,6 +41,5 @@ export class NodesViewPanelComponent implements OnInit {
       if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
           this.nodes.push(element);
       });
-      console.log("yessss");
   }
 }

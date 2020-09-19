@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../services/main-graph.service';
 import { DataOnScreenService } from './../../services/data-on-screen.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +12,7 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 export class RealTimeSearchBarComponent implements OnInit {
   searchIcon = faSearch;
   constructor(
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 

@@ -1,17 +1,9 @@
 <div id="mySidenav2" class="sidenav">
-  <a
-    href="javascript:void(0)"
-    class="closebtn"
-    (click)="componentCommunication.whichLeftSideNav = 0"
-    >&times;</a
-  >
+  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
 
   <mat-accordion>
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]"
-    >
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
       <mat-expansion-panel-header>
         <mat-panel-title> اعمال تاریخ </mat-panel-title>
       </mat-expansion-panel-header>
@@ -20,11 +12,8 @@
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]"
-    >
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
       <mat-expansion-panel-header>
         <mat-panel-title> اعمال مقدار </mat-panel-title>
       </mat-expansion-panel-header>
@@ -33,11 +22,8 @@
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]"
-    >
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
       <mat-expansion-panel-header>
         <mat-panel-title> اعمال نوع حساب </mat-panel-title>
       </mat-expansion-panel-header>
@@ -46,24 +32,19 @@
       </p>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]"
-    >
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
       <mat-expansion-panel-header>
-        <mat-panel-title> اعمال نام و نام خانوادگی </mat-panel-title>
+        <mat-panel-title> اعمال نام </mat-panel-title>
       </mat-expansion-panel-header>
       <p>
         <app-name-filter></app-name-filter>
       </p>
     </mat-expansion-panel>
+    
 
-    <mat-expansion-panel
-      (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]"
-    >
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
       <mat-expansion-panel-header>
         <mat-panel-title> اعمال شعبه </mat-panel-title>
       </mat-expansion-panel-header>
@@ -73,7 +54,8 @@
     </mat-expansion-panel>
   </mat-accordion>
   <br>
-  <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'" style="background-color: darkcyan; border-radius: 10px;">
+  <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'"
+    style="background-color: darkcyan; border-radius: 10px;">
     <mat-form-field class="example-full-width">
       <mat-label>رأس مبدا</mat-label>
       <input matInput name="sourceId" [(ngModel)]="sourceId">
@@ -88,7 +70,6 @@
     </mat-form-field>
   </form>
   <br><br>
-  <button mat-raised-button color="primary" (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
+  <button mat-raised-button color="primary"
+    (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
 </div>
-
-

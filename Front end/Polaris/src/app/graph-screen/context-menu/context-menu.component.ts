@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../services/main-graph.service';
 import { OgmaHandlerService } from './../../../services/ogma-handler.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -12,13 +13,13 @@ export class ContextMenuComponent implements OnInit {
   @Input()
   position: { x: number; y: number };
 
-  constructor(private randomOgma: OgmaHandlerService) {}
+  constructor(private randomOgma: GraphHandlerService) {}
 
   ngOnInit(): void {}
 
   public deleteNode() {
     let removeOne: string[] = new Array(this.content.id);
-    this.randomOgma.removeGraphNode(removeOne);
+    this.randomOgma.removeNodes(removeOne);
   }
   // public deleteNodeFromSelected() {
   //   this.randomOgma.deleteNodeFromSelected(this.content.id);

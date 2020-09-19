@@ -18,7 +18,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   private container;
   hoveredContent: {
     id: NodeId;
-    accountId: number;
     name: string;
     familyName: string;
   };
@@ -26,12 +25,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: OgmaHandlerService,
+    private randomOgma: GraphHandlerService,
     public componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
-    this.randomOgma.initConfig({
+    this.randomOgma.initOgma({
       graph: initialGraph,
       options: {
         backgroundColor: 'rgb(240, 240, 240)',
@@ -41,9 +40,8 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target.isNode) {
         this.hoveredContent = {
           id: target.getId(),
-          accountId: target.getData('AccountID'),
-          name: target.getData('OwnerName'),
-          familyName: target.getData('OwnerFamilyName'),
+          name: target.getData('ownerName'),
+          familyName: target.getData('ownerFamilyName'),
         };
         this.hoveredPosition = { x, y: y + 20 };
       }
@@ -72,16 +70,16 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target != null && target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'nodeInfo';
         this.componentCommunication.nodeInfo = {
-          ownerName: target.getData('OwnerName'),
-          ownerFamilyName: target.getData('OwnerFamilyName'),
+          ownerName: target.getData('ownerName'),
+          ownerFamilyName: target.getData('ownerFamilyName'),
           accountId: target.getId(),
-          accountType: target.getData('AccountType'),
-          sheba: target.getData('Sheba'),
-          cardId: target.getData('CardId'),
-          ownerId: target.getData('OwnerId'),
-          branchName: target.getData('BranchName'),
-          branchAddress: target.getData('BranchAddress'),
-          branchTelephone: target.getData('BranchTelephone'),
+          accountType: target.getData('accountType'),
+          sheba: target.getData('sheba'),
+          cardId: target.getData('cardId'),
+          ownerId: target.getData('ownerId'),
+          branchName: target.getData('branchName'),
+          branchAddress: target.getData('branchAddress'),
+          branchTelephone: target.getData('branchTelephone'),
         };
       } else if (target != null && !target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'edgeInfo';

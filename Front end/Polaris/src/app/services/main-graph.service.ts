@@ -40,6 +40,17 @@ export class GraphHandlerService {
     this.runLayout()
   }
 
+  public async getNodesByFilter(filter: string[]) : Promise<JSON>{
+    let graphJson = await this.nodeService.getNodes(filter);
+    return graphJson;
+  }
+
+  public async addNodes(filter: string[]) {
+    let filterResults = await this.getNodesByFilter(filter);
+    this.ogma.addNodes(filterResults);
+    this.runLayout();
+  }
+
   public expandNodes(
     ids: string,
     nodeFilters: string[],
@@ -77,10 +88,6 @@ export class GraphHandlerService {
       edgeFilters
     );
   }
-  public addByFilter(filters: string[]) {
-    let nodes = this.nodeService.getNodes(filters, -1, -1);
-  }
-
   public removeNodes(ids: string[]) {
     this.ogma.removeNodes(ids);
   }

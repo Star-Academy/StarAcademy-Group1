@@ -16,7 +16,7 @@ export class EdgesViewPanelComponent implements OnInit {
   public hidden = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 

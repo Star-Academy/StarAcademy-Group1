@@ -86,20 +86,15 @@ export class NodeService {
       .subscribe();
   }
 
-  public async getNodes(filters: string[], pageIndex, pageSize): Promise<JSON> {
-    let url = `${this.baseAddress}/nodes`;
-    let params = new HttpParams();
-    params = params.append('filters', JSON.stringify(filters));
-    params = params.append('pageIndex', pageIndex);
-    params = params.append('pageSize', pageSize);
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      params: params,
-    };
-
+  public async getNodes(filter: string[]): Promise<JSON> {
+    let url = `${this.baseAddress}/nodes?`;
+    for(let element of filter) {
+      url += `filter=${element}&`;
+    }
+    url = url.substr(0, url.length-1);
     return new Promise<JSON>((resolve) => {
       this.http
-        .get(url, httpOptions)
+        .get(url)
         .pipe(
           tap((_) => this.log(`got nodes`)),
           catchError(this.handleError<JSON>('getNodes'))

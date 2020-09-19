@@ -40,19 +40,23 @@ export class FilterService {
     }
 
     if (this.accountTypes.length != 0) {
-      for (let index = 0; index < this.accountTypes.length; index++) {
-        result.push(`accountType eq ${this.accountTypes[index]}`);
+      let accountTypesResult: string = `accountType eq`;
+      for (let item of this.accountTypes) {
+        accountTypesResult += ` ${item}`;
       }
+      result.push(accountTypesResult);
     }
 
     if (this.name) {
-      result.push(`name contains ${this.name}`);
+      result.push(`ownerName cnt ${this.name}`);
     }
 
     if (this.branches.length != 0) {
-      for (let index = 0; index < this.branches.length; index++) {
-        result.push(`branch eq ${this.branches[index]}`);
+      let branchResult: string = `branch eq`;
+      for (let item of this.branches) {
+        branchResult += ` ${item}`;
       }
+      result.push(branchResult);
     }
 
     return result;

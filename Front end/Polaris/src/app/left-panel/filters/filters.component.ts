@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../services/main-graph.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { FilterService } from 'src/services/filter.service';
@@ -20,31 +21,35 @@ export class FiltersComponent implements OnInit {
   panelOpenState = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public filterService: FilterService
-  ) { }
+    public filterService: FilterService,
+    public graphHandler: GraphHandlerService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   sendData(): void {
-    if (this.panel != "expansion"
-      && (!this.sourceId || !this.targetId)) {
+    if ((this.panel != 'expansion' && this.panel != 'addNode') && (!this.sourceId || !this.targetId)) {
       this.showError();
       return;
     }
 
     let filtersArray = this.filterService.getFilter();
     switch (this.panel) {
-      case "expansion":
+      case 'expansion':
         // expand(filtersArray)
         break;
 
-      case "path":
+      case 'path':
         // path(sourceId, targetId, maxLength, filtersArray)
         break;
 
-      case "flow":
+      case 'flow':
         // flow(sourceId, targetId, filtersArray)
+        break;
+
+      case 'addNode':
+        let filter: string[] = this.filterService.getFilter();
+        this.graphHandler.addNodes(filter);
         break;
     }
   }
@@ -54,7 +59,7 @@ export class FiltersComponent implements OnInit {
       icon: 'error',
       title: 'خطا!',
       text: 'مقادیر خواسته شده را وارد نمایید...',
-      confirmButtonText: 'حله'
-    })
+      confirmButtonText: 'حله',
+    });
   }
 }
