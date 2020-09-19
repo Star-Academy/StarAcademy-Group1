@@ -46,7 +46,7 @@ export class FilterService {
     }
 
     if (this.name) {
-      result.push(`name contains ${this.name}`);
+      result.push(`name cnt ${this.name}`);
     }
 
     if (this.branches.length != 0) {

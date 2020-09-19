@@ -46,6 +46,10 @@ export class FiltersComponent implements OnInit {
       case "flow":
         // flow(sourceId, targetId, filtersArray)
         break;
+
+      case "addNode":
+        //
+        break;
     }
   }
 
