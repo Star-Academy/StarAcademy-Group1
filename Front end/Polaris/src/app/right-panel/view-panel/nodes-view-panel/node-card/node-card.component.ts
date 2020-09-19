@@ -1,7 +1,8 @@
-import { GraphHandlerService } from './../../../../services/main-graph.service';
+
 
 import { Component, OnInit, Input } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
+import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
   selector: 'app-node-card',
@@ -16,19 +17,18 @@ export class NodeCardComponent implements OnInit {
   @Input()
   public isSelected: boolean;
 
-  constructor(public ogmaProvider: GraphHandlerService , public componentCommunication : ComponentsCommunicationService) { }
+  constructor(public ogmaProvider: OgmaHandlerService , public componentCommunication : ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
+
   public changeChecked(isChecked: boolean) {
+    console.log("helooo");
     if (isChecked) {
       this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(true);
     }
     else {
       this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(false);
-      for (let oneEdge of this.ogmaProvider.ogma.getSelectedEdges().getId()) {
-      }
-
     }
   }
   public showInfo(){

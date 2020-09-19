@@ -1,7 +1,8 @@
-import { GraphHandlerService } from './../../../../services/main-graph.service';
+
 
 import { Component, OnInit, Input } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
+import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
   selector: 'app-edge-card',
@@ -14,20 +15,23 @@ export class EdgeCardComponent implements OnInit {
   @Input()
   public isSelected: boolean;
 
-  constructor(public ogmaProvider: GraphHandlerService , public componentCommunication : ComponentsCommunicationService) { }
+  constructor(public ogmaProvider: OgmaHandlerService , public componentCommunication : ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
-  public changeChecked(isChecked: boolean) {
+  public changeChecked(isChecked) {
 
-    if (isChecked)
+    if (isChecked){
       this.ogmaProvider.ogma.getEdge(this.edgeId).setSelected(true);
-    else
+      console.log("helooo");
+  }
+    else{
       this.ogmaProvider.ogma.getEdge(this.edgeId).setSelected(false);
-
     }
+  }
+
     public showInfo(){
-      this.componentCommunication.whichPanel = "nodeInfo";
+      this.componentCommunication.whichPanel = "edgeInfo";
         let edge = this.ogmaProvider.ogma.getEdge(this.edgeId)
         this.componentCommunication.edgeInfo = {
           Id: edge.getId(),
@@ -37,6 +41,9 @@ export class EdgeCardComponent implements OnInit {
           amount: edge.getData('amount'),
           date: edge.getData('date')
         }
+  }
+  public hlo(){
+    console.log("helooo");
   }
 }
 
