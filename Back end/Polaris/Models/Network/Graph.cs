@@ -73,13 +73,13 @@ namespace Models.Network
             return set.ToList();
         }
 
-        public List<Edge<TEdgeData, TEdgeId, TNodeId>> GetEdges(TNodeId id1, TNodeId id2)
+        public List<TEdgeId> GetEdges(TNodeId id1, TNodeId id2)
         {
-            var ret = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            var ret = new List<TEdgeId>();
             foreach (var item in Adj[id1])
                 if (item.Target.Equals(id2))
                 {
-                    ret.Add(item);
+                    ret.Add(item.Id);
                 }
             return ret;
         }

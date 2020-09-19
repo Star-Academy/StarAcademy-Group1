@@ -10,9 +10,10 @@ namespace Analysis
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
+        Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
         public Analyser(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> graphContainer)
         {
-            
+            graph = new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(graphContainer);
         }
 
         public MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target)
@@ -20,9 +21,10 @@ namespace Analysis
             throw new System.NotImplementedException();
         }
 
-        public List<List<TEdgeId>> GetPaths(TNodeId source, TNodeId target)
+        public List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target)
         {
-            throw new System.NotImplementedException();
+            var pathFinder = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph);
+            return pathFinder.BiDirectionalSearch(source, target);
         }
     }
 }
