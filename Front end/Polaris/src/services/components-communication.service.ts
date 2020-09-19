@@ -8,7 +8,6 @@ export class ComponentsCommunicationService {
   public whichPanel: string;
   public whichLeftSideNav: number = 2;
   public graphCreated: boolean = false;
-
   public nodeInfo: NodeInfo
   public edgeInfo: EdgeInfo
   public graphInfo: {
