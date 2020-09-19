@@ -23,7 +23,6 @@ export class NodeCardComponent implements OnInit {
   }
 
   public changeChecked(isChecked: boolean) {
-    console.log("helooo");
     if (isChecked) {
       this.ogmaProvider.ogma.getNode(this.nodeId).setSelected(true);
     }

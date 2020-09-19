@@ -4,7 +4,9 @@ import * as Ogma from '../assets/ogma.min.js';
 export class OgmaHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
-
+  public nodesUpdated : boolean = true ;
+  public edgesUpdated : boolean = true ;
+  
   public initConfig(configuration = {}) {
     this.ogma = new Ogma(configuration);
     this.selectedNodes = new Array<string>();

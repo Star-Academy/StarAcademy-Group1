@@ -32,11 +32,12 @@ export class NodesViewPanelComponent implements OnInit {
   public isNodeSelected(nodeId: string): boolean {
     return this.ogmaProvider.ogma.getNode(nodeId).isSelected();
   }
-
+  // ngOnChanges() {
+  //   this.updateResult(this.myFirstInputParameter);
+  // }
   public updateResult(input: string) {
     this.nodes = [];
     this.ogmaProvider.ogma.getNodes().getId().forEach((element) => {
-
       if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
           this.nodes.push(element);
       });

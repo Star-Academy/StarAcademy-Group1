@@ -14,7 +14,7 @@ export class ComponentsCommunicationService {
     graphSize: number,
     edgeSize: number
   }
-
+  
   public buttonTextMap = new Map([
     ["expansion", "بسط بده"],
     ["flow", "محاسبه فلو :-؟"],

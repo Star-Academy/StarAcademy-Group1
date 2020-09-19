@@ -4,7 +4,7 @@
   </span>
   <span *ngIf="ogmaProvider.ogma.getEdges().size!=0">
     <span *ngIf="!dataOnScreen.edgeViewFirstInit">
-      <app-edge-card *ngFor="let edge of ogmaProvider.ogma.getEdges().getId()" [edgeId]="edge" [isSelected]="isEdgeSelected(edge)"></app-edge-card>
+      <app-edge-card *ngFor="let edge of edges" [edgeId]="edge" [isSelected]="isEdgeSelected(edge)"></app-edge-card>
     </span>
     <span *ngIf="dataOnScreen.edgeViewFirstInit">
       <app-edge-card *ngFor="let edgeId of ogmaProvider.ogma.getEdges().getId()" [edgeId]="edgeId"
