@@ -19,7 +19,7 @@ namespace Elastic.Filtering.Criteria
 
         public TextNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
-            if(ValuePattern.Match(value) != null)
+            if(ValuePattern.Match(value) is null)
                 throw new InvalidNestFilterException($"\"{value}\" is invalid for TextCriteria");
         }
 
@@ -74,7 +74,7 @@ namespace Elastic.Filtering.Criteria
 
         public override QueryContainer Interpret()
         {
-            if(registry.ContainsKey(Operator))
+            if(!registry.ContainsKey(Operator))
                 throw new InvalidNestFilterException($"Operator: \"{Operator}\" is not registered in TextCriteria");
             return registry[Operator].Invoke(null, Field, Value);
         }
