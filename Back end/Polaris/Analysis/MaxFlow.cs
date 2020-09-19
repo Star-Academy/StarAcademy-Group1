@@ -2,6 +2,7 @@
 
 using Models;
 using Models.Network;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,20 @@ namespace Analysis
             level = new Dictionary<TNodeId, int>();
         }
 
-        public Int64 DinicMaxFlow(TNodeId source, TNodeId target)
+        public MaxFlow(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> container)
         {
-            if (source.Equals(target))
-                return -1;
+            var edge = new Edge<TEdgeData, TEdgeId, TNodeId>();
+        }
 
-            Int64 result = 0;
+        public MaxFlowResult<TEdgeId> DinicMaxFlow(TNodeId source, TNodeId target)
+        {
+            var result = new MaxFlowResult<TEdgeId>();
+
+            if (source.Equals(target))
+            {
+                result.MaxFlowAmount = -1;
+                return result;
+            }
 
             while (BFS(source, target))
             {
@@ -38,7 +47,7 @@ namespace Analysis
                     do
                     {
                         flow = SendFlow(source, inf, target, ref start);
-                        result += flow;
+                        result.MaxFlowAmount += flow;
                     } while (flow > 0);
                 }
             }
