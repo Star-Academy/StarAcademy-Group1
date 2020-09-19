@@ -23,7 +23,7 @@ namespace API.Services.GraphBusiness
             _edgeService = edgeService;
         }
 
-        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = true, bool target = false)
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = true, bool target = true)
         {
             throw new System.NotImplementedException();
         }
