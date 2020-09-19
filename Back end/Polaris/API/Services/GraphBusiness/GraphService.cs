@@ -23,7 +23,7 @@ namespace API.Services.GraphBusiness
         {
             _nodeService = nodeService;
             _edgeService = edgeService;
-            var bfs = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges));
+            //var bfs = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges));
 
         }
 
@@ -48,6 +48,7 @@ namespace API.Services.GraphBusiness
             var edges = _edgeService.GetEdgesByFilter();
             var nodes = _nodeService.GetNodesByFilter();
             //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
+            throw new System.NotImplementedException();
         }
 
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
