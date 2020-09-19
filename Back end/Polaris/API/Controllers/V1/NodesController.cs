@@ -59,9 +59,9 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter(string[]? filter = null, [FromQuery] Pagination? pagination = null)
+        public IActionResult GetNodesByFilter([FromQuery] string[]? filter=null)
         {
-            return Ok(_nodeService.GetNodesByFilter(filter, pagination));
+            return Ok(_nodeService.GetNodesByFilter(filter, null));
         }
 
         [HttpPost]
