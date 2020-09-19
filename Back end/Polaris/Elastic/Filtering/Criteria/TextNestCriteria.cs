@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using Elastic.Filtering.Attributes;
 using Elastic.Exceptions;
 
-
 namespace Elastic.Filtering.Criteria
 {
     using OperatorToFunctionDict = Dictionary<string, Func<TextNestCriteria, string, string, QueryContainer>>;
@@ -58,7 +57,7 @@ namespace Elastic.Filtering.Criteria
             return new RegexpQuery
             {
                 Field = field,
-                Value = "*." + value
+                Value = ".*" + value
             };
         }
 
@@ -68,7 +67,7 @@ namespace Elastic.Filtering.Criteria
             return new RegexpQuery
             {
                 Field = field,
-                Value = "*." + value + "*."
+                Value = ".*" + value + ".*"
             };
         }
 
