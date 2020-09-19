@@ -17,7 +17,7 @@ export class EdgeService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   public async getTyping(): Promise<JSON> {
     var url = `${this.baseAddress}/typing`;
@@ -89,7 +89,7 @@ export class EdgeService {
         tap((_) => this.log(`deleted edge id=${edgeId}`)),
         catchError(this.handleError<string>('deleteEdge'))
       )
-      .subscribe((_) => {});
+      .subscribe((_) => { });
   }
 
   public async addEdge(edge: JSON): Promise<void> {
@@ -101,7 +101,7 @@ export class EdgeService {
         tap((_) => this.log(`added edge`)),
         catchError(this.handleError<JSON>('addEdge'))
       )
-      .subscribe((_) => {});
+      .subscribe((_) => { });
   }
 
   public async updateEdge(edge: string): Promise<void> {
@@ -114,6 +114,21 @@ export class EdgeService {
         catchError(this.handleError<string>('updateEdge'))
       )
       .subscribe();
+  }
+
+  public async getEdgeBySideId(sideNodeId: string): Promise<JSON> {
+    var url = `${this.baseAddress}/side/${sideNodeId}`;
+    return new Promise<JSON>((resolve) => {
+      this.http
+        .get<JSON>(url)
+        .pipe(
+          tap((_) => this.log(`got edges with nodeId=${sideNodeId}`)),
+          catchError(this.handleError<JSON>('getEdgeBySideId'))
+        )
+        .subscribe((result: JSON) => {
+          resolve(result);
+        });
+    });
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

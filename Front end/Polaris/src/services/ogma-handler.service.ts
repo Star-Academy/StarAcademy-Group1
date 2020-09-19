@@ -8,9 +8,8 @@ export class OgmaHandlerService {
   public initConfig(configuration = {}) {
     this.ogma = new Ogma(configuration);
     this.selectedNodes = new Array<string>();
-    this.ogma.styles.setSelectedNodeAttributes({outerStroke: function (node) {
-      return node.isSelected() ? 'red' : null;
-      }})
+    this.ogma.styles.setSelectedNodeAttributes({outerStroke: function (node) {return node.isSelected() ? 'green' : null;}})
+    this.ogma.styles.setSelectedEdgeAttributes({color: "green"})
 
   }
 

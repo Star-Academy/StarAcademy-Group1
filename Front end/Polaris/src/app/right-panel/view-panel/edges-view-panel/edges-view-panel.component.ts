@@ -26,10 +26,7 @@ export class EdgesViewPanelComponent implements OnInit {
   }
   public updateResult(input: string) {
     this.edges = [];
-    this.ogmaProvider.ogma
-      .getEdges()
-      .getId()
-      .forEach((element) => {
+    this.ogmaProvider.ogma.getEdges().getId().forEach((element) => {
         if (element.indexOf(input) != -1) this.edges.push(element);
       });
     console.log(this.ogmaProvider.ogma.getEdges().getId());
