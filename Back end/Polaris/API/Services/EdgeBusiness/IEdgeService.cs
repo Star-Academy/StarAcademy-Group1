@@ -8,9 +8,10 @@ namespace API.Services.EdgeBusiness
     public interface IEdgeService<TDataModel, TTypeDataId, TTypeSideId>
     where TDataModel : AmountedEntity<TTypeDataId, TTypeSideId>
     {
+        Edge<TDataModel, TTypeDataId, TTypeSideId> GetEdgeById(TTypeDataId id);
+        IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesById(TTypeDataId[] ids);
         void InsertEdge(Edge<TDataModel, TTypeDataId, TTypeSideId> edge);
         void UpdateEdge(Edge<TDataModel, TTypeDataId, TTypeSideId> newEdge);
-        Edge<TDataModel, TTypeDataId, TTypeSideId> GetEdgeById(TTypeDataId id);
         void DeleteEdgeById(TTypeDataId id);
         IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null);
         IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null);
