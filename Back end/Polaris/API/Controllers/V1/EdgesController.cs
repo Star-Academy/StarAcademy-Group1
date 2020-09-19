@@ -3,9 +3,11 @@ using Elastic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Models.Banking;
 using Models.Network;
+using Models.Response;
 
 namespace API.Controllers
 {
+#nullable enable
     [ApiController]
     [Route("api/v1/[Controller]")]
     public class EdgesController : ControllerBase
@@ -49,9 +51,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEdgesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
+        public IActionResult GetEdgesByFilter(string[]? filter = null, [FromQuery] Pagination? pagination = null)
         {
-            return Ok(_edgeService.GetEdgesByFilter(new string[] { }, null));
+            return Ok(_edgeService.GetEdgesByFilter(filter, pagination));
         }
 
         [HttpPost]

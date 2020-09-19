@@ -3,10 +3,12 @@ using Elastic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Models.Banking;
 using Models.Network;
+using Models.Response;
 using System;
 
 namespace API.Controllers.V1
 {
+#nullable enable
     [ApiController]
     [Route("api/v1/[Controller]")]
     public class NodesController : ControllerBase
@@ -57,9 +59,9 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
+        public IActionResult GetNodesByFilter(string[]? filter = null, [FromQuery] Pagination? pagination = null)
         {
-            return Ok(_nodeService.GetNodesByFilter(new string[] { }, null));
+            return Ok(_nodeService.GetNodesByFilter(filter, pagination));
         }
 
         [HttpPost]
