@@ -26,6 +26,7 @@ namespace Analysis
 
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph, List<Edge<TEdgeData, TEdgeId, TNodeId>> edges)
         {
+            Result = new MaxFlowResult<TEdgeId>();
             foreach (var edge in edges)
                 Result.EdgeToFlow.Add(edge.Id, 0);
             this.graph = graph;
