@@ -12,6 +12,7 @@ namespace Analysis
     {
         public Analyser(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> graphContainer)
         {
+            
         }
 
         public MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target)
