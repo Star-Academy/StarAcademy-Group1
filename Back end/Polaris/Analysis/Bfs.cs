@@ -4,6 +4,7 @@ using Models;
 using Models.Network;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Analysis
 {
@@ -19,9 +20,9 @@ namespace Analysis
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
+        public List<List<List<TEdgeId>>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
         {
-            var edges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            var edges = new List<List<List<TEdgeId>>>();
 
             var paths = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>[2];
             paths[0] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
@@ -95,7 +96,7 @@ namespace Analysis
         }
 
         private void TakePath
-            (TNodeId nodeId, ref HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
+            (TNodeId nodeId, ref List<List<List<TEdgeId>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
             foreach (var item in paths[0][nodeId])
             {
@@ -114,12 +115,13 @@ namespace Analysis
                         continue;
                     isPath = true;
                     rm.Add(iterator);
-                    for (int i = item2.Count - 1; i > 0; i--)
-                        edges.UnionWith(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
-                }
-                if (isPath)
+                    var pathToAdd = new List<List<TEdgeId>>();
                     for (int i = 0; i + 1 < item.Count(); i++)
-                        edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                        pathToAdd.Add(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                    for (int i = item2.Count - 1; i > 0; i--)
+                        pathToAdd.Add(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
+                    edges.Add(pathToAdd);
+                }
                 rm.Reverse();
                 foreach (var tmp in rm)
                     paths[1][nodeId].RemoveAt(tmp);

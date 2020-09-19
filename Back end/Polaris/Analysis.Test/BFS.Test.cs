@@ -82,10 +82,6 @@ namespace Analysis.Test
             int tar = 5;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            foreach (var item in ret)
-            {
-                item.Source = item.Source;
-            }
             Assert.IsTrue(ret.Count == 3);
         }
 
@@ -98,10 +94,6 @@ namespace Analysis.Test
             int tar = 1;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            foreach (var item in ret)
-            {
-                item.Source = item.Source;
-            }
             Assert.IsTrue(ret.Count == 1);
         }
 
@@ -114,10 +106,6 @@ namespace Analysis.Test
             int tar = 5;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            foreach (var item in ret)
-            {
-                item.Source = item.Source;
-            }
             Assert.IsTrue(ret.Count == 0);
         }
 
@@ -130,10 +118,6 @@ namespace Analysis.Test
             int tar = 5;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            foreach (var item in ret)
-            {
-                item.Source = item.Source;
-            }
             Assert.IsTrue(ret.Count == 8);
         }
     }
