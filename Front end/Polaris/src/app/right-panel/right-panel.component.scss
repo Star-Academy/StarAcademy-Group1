@@ -1,14 +1,14 @@
 .right-class {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .information-panel-style {
-  flex: 0 1 auto;
+  width: 100%;
+  height: auto;
 }
 
 .view-panel-style{
-  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
 }
