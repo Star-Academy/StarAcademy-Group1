@@ -1,13 +1,13 @@
-using Elastic.Communication;
-using Elastic.Communication.Nest;
 using Microsoft.Extensions.Configuration;
-using Models;
-using Models.Network;
-using Models.Response;
-using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
+using Elastic.Communication;
+using Elastic.Communication.Nest;
+using Models;
+using Models.Network;
+using Models.Response;
+using Elastic.Filtering;
 
 namespace API.Services.NodeBusiness
 {
@@ -46,11 +46,18 @@ namespace API.Services.NodeBusiness
         public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter = null, Pagination pagination = null)
         {
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
-                new QueryContainer(),
+                new NestFilter(filter, GetModelMapping()).Interpret(),
                 _nodeElasticIndexName,
                 pagination
             );
             return data.Select(d => new Node<TDataModel, TTypeDataId>(d));
+        }
+
+        private Dictionary<string, string> GetModelMapping()
+        {
+            return new Dictionary<string, string>{{"id", "text"}, {"cardId", "text"}, {"sheba", "text"},
+                {"accountType", "text"}, {"branchTelephone", "text"}, {"branchAddress", "text"}, {"branchName", "text"},
+                {"ownerName", "text"}, {"ownerFamilyName", "text"}, {"ownerId", "text"}};
         }
     }
 }

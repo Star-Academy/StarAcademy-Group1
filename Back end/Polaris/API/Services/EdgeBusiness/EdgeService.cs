@@ -1,13 +1,14 @@
-using Elastic.Communication;
-using Elastic.Communication.Nest;
 using Microsoft.Extensions.Configuration;
-using Models;
-using Models.Network;
-using Models.Response;
 using Nest;
 using System.Collections.Generic;
 using System.Linq;
 
+using Elastic.Communication;
+using Elastic.Communication.Nest;
+using Models;
+using Models.Network;
+using Models.Response;
+using Elastic.Filtering;
 
 namespace API.Services.EdgeBusiness
 {
@@ -46,11 +47,17 @@ namespace API.Services.EdgeBusiness
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByFilter(string[] filter = null, Pagination pagination = null)
         {
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
-                new QueryContainer(),
+                new NestFilter(filter, GetModelMapping()).Interpret(),
                 _edgeElasticIndexName,
                 pagination
             );
             return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+        }
+
+        private Dictionary<string, string> GetModelMapping()
+        {
+            return new Dictionary<string, string>{{"id", "text"}, {"source", "text"}, {"target", "text"},
+                {"amount", "numeric"}, {"timestamp", "text"}, {"trackingId", "numeric"}, {"type", "text"}};
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
