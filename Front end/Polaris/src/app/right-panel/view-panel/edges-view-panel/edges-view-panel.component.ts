@@ -1,3 +1,4 @@
+import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 import { GraphHandlerService } from './../../../services/main-graph.service';
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 
@@ -15,7 +16,7 @@ export class EdgesViewPanelComponent implements OnInit {
   public hidden = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: GraphHandlerService,
+    public ogmaProvider: OgmaHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {}
 

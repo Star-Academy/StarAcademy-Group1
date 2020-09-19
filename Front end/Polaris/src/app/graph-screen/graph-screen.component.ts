@@ -26,12 +26,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: GraphHandlerService,
+    private randomOgma: OgmaHandlerService,
     public componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
-    this.randomOgma.initOgma({
+    this.randomOgma.initConfig({
       graph: initialGraph,
       options: {
         backgroundColor: 'rgb(240, 240, 240)',
