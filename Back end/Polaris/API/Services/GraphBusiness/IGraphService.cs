@@ -10,8 +10,8 @@ namespace API.Services.GraphBusiness
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = false, bool target = false);
-        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId);
-        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId);
+        MaxFlowResult<TEdgeId> GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId);
+        List<List<TEdgeId>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId);
         Dictionary<string, object> Stats();
     }
 }

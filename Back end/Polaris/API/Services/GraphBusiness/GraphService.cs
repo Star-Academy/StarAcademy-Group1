@@ -38,19 +38,6 @@ namespace API.Services.GraphBusiness
             throw new System.NotImplementedException();
         }
 
-        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
-        {
-            var edges = _edgeService.GetEdgesByFilter();
-            var nodes = _nodeService.GetNodesByFilter();
-            //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
-            throw new System.NotImplementedException();
-        }
-
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null)
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, Pagination pagination = null)
@@ -61,6 +48,19 @@ namespace API.Services.GraphBusiness
             stats.Add("nodesCount", _nodeService.GetNodesByFilter(null, null).Count().ToString());
             stats.Add("edgesCount", _edgeService.GetEdgesByFilter(null, null).Count().ToString());
             return stats;
+        }
+
+        MaxFlowResult<TEdgeId> IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>.GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        List<List<TEdgeId>> IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>.GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
+        {
+            var edges = _edgeService.GetEdgesByFilter();
+            var nodes = _nodeService.GetNodesByFilter();
+            //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
+            throw new System.NotImplementedException();
         }
     }
 }

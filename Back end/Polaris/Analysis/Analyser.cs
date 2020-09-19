@@ -19,7 +19,7 @@ namespace Analysis
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<IEnumerable<TEdgeId>> GetPaths(TNodeId source, TNodeId target)
+        public List<List<TEdgeId>> GetPaths(TNodeId source, TNodeId target)
         {
             throw new System.NotImplementedException();
         }
