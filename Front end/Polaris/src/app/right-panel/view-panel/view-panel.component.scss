@@ -3,25 +3,37 @@ $second: #222831;
 $third: #4f8a8b;
 $forth: #fbd46d;
 
-h1 {
-  font-size: 40px;
-  line-height: 0.8em;
-  color: rgba(255, 255, 255, 0.2);
+
+.view-panel-style{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
-a {
-  background: #fd264f;
-  color: #fff;
-  display: block;
-  font-size: 12px;
-  line-height: 1em;
-  margin: 35px;
-  padding: 5px 110px;
-  top: 20px;
-  right: -100px;
+.tabs{
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.tab-2{
   text-align: center;
-  text-decoration: none;
-  transform: rotate(45deg);
+}
+
+.tabs [class^="tab"] label,
+.tabs [class*=" tab"] label {
+  color: white;
+  cursor: pointer;
+  background-color: $second;
+  display: flex;
+  line-height: 50px;
+  text-align: center;
+  justify-content: center;
+  margin: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-style: solid;
+  border-radius: 15px;
 }
 
 button:focus,
@@ -31,38 +43,6 @@ select:focus {
   outline: none;
 }
 
-.tabs {
-  display: block;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-
-.tabs [class^="tab"] label,
-.tabs [class*=" tab"] label {
-  color: white;
-  cursor: pointer;
-  background-color: $second;
-  display: flex;
-
-  
-  line-height: 50px;
-  height: 50px;
-  text-align: center;
-  justify-content: center;
-
-
-  margin: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  border-style: solid;
-  border-radius: 15px;
-
-}
 
 .tabs [class^="tab"] [type="radio"],
 .tabs [class*=" tab"] [type="radio"] {
@@ -71,8 +51,11 @@ select:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  display: block;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 10px;
+  text-align: center;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -96,19 +79,19 @@ select:focus {
   opacity: 1;
 }
 
+
 .tabs [class^="tab"] [type="radio"] + div,
 .tabs [class*=" tab"] [type="radio"] + div{
   display: block;
   opacity: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(100% - 102px);
 
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 
 
 .tabs .tab-2 {
@@ -137,5 +120,5 @@ select:focus {
   height: auto;
   width: auto;
   margin: 15px;
-  margin-left: 34px;
+  // margin-left: 34px;
 }
