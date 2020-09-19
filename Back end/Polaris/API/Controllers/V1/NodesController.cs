@@ -59,7 +59,7 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter([FromQuery]string[]? filter=null)
+        public IActionResult GetNodesByFilter([FromQuery] string[]? filter=null)
         {
             return Ok(_nodeService.GetNodesByFilter(filter, null));
         }
