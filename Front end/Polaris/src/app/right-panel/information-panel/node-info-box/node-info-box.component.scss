@@ -1,28 +1,26 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .node-info {
   left: 1%;
-  top: 1%;
+  top: 0%;
+  direction: rtl;
   text-align: right;
-  font-family: IRANSans, sans-serif;
-  font-size: small;
-  border-bottom: 1px solid black;
-}
-.node-info h1,
-h2 {
-  font-family: IRANSans, sans-serif;
+  color: $second;
 }
 
-.node-info h1 {
+h1{
+  margin: 7px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  margin: 10px;
+  margin-right: 15px;
   font-size: 16px;
-  font-weight: bold;
-  padding: 0;
-  margin: 0;
-}
-.node-info h2 {
-  margin: 0%;
-  font-size: 14px;
-  font-weight: bold;
-}
-.node-info p {
-  margin: 0;
-  font-size: 12px;
-}
+}  

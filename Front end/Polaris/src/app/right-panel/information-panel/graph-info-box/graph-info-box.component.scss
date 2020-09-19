@@ -1,20 +1,38 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
 .graph-info {
-    left: 1%;
-    top: 0%;
-    direction: rtl;
-    text-align: right;
-    font-family: IRANSans, sans-serif;
-    margin: 0;
-    border-bottom: 1px solid black;
-  }
-  .graph-info h1{
-    font-family: IRANSans, sans-serif;
-    font-size: 16px;
-    margin: 0;
-    font-weight: bold;
-  }
-  .graph-info p{
-    margin: 0;
-    font-size: 12px;
-  }
+  left: 1%;
+  top: 0%;
+  direction: rtl;
+  text-align: right;
+  color: $second;
+}
+
+h1{
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+p{
+  margin: 5px;
+  font-size: 16px;
+}
+
+.node{
+  display: inline;
+}
+.edge{
+  display: inline;
+}
+
+.info{
+  margin-top: 20px;
+  width: auto;
+  height: 50px;
+  text-align: center;
+}
   

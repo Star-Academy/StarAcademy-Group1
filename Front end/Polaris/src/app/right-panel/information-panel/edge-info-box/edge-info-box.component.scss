@@ -1,19 +1,26 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .edge-info {
   left: 1%;
   top: 0%;
   direction: rtl;
   text-align: right;
-  font-family: IRANSans, sans-serif;
-  margin: 0;
-  border-bottom: 1px solid black;
+  color: $second;
 }
-.edge-info h1 {
-  font-family: IRANSans, sans-serif;
-  font-size: 16px;
-  margin: 0;
+
+h1{
+  margin: 7px;
+  margin-bottom: 40px;
   font-weight: bold;
+  text-align: center;
 }
-.edge-info p {
-  margin: 0;
-  font-size: 12px;
-}
+
+p {
+  margin: 10px;
+  margin-right: 15px;
+  font-size: 16px;
+} 

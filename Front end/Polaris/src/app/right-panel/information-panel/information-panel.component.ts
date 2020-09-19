@@ -7,7 +7,21 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
   styleUrls: ['./information-panel.component.scss'],
 })
 export class InformationPanelComponent implements OnInit {
-  constructor(public componentCommunication: ComponentsCommunicationService) {}
+  constructor(public componentCommunication: ComponentsCommunicationService) { }
 
-  ngOnInit(): void {}
+  isEmpty: boolean;
+  ngOnInit(): void {
+
+
+    if (this.componentCommunication.whichPanel === 'nodeInfo' ||
+      this.componentCommunication.whichPanel === 'edgeInfo' ||
+      this.componentCommunication.whichPanel === 'graphInfo'
+    )
+      this.isEmpty = false;
+    else
+      this.isEmpty = true;
+
+    console.log(this.isEmpty);
+
+  }
 }

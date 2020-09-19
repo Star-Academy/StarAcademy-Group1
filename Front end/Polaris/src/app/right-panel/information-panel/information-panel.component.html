@@ -1,12 +1,15 @@
 <div class="info-container">
-  <app-node-info-box
-    *ngIf="componentCommunication.whichPanel === 'nodeInfo'"
-  ></app-node-info-box>
-  <app-edge-info-box
-    *ngIf="componentCommunication.whichPanel === 'edgeInfo'"
-  ></app-edge-info-box>
-  <app-graph-info-box
-    *ngIf="componentCommunication.whichPanel === 'graphInfo'"
-  ></app-graph-info-box>
+
+  <app-node-info-box *ngIf="componentCommunication.whichPanel === 'nodeInfo'"></app-node-info-box>
+
+  <app-edge-info-box *ngIf="componentCommunication.whichPanel === 'edgeInfo'"></app-edge-info-box>
+
+  <app-graph-info-box *ngIf="componentCommunication.whichPanel === 'graphInfo'"></app-graph-info-box>
+
+  <p class= "test" *ngIf="(componentCommunication.whichPanel !== 'graphInfo' &&
+          componentCommunication.whichPanel !== 'nodeInfo' &&
+          componentCommunication.whichPanel !== 'edgeInfo')">
+    ...برای مشاهده انتخاب کنید
+  </p>
+
 </div>
- 
