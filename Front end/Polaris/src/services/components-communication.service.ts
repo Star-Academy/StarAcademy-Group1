@@ -6,7 +6,7 @@ import { EdgeInfo } from 'src/app/right-panel/information-panel/edge-info-box/Ed
 export class ComponentsCommunicationService {
 
   public whichPanel: string;
-  public whichLeftSideNav: number = 2;
+  public whichLeftSideNav: number = 0;
   public graphCreated: boolean = false;
 
   public nodeInfo: NodeInfo

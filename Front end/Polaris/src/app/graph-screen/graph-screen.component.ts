@@ -27,7 +27,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuContent: { id: NodeId };
   constructor(
     private randomOgma: GraphHandlerService,
-    private componentCommunication: ComponentsCommunicationService
+    public componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
