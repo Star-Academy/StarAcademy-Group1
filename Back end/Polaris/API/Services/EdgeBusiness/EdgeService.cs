@@ -29,6 +29,13 @@ namespace API.Services.EdgeBusiness
             return new Edge<TDataModel, TTypeDataId, TTypeSideId>(_handler.GetEntity(id, _edgeElasticIndexName));
         }
 
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesById(TTypeDataId[] ids)
+        {
+            return _handler.GetEntities(ids, _edgeElasticIndexName).Select(
+                entity => new Edge<TDataModel, TTypeDataId, TTypeSideId>(entity)
+            );
+        }
+
         public void DeleteEdgeById(TTypeDataId id)
         {
             _handler.DeleteEntity(id, _edgeElasticIndexName);

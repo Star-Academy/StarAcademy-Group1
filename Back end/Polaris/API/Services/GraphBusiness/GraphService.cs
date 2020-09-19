@@ -25,6 +25,13 @@ namespace API.Services.GraphBusiness
             _edgeService = edgeService;
         }
 
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetWholeGraph()
+        {
+            var edges = _edgeService.GetEdgesByFilter().ToList();
+            var nodes = _nodeService.GetNodesByFilter().ToList();
+            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges);
+        }
+
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(
             TNodeId nodeId,
             bool source = true,
@@ -33,30 +40,59 @@ namespace API.Services.GraphBusiness
             Pagination pagination = null
         )
         {
-            // if (!source && !target)
-            //     throw new BadExpansionRequest("Either \"source\" or \"target\" must be true");
-            // else if (source && target)
-            //     return _edgeService.GetEdgesBySideId(nodeId);
-            // else if (source)
-            //     return _edgeService.GetEdgesBySourceId(nodeId);
-            throw new System.NotImplementedException();
+            HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges;
+
+            if (!source && !target)
+                throw new BadExpansionRequest("Either parameters \"source\" or \"target\" must be true");
+            else if (source && target)
+                edges = _edgeService.GetEdgesBySideId(nodeId).ToHashSet();
+            else if (source)
+                edges = _edgeService.GetEdgesBySourceId(nodeId).ToHashSet();
+            else
+                edges = _edgeService.GetEdgesByTargetId(nodeId).ToHashSet();
+
+            var nodes = _nodeService.GetNodesById(
+                edges.SelectMany(
+                    edge => new TNodeId[]
+                    {
+                        edge.Source,
+                        edge.Target
+                    })
+                    .ToHashSet()
+                    .ToArray()
+            );
+
+            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
         }
 
-        public MaxFlowResult<TEdgeId> GetFlow(
+        public List<List<TEdgeId>> GetPaths(
             TNodeId sourceNodeId,
-            TNodeId targetNodeId
+            TNodeId targetNodeId,
+            string[] filter = null,
+            Pagination pagination = null
         )
         {
-            var edges = _edgeService.GetEdgesByFilter().ToList();
-            var nodes = _nodeService.GetNodesByFilter().ToList();
+            var edges = _edgeService.GetEdgesByFilter(filter, pagination).ToList();
+            var nodes = _nodeService.GetNodesByFilter(filter, pagination).ToList();
+
             return new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges))
-                .GetMaxFlow(sourceNodeId, targetNodeId);
+                    .GetPaths(sourceNodeId, targetNodeId);
         }
 
-        //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
-        //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null)
-        //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, Pagination pagination = null)
+        public MaxFlowResult<TEdgeId> GetMaxFlow(
+            TNodeId sourceNodeId,
+            TNodeId targetNodeId,
+            string[] filter = null,
+            Pagination pagination = null
+        )
+        {
+            var edges = _edgeService.GetEdgesByFilter(filter, pagination).ToList();
+            var nodes = _nodeService.GetNodesByFilter(filter, pagination).ToList();
+            return new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges))
+                    .GetMaxFlow(sourceNodeId, targetNodeId);
+        }
 
         public Dictionary<string, object> Stats()
         {
@@ -66,13 +102,9 @@ namespace API.Services.GraphBusiness
             return stats;
         }
 
-        public List<List<TEdgeId>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId)
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansions(TNodeId nodeId, bool source = false, bool target = false, string[] filter = null, Pagination pagination = null)
         {
-            var edges = _edgeService.GetEdgesByFilter();
-            var nodes = _nodeService.GetNodesByFilter();
-            //var bfs = BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(edges, nodes);
             throw new System.NotImplementedException();
         }
-
     }
 }

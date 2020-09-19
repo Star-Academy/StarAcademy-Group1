@@ -28,6 +28,13 @@ namespace API.Services.NodeBusiness
             return new Node<TDataModel, TTypeDataId>(_handler.GetEntity(id, _nodeElasticIndexName));
         }
 
+        public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesById(TTypeDataId[] ids)
+        {
+            return _handler.GetEntities(ids, _nodeElasticIndexName).Select(
+                entity => new Node<TDataModel, TTypeDataId>(entity)
+            );
+        }
+
         public void DeleteNodeById(TTypeDataId id)
         {
             _handler.DeleteEntity(id, _nodeElasticIndexName);
