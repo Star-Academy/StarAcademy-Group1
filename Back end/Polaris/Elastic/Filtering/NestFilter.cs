@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
-
+using System;
 using Elastic.Exceptions;
 using Elastic.Filtering.Criteria;
 using Nest;
@@ -12,7 +12,7 @@ namespace Elastic.Filtering
     public class NestFilter : INestInterpretable
     {
         static readonly Regex FilterPattern = new Regex(
-            @"^\s*(?<field>\S+)\s+(?<operator>\S+)\s+(?<value>(\S+\s)+)\s*$",
+            @"^(?<field>\S+)\s(?<operator>\S+)\s(?<value>(\S+\s)+)$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase
         );
 
@@ -28,7 +28,7 @@ namespace Elastic.Filtering
 
         public QueryContainer Interpret()
         {
-            return (QueryContainer) new BoolQuery
+            return (QueryContainer)new BoolQuery
             {
                 Must = this.criterias.Select(criteria => criteria.Interpret()).ToList()
             };
@@ -42,11 +42,13 @@ namespace Elastic.Filtering
 
         private NestCriteria BuildCriteria(string filterQuery)
         {
-            var match = FilterPattern.Match(filterQuery.Trim());
+            var match = FilterPattern.Match(filterQuery.Trim() + " ");
             var selectedField = match.Groups["field"].Value;
             string @operator;
             string value;
-            
+            @operator = match.Groups["operator"].Value;
+            value = match.Groups["value"].Value;
+            Console.WriteLine(@operator + " " + value + "sdfkdfk" + filterQuery);
             switch (mapping[selectedField])
             {
                 case "text":
@@ -58,7 +60,7 @@ namespace Elastic.Filtering
                     @operator = match.Groups["operator"].Value;
                     value = match.Groups["value"].Value;
                     return new NumericNestCriteria(selectedField, @operator, value);
-                    
+
                 default:
                     throw new InvalidNestFilterException($"Field: \"{selectedField}\" not in valid fields: [{mapping.Keys}]");
             }

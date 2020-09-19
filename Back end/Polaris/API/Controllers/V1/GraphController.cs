@@ -27,8 +27,8 @@ namespace API.Controllers.V1
         [Route("expansion/{nodeId}")]
         public ActionResult GetNodeExpansions(
             string nodeId,
-            bool isSource = false,
-            bool isTarget = false,
+            bool isSource = true,
+            bool isTarget = true,
             [FromQuery(Name = "node")] string[] nodeFilter = null,
             [FromQuery(Name = "edge")] string[] edgeFilter = null,
             [FromQuery(Name = "node")] Pagination nodePagination = null,

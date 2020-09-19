@@ -95,10 +95,14 @@ namespace API.Services.EdgeBusiness
             Pagination pagination = null
         )
         {
+            if (filter is null)
+            {
+                filter = new string[] { };
+            }
             var filters = filter.ToList();
             filters.Add($"source eq {id}");
             filters.Add($"target eq {id}");
-            return GetEdgesByFilter(filters.ToArray(),  pagination);
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(
