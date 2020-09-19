@@ -43,9 +43,9 @@ namespace API.Controllers.V1
         [HttpGet]
         [Route("expansion")]
         public ActionResult GetNodesExpansions(
-            string[] nodesIds,
-            bool isSource = false,
-            bool isTarget = false,
+            [FromQuery]string[] nodesIds,
+            bool isSource = true,
+            bool isTarget = true,
             [FromQuery(Name = "node")] string[] nodeFilter = null,
             [FromQuery(Name = "edge")] string[] edgeFilter = null,
             [FromQuery(Name = "node")] Pagination nodePagination = null,

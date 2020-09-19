@@ -90,11 +90,18 @@ namespace API.Services.GraphBusiness
             else
                 edges = _edgeService.GetEdgesByTargetIds(nodeIds).ToHashSet();
 
-            var nodes = _nodeService.GetNodesById(
-                edges.SelectMany(edge => new TNodeId[] { edge.Source, edge.Target })
-                    .ToHashSet()
-                    .ToArray()
-            );
+            // var nodes = _nodeService.GetNodesById(
+            //     edges.SelectMany(edge => new TNodeId[] { edge.Source, edge.Target })
+            //         .ToHashSet()
+            //         .ToArray()
+            // );
+            var nodesIds = new HashSet<TNodeId>();
+            foreach (var edge in edges)
+            {
+                nodesIds.Add(edge.Source);
+                nodesIds.Add(edge.Target);
+            }
+            var nodes = _nodeService.GetNodesById(nodesIds.ToArray());
 
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
         }

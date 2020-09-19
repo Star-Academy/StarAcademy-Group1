@@ -111,6 +111,10 @@ namespace API.Services.EdgeBusiness
             Pagination pagination = null
         )
         {
+            if (filter is null)
+            {
+                filter = new string[] { };
+            }
             var filters = filter.ToList();
             var idsToString = string.Join(" ", ids.Select(i => i.ToString()));
             filters.Add($"source eq {idsToString}");
