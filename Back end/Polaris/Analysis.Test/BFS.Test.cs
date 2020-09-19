@@ -5,6 +5,7 @@ using Models;
 using Models.Network;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
@@ -82,7 +83,7 @@ namespace Analysis.Test
             int tar = 5;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            Assert.IsTrue(ret.Count == 3);
+            Assert.IsTrue(ret.ElementAt(0).Count == 3 && ret.Count == 1);
         }
 
         [Fact]
@@ -94,6 +95,12 @@ namespace Analysis.Test
             int tar = 1;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
+            foreach(var path in ret)
+                foreach(var edges in path)
+                {
+                    foreach (var edge in edges)
+                        _ = edge;
+                }
             Assert.IsTrue(ret.Count == 1);
         }
 
@@ -118,7 +125,7 @@ namespace Analysis.Test
             int tar = 5;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            Assert.IsTrue(ret.Count == 8);
+            Assert.IsTrue(ret.Count() == 6);
         }
     }
 }

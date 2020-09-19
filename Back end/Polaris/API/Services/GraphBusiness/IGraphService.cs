@@ -16,7 +16,7 @@ namespace API.Services.GraphBusiness
             bool target = false, string[] filter = null, Pagination pagination = null);
         MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId sourceNodeId, TNodeId targetNodeId,
             string[] filter = null, Pagination pagination = null);
-        List<List<TEdgeId>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId,
+        List<List<List<TEdgeId>>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId,
             string[] filter = null, Pagination pagination = null);
         Dictionary<string, object> Stats();
     }

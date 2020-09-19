@@ -65,7 +65,7 @@ namespace API.Services.GraphBusiness
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
         }
 
-        public List<List<TEdgeId>> GetPaths(
+        public List<List<List<TEdgeId>>> GetPaths(
             TNodeId sourceNodeId,
             TNodeId targetNodeId,
             string[] filter = null,
