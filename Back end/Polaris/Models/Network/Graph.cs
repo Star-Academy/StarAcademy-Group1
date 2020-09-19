@@ -1,5 +1,8 @@
+// In The Name Of GOD
+
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Models.Network
 {
@@ -13,6 +16,22 @@ namespace Models.Network
         public List<TNodeId> GetNeighbors(TNodeData data)
         {
             return ReadNeighbors(data.Id);
+        }
+
+        public Graph(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> container)
+        {
+            Adj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
+            reverseAdj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
+            foreach (var node in container.Nodes) 
+            {
+                Adj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+                reverseAdj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            }
+            foreach (var edge in container.Edges)
+            {
+                Adj[edge.Source].Add(edge);
+                reverseAdj[edge.Target].Add(edge);
+            }
         }
 
         public Graph(Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> Adj)

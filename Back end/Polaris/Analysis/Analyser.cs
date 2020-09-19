@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+﻿// In The Name Of GOD
 
-using Models.Network;
 using Models;
-using Models.Banking;
+using Models.Network;
+using System.Collections.Generic;
 
 namespace Analysis
 {
@@ -12,6 +12,7 @@ namespace Analysis
     {
         public Analyser(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> graphContainer)
         {
+            
         }
 
         public MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target)

@@ -12,7 +12,7 @@ namespace Models.Network
             Edges = edges;
         }
 
-        List<Node<TNodeData, TNodeId>> Nodes { get; set; }
-        List<Edge<TEdgeData, TEdgeId, TNodeId>> Edges { get; set; }
+        public List<Node<TNodeData, TNodeId>> Nodes { get; set; }
+        public List<Edge<TEdgeData, TEdgeId, TNodeId>> Edges { get; set; }
     }
 }
