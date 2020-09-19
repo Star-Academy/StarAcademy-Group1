@@ -1,6 +1,6 @@
 // In The Name Of GOD
 
-using Analysis.Analyser;
+using Analysis;
 using Models;
 using Models.Network;
 using System;

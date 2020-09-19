@@ -5,7 +5,7 @@ using Models.Network;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Analysis.Analyser
+namespace Analysis
 {
     public class BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>

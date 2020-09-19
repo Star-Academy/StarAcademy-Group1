@@ -7,7 +7,7 @@ using Models.Banking;
 using API.Services.NodeBusiness;
 using Models.Network;
 using Models;
-using Analysis.Analyser;
+using Analysis;
 
 
 namespace API.Services.GraphBusiness
