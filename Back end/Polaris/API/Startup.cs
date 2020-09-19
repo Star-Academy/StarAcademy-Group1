@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models.Banking;
+using API.Services.GraphBusiness;
 
 namespace API
 {
@@ -34,6 +35,7 @@ namespace API
             services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
             services.AddSingleton<INodeService<BankAccount, string>, NodeService<BankAccount, string>>();
             services.AddSingleton<IEdgeService<Transaction, string, string>, EdgeService<Transaction, string, string>>();
+            services.AddSingleton<IGraphService<string, BankAccount, string, Transaction>, GraphService<string, BankAccount, string, Transaction>>();
             services.AddSingleton<IElasticHandler<BankAccount>, NestElasticHandler<BankAccount>>();
             services.AddSingleton<IElasticHandler<Transaction>, NestElasticHandler<Transaction>>();
         }

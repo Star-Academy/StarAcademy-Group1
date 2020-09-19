@@ -10,14 +10,45 @@ namespace API.Services.GraphBusiness
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetWholeGraph();
-        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = false,
-            bool target = false, string[] filter = null, Pagination pagination = null);
-        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansions(TNodeId nodeId, bool source = false,
-            bool target = false, string[] filter = null, Pagination pagination = null);
-        MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId sourceNodeId, TNodeId targetNodeId,
-            string[] filter = null, Pagination pagination = null);
-        List<List<TEdgeId>> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId,
-            string[] filter = null, Pagination pagination = null);
+
+        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetNodeExpansions(
+            TNodeId nodeId,
+            bool isSource = false,
+            bool isTarget = false,
+            string[] nodeFilter = null,
+            string[] edgeFilter = null,
+            Pagination nodePagination = null,
+            Pagination edgePagination = null
+        );
+
+        GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetNodesExpansions(
+            TNodeId[] nodeIds,
+            bool isSource = false,
+            bool isTarget = false,
+            string[] nodeFilter = null,
+            string[] edgeFilter = null,
+            Pagination nodePagination = null,
+            Pagination edgePagination = null
+        );
+
+        MaxFlowResult<TEdgeId> GetMaxFlow(
+            TNodeId sourceNodeId,
+            TNodeId targetNodeId,
+            string[] nodeFilter = null,
+            string[] edgeFilter = null,
+            Pagination nodePagination = null,
+            Pagination edgePagination = null
+        );
+
+        List<List<List<TEdgeId>>> GetPaths(
+            TNodeId sourceNodeId,
+            TNodeId targetNodeId,
+            string[] nodeFilter = null,
+            string[] edgeFilter = null,
+            Pagination nodePagination = null,
+            Pagination edgePagination = null
+        );
+            
         Dictionary<string, object> Stats();
     }
 }

@@ -51,7 +51,10 @@ namespace API.Services.EdgeBusiness
             _handler.UpdateEntity(newEdge.Data, _edgeElasticIndexName);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByFilter(string[] filter = null, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByFilter(
+            string[] filter = null,
+            Pagination pagination = null
+        )
         {
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 new NestFilter(filter, GetModelMapping()).Interpret(),
@@ -86,54 +89,73 @@ namespace API.Services.EdgeBusiness
             return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(
+            TTypeSideId id,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            return GetEdgesByQueryOnFields(id.ToString(), new string[] { "source", "target" }, pagination);
+            var filters = filter.ToList();
+            filters.Add($"source eq {id}");
+            filters.Add($"target eq {id}");
+            return GetEdgesByFilter(filters.ToArray(),  pagination);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(TTypeSideId[] ids, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(
+            TTypeSideId[] ids,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            return GetEdgesByQueryOnFields(string.Join(" ", ids.Select(i => i.ToString())), new string[] { "source", "target" }, pagination);
+            var filters = filter.ToList();
+            var idsToString = string.Join(" ", ids.Select(i => i.ToString()));
+            filters.Add($"source eq {idsToString}");
+            filters.Add($"target eq {idsToString}");
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(TTypeSideId id, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(
+            TTypeSideId id,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            var queryContainer = new MatchQuery
-            {
-                Field = "source", // TODO: check toString()
-                Query = id.ToString()
-            };
-            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
-                queryContainer,
-                _edgeElasticIndexName,
-                pagination
-            );
-            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            var filters = filter.ToList();
+            filters.Add($"source eq {id}");
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceIds(TTypeSideId[] ids, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceIds(
+            TTypeSideId[] ids,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            return GetEdgesByQueryOnFields(string.Join(" ", ids.Select(i => i.ToString())), new string[] { "source" }, pagination);
+            var filters = filter.ToList();
+            filters.Add($"source eq {string.Join(" ", ids.Select(i => i.ToString()))}");
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(TTypeSideId id, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(
+            TTypeSideId id,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            var queryContainer = new MatchQuery
-            {
-                Field = "target",
-                Query = id.ToString()
-            };
-            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
-                queryContainer,
-                _edgeElasticIndexName,
-                pagination
-            );
-            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            var filters = filter.ToList();
+            filters.Add($"target eq {id}");
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
-        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetIds(TTypeSideId[] ids, Pagination pagination = null)
+        public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetIds(
+            TTypeSideId[] ids,
+            string[] filter,
+            Pagination pagination = null
+        )
         {
-            return GetEdgesByQueryOnFields(string.Join(" ", ids.Select(i => i.ToString())), new string[] { "target" }, pagination);
+            var filters = filter.ToList();
+            filters.Add($"target eq {string.Join(" ", ids.Select(i => i.ToString()))}");
+            return GetEdgesByFilter(filters.ToArray(), pagination);
         }
     }
 }
