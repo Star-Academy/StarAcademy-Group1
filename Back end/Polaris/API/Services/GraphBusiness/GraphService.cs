@@ -3,12 +3,10 @@ using System.Linq;
 
 using API.Services.EdgeBusiness;
 using Models.Banking;
-<<<<<<< Updated upstream
-=======
-using Models;
-using Models.Network;
->>>>>>> Stashed changes
 using API.Services.NodeBusiness;
+using Models.Network;
+using Models;
+
 
 namespace API.Services.GraphBusiness
 {
@@ -23,6 +21,16 @@ namespace API.Services.GraphBusiness
         {
             _nodeService = nodeService;
             _edgeService = edgeService;
+        }
+
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = false, bool target = false)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetFlow(TNodeId sourceNodeId, TNodeId targetNodeId)
+        {
+            throw new System.NotImplementedException();
         }
 
         //IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(TTypeSideId id, Pagination pagination = null)
