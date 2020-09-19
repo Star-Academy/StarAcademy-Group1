@@ -3,6 +3,7 @@ using Models;
 using Nest;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Elastic.Communication.Nest
 {
@@ -35,10 +36,16 @@ namespace Elastic.Communication.Nest
 
         public IEnumerable<TModel> GetEntities(TType[] ids, string indexName)
         {
+            var value = new StringBuilder();
+            foreach (var id in ids)
+            {
+                value.Append(id);
+                value.Append(" ");
+            }
             var queryContainer = new MatchQuery
             {
                 Field = "id",
-                Query = string.Join(" ", ids)
+                Query = value.ToString()
             };
             var response = RetrieveQueryDocuments(queryContainer, indexName);
             if (!response.Any())
