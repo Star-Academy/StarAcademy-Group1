@@ -22,7 +22,7 @@ namespace Analysis
         // filters weren't applied yet
         public List<List<List<TEdgeId>>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
         {
-            var edges = new List<List<List<TEdgeId>>>();
+            var edges = new HashSet<List<List<TEdgeId>>>();
 
             var paths = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>[2];
             paths[0] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
@@ -69,7 +69,7 @@ namespace Analysis
                 paths[1][item.Key].Clear();
             }
 
-            return edges;
+            return edges.ToList();
         }
         private void BreadthFirstSearch
             (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int src = 1)
@@ -96,7 +96,7 @@ namespace Analysis
         }
 
         private void TakePath
-            (TNodeId nodeId, ref List<List<List<TEdgeId>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
+            (TNodeId nodeId, ref HashSet<List<List<TEdgeId>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
             foreach (var item in paths[0][nodeId])
             {
@@ -105,6 +105,9 @@ namespace Analysis
                 List<int> rm = new List<int>();
                 foreach (var item2 in paths[1][nodeId])
                 {
+                    int difference = item.Count - item2.Count;
+                    if (difference < 0 || difference > 1) 
+                        continue;
                     iterator++;
                     var set = new HashSet<TNodeId>();
                     foreach (var tmp in item)

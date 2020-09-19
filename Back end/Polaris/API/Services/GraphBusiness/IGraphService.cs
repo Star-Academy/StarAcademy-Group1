@@ -48,7 +48,7 @@ namespace API.Services.GraphBusiness
             Pagination nodePagination = null,
             Pagination edgePagination = null
         );
-            
+        
         Dictionary<string, object> Stats();
     }
 }
