@@ -41,9 +41,9 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target.isNode) {
         this.hoveredContent = {
           id: target.getId(),
-          accountId: target.getId(),
-          name: target.getData('ownerName'),
-          familyName: target.getData('ownerFamilyName'),
+          accountId: target.getData('AccountID'),
+          name: target.getData('OwnerName'),
+          familyName: target.getData('OwnerFamilyName'),
         };
         this.hoveredPosition = { x, y: y + 20 };
       }
@@ -72,16 +72,16 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target != null && target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'nodeInfo';
         this.componentCommunication.nodeInfo = {
-          ownerName: target.getData('ownerName'),
-          ownerFamilyName: target.getData('ownerFamilyName'),
+          ownerName: target.getData('OwnerName'),
+          ownerFamilyName: target.getData('OwnerFamilyName'),
           accountId: target.getId(),
-          accountType: target.getData('accountType'),
-          sheba: target.getData('sheba'),
-          cardId: target.getData('cardId'),
-          ownerId: target.getData('ownerId'),
-          branchName: target.getData('branchName'),
-          branchAddress: target.getData('branchAddress'),
-          branchTelephone: target.getData('branchTelephone'),
+          accountType: target.getData('AccountType'),
+          sheba: target.getData('Sheba'),
+          cardId: target.getData('CardId'),
+          ownerId: target.getData('OwnerId'),
+          branchName: target.getData('BranchName'),
+          branchAddress: target.getData('BranchAddress'),
+          branchTelephone: target.getData('BranchTelephone'),
         };
       } else if (target != null && !target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'edgeInfo';
@@ -101,35 +101,22 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         };
       }
     });
-    // this.randomOgma.ogma.events.onNodesSelected((evt) => {
 
-    // });
-    // this.randomOgma.ogma.events.onEdgesSelected((evt) => {
-    //   for (let edge of evt.edges.getId()) {
-    //     if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
-    //       this.randomOgma.ogma
-    //         .getEdge(edge)
-    //         .getSource()
-    //         .setAttributes(
-    //           { outerStroke: null },
-    //           { color: 'black' },
-    //           { innerStroke: null }
-    //         );
-    //     console.log(this.randomOgma.ogma.getEdge(edge).getSource());
-    //   }
-    // });
-
-    this.randomOgma.ogma.events.onNodesUnselected(() => {
-      //   this.randomOgma.ogma.getNonSelectedNodes().getId().forEach(element => {
-      //     if (this.randomOgma.selectedNodes.includes(element)) {
-      //       const index = this.randomOgma.selectedNodes.indexOf(element, 0);
-      //       if (index > -1) {
-      //         this.randomOgma.selectedNodes.splice(index, 1);
-      //       }
-      //     }
-      //   });
-      // console.log(this.randomOgma.ogma.getSelectedNodes());
+    this.randomOgma.ogma.events.onEdgesSelected((evt) => {
+      for (let edge of evt.edges.getId()) {
+        if (!this.randomOgma.ogma.getEdge(edge).getSource().isSelected())
+          this.randomOgma.ogma
+            .getEdge(edge)
+            .getSource()
+            .setAttributes(
+              { outerStroke: null },
+              { color: 'black' },
+              { innerStroke: null }
+            );
+        console.log(this.randomOgma.ogma.getEdge(edge).getSource());
+      }
     });
+
     this.randomOgma.ogma.events.onDragStart(() => {
       if (this.randomOgma.ogma.keyboard.isKeyPressed('ctrl')) {
         this.randomOgma.ogma.getSelectedNodes().setSelected(false);
