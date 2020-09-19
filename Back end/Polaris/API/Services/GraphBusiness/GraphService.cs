@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using API.Exceptions;
 using API.Services.EdgeBusiness;
 using Models.Banking;
 using API.Services.NodeBusiness;
@@ -25,6 +26,12 @@ namespace API.Services.GraphBusiness
 
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetExpansion(TNodeId nodeId, bool source = true, bool target = true)
         {
+            // if (!source && !target)
+            //     throw new BadExpansionRequest("Either \"source\" or \"target\" must be true");
+            // else if (source && target)
+            //     return _edgeService.GetEdgesBySideId(nodeId);
+            // else if (source)
+            //     return _edgeService.GetEdgesBySourceId(nodeId);
             throw new System.NotImplementedException();
         }
 
