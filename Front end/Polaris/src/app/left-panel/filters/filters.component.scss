@@ -1,39 +1,42 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
 .sidenav {
-  height: 100%;
+  height: calc(100% - 20px);
   width: 20%;
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 3%;
-  background-color: rgb(196, 173, 231);
+  left: calc(3%);
+  background-color: $second;
   overflow-x: hidden;
-  padding-top: 60px;
-  transition: 0.5s;
+  margin: 10px;
+  transition: 3.5s;
+
+  border-style: solid;
+  border-radius: 15px;
+  border-color: $second;
 }
 
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
 
 .sidenav a:hover {
   color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
+  position: relative;
   font-size: 36px;
-  margin-left: 50px;
+
+  margin: 20px;
+  text-decoration: none;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
 
-#main {
+/* #main {
   transition: margin-left .5s;
   padding: 20px;
 }
@@ -52,7 +55,6 @@ mat-expansion-panel-header{
   .sidenav a {font-size: 18px;}
 }
 
-// by Alireza, for submit button
 button {
   font-family: IRANSans, sans-serif;
   margin: 0 10px;
@@ -75,3 +77,4 @@ mat-form-field {
   direction: rtl;
   text-align: right !important;
 }
+ */

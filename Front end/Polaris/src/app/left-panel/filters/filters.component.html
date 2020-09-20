@@ -1,12 +1,7 @@
 <div id="mySidenav2" class="sidenav">
-  <a
-    href="javascript:void(0)"
-    class="closebtn"
-    (click)="componentCommunication.whichLeftSideNav = 0"
-    >&times;</a
-  >
+  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&lt;</a>
 
-  <mat-accordion>
+  <!--<mat-accordion>
     <mat-expansion-panel
       (opened)="panelOpenState = true"
       (closed)="panelOpenState = false"
@@ -89,6 +84,5 @@
   </form>
   <br><br>
   <button mat-raised-button color="primary" (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
+ -->
 </div>
-
-
