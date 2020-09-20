@@ -11,7 +11,7 @@ namespace Analysis.Test
     public class MaxFlow_Test
     {
 
-        GraphContainer<int, Data, int, AmountedData> container = 
+        GraphContainer<int, Data, int, AmountedData> container =
             new GraphContainer<int, Data, int, AmountedData>(null, null);
 
         private void Init()

@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-
 using Models;
+using System.Collections.Generic;
 
 namespace Elastic.Communication
 {

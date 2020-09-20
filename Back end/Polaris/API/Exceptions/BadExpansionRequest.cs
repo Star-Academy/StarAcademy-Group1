@@ -1,5 +1,3 @@
-using System;
-
 namespace API.Exceptions
 {
     public class BadExpansionRequest : BadRequest

@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Models.Network
 {
@@ -22,7 +21,7 @@ namespace Models.Network
         {
             Adj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
             reverseAdj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
-            foreach (var node in container.Nodes) 
+            foreach (var node in container.Nodes)
             {
                 Adj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
                 reverseAdj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();

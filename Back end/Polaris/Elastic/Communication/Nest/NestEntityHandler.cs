@@ -1,10 +1,9 @@
+using Elastic.Exceptions;
+using Models;
 using Nest;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using Elastic.Exceptions;
-using Models;
 
 namespace Elastic.Communication.Nest
 {

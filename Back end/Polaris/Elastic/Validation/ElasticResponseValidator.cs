@@ -1,6 +1,5 @@
-using Nest;
-
 using Elastic.Exceptions;
+using Nest;
 
 namespace Elastic.Validation
 {

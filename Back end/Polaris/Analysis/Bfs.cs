@@ -4,7 +4,6 @@ using Models;
 using Models.Network;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Analysis
 {
@@ -105,7 +104,7 @@ namespace Analysis
                 foreach (var item2 in paths[1][nodeId])
                 {
                     int difference = item.Count - item2.Count;
-                    if (difference < 0 || difference > 1) 
+                    if (difference < 0 || difference > 1)
                         continue;
                     iterator++;
                     var set = new HashSet<TNodeId>();

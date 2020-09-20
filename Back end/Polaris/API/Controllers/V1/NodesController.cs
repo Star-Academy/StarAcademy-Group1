@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
-
-using Models.Banking;
-using Models.Network;
 using API.Services.NodeBusiness;
 using Elastic.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using Models.Banking;
+using Models.Network;
+using System;
 
 namespace API.Controllers.V1
 {
@@ -59,7 +58,7 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter([FromQuery] string[]? filter=null)
+        public IActionResult GetNodesByFilter([FromQuery] string[]? filter = null)
         {
             return Ok(_nodeService.GetNodesByFilter(filter, null));
         }

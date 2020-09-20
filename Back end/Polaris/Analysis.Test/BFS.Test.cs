@@ -94,8 +94,8 @@ namespace Analysis.Test
             int tar = 1;
             var bfs = new BFS<int, Data, int, AmountedEntity<int, int>>(graph);
             var ret = bfs.BiDirectionalSearch(src, tar);
-            foreach(var path in ret)
-                foreach(var edges in path)
+            foreach (var path in ret)
+                foreach (var edges in path)
                 {
                     foreach (var edge in edges)
                         _ = edge;

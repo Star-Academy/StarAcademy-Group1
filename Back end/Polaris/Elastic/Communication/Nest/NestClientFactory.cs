@@ -1,7 +1,6 @@
-using System;
-
 using Elastic.Exceptions;
 using Nest;
+using System;
 
 namespace Elastic.Communication.Nest
 {
