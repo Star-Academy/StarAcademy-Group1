@@ -1,3 +1,5 @@
+// In The Name Of GOD
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,40 +12,46 @@ namespace Models.Network
         public Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> Adj { get; set; }
         private readonly Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> reverseAdj;
 
-        public List<TNodeId> Nodes { get; set; }
-
-        public List<TEdgeId> Edges { get; set; }
         public List<TNodeId> GetNeighbors(TNodeData data)
         {
             return ReadNeighbors(data.Id);
+        }
+
+        public Graph(GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> container)
+        {
+            Adj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
+            reverseAdj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
+            foreach (var node in container.Nodes)
+            {
+                Adj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+                reverseAdj[node.Id] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            }
+            foreach (var edge in container.Edges)
+            {
+                Adj[edge.Source].Add(edge);
+                reverseAdj[edge.Target].Add(edge);
+            }
         }
 
         public Graph(Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>> Adj)
         {
             this.Adj = Adj;
             reverseAdj = new Dictionary<TNodeId, List<Edge<TEdgeData, TEdgeId, TNodeId>>>();
+
             foreach (var item in Adj)
                 reverseAdj[item.Key] = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
-            Nodes = new List<TNodeId>();
-            Edges = new List<TEdgeId>();
+
             foreach (var item in Adj)
-            {
                 foreach (var edge in item.Value)
-                {
                     reverseAdj[edge.Target].Add(edge);
-                    Edges.Add(edge.Id);
-                }
-                Nodes.Add(item.Key);
-            }
         }
 
         private List<TNodeId> ReadNeighbors(TNodeId id)
         {
             var set = new HashSet<TNodeId>();
+
             foreach (var edge in Adj[id])
-            {
                 set.Add(edge.Target);
-            }
 
             return set.ToList();
         }
@@ -64,13 +72,13 @@ namespace Models.Network
             return set.ToList();
         }
 
-        public List<Edge<TEdgeData, TEdgeId, TNodeId>> GetEdges(TNodeId id1, TNodeId id2)
+        public List<TEdgeId> GetEdges(TNodeId id1, TNodeId id2)
         {
-            var ret = new List<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            var ret = new List<TEdgeId>();
             foreach (var item in Adj[id1])
                 if (item.Target.Equals(id2))
                 {
-                    ret.Add(item);
+                    ret.Add(item.Id);
                 }
             return ret;
         }

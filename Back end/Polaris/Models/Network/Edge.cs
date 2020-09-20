@@ -8,6 +8,7 @@ namespace Models.Network
     {
         public Edge()
         {
+
         }
         public Edge(TDataModel data, Int64 flow, int address)
         {
@@ -66,7 +67,7 @@ namespace Models.Network
             }
         }
 
-        [JsonPropertyName("amount")]
+        [JsonIgnore]
         public Int64 Amount
         {
             get

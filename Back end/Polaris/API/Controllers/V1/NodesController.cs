@@ -1,9 +1,12 @@
 using API.Services.NodeBusiness;
 using Elastic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System;
+
 using Models.Banking;
 using Models.Network;
-using System;
+using Models.Response;
+
 
 namespace API.Controllers.V1
 {
@@ -57,16 +60,17 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter(/*string[] filter = null, [FromQuery] Pagination pagination = null*/)
+        public IActionResult GetNodesByFilter([FromQuery] string[] filter, [FromQuery] Pagination pagination)
         {
-            return Ok(_nodeService.GetNodesByFilter(new string[] { }, null));
+            if(pagination != null && pagination.PageIndex == 0 && pagination.PageSize == 0)
+                return Ok(_nodeService.GetNodesByFilter(filter, null));
+            return Ok(_nodeService.GetNodesByFilter(filter, pagination));
         }
 
         [HttpPost]
         public IActionResult AddNewNode([FromBody] Node<BankAccount, string> node)
         {
             _nodeService.InsertNode(node);
-            Console.WriteLine(ControllerContext.ActionDescriptor.AttributeRouteInfo.Name);
             return Created($"api/v1/nodes/{node.Id}", node);
         }
 

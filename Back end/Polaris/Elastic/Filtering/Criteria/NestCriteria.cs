@@ -1,13 +1,10 @@
-using System;
+using Elastic.Filtering.Attributes;
 using Nest;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using Elastic.Filtering.Attributes;
-using Elastic.Exceptions;
-
 
 namespace Elastic.Filtering.Criteria
 {
@@ -33,7 +30,8 @@ namespace Elastic.Filtering.Criteria
             var methods = typeof(TNestCriteria)
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(m => m.GetCustomAttributes(typeof(NestOperator), false).Length > 0);
-            foreach(var method in methods){
+            foreach (var method in methods)
+            {
                 var pair = BuildMethodDelegate<TNestCriteria>(method);
                 registry[pair.Key] = pair.Value;
             }
@@ -56,6 +54,5 @@ namespace Elastic.Filtering.Criteria
                 lambdaExpression
             );
         }
-
     }
 }
