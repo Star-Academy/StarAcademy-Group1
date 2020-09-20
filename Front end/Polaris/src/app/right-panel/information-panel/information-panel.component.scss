@@ -13,8 +13,9 @@ $forth: #fbd46d;
   background-color: $first;
   border-color: $first;
   margin: 10px;
-  font-size: 16;
+  font-size: 13px;
   text-align: center;
+  overflow-y: auto;
 }
 .test{
   margin: 5px;
