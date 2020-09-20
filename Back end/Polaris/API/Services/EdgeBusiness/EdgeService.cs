@@ -100,9 +100,16 @@ namespace API.Services.EdgeBusiness
                 filter = new string[] { };
 
             var filters = filter.ToList();
-            filters.Add($"source eq {id}");
-            filters.Add($"target eq {id}");
-            return GetEdgesByFilter(filters.ToArray(), pagination);
+            var sourceFilter = new string[]{};
+            var edgeFilter = new string[]{};
+
+            filters.CopyTo(0, sourceFilter, 0, sourceFilter.Count());
+            filters.CopyTo(0, edgeFilter, 0, edgeFilter.Count());
+
+            var sourceEdges = GetEdgesByFilter(sourceFilter.ToArray(), pagination);
+            var targetEdges = GetEdgesByFilter(edgeFilter.ToArray(), pagination);
+            
+            return sourceEdges.Concat(targetEdges).ToHashSet();
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(
