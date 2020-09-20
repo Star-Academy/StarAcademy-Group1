@@ -1,7 +1,6 @@
 using API.Services.GraphBusiness;
 using Microsoft.AspNetCore.Mvc;
 using Models.Banking;
-using Models;
 using Models.Response;
 
 namespace API.Controllers.V1
@@ -43,7 +42,7 @@ namespace API.Controllers.V1
         [HttpGet]
         [Route("expansion")]
         public ActionResult GetNodesExpansions(
-            [FromQuery]string[] nodesIds,
+            [FromQuery] string[] nodesIds,
             bool isSource = true,
             bool isTarget = true,
             [FromQuery(Name = "node")] string[] nodeFilter = null,

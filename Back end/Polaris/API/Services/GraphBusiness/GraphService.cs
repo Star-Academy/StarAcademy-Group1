@@ -3,7 +3,6 @@ using System.Linq;
 
 using API.Exceptions;
 using API.Services.EdgeBusiness;
-using Models.Banking;
 using API.Services.NodeBusiness;
 using Models.Network;
 using Models;
@@ -12,14 +11,18 @@ using Models.Response;
 
 namespace API.Services.GraphBusiness
 {
-    public class GraphService<TNodeId, TNodeData, TEdgeId, TEdgeData> : IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
+    public class GraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
+    : IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         private readonly IEdgeService<TEdgeData, TEdgeId, TNodeId> _edgeService;
         private readonly INodeService<TNodeData, TNodeId> _nodeService;
 
-        public GraphService(INodeService<TNodeData, TNodeId> nodeService, IEdgeService<TEdgeData, TEdgeId, TNodeId> edgeService)
+        public GraphService(
+            INodeService<TNodeData, TNodeId> nodeService,
+            IEdgeService<TEdgeData, TEdgeId, TNodeId> edgeService
+        )
         {
             _nodeService = nodeService;
             _edgeService = edgeService;

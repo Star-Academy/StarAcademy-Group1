@@ -10,7 +10,10 @@ namespace API.Services.NodeBusiness
     {
         Node<TDataModel, TTypeDataId> GetNodeById(TTypeDataId id);
         IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesById(TTypeDataId[] ids);
-        IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter = null, Pagination pagination = null);
+        IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(
+            string[] filter = null,
+            Pagination pagination = null
+        );
         void InsertNode(Node<TDataModel, TTypeDataId> node);
         void UpdateNode(Node<TDataModel, TTypeDataId> newNode);
         void DeleteNodeById(TTypeDataId id);

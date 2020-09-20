@@ -1,9 +1,10 @@
-using API.Services.EdgeBusiness;
-using Elastic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+
 using Models.Banking;
 using Models.Network;
 using Models.Response;
+using API.Services.EdgeBusiness;
+using Elastic.Exceptions;
 
 namespace API.Controllers
 {

@@ -50,7 +50,10 @@ namespace API.Services.NodeBusiness
             _handler.UpdateEntity(newNode.Data, _nodeElasticIndexName);
         }
 
-        public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter = null, Pagination pagination = null)
+        public IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(
+            string[] filter = null,
+            Pagination pagination = null
+        )
         {
             var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
                 new NestFilter(filter, GetModelMapping()).Interpret(),
