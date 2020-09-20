@@ -139,11 +139,36 @@ namespace API.Services.EdgeBusiness
             if (filter is null)
                 filter = new string[] { };
 
-            var filters = filter.ToList();
-            var idsToString = string.Join(" ", ids.Select(i => i.ToString()));
-            filters.Add($"source eq {idsToString}");
-            filters.Add($"target eq {idsToString}");
-            return GetEdgesByFilter(filters.ToArray(), pagination);
+            var filterQueryContainer = new NestFilter(filter, GetModelMapping()).Interpret();
+            var sideNodeQueryContainer = new BoolQuery
+            {
+                Should = new List<QueryContainer>
+                {
+                    new MatchQuery
+                    {
+                        Field="source",
+                        Query=string.Join(" ", ids.Select(i => i.ToString()))
+                    },
+                    new MatchQuery
+                    {
+                        Field="target",
+                        Query=string.Join(" ", ids.Select(i => i.ToString()))
+                    }
+                }
+            };
+            var wrapperQueryContainer = (QueryContainer) new BoolQuery
+            {
+                Must=new List<QueryContainer>
+                {
+                    filterQueryContainer,
+                    sideNodeQueryContainer
+                }
+            };
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
+                wrapperQueryContainer, _edgeElasticIndexName, pagination
+            );
+            var output = data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            return output;
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(
