@@ -78,7 +78,7 @@ namespace API.Controllers.V1
         )
         {
             return Ok(_graphService
-                .GetPaths(sourceNodeId, targetNodeId, null, null, null, null, maxLength));
+                .GetPaths(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null, maxLength));
         }
 
         [HttpGet]

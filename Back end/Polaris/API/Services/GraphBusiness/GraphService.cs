@@ -144,7 +144,7 @@ namespace API.Services.GraphBusiness
                 .GetPaths(sourceNodeId, targetNodeId, maxLength);
             var nodesIds = new HashSet<TNodeId>();
             var edgesIds = new HashSet<TEdgeId>();
-            pathsList.ForEach(first => first.Select(second => second.Select(third => edgesIds.Add(third))));
+            pathsList.ForEach(first => first.ForEach(second => second.ForEach(third => edgesIds.Add(third))));
             var edges = _edgeService.GetEdgesById(edgesIds.ToArray()).ToList();
             edges.ForEach((e) => {
                 nodesIds.Add(e.Source);
