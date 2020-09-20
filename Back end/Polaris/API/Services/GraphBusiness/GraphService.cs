@@ -60,7 +60,7 @@ namespace API.Services.GraphBusiness
                     ).ToArray().ToHashSet();
 
             nodes = nodes.Intersect(_nodeService.GetNodesById(sourceTargetNodeIds.ToArray())).ToHashSet();
-            
+
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 nodes.ToList(),
                 edges.ToList()
@@ -96,9 +96,21 @@ namespace API.Services.GraphBusiness
                 )
             ).ToHashSet();
 
+            var nodesIds = nodes.Select(n => n.Id);
+
+            System.Console.WriteLine(nodesIds.Count());
+
+            var remainEdges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
+
+            foreach (var edge in edges)
+            {
+                if (nodesIds.Contains(edge.Source) || nodesIds.Contains(edge.Target))
+                    remainEdges.Add(edge);
+            }
+
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 nodes.ToList(),
-                edges.ToList()
+                remainEdges.ToList()
             );
         }
 
@@ -146,7 +158,8 @@ namespace API.Services.GraphBusiness
             var edgesIds = new HashSet<TEdgeId>();
             pathsList.ForEach(first => first.ForEach(second => second.ForEach(third => edgesIds.Add(third))));
             var edges = _edgeService.GetEdgesById(edgesIds.ToArray()).ToList();
-            edges.ForEach((e) => {
+            edges.ForEach((e) =>
+            {
                 nodesIds.Add(e.Source);
                 nodesIds.Add(e.Target);
             });
