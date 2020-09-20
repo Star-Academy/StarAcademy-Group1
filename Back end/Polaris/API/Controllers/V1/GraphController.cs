@@ -26,12 +26,12 @@ namespace API.Controllers.V1
         [Route("expansion/{nodeId}")]
         public ActionResult GetNodeExpansions(
             string nodeId,
+            [FromQuery(Name = "node")] string[] nodeFilter,
+            [FromQuery(Name = "edge")] string[] edgeFilter,
+            [FromQuery(Name = "node")] Pagination nodePagination,
+            [FromQuery(Name = "edge")] Pagination edgePagination,
             bool isSource = true,
-            bool isTarget = true,
-            [FromQuery(Name = "node")] string[] nodeFilter = null,
-            [FromQuery(Name = "edge")] string[] edgeFilter = null,
-            [FromQuery(Name = "node")] Pagination nodePagination = null,
-            [FromQuery(Name = "edge")] Pagination edgePagination = null
+            bool isTarget = true
         )
         {
             // if((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
@@ -47,12 +47,12 @@ namespace API.Controllers.V1
         [Route("expansion")]
         public ActionResult GetNodesExpansions(
             [FromQuery] string[] nodesIds,
+            [FromQuery(Name = "node")] string[] nodeFilter,
+            [FromQuery(Name = "edge")] string[] edgeFilter,
+            [FromQuery(Name = "node")] Pagination nodePagination,
+            [FromQuery(Name = "edge")] Pagination edgePagination,
             bool isSource = true,
-            bool isTarget = true,
-            [FromQuery(Name = "node")] string[] nodeFilter = null,
-            [FromQuery(Name = "edge")] string[] edgeFilter = null,
-            [FromQuery(Name = "node")] Pagination nodePagination = null,
-            [FromQuery(Name = "edge")] Pagination edgePagination = null
+            bool isTarget = true
         )
         {
             if((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
@@ -69,15 +69,15 @@ namespace API.Controllers.V1
         public ActionResult GetPaths(
             string sourceNodeId,
             string targetNodeId,
-            int maxLength = 7,
-            [FromQuery(Name = "node")] string[] nodeFilter = null,
-            [FromQuery(Name = "edge")] string[] edgeFilter = null,
-            [FromQuery(Name = "node")] Pagination nodePagination = null,
-            [FromQuery(Name = "edge")] Pagination edgePagination = null
+            [FromQuery(Name = "node")] string[] nodeFilter,
+            [FromQuery(Name = "edge")] string[] edgeFilter,
+            [FromQuery(Name = "node")] Pagination nodePagination,
+            [FromQuery(Name = "edge")] Pagination edgePagination,
+            int maxLength = 7
         )
         {
             return Ok(_graphService
-                .GetPaths(sourceNodeId, targetNodeId, null, null, null, null, maxLength));
+                .GetPaths(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null, maxLength));
         }
 
         [HttpGet]
@@ -85,14 +85,14 @@ namespace API.Controllers.V1
         public ActionResult GetMaxFlow(
             string sourceNodeId,
             string targetNodeId,
-            [FromQuery(Name = "node")] string[] nodeFilter = null,
-            [FromQuery(Name = "edge")] string[] edgeFilter = null,
-            [FromQuery(Name = "node")] Pagination nodePagination = null,
-            [FromQuery(Name = "edge")] Pagination edgePagination = null
+            [FromQuery(Name = "node")] string[] nodeFilter,
+            [FromQuery(Name = "edge")] string[] edgeFilter,
+            [FromQuery(Name = "node")] Pagination nodePagination,
+            [FromQuery(Name = "edge")] Pagination edgePagination
         )
         {
             return Ok(_graphService
-                .GetMaxFlow(sourceNodeId, targetNodeId, null, null, null, null));
+                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null));
         }
 
         [HttpGet]

@@ -7,7 +7,6 @@ using Models.Response;
 
 namespace API.Controllers
 {
-#nullable enable
     [ApiController]
     [Route("api/v1/[Controller]")]
     public class EdgesController : ControllerBase
@@ -51,7 +50,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEdgesByFilter([FromQuery] Pagination pagination, [FromQuery] string[]? filter = null)
+        public IActionResult GetEdgesByFilter([FromQuery] Pagination pagination, [FromQuery] string[] filter)
         {
             if (pagination != null && pagination.PageIndex == 0 && pagination.PageSize == 0)
                 return Ok(_edgeService.GetEdgesByFilter(filter, null));
