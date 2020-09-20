@@ -55,24 +55,12 @@ namespace API.Services.GraphBusiness
             else
                 edges = _edgeService.GetEdgesByTargetId(nodeId, edgeFilter).ToHashSet();
 
-            Console.WriteLine($"*** [FILTERED] SERIES 1 EDGE COUNT ***");
-            Console.WriteLine(edges.Count());
-
             var nodes = _nodeService.GetNodesByFilter(nodeFilter, nodePagination);
-            Console.WriteLine($"*** [FILTERED] SERIES 1 NODE COUNT ***");
-            Console.WriteLine(nodes.Count());
-
             var sourceTargetNodeIds = edges.SelectMany(
                         edge => new TNodeId[] { edge.Source, edge.Target }
                     ).ToArray().ToHashSet();
 
-            Console.WriteLine($"*** [IDS] SERIES 1.1 NODE COUNT ***");
-            Console.WriteLine(sourceTargetNodeIds.Count());
-
             nodes = nodes.Intersect(_nodeService.GetNodesById(sourceTargetNodeIds.ToArray())).ToHashSet();
-
-            Console.WriteLine($"*** [INTERSECTED] SERIES 2 NODES ***");
-            Console.WriteLine(nodes.Count());
             
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 nodes.ToList(),
