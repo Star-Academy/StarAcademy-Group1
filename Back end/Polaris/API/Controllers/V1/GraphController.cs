@@ -2,6 +2,7 @@ using API.Services.GraphBusiness;
 using Microsoft.AspNetCore.Mvc;
 using Models.Banking;
 using Models.Response;
+using System.Linq;
 
 namespace API.Controllers.V1
 {
@@ -76,7 +77,7 @@ namespace API.Controllers.V1
         )
         {
             return Ok(_graphService
-                .GetPaths(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, nodePagination, edgePagination));
+                .GetPaths(sourceNodeId, targetNodeId, null, null, null, null));
         }
 
         [HttpGet]
@@ -91,7 +92,7 @@ namespace API.Controllers.V1
         )
         {
             return Ok(_graphService
-                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, nodePagination, edgePagination));
+                .GetMaxFlow(sourceNodeId, targetNodeId, null, null, null, null));
         }
 
         [HttpGet]
