@@ -34,9 +34,13 @@ namespace API.Controllers.V1
             [FromQuery(Name = "edge")] Pagination edgePagination = null
         )
         {
+            // if((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
+            //     return Ok(_graphService
+            //     .GetNodeExpansions(nodeId, isSource, isTarget,
+            //         nodeFilter, edgeFilter, null, null));
             return Ok(_graphService
                 .GetNodeExpansions(nodeId, isSource, isTarget,
-                    nodeFilter, edgeFilter, nodePagination, edgePagination));
+                    nodeFilter, edgeFilter, null, null));
         }
 
         [HttpGet]
@@ -51,6 +55,10 @@ namespace API.Controllers.V1
             [FromQuery(Name = "edge")] Pagination edgePagination = null
         )
         {
+            if((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
+                return Ok(_graphService
+                .GetNodesExpansions(nodesIds, isSource, isTarget,
+                    nodeFilter, edgeFilter, null, null));
             return Ok(_graphService
                 .GetNodesExpansions(nodesIds, isSource, isTarget,
                     nodeFilter, edgeFilter, nodePagination, edgePagination));

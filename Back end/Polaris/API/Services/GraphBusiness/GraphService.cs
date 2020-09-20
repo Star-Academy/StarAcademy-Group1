@@ -37,8 +37,8 @@ namespace API.Services.GraphBusiness
 
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetNodeExpansions(
             TNodeId nodeId,
-            bool isSource = false,
-            bool isTarget = false,
+            bool isSource = true,
+            bool isTarget = true,
             string[] nodeFilter = null,
             string[] edgeFilter = null,
             Pagination nodePagination = null,
