@@ -38,6 +38,7 @@ namespace API.Controllers.V1
             //     return Ok(_graphService
             //     .GetNodeExpansions(nodeId, isSource, isTarget,
             //         nodeFilter, edgeFilter, null, null));
+            System.Console.WriteLine(string.Join(" ", nodeFilter));
             return Ok(_graphService
                 .GetNodeExpansions(nodeId, isSource, isTarget,
                     nodeFilter, edgeFilter, null, null));

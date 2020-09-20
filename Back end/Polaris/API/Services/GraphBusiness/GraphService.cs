@@ -60,7 +60,6 @@ namespace API.Services.GraphBusiness
             //         .ToHashSet()
             //         .ToArray()
             // );
-            Console.WriteLine(edges.Count());
             var nodesId = new HashSet<TNodeId>();
             foreach (var edge in edges)
             {
@@ -68,7 +67,6 @@ namespace API.Services.GraphBusiness
                 nodesId.Add(edge.Target);
             }
             var nodes = _nodeService.GetNodesById(nodesId.ToArray());
-            Console.WriteLine(nodes.Count());
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
         }
 
