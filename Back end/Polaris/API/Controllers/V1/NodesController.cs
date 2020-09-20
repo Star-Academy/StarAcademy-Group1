@@ -10,7 +10,6 @@ using Models.Response;
 
 namespace API.Controllers.V1
 {
-#nullable enable
     [ApiController]
     [Route("api/v1/[Controller]")]
     public class NodesController : ControllerBase
@@ -61,7 +60,7 @@ namespace API.Controllers.V1
         }
 
         [HttpGet]
-        public IActionResult GetNodesByFilter([FromQuery] string[]? filter = null, [FromQuery] Pagination? pagination = null)
+        public IActionResult GetNodesByFilter([FromQuery] string[] filter, [FromQuery] Pagination pagination)
         {
             if(pagination != null && pagination.PageIndex == 0 && pagination.PageSize == 0)
                 return Ok(_nodeService.GetNodesByFilter(filter, null));
