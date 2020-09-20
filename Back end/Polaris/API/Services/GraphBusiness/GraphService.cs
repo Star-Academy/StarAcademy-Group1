@@ -5,7 +5,6 @@ using API.Services.NodeBusiness;
 using Models;
 using Models.Network;
 using Models.Response;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -138,11 +137,11 @@ namespace API.Services.GraphBusiness
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges);
         }
 
-        public GetPathsResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId, string[] nodeFilter, string[] edgeFilter, Pagination nodePagination, Pagination edgePagination)
+        public GetPathsResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId, string[] nodeFilter, string[] edgeFilter, Pagination nodePagination, Pagination edgePagination, int maxLength)
         {
             var pathsList = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 GetGraphWithFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
-                .GetPaths(sourceNodeId, targetNodeId);
+                .GetPaths(sourceNodeId, targetNodeId, maxLength);
             var nodesIds = new HashSet<TNodeId>();
             var edgesIds = new HashSet<TEdgeId>();
             pathsList.ForEach(first => first.Select(second => second.Select(third => edgesIds.Add(third))));

@@ -70,6 +70,7 @@ namespace API.Controllers.V1
         public ActionResult GetPaths(
             string sourceNodeId,
             string targetNodeId,
+            int maxLength = 7,
             [FromQuery(Name = "node")] string[] nodeFilter = null,
             [FromQuery(Name = "edge")] string[] edgeFilter = null,
             [FromQuery(Name = "node")] Pagination nodePagination = null,
@@ -77,7 +78,7 @@ namespace API.Controllers.V1
         )
         {
             return Ok(_graphService
-                .GetPaths(sourceNodeId, targetNodeId, null, null, null, null));
+                .GetPaths(sourceNodeId, targetNodeId, null, null, null, null, maxLength));
         }
 
         [HttpGet]

@@ -25,10 +25,10 @@ namespace Analysis
 
         }
 
-        public List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target)
+        public List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7)
         {
             var pathFinder = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph);
-            return pathFinder.BiDirectionalSearch(source, target);//filters should be added in here !
+            return pathFinder.BiDirectionalSearch(source, target, maxLength);//filters should be added in here !
         }
     }
 }

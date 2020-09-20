@@ -19,7 +19,7 @@ namespace Analysis
         }
 
         // filters weren't applied yet
-        public List<List<List<TEdgeId>>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
+        public List<List<List<TEdgeId>>> BiDirectionalSearch(TNodeId source, TNodeId target, int maxLength = 7)
         {
             var edges = new HashSet<List<List<TEdgeId>>>();
 
@@ -54,8 +54,9 @@ namespace Analysis
 
             while (queue[0].Any() && queue[1].Any())
             {
-                BreadthFirstSearch(ref queue[0], ref paths[0]);
-                BreadthFirstSearch(ref queue[1], ref paths[1], 0);
+                int len = (maxLength + 1) / 2;
+                BreadthFirstSearch(ref queue[0], ref paths[0], len);
+                BreadthFirstSearch(ref queue[1], ref paths[1], maxLength - len, 0);
             }
 
             foreach (var item in graph.Adj)
@@ -71,7 +72,7 @@ namespace Analysis
             return edges.ToList();
         }
         private void BreadthFirstSearch
-            (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int src = 1)
+            (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int maxLength, int src = 1)
         {
             var current = queue.First();
             queue.RemoveAt(0);
@@ -87,7 +88,7 @@ namespace Analysis
                 {
                     LinkedList<TNodeId> newPath = new LinkedList<TNodeId>(current);
                     newPath.AddLast(adjId);
-                    if (newPath.Count() > 3 + src) continue;
+                    if (newPath.Count() > maxLength) continue;
                     paths[adjId].Add(newPath);
                     queue.Add(newPath);
                 }

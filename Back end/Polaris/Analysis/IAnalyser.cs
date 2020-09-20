@@ -10,7 +10,7 @@ namespace Analysis
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
-        List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target);
+        List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7);
 
         MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target);
     }
