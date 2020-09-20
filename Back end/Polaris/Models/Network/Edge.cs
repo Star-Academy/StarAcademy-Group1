@@ -67,7 +67,7 @@ namespace Models.Network
             }
         }
 
-        [JsonPropertyName("amount")]
+        [JsonIgnore]
         public Int64 Amount
         {
             get
