@@ -123,9 +123,11 @@ namespace API.Services.GraphBusiness
             Pagination edgePagination = null
         )
         {
-            return new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+            var result = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 GetGraphWithFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
                 .GetMaxFlow(sourceNodeId, targetNodeId);
+            return new MaxFlowResult<TEdgeId>(result.MaxFlowAmount, 
+                result.EdgeToFlow.Where(etf => etf.Value != 0).ToDictionary(x => x.Key, x => x.Value));
         }
 
         public Dictionary<string, object> Stats()

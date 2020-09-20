@@ -12,5 +12,11 @@ namespace Models.Network
         {
             EdgeToFlow = new Dictionary<TEdgeId, long>();
         }
+
+        public MaxFlowResult(long maxFlowAmount, Dictionary<TEdgeId, long> edgeToFlow)
+        {
+            MaxFlowAmount = maxFlowAmount;
+            EdgeToFlow = edgeToFlow;
+        }
     }
 }
