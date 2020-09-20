@@ -79,7 +79,7 @@ namespace Analysis
 
             foreach (var adjList in graph.Adj)
                 foreach (var edge in adjList.Value)
-                    if (Result.EdgeToFlow.ContainsKey(edge.Id))
+                    if (edge.Id != null && Result.EdgeToFlow.ContainsKey(edge.Id))
                     {
                         Result.EdgeToFlow[edge.Id] = edge.Flow;
                     }
