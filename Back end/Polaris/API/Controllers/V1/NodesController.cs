@@ -67,7 +67,6 @@ namespace API.Controllers.V1
         public IActionResult AddNewNode([FromBody] Node<BankAccount, string> node)
         {
             _nodeService.InsertNode(node);
-            Console.WriteLine(ControllerContext.ActionDescriptor.AttributeRouteInfo.Name);
             return Created($"api/v1/nodes/{node.Id}", node);
         }
 

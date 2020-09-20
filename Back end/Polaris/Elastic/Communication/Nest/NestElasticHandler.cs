@@ -120,7 +120,6 @@ namespace Elastic.Communication.Nest
         {
             if (pagination != null)
             {
-                System.Console.WriteLine("hello");
                 var response = RetrieveQueryResponse(container, indexName, pagination);
                 ElasticResponseValidator.Validate(response);
                 return response.Documents;

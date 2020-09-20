@@ -92,14 +92,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideId(
             TTypeSideId id,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
             if (filter is null)
-            {
                 filter = new string[] { };
-            }
+
             var filters = filter.ToList();
             filters.Add($"source eq {id}");
             filters.Add($"target eq {id}");
@@ -108,14 +107,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(
             TTypeSideId[] ids,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
             if (filter is null)
-            {
                 filter = new string[] { };
-            }
+
             var filters = filter.ToList();
             var idsToString = string.Join(" ", ids.Select(i => i.ToString()));
             filters.Add($"source eq {idsToString}");
@@ -125,10 +123,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceId(
             TTypeSideId id,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
+            if (filter is null)
+                filter = new string[] { };
+
             var filters = filter.ToList();
             filters.Add($"source eq {id}");
             return GetEdgesByFilter(filters.ToArray(), pagination);
@@ -136,10 +137,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySourceIds(
             TTypeSideId[] ids,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
+            if (filter is null)
+                filter = new string[] { };
+
             var filters = filter.ToList();
             filters.Add($"source eq {string.Join(" ", ids.Select(i => i.ToString()))}");
             return GetEdgesByFilter(filters.ToArray(), pagination);
@@ -147,10 +151,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetId(
             TTypeSideId id,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
+            if (filter is null)
+                filter = new string[] { };
+
             var filters = filter.ToList();
             filters.Add($"target eq {id}");
             return GetEdgesByFilter(filters.ToArray(), pagination);
@@ -158,10 +165,13 @@ namespace API.Services.EdgeBusiness
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByTargetIds(
             TTypeSideId[] ids,
-            string[] filter,
+            string[] filter = null,
             Pagination pagination = null
         )
         {
+            if (filter is null)
+                filter = new string[] { };
+
             var filters = filter.ToList();
             filters.Add($"target eq {string.Join(" ", ids.Select(i => i.ToString()))}");
             return GetEdgesByFilter(filters.ToArray(), pagination);
