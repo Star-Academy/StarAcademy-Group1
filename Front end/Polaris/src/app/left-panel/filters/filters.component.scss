@@ -35,23 +35,11 @@ $forth: #fbd46d;
   transition: 0.3s;
 }
 
-<<<<<<< HEAD
- #main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-.mat-form-field + .mat-form-field {
-  margin-left: 8px;
-}
-
-=======
->>>>>>> 88d62dc3516a4309cf4abaa3cd4add8f4307d1dd
 mat-expansion-panel-header{
   direction: rtl;
 }
 .expansion-panel-style{
-  margin: 15px; 
+  margin: 15px;
   margin-top: 0;
   background-color: $second;
 }
