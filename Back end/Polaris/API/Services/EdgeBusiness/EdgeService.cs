@@ -98,18 +98,36 @@ namespace API.Services.EdgeBusiness
         {
             if (filter is null)
                 filter = new string[] { };
-
-            var filters = filter.ToList();
-            var sourceFilter = new string[]{};
-            var edgeFilter = new string[]{};
-
-            filters.CopyTo(0, sourceFilter, 0, sourceFilter.Count());
-            filters.CopyTo(0, edgeFilter, 0, edgeFilter.Count());
-
-            var sourceEdges = GetEdgesByFilter(sourceFilter.ToArray(), pagination);
-            var targetEdges = GetEdgesByFilter(edgeFilter.ToArray(), pagination);
-            
-            return sourceEdges.Concat(targetEdges).ToHashSet();
+            var filterQueryContainer = new NestFilter(filter, GetModelMapping()).Interpret();
+            var sideNodeQueryContainer = new BoolQuery
+            {
+                Should = new List<QueryContainer>
+                {
+                    new MatchQuery
+                    {
+                        Field="source",
+                        Query=id.ToString()
+                    },
+                    new MatchQuery
+                    {
+                        Field="target",
+                        Query=id.ToString()
+                    }
+                }
+            };
+            var wrapperQueryContainer = (QueryContainer) new BoolQuery
+            {
+                Must=new List<QueryContainer>
+                {
+                    filterQueryContainer,
+                    sideNodeQueryContainer
+                }
+            };
+            var data = ((NestEntityHandler<TDataModel, TTypeDataId>)_handler).RetrieveQueryDocuments(
+                wrapperQueryContainer, _edgeElasticIndexName, pagination
+            );
+            var output = data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            return output;
         }
 
         public IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesBySideIds(
@@ -164,11 +182,8 @@ namespace API.Services.EdgeBusiness
         {
             if (filter is null)
                 filter = new string[] { };
-
             var filters = filter.ToList();
             filters.Add($"target eq {id}");
-            filters.ForEach(f => System.Console.WriteLine(f));
-            // System.Console.WriteLine(filters);
             return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 
