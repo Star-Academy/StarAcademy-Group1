@@ -20,3 +20,22 @@ $forth: #fbd46d;
 .test{
   margin: 5px;
 }
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $first;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $first;
+}
