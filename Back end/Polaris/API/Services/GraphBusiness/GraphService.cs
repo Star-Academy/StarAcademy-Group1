@@ -104,7 +104,7 @@ namespace API.Services.GraphBusiness
 
             foreach (var edge in edges)
             {
-                if (nodesIds.Contains(edge.Source) || nodesIds.Contains(edge.Target))
+                if ((nodesIds.Contains(edge.Source) && nodeIds.Contains(edge.Target)) || (nodesIds.Contains(edge.Target) && nodeIds.Contains(edge.Source)))
                     remainEdges.Add(edge);
             }
 
