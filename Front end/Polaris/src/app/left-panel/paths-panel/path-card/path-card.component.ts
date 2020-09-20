@@ -9,8 +9,8 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 })
 export class PathCardComponent implements OnInit {
 
-  // @Input()
-  // pathId : number
+  @Input()
+  pathId : number
 
   @Input()
   edgeIds : string[]=[];

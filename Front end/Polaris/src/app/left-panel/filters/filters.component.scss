@@ -4,7 +4,7 @@ $third: #4f8a8b;
 $forth: #fbd46d;
 
 .sidenav {
-  height: calc(100% - 20px);
+  height: 50%;
   width: 20%;
   position: fixed;
   z-index: 1;
@@ -36,7 +36,7 @@ $forth: #fbd46d;
   transition: 0.3s;
 }
 
-/* #main {
+ #main {
   transition: margin-left .5s;
   padding: 20px;
 }
@@ -77,4 +77,3 @@ mat-form-field {
   direction: rtl;
   text-align: right !important;
 }
- */

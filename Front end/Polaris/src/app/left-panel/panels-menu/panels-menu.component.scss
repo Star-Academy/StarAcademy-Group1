@@ -5,8 +5,8 @@ $forth: #fbd46d;
 
 
 .sidenav {
-  height: calc(100% - 20px); 
-  width: calc(100% - 20px); 
+  height: calc(100% - 20px);
+  width: 80%;
   background-color: $second;
   border-style: solid;
   border-radius: 15px;
@@ -41,7 +41,9 @@ fa-icon{
   padding: 0px 10px;
 }
 
-
+faIcon{
+  font-size : 20%;
+}
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
