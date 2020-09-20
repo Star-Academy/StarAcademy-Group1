@@ -55,19 +55,29 @@ namespace API.Services.GraphBusiness
             else
                 edges = _edgeService.GetEdgesByTargetId(nodeId, edgeFilter).ToHashSet();
 
-            // var nodes = _nodeService.GetNodesById(
-            //     edges.SelectMany(edge => new TNodeId[] { edge.Source, edge.Target })
-            //         .ToHashSet()
-            //         .ToArray()
-            // );
-            var nodesId = new HashSet<TNodeId>();
-            foreach (var edge in edges)
-            {
-                nodesId.Add(edge.Source);
-                nodesId.Add(edge.Target);
-            }
-            var nodes = _nodeService.GetNodesById(nodesId.ToArray());
-            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
+            Console.WriteLine($"*** [FILTERED] SERIES 1 EDGE COUNT ***");
+            Console.WriteLine(edges.Count());
+
+            var nodes = _nodeService.GetNodesByFilter(nodeFilter, nodePagination);
+            Console.WriteLine($"*** [FILTERED] SERIES 1 NODE COUNT ***");
+            Console.WriteLine(nodes.Count());
+
+            var sourceTargetNodeIds = edges.SelectMany(
+                        edge => new TNodeId[] { edge.Source, edge.Target }
+                    ).ToArray().ToHashSet();
+
+            Console.WriteLine($"*** [IDS] SERIES 1.1 NODE COUNT ***");
+            Console.WriteLine(sourceTargetNodeIds.Count());
+
+            nodes = nodes.Intersect(_nodeService.GetNodesById(sourceTargetNodeIds.ToArray())).ToHashSet();
+
+            Console.WriteLine($"*** [INTERSECTED] SERIES 2 NODES ***");
+            Console.WriteLine(nodes.Count());
+            
+            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                nodes.ToList(),
+                edges.ToList()
+            );
         }
 
         public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetNodesExpansions(
@@ -91,20 +101,18 @@ namespace API.Services.GraphBusiness
             else
                 edges = _edgeService.GetEdgesByTargetIds(nodeIds).ToHashSet();
 
-            // var nodes = _nodeService.GetNodesById(
-            //     edges.SelectMany(edge => new TNodeId[] { edge.Source, edge.Target })
-            //         .ToHashSet()
-            //         .ToArray()
-            // );
-            var nodesIds = new HashSet<TNodeId>();
-            foreach (var edge in edges)
-            {
-                nodesIds.Add(edge.Source);
-                nodesIds.Add(edge.Target);
-            }
-            var nodes = _nodeService.GetNodesById(nodesIds.ToArray());
+            var nodes = _nodeService.GetNodesByFilter(nodeFilter, nodePagination).Intersect(
+                _nodeService.GetNodesById(
+                    edges.SelectMany(
+                        edge => new TNodeId[] { edge.Source, edge.Target }
+                    ).ToArray()
+                )
+            ).ToHashSet();
 
-            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes.ToList(), edges.ToList());
+            return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                nodes.ToList(),
+                edges.ToList()
+            );
         }
 
         public MaxFlowResult<TEdgeId> GetMaxFlow(
