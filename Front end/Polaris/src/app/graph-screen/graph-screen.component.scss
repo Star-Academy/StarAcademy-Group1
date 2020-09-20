@@ -13,12 +13,10 @@ $forth: #fbd46d;
   border-color: $first;
   border-radius: 15px;
 }
-/* .graph-container-big-width{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 20%;
-  width: 77%;
+
+.ogma-container {
+  width: 100%;
+  height: 100%;
 }
 .text-center {
   top: 10px;
@@ -30,13 +28,8 @@ $forth: #fbd46d;
   top: 10px;
   position: absolute;
   width: fit-content;
-  right: 20px;
+  right: 25%;
 }
 
-.ogma-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 
- */
+
