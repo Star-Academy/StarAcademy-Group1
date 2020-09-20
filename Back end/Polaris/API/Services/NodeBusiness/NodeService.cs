@@ -67,7 +67,7 @@ namespace API.Services.NodeBusiness
         {
             return new Dictionary<string, string>{{"id", "text"}, {"cardId", "text"}, {"sheba", "text"},
                 {"accountType", "text"}, {"branchTelephone", "text"}, {"branchAddress", "text"}, {"branchName", "text"},
-                {"ownerName", "text"}, {"ownerFamilyName", "text"}, {"ownerId", "text"}};
+                {"ownerName", "text"}, {"ownerFamilyName", "text"}, {"ownerId", "text"}, {"ownerPrimaryName", "text"}};
         }
     }
 }

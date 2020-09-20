@@ -61,13 +61,15 @@ namespace API.Services.EdgeBusiness
                 _edgeElasticIndexName,
                 pagination
             );
-            return data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            var output = data.Select(d => new Edge<TDataModel, TTypeDataId, TTypeSideId>(d));
+            return output;
         }
 
         private Dictionary<string, string> GetModelMapping()
         {
             return new Dictionary<string, string>{{"id", "text"}, {"source", "text"}, {"target", "text"},
-                {"amount", "numeric"}, {"timestamp", "text"}, {"trackingId", "numeric"}, {"type", "text"}};
+                {"amount", "numeric"}, {"timestamp", "text"}, {"date", "text"}, {"time", "text"}, 
+                {"trackingId", "numeric"}, {"type", "text"}};
         }
 
         private IEnumerable<Edge<TDataModel, TTypeDataId, TTypeSideId>> GetEdgesByQueryOnFields(
