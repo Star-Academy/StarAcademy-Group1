@@ -28,7 +28,6 @@ $forth: #fbd46d;
 .sidenav .closebtn {
   position: relative;
   font-size: 36px;
-
   margin: 20px;
   text-decoration: none;
   color: #818181;
@@ -36,6 +35,7 @@ $forth: #fbd46d;
   transition: 0.3s;
 }
 
+<<<<<<< HEAD
  #main {
   transition: margin-left .5s;
   padding: 20px;
@@ -45,35 +45,49 @@ $forth: #fbd46d;
   margin-left: 8px;
 }
 
+=======
+>>>>>>> 88d62dc3516a4309cf4abaa3cd4add8f4307d1dd
 mat-expansion-panel-header{
   direction: rtl;
-  font-family: IRANSans, sans-serif;
 }
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-button {
-  font-family: IRANSans, sans-serif;
-  margin: 0 10px;
+.expansion-panel-style{
+  margin: 15px; 
+  margin-top: 0;
+  background-color: $second;
 }
 
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+  width: auto;
+  margin: 15px;
+  background-color: transparent;
 }
 
-.example-full-width {
-  width: 60%;
-}
+
 
 mat-label,
 input,
 mat-form-field {
-  font-family: IRANSans, sans-serif;
   direction: rtl;
   text-align: right !important;
 }
+<<<<<<< HEAD
+=======
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
+
+.mat-form-field{
+  width: calc(100% - 60px);
+  margin: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.button-style{
+  text-align: center;
+  width: 150px;
+  margin-left: calc(50% - 75px);
+  background-color: $third;
+}
+>>>>>>> 88d62dc3516a4309cf4abaa3cd4add8f4307d1dd
