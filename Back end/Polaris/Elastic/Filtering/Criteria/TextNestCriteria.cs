@@ -2,6 +2,7 @@ using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+
 using Elastic.Filtering.Attributes;
 using Elastic.Exceptions;
 

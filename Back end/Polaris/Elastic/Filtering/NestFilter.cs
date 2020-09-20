@@ -46,9 +46,7 @@ namespace Elastic.Filtering
             var selectedField = match.Groups["field"].Value;
             string @operator;
             string value;
-            @operator = match.Groups["operator"].Value;
-            value = match.Groups["value"].Value;
-            Console.WriteLine(@operator + " " + value + "sdfkdfk" + filterQuery);
+
             switch (mapping[selectedField])
             {
                 case "text":

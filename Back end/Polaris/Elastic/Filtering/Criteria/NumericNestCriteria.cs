@@ -2,9 +2,9 @@ using System;
 using Nest;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+
 using Elastic.Filtering.Attributes;
 using Elastic.Exceptions;
-
 
 namespace Elastic.Filtering.Criteria
 {

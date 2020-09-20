@@ -1,11 +1,12 @@
-using Elastic.Exceptions;
-using Elastic.Validation;
-using Models;
-using Models.Response;
 using Nest;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
+using Elastic.Exceptions;
+using Elastic.Validation;
+using Models;
+using Models.Response;
 
 namespace Elastic.Communication.Nest
 {
