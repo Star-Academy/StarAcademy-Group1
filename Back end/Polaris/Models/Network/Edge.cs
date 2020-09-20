@@ -8,6 +8,7 @@ namespace Models.Network
     {
         public Edge()
         {
+
         }
         public Edge(TDataModel data, Int64 flow, int address)
         {

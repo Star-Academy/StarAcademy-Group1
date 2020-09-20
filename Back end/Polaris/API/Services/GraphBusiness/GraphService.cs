@@ -14,7 +14,7 @@ namespace API.Services.GraphBusiness
     public class GraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
     : IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
-    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         private readonly IEdgeService<TEdgeData, TEdgeId, TNodeId> _edgeService;
         private readonly INodeService<TNodeData, TNodeId> _nodeService;

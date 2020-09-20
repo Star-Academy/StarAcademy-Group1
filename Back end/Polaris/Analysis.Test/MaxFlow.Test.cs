@@ -1,6 +1,5 @@
 ﻿// In The Name Of GOD
 
-using Models;
 using Models.Network;
 using System;
 using System.Collections.Generic;
@@ -12,13 +11,13 @@ namespace Analysis.Test
     public class MaxFlow_Test
     {
 
-        GraphContainer<int, Data, int, AmountedEntity<int, int>> container = 
-            new GraphContainer<int, Data, int, AmountedEntity<int, int>>(null, null);
+        GraphContainer<int, Data, int, AmountedData> container = 
+            new GraphContainer<int, Data, int, AmountedData>(null, null);
 
         private void Init()
         {
             container.Nodes = new List<Node<Data, int>>();
-            container.Edges = new List<Edge<AmountedEntity<int, int>, int, int>>();
+            container.Edges = new List<Edge<AmountedData, int, int>>();
             for (int i = 0; i < 6; i++)
             {
                 var node = new Node<Data, int>();
@@ -29,9 +28,7 @@ namespace Analysis.Test
 
         private void AddEdgeForFlow(int from, int to, Int64 amount)
         {
-            //var edge1 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(from, to, amount), 0, dic[to].Count);
-            //var edge2 = new Edge<AmountedEntity<int, int>, int, int>(new AmountedData(to, from, 0), 0, dic[from].Count);
-            var edge = new Edge<AmountedEntity<int, int>, int, int>();
+            var edge = new Edge<AmountedData, int, int>();
             edge.Data = new AmountedData(from, to, amount);
             edge.Id = new Random().Next();
             container.Edges.Add(edge);
@@ -42,7 +39,7 @@ namespace Analysis.Test
         {
             Init();
             AddEdgeForFlow(0, 1, 16);
-            AddEdgeForFlow(0, 2, 13); 
+            AddEdgeForFlow(0, 2, 13);
             AddEdgeForFlow(1, 2, 10);
             AddEdgeForFlow(1, 3, 12);
             AddEdgeForFlow(2, 1, 4);
@@ -51,7 +48,7 @@ namespace Analysis.Test
             AddEdgeForFlow(3, 5, 20);
             AddEdgeForFlow(4, 3, 7);
             AddEdgeForFlow(4, 5, 4);
-            var analyser = new Analyser<int, Data, int, AmountedEntity<int, int>>(container);
+            var analyser = new Analyser<int, Data, int, AmountedData>(container);
             var flow = analyser.GetMaxFlow(0, 5);
             Assert.AreEqual(23, flow.MaxFlowAmount);
         }
@@ -70,9 +67,9 @@ namespace Analysis.Test
             AddEdgeForFlow(3, 5, 3);
             AddEdgeForFlow(4, 5, 7);
             AddEdgeForFlow(0, 4, 10);
-            //graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
-            //var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
-            //Assert.AreEqual(14, flow.DinicMaxFlow(0, 5).MaxFlowAmount);
+            var analyser = new Analyser<int, Data, int, AmountedData>(container);
+            var flow = analyser.GetMaxFlow(0, 5);
+            Assert.AreEqual(14, flow.MaxFlowAmount);
         }
 
         [Fact]
@@ -88,9 +85,9 @@ namespace Analysis.Test
             AddEdgeForFlow(3, 5, 10);
             AddEdgeForFlow(4, 3, 6);
             AddEdgeForFlow(4, 5, 10);
-            //graph = new Graph<int, Data, int, AmountedEntity<int, int>>(dic);
-            //var flow = new MaxFlow<int, Data, int, AmountedEntity<int, int>>(graph);
-            //Assert.AreEqual(19, flow.DinicMaxFlow(0, 5).MaxFlowAmount);
+            var analyser = new Analyser<int, Data, int, AmountedData>(container);
+            var flow = analyser.GetMaxFlow(0, 5);
+            Assert.AreEqual(19, flow.MaxFlowAmount);
         }
     }
 }

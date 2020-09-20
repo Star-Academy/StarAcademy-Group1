@@ -2,7 +2,6 @@
 
 using Models;
 using Models.Network;
-using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace Analysis
 {
     public class MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>
-        where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+        where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, IModel, new()
     {
         private const Int64 inf = 1_000_000_000_000_000_000;
 
@@ -28,7 +27,7 @@ namespace Analysis
         {
             Result = new MaxFlowResult<TEdgeId>();
             foreach (var edge in edges)
-                Result.EdgeToFlow.Add(edge.Id, 0);
+                Result.EdgeToFlow[edge.Id] = 0;
             this.graph = graph;
             level = new Dictionary<TNodeId, int>();
             init();
@@ -40,6 +39,7 @@ namespace Analysis
                 foreach (var edge in adjList.Value)
                 {
                     var edge2 = new Edge<TEdgeData, TEdgeId, TNodeId>();
+                    edge2.Data = new TEdgeData();
                     edge2.Source = edge.Target;
                     edge2.Target = edge.Source;
                     edge2.Amount = 0;
@@ -52,8 +52,6 @@ namespace Analysis
 
         public MaxFlowResult<TEdgeId> DinicMaxFlow(TNodeId source, TNodeId target)
         {
-            Result = new MaxFlowResult<TEdgeId>();
-
             if (source.Equals(target))
             {
                 Result.MaxFlowAmount = -1;
@@ -65,7 +63,7 @@ namespace Analysis
                 var start = new Dictionary<TNodeId, int>();
 
                 {
-                    Int64 flow = 0;
+                    long flow;
                     do
                     {
                         flow = SendFlow(source, inf, target, ref start);
@@ -74,8 +72,8 @@ namespace Analysis
                 }
             }
 
-            foreach(var adjList in graph.Adj)
-                foreach(var edge in adjList.Value)
+            foreach (var adjList in graph.Adj)
+                foreach (var edge in adjList.Value)
                     if (Result.EdgeToFlow.ContainsKey(edge.Id))
                     {
                         Result.EdgeToFlow[edge.Id] = edge.Flow;

@@ -100,7 +100,6 @@ namespace Analysis
         {
             foreach (var item in paths[0][nodeId])
             {
-                bool isPath = false;
                 int iterator = -1;
                 List<int> rm = new List<int>();
                 foreach (var item2 in paths[1][nodeId])
@@ -116,7 +115,6 @@ namespace Analysis
                         set.Add(tmp);
                     if (set.Count != item.Count + item2.Count - 1)
                         continue;
-                    isPath = true;
                     rm.Add(iterator);
                     var pathToAdd = new List<List<TEdgeId>>();
                     for (int i = 0; i + 1 < item.Count(); i++)

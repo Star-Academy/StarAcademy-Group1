@@ -8,7 +8,7 @@ namespace Analysis
 {
     public class Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData> : IAnalyser<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
-    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
         GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> graphContainer;
