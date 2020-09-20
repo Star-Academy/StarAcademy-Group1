@@ -93,7 +93,7 @@ namespace API.Controllers.V1
         )
         {
             return Ok(_graphService
-                .GetMaxFlow(sourceNodeId, targetNodeId, null, null, null, null));
+                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null));
         }
 
         [HttpGet]
