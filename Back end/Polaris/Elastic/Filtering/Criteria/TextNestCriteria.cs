@@ -18,6 +18,7 @@ namespace Elastic.Filtering.Criteria
 
         public TextNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
+            value = value.Trim();
             if (ValuePattern.Match(value) is null)
                 throw new InvalidNestFilterException($"\"{value}\" is invalid for TextCriteria");
         }

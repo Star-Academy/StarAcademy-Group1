@@ -167,6 +167,8 @@ namespace API.Services.EdgeBusiness
 
             var filters = filter.ToList();
             filters.Add($"target eq {id}");
+            filters.ForEach(f => System.Console.WriteLine(f));
+            // System.Console.WriteLine(filters);
             return GetEdgesByFilter(filters.ToArray(), pagination);
         }
 

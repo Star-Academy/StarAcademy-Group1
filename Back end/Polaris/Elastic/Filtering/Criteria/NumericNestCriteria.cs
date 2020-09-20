@@ -19,8 +19,9 @@ namespace Elastic.Filtering.Criteria
 
         public NumericNestCriteria(string field, string @operator, string value) : base(field, @operator, value)
         {
-            if (ValuePattern.Match(value) != null)
-                throw new InvalidNestFilterException($"\"{value}\" is invalid for TextCriteria");
+            value = value.Trim();
+            if (ValuePattern.Match(value) is null)
+                throw new InvalidNestFilterException($"\"{value}\" is invalid for NumericCriteria");
         }
 
         [NestOperator("gte")]
@@ -30,7 +31,7 @@ namespace Elastic.Filtering.Criteria
             {
                 Field = field,
                 GreaterThanOrEqualTo = Convert.ToDouble(value)
-            };
+            }; 
             return query;
         }
 
@@ -97,7 +98,7 @@ namespace Elastic.Filtering.Criteria
 
         public override QueryContainer Interpret()
         {
-            if (registry.ContainsKey(Operator))
+            if (!registry.ContainsKey(Operator))
                 throw new InvalidNestFilterException($"Operator: \"{Operator}\" is not registered in NumericCriteria");
             return registry[Operator].Invoke(null, Field, Value);
         }
