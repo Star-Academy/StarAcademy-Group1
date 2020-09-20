@@ -121,20 +121,6 @@ namespace API.Services.GraphBusiness
                 .GetMaxFlow(sourceNodeId, targetNodeId);
         }
 
-        public List<List<List<TEdgeId>>> GetPaths(
-            TNodeId sourceNodeId,
-            TNodeId targetNodeId,
-            string[] nodeFilter = null,
-            string[] edgeFilter = null,
-            Pagination nodePagination = null,
-            Pagination edgePagination = null
-        )
-        {
-            return new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
-                GetGraphWithFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
-                .GetPaths(sourceNodeId, targetNodeId);
-        }
-
         public Dictionary<string, object> Stats()
         {
             var stats = new Dictionary<string, object>();
@@ -154,6 +140,26 @@ namespace API.Services.GraphBusiness
             var edges = _edgeService.GetEdgesByFilter(edgeFilter, edgePagination).ToList();
 
             return new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodes, edges);
+        }
+
+        public GetPathsResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(TNodeId sourceNodeId, TNodeId targetNodeId, string[] nodeFilter, string[] edgeFilter, Pagination nodePagination, Pagination edgePagination)
+        {
+            var pathsList = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                GetGraphWithFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
+                .GetPaths(sourceNodeId, targetNodeId);
+            var nodesIds = new HashSet<TNodeId>();
+            var edgesIds = new HashSet<TEdgeId>();
+            pathsList.ForEach(first => first.Select(second => second.Select(third => edgesIds.Add(third))));
+            var edges = _edgeService.GetEdgesById(edgesIds.ToArray()).ToList();
+            edges.ForEach((e) => {
+                nodesIds.Add(e.Source);
+                nodesIds.Add(e.Target);
+            });
+            var graphContainer = new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(
+                _nodeService.GetNodesById(nodesIds.ToArray()).ToList(),
+                edges
+            );
+            return new GetPathsResult<TNodeId, TNodeData, TEdgeId, TEdgeData>(pathsList, graphContainer);
         }
     }
 }

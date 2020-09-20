@@ -40,7 +40,7 @@ namespace API.Services.GraphBusiness
             Pagination edgePagination = null
         );
 
-        List<List<List<TEdgeId>>> GetPaths(
+        GetPathsResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetPaths(
             TNodeId sourceNodeId,
             TNodeId targetNodeId,
             string[] nodeFilter = null,
