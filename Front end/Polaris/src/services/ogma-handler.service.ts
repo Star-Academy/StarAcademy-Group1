@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import * as Ogma from '../assets/ogma.min.js';
 @Injectable()
 export class OgmaHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
+  public graphChanged : EventEmitter<void> = new EventEmitter<void>();
 
   public initConfig(configuration = {}) {
     this.ogma = new Ogma(configuration);
@@ -14,6 +15,7 @@ export class OgmaHandlerService {
   }
 
   public runLayout(): Promise<void> {
+    this.graphChanged.emit();
     return this.ogma.layouts.force({ locate: true });
   }
 

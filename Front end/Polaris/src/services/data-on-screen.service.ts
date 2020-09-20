@@ -6,6 +6,7 @@ export class DataOnScreenService {
     public branchFirstInit: boolean = true;
     public nodeViewFirstInit: boolean = true;
     public edgeViewFirstInit: boolean = true;
+    public selectedPath : number ;
     constructor() {
         this.resultArr = new Array<string>();
     }

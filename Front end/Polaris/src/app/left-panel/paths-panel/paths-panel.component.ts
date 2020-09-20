@@ -10,7 +10,7 @@ export class PathsPanelComponent implements OnInit {
 
    public paths : string[][]=[["10","9","8"],["7","8","9"]];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
