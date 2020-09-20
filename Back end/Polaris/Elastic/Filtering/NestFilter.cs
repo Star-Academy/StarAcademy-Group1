@@ -34,6 +34,8 @@ namespace Elastic.Filtering
 
         private void BuildCriterias(string[] filterQueries)
         {
+            if (filterQueries is null)
+                return;
             foreach (var query in filterQueries)
                 criterias.Add(BuildCriteria(query));
         }

@@ -36,18 +36,23 @@ namespace Analysis
         private void init()
         {
             foreach (var adjList in graph.Adj)
+            {
+                int counter = 0;
                 foreach (var edge in adjList.Value)
                 {
-                    var edge2 = new Edge<TEdgeData, TEdgeId, TNodeId>();
-                    edge2.Data = new TEdgeData();
-                    edge2.Source = edge.Target;
-                    edge2.Target = edge.Source;
-                    edge2.Amount = 0;
-                    edge2.Flow = 0;
-                    edge2.Address = graph.Adj[edge.Source].Count;
+                    var edge2 = new Edge<TEdgeData, TEdgeId, TNodeId>
+                    {
+                        Data = new TEdgeData(),
+                        Source = edge.Target,
+                        Target = edge.Source,
+                        Amount = 0,
+                        Flow = 0,
+                        Address = counter++
+                    };
                     edge.Address = graph.Adj[edge.Target].Count;
                     graph.Adj[edge.Target].Add(edge2);
                 }
+            }
         }
 
         public MaxFlowResult<TEdgeId> DinicMaxFlow(TNodeId source, TNodeId target)
