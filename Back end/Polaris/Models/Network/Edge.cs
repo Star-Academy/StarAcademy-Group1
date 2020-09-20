@@ -16,9 +16,9 @@ namespace Models.Network
             Flow = flow;
             Address = address;
         }
-        [Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public Int64 Flow { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int Address { get; set; }
 
         public Edge(TDataModel data)
