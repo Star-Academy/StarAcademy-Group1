@@ -1,10 +1,9 @@
 using CsvHelper;
+using Models;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-
-using Models;
 
 namespace API.Services.Utils
 {

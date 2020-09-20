@@ -7,8 +7,9 @@ namespace Models.Response
             PageIndex = pageIndex;
             PageSize = pageSize;
         }
-        public Pagination(){
-            
+        public Pagination()
+        {
+
         }
 
         public int PageIndex { get; set; }

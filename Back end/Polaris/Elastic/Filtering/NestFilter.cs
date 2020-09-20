@@ -1,10 +1,8 @@
-using System.Linq;
-using System.Collections.Generic;
-using System;
 using Elastic.Exceptions;
 using Elastic.Filtering.Criteria;
 using Nest;
-
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Elastic.Filtering

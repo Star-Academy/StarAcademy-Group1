@@ -1,4 +1,5 @@
 using API.Services.EdgeBusiness;
+using API.Services.GraphBusiness;
 using API.Services.Importer;
 using API.Services.NodeBusiness;
 using Elastic.Communication;
@@ -9,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models.Banking;
-using API.Services.GraphBusiness;
 
 namespace API
 {

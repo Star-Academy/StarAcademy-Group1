@@ -1,14 +1,13 @@
-using Microsoft.Extensions.Configuration;
-using Nest;
-using System.Collections.Generic;
-using System.Linq;
-
 using Elastic.Communication;
 using Elastic.Communication.Nest;
+using Elastic.Filtering;
+using Microsoft.Extensions.Configuration;
 using Models;
 using Models.Network;
 using Models.Response;
-using Elastic.Filtering;
+using Nest;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Services.EdgeBusiness
 {
@@ -68,7 +67,7 @@ namespace API.Services.EdgeBusiness
         private Dictionary<string, string> GetModelMapping()
         {
             return new Dictionary<string, string>{{"id", "text"}, {"source", "text"}, {"target", "text"},
-                {"amount", "numeric"}, {"timestamp", "text"}, {"date", "text"}, {"time", "text"}, 
+                {"amount", "numeric"}, {"timestamp", "text"}, {"date", "text"}, {"time", "text"},
                 {"trackingId", "numeric"}, {"type", "text"}};
         }
 

@@ -1,12 +1,11 @@
-using System.Collections.Generic;
-
 using Models;
 using Models.Network;
 using Models.Response;
+using System.Collections.Generic;
 
 namespace API.Services.GraphBusiness
 {
-    public interface IGraphService <TNodeId, TNodeData, TEdgeId, TEdgeData>
+    public interface IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
     where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
@@ -49,7 +48,7 @@ namespace API.Services.GraphBusiness
             Pagination nodePagination = null,
             Pagination edgePagination = null
         );
-        
+
         Dictionary<string, object> Stats();
     }
 }

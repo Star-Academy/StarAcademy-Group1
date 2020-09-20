@@ -1,13 +1,12 @@
-using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-
 using Elastic.Communication;
 using Elastic.Communication.Nest;
+using Elastic.Filtering;
+using Microsoft.Extensions.Configuration;
 using Models;
 using Models.Network;
 using Models.Response;
-using Elastic.Filtering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Services.NodeBusiness
 {

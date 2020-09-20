@@ -1,11 +1,10 @@
-using System;
+using Elastic.Filtering.Attributes;
 using Nest;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Collections.Generic;
-
-using Elastic.Filtering.Attributes;
 
 namespace Elastic.Filtering.Criteria
 {
