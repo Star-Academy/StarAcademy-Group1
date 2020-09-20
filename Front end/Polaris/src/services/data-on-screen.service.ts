@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable()
 export class DataOnScreenService {
@@ -6,9 +6,10 @@ export class DataOnScreenService {
     public branchFirstInit: boolean = true;
     public nodeViewFirstInit: boolean = true;
     public edgeViewFirstInit: boolean = true;
-    public selectedPath : number ;
+    public selectedPath : EventEmitter<number>= new EventEmitter<number>() ;
     constructor() {
         this.resultArr = new Array<string>();
+        this.selectedPath.emit(-1);
     }
     public branchList: string[] = ["انقلاب","تهران پارس","دیباجی","اندرزگو","طالقانی","ونک","آزادی"];
 

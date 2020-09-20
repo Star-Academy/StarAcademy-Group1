@@ -772,8 +772,52 @@
         "shape": "arrow"
       }
     },
+
     {
       "id": "10",
+      "source": "65344ff54617",
+      "target": "123456896",
+      "data": {
+        "amount": 12555,
+        "date": "1397/07/08",
+        "type": "پایا"
+      },
+      "attributes": {
+        "width": 1,
+        "shape": "arrow"
+      }
+    },
+    {
+      "id": "13",
+      "source": "6534454617",
+      "target": "3000000406",
+      "data": {
+        "amount": 209650,
+        "date": "1397/11/19",
+        "type": "ساتنا"
+      },
+      "attributes": {
+        "width": 1,
+        "shape": "arrow"
+      }
+    },
+    {
+      "id": "12",
+      "source": "6534454617",
+      "target": "123456896",
+      "data": {
+        "amount": 45628,
+        "date": "1398/06/29",
+        "type": "ساتنا"
+      },
+      "attributes": {
+        "width": 1,
+        "shape": "arrow"
+      }
+    },
+
+    {
+      "id": "11",
       "source": "65344ff54617",
       "target": "123456896",
       "data": {

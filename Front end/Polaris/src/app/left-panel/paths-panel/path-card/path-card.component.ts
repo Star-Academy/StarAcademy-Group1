@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConstValuesService } from 'src/services/const-values.service';
+import { DataOnScreenService } from 'src/services/data-on-screen.service';
 import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
@@ -10,33 +11,47 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 export class PathCardComponent implements OnInit {
 
   @Input()
-  pathId : number
+  public pathId : number ;
 
-  @Input()
-  edgeIds : string[]=[];
+  @Output()
+  public id = new EventEmitter<number>();
 
-  public amount: number = 0;
+
+
   public show : boolean = true;
-  constructor(public ogmaHandler: OgmaHandlerService , public constValues : ConstValuesService) {  }
+  constructor(
+    public dataOnScreen : DataOnScreenService) {
+    }
 
   ngOnInit(): void {
     // this.findAmount();
   }
 
   public checkChange(){
-    this.show =!this.show ;
-    this.changeAppreanceOfEdges();
-    this.changeAppreanceOfNodes();
-  }
-  public changeAppreanceOfEdges(){
 
-    for(let edgeId of this.edgeIds){
+     this.show = !this.show ;
+     this.id.emit(this.show ? this.pathId : -1 ) ;
 
-      this.ogmaHandler.ogma.getEdge(edgeId).setAttributes(
-        {color :  this.show ? this.constValues.inPathEdgeColor : this.constValues.standardEdgeColor });
+  }
+  // public changeAppreanceOfEdges(){
 
-   }
-  }
-  public changeAppreanceOfNodes(){
-  }
+  //   for(let edgeId of this.edgeIds){
+
+  //     let edge = this.ogmaHandler.ogma.getEdge(edgeId)
+  //       edge.setAttributes({color :  this.show ? this.constValues.inPathEdgeColor : this.constValues.standardEdgeColor });
+
+  //  }
+  // }
+  // public changeAppreanceOfNodes(){
+
+  //   for(let edgeId of this.edgeIds){
+
+  //     let edge = this.ogmaHandler.ogma.getEdge(edgeId)
+  //     edge.getSource().setAttributes({color :  this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor });
+  //     edge.getTarget().setAttributes({color :  this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor });
+
+  //  }
+
+
+  // }
 }
