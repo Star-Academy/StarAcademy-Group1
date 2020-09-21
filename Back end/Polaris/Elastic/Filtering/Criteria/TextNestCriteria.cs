@@ -72,6 +72,66 @@ namespace Elastic.Filtering.Criteria
             };
         }
 
+        [NestOperator("gt")]
+        public static QueryContainer GreaterThan(string field, string value)
+        {
+            return new ScriptQuery
+            {
+                Script = new InlineScript($"doc['{field}'].value > params.stringQuery")
+                {
+                    Params = new Dictionary<string, object>
+                    {
+                        { "stringQuery", value }
+                    }
+                },
+            };
+        }
+
+        [NestOperator("gte")]
+        public static QueryContainer GreaterThanOrEqual(string field, string value)
+        {
+            return new ScriptQuery
+            {
+                Script = new InlineScript($"doc['{field}'].value >= params.stringQuery")
+                {
+                    Params = new Dictionary<string, object>
+                    {
+                        { "stringQuery", value }
+                    }
+                }
+            };
+        }
+
+        [NestOperator("lt")]
+        public static QueryContainer LessThan(string field, string value)
+        {
+            return new ScriptQuery
+            {
+                Script = new InlineScript($"doc['{field}'].value < params.stringQuery")
+                {
+                    Params = new Dictionary<string, object>
+                    {
+                        { "stringQuery", value }
+                    }
+                }
+            };
+        }
+
+        [NestOperator("lte")]
+        public static QueryContainer LessThanOrEqual(string field, string value)
+        {
+            return new ScriptQuery
+            {
+                Script = new InlineScript($"doc['{field}'].value <= params.stringQuery")
+                {
+                    Params = new Dictionary<string, object>
+                    {
+                        { "stringQuery", value }
+                    }
+                }
+            };
+        }
+
         public override QueryContainer Interpret()
         {
             if (!registry.ContainsKey(Operator))
