@@ -8,18 +8,14 @@ import { FilterService } from 'src/services/filter.service';
   styleUrls: ['./amount-filter.component.scss'],
 })
 export class AmountFilterComponent implements OnInit {
-  minValue: number = 50;
-  maxValue: number = 200;
-  options: Options = {
-    floor: 0,
-    ceil: 25000000000,
-    step: 10,
-  };
+  minValue: number;
+  maxValue: number;
   constructor(public filterService: FilterService) {}
 
   ngOnInit(): void {}
   public changeChecked() {
     this.filterService.maxAmount = this.maxValue;
     this.filterService.minAmount = this.minValue;
+    console.log(this.filterService.maxAmount + " " + this.filterService.minAmount);
   }
 }

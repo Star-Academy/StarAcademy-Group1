@@ -41,27 +41,27 @@ export class FilterService {
   public getEdgeFilter(): string[] {
     let result = [];
     if (this.startDate) {
-      result.push(`Date gte ${this.startDate}`);
+      result.push(`date gte ${this.startDate}`);
     }
 
     if (this.endDate) {
-      result.push(`Date lte ${this.endDate}`);
+      result.push(`date lte ${this.endDate}`);
     }
 
     if (this.startTime) {
-      result.push(`Time gte ${this.startTime}`);
+      result.push(`time gte ${this.startTime}`);
     }
 
     if (this.endTime) {
-      result.push(`Time lte ${this.endTime}`);
+      result.push(`time lte ${this.endTime}`);
     }
 
     if (this.minAmount) {
-      result.push(`Amount gte ${this.minAmount}`);
+      result.push(`amount gte ${this.minAmount}`);
     }
 
     if (this.maxAmount) {
-      result.push(`Amount lte ${this.maxAmount}`);
+      result.push(`amount lte ${this.maxAmount}`);
     }
 
     return result;

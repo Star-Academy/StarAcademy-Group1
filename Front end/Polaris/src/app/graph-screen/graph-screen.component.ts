@@ -17,7 +17,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   @ViewChild('ogmaContainer', { static: true })
   private container;
   hoveredContent: {
-    id: NodeId;
+    id: string;
     name: string;
     familyName: string;
   };
@@ -47,8 +47,8 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target.isNode) {
         this.hoveredContent = {
           id: target.getId(),
-          name: target.getData('OwnerName'),
-          familyName: target.getData('OwnerFamilyName'),
+          name: target.getData('ownerName'),
+          familyName: target.getData('ownerFamilyName'),
         };
         this.hoveredPosition = { x, y: y + 20 };
       }
