@@ -16,6 +16,8 @@ export class PathCardComponent implements OnInit {
   @Output()
   public id = new EventEmitter<number>();
 
+  @Input()
+  public pathLength : number =  0 ;
 
 
   public show : boolean = true;
@@ -31,27 +33,9 @@ export class PathCardComponent implements OnInit {
 
      this.show = !this.show ;
      this.id.emit(this.show ? this.pathId : -1 ) ;
+     console.log(this.pathLength);
 
   }
-  // public changeAppreanceOfEdges(){
 
-  //   for(let edgeId of this.edgeIds){
-
-  //     let edge = this.ogmaHandler.ogma.getEdge(edgeId)
-  //       edge.setAttributes({color :  this.show ? this.constValues.inPathEdgeColor : this.constValues.standardEdgeColor });
-
-  //  }
-  // }
-  // public changeAppreanceOfNodes(){
-
-  //   for(let edgeId of this.edgeIds){
-
-  //     let edge = this.ogmaHandler.ogma.getEdge(edgeId)
-  //     edge.getSource().setAttributes({color :  this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor });
-  //     edge.getTarget().setAttributes({color :  this.show ? this.constValues.inPathNodeColor : this.constValues.standardNodeColor });
-
-  //  }
-
-
-  // }
 }
+

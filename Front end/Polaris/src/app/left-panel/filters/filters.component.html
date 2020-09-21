@@ -3,20 +3,15 @@
 
   <mat-accordion>
 
-
-
     <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
       (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
       <mat-expansion-panel-header>
         <mat-panel-title>زمان تراکنش</mat-panel-title>
       </mat-expansion-panel-header>
-
       <app-time-filter> </app-time-filter>
     </mat-expansion-panel>
 
-
-
-
+    
     <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
       (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
 

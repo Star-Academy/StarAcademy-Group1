@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {
   MatFormFieldModule,
   MatFormFieldControl,
@@ -63,6 +64,7 @@ import {ConstValuesService} from './../services/const-values.service';
 import {MatCardModule} from '@angular/material/card';
 import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-panel.component';
 import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-card/branch-card.component';
+import { ResultPathsComponent } from './left-panel/paths-panel/result-paths/result-paths.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +97,8 @@ import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-c
     NodeCardComponent,
     EdgeCardComponent,
     AddNodePanelComponent,
-    BranchCardComponent
+    BranchCardComponent,
+    ResultPathsComponent,
 
   ],
   imports: [
@@ -118,7 +121,8 @@ import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-c
     MatTabsModule,
     MatTooltipModule,
     MatButtonToggleModule,
-    MatCardModule
+    MatCardModule,
+    MatSlideToggleModule
   ],
   providers: [
     OgmaHandlerService,

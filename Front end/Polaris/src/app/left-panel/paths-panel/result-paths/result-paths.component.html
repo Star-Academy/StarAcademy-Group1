@@ -1,0 +1,4 @@
+<span class="all-path">
+  <mat-slide-toggle>نشان دادن تمام مسیرها</mat-slide-toggle>
+  <app-path-card *ngFor="let path  of paths; index as i;"  [pathId]="i" (id)="showSelectedPath($event)" [pathLength]="getPathLenghtById(i)">
+  </app-path-card></span>
