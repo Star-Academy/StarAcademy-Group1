@@ -16,9 +16,7 @@ export class ResultPathsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public updateGraph(
-
-  ){
+  public updateGraph(){
 
     for(let groupPaths of this.paths)
      for(let path of groupPaths){
