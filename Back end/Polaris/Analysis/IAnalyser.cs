@@ -8,10 +8,10 @@ namespace Analysis
 {
     public interface IAnalyser<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
-    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7);
 
-        MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target);
+        MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target, int maxLength = 7);
     }
 }
