@@ -11,9 +11,6 @@ export class FilterService {
   public accountTypes: string[] = [];
   public name: string;
   public branches: string[] = [];
-  public sourceId:string;
-  public targetId:string;
-  public maxLength: string = '7';
 
   public getNodeFilter(): string[] {
     let result = [];

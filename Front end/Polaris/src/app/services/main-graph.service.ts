@@ -9,6 +9,7 @@ export class GraphHandlerService {
   public nodeColor: string;
   public edgeColor: string;
   public pathModel;
+  public maxFlowModel;
   constructor(
     public nodeService: NodeService,
     public graphService: GraphService
@@ -68,7 +69,7 @@ export class GraphHandlerService {
     let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
     console.log(flow);
   }
-  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[], maxLength: string) {
+  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[], maxLength: number) {
     let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters, maxLength);
     this.pathModel = JSON.parse(JSON.stringify(paths));
     this.ogma.addGraph(this.pathModel.graph);

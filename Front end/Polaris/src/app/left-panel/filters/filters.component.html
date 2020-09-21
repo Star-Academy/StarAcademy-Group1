@@ -58,15 +58,15 @@
     style="background-color: darkcyan; border-radius: 10px;">
     <mat-form-field class="example-full-width">
       <mat-label>رأس مبدا</mat-label>
-      <input matInput name="sourceId" [(ngModel)]="sourceId" (keyup)="checkChange($event.target.value, 'sourceId')">
+      <input matInput name="sourceId" [(ngModel)]="sourceId">
     </mat-form-field><br>
     <mat-form-field class="example-full-width">
       <mat-label>رأس مقصد</mat-label>
-      <input matInput name="targetId" [(ngModel)]="targetId" (keyup)="checkChange($event.target.value, 'targetId')">
+      <input matInput name="targetId" [(ngModel)]="targetId">
     </mat-form-field>
     <mat-form-field class="example-full-width" *ngIf="panel === 'path'">
       <mat-label>حداکثر طول مسیر</mat-label>
-      <input matInput name="maxLength" [(ngModel)]="maxLength" placeholder="7" (keyup)="checkChange($event.target.value, 'maxLength')">
+      <input matInput name="maxLength" [(ngModel)]="maxLength" placeholder="7">
     </mat-form-field>
   </form>
   <br><br>

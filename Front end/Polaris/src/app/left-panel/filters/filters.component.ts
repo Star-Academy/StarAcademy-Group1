@@ -13,8 +13,8 @@ export class FiltersComponent implements OnInit {
   @Input()
   panel: string;
 
-  public sourceId: number;
-  public targetId: number;
+  public sourceId: string;
+  public targetId: string;
   public maxLength: number; // default = 7
 
   public hidden = false;
@@ -42,13 +42,13 @@ export class FiltersComponent implements OnInit {
       case 'path':
         let nodePathFilter: string[] = this.filterService.getNodeFilter();
         let edgePathFilter: string[] = this.filterService.getEdgeFilter();
-        this.graphHandler.findPaths(this.filterService.sourceId, this.filterService.targetId, nodePathFilter, edgePathFilter, this.filterService.maxLength);
+        this.graphHandler.findPaths(this.sourceId, this.targetId, nodePathFilter, edgePathFilter, this.maxLength);
         break;
 
       case 'flow':
         let nodeFlowFilter: string[] = this.filterService.getNodeFilter();
         let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
-        this.graphHandler.getMaxFlow(this.filterService.sourceId, this.filterService.targetId, nodeFlowFilter, edgeFlowFilter);
+        this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFlowFilter, edgeFlowFilter);
         break;
 
       case 'addNode':
@@ -67,15 +67,4 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-  public checkChange(field: string, whichField: string) {
-    if (whichField === 'sourceId') {
-      this.filterService.sourceId = field;
-    }
-    else if (whichField === 'targetId') {
-      this.filterService.targetId = field;
-    }
-    else if (whichField === 'maxLength') {
-      this.filterService.maxLength = field;
-    }
-  }
 }
