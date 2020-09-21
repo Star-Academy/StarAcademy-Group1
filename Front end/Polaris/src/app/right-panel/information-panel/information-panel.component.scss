@@ -22,7 +22,7 @@ $forth: #fbd46d;
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 5px;
 }
 
 /* Track */
@@ -30,12 +30,13 @@ $forth: #fbd46d;
   background: $first;
 }
 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $first;
+  background: $forth;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $first;
+  background: $forth;
 }

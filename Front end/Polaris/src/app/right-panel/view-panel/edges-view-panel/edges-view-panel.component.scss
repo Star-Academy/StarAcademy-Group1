@@ -58,3 +58,24 @@ $forth: #fbd46d;
     font-size: 18px;
   }
 }
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
+}

@@ -11,13 +11,13 @@ $forth: #fbd46d;
   background-color: $third;
   overflow-x: hidden;
   transition: 0.5s;
-  overflow: auto;
-  overflow-x: hidden;
 
   border-style: solid;
   border-radius: 15px;
   border-color: $third;
   margin: 15px;
+
+  overflow: hidden;
 
 }
 
@@ -54,6 +54,16 @@ $forth: #fbd46d;
 .selection-search-bar-container {
   margin-bottom: 10px;
   text-align: center;
+  height: 10%;
+}
+
+.info-container{
+  height: 90%;
+
+
+  overflow: auto;
+  overflow-x: hidden;
+
 }
 
 @media screen and (max-height: 450px) {
@@ -63,25 +73,25 @@ $forth: #fbd46d;
   .sidenav a {
     font-size: 18px;
   }
-}
+} 
 
 
 /* width */
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: $first;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: $forth;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: $forth;
 }

@@ -2,9 +2,9 @@
   <span class="selection-search-bar-container">
     <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
   </span>
-    <span>
+    <div class="info-container">
       <app-node-card *ngFor="let nodeId of nodes" [nodeId]="nodeId"
         [nodePerson]="getNodeById(nodeId)" [isSelected]="isNodeSelected(nodeId)"></app-node-card>
-    </span>
+    </div>
 </div>
 
