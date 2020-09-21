@@ -12,6 +12,6 @@ namespace Analysis
     {
         List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7);
 
-        MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target);
+        MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target);
     }
 }

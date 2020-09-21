@@ -16,7 +16,7 @@ namespace Analysis
 
         private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
         private Dictionary<TNodeId, int> level;
-        private MaxFlowResult<TEdgeId> Result { get; set; }
+        private MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> Result { get; set; }
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
@@ -25,7 +25,7 @@ namespace Analysis
 
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph, List<Edge<TEdgeData, TEdgeId, TNodeId>> edges)
         {
-            Result = new MaxFlowResult<TEdgeId>();
+            Result = new MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData>();
             foreach (var edge in edges)
                 Result.EdgeToFlow[edge.Id] = 0;
             this.graph = graph;
@@ -55,7 +55,7 @@ namespace Analysis
             }
         }
 
-        public MaxFlowResult<TEdgeId> DinicMaxFlow(TNodeId source, TNodeId target)
+        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> DinicMaxFlow(TNodeId source, TNodeId target)
         {
             if (source.Equals(target))
             {
@@ -84,7 +84,15 @@ namespace Analysis
                         Result.EdgeToFlow[edge.Id] = edge.Flow;
                     }
 
+            ModifyContainer();
+
             return Result;
+        }
+
+        private void ModifyContainer()
+        {
+
+            throw new NotImplementedException();
         }
 
         private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target, ref Dictionary<TNodeId, int> start)

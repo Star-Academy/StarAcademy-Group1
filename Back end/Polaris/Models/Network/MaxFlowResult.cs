@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 namespace Models.Network
 {
-    public class MaxFlowResult<TEdgeId> : IModel
+    public class MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> : IModel
+        where TNodeData : Entity<TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         public Int64 MaxFlowAmount { get; set; }
         public Dictionary<TEdgeId, Int64> EdgeToFlow { get; set; }
+
+        public GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GraphContainer { get; set; }
 
         public MaxFlowResult()
         {

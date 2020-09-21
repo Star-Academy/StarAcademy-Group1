@@ -18,7 +18,7 @@ namespace Analysis
             graph = new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(graphContainer);
         }
 
-        public MaxFlowResult<TEdgeId> GetMaxFlow(TNodeId source, TNodeId target)
+        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target)
         {
             var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph, graphContainer.Edges);
             return maxFlowSolver.DinicMaxFlow(source, target);
