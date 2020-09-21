@@ -3,6 +3,32 @@ $second: #222831;
 $third: #4f8a8b;
 $forth: #fbd46d;
 
+
+.header-style{
+  width: auto;
+  height: 15%;
+  overflow: hidden;
+}
+
+.content-style{
+  height: calc(65%);
+  width: auto;
+  overflow: auto;
+}
+
+
+.footer-style{
+  height: 20%;
+  overflow: hidden;
+}
+
+.nav-title{
+  float: right;
+  font-size: 15px;
+  margin: 15px;
+  color: $first;
+}
+
 .sidenav {
   height: 50%;
   width: 20%;
@@ -26,6 +52,8 @@ $forth: #fbd46d;
 }
 
 .sidenav .closebtn {
+  width: 30%;
+  float: left;
   position: relative;
   font-size: 36px;
   margin: 20px;
@@ -39,7 +67,6 @@ mat-expansion-panel-header{
   direction: rtl;
 }
 .expansion-panel-style{
-  margin: 15px;
   margin-top: 0;
   background-color: $second;
 }
@@ -75,4 +102,24 @@ mat-form-field {
   width: 150px;
   margin-left: calc(50% - 75px);
   background-color: $third;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
 }
