@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import * as Ogma from '../../assets/ogma.min.js';
 import { NodeService } from './node/node.service';
 import { GraphService } from './graph/graph.service';
-import { isDataSource } from '@angular/cdk/collections';
 @Injectable()
 export class GraphHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
   public nodeColor: string;
   public edgeColor: string;
+  public pathModel;
   constructor(
     public nodeService: NodeService,
     public graphService: GraphService
@@ -68,9 +68,12 @@ export class GraphHandlerService {
     let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
     console.log(flow);
   }
-  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[]) {
-    let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters);
-    console.log(paths);
+  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[], maxLength: string) {
+    let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters, maxLength);
+    this.pathModel = JSON.parse(JSON.stringify(paths));
+    this.ogma.addGraph(this.pathModel.graph);
+    console.log(this.pathModel.pathsList);
+    this.runLayout();
   }
   public removeNodes(ids: string[]) {
     this.ogma.removeNodes(ids);

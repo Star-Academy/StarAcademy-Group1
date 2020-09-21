@@ -15,7 +15,7 @@ export class FiltersComponent implements OnInit {
 
   public sourceId: number;
   public targetId: number;
-  public maxLength: number; // default = 5
+  public maxLength: number; // default = 7
 
   public hidden = false;
   panelOpenState = false;
@@ -42,7 +42,7 @@ export class FiltersComponent implements OnInit {
       case 'path':
         let nodePathFilter: string[] = this.filterService.getNodeFilter();
         let edgePathFilter: string[] = this.filterService.getEdgeFilter();
-        this.graphHandler.findPaths(this.filterService.sourceId, this.filterService.targetId, nodePathFilter, edgePathFilter);
+        this.graphHandler.findPaths(this.filterService.sourceId, this.filterService.targetId, nodePathFilter, edgePathFilter, this.filterService.maxLength);
         break;
 
       case 'flow':
@@ -73,6 +73,9 @@ export class FiltersComponent implements OnInit {
     }
     else if (whichField === 'targetId') {
       this.filterService.targetId = field;
+    }
+    else if (whichField === 'maxLength') {
+      this.filterService.maxLength = field;
     }
   }
 }

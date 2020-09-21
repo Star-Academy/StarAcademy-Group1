@@ -13,6 +13,7 @@ export class FilterService {
   public branches: string[] = [];
   public sourceId:string;
   public targetId:string;
+  public maxLength: string = '7';
 
   public getNodeFilter(): string[] {
     let result = [];
