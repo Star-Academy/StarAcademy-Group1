@@ -17,7 +17,7 @@ export class EdgesViewPanelComponent implements OnInit {
   public searched : string = "";
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {ogmaProvider.graphChanged.subscribe(()=> this.updateResult(this.searched))}
 

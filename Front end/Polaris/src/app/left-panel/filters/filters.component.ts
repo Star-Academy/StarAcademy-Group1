@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../services/main-graph.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { FilterService } from 'src/services/filter.service';
@@ -12,43 +13,49 @@ export class FiltersComponent implements OnInit {
   @Input()
   panel: string;
 
-  public sourceId: number;
-  public targetId: number;
-  public maxLength: number; // default = 5
+  public sourceId: string;
+  public targetId: string;
+  public maxLength: number; // default = 7
 
   public hidden = false;
   panelOpenState = false;
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public filterService: FilterService
+    public filterService: FilterService,
+    public graphHandler: GraphHandlerService
   ) { }
 
   ngOnInit(): void {
   }
 
   sendData(): void {
-    if (this.panel != "expansion"
-      && (!this.sourceId || !this.targetId)) {
+    if ((this.panel != 'expansion' && this.panel != 'addNode') && (!this.sourceId || !this.targetId)) {
       this.showError();
       return;
     }
 
-    let filtersArray = this.filterService.getFilter();
     switch (this.panel) {
       case "expansion":
-        // expand(filtersArray)
+        let nodeExpansionFilter: string[] = this.filterService.getNodeFilter();
+        let edgeExpansionFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.expandNodes(this.graphHandler.ogma.getSelectedNodes().getId(), nodeExpansionFilter, edgeExpansionFilter);
         break;
 
       case "path":
-        // path(sourceId, targetId, maxLength, filtersArray)
+        let nodePathFilter: string[] = this.filterService.getNodeFilter();
+        let edgePathFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.findPaths(this.sourceId, this.targetId, nodePathFilter, edgePathFilter, this.maxLength);
         break;
 
       case "flow":
-        // flow(sourceId, targetId, filtersArray)
+        let nodeFlowFilter: string[] = this.filterService.getNodeFilter();
+        let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFlowFilter, edgeFlowFilter);
         break;
 
       case "addNode":
-        //
+        let filter: string[] = this.filterService.getNodeFilter();
+        this.graphHandler.addNodes(filter);
         break;
     }
   }

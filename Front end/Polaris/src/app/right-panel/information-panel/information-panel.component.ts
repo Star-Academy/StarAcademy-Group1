@@ -21,7 +21,5 @@ export class InformationPanelComponent implements OnInit {
     else
       this.isEmpty = true;
 
-    console.log(this.isEmpty);
-
   }
 }

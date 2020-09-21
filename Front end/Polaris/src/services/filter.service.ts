@@ -12,9 +12,34 @@ export class FilterService {
   public name: string;
   public branches: string[] = [];
 
-  public getFilter(): string[] {
-    var result = [];
+  public getNodeFilter(): string[] {
+    let result = [];
+    if (this.accountTypes.length != 0) {
+      let accountTypesResult: string = `accountType eq`;
+      for (let item of this.accountTypes) {
+        accountTypesResult += ` ${item}`;
+      }
+      result.push(accountTypesResult);
+    }
 
+    if (this.name) {
+      result.push(`ownerName cnt ${this.name}`);
+    }
+
+    if (this.branches.length != 0) {
+      let branchResult: string = `branch eq`;
+      for (let item of this.branches) {
+        branchResult += ` ${item}`;
+      }
+      result.push(branchResult);
+    }
+
+
+    return result;
+
+  }
+  public getEdgeFilter(): string[] {
+    let result = [];
     if (this.startDate) {
       result.push(`Date gte ${this.startDate}`);
     }
@@ -37,22 +62,6 @@ export class FilterService {
 
     if (this.maxAmount) {
       result.push(`Amount lte ${this.maxAmount}`);
-    }
-
-    if (this.accountTypes.length != 0) {
-      for (let index = 0; index < this.accountTypes.length; index++) {
-        result.push(`accountType eq ${this.accountTypes[index]}`);
-      }
-    }
-
-    if (this.name) {
-      result.push(`name cnt ${this.name}`);
-    }
-
-    if (this.branches.length != 0) {
-      for (let index = 0; index < this.branches.length; index++) {
-        result.push(`branch eq ${this.branches[index]}`);
-      }
     }
 
     return result;

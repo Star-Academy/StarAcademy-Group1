@@ -18,6 +18,5 @@ export class AccuountTypeComponent implements OnInit {
     } else {
       this.filterService.accountTypes.push(field);
     }
-    console.log(this.filterService.accountTypes);
   }
 }

@@ -1,6 +1,5 @@
-
+import { GraphHandlerService } from './../../../services/main-graph.service';
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
-
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
 import { OgmaHandlerService } from 'src/services/ogma-handler.service';
@@ -17,7 +16,7 @@ export class NodesViewPanelComponent implements OnInit {
 
   constructor(
     public componentCommunication: ComponentsCommunicationService,
-    public ogmaProvider: OgmaHandlerService,
+    public ogmaProvider: GraphHandlerService,
     public dataOnScreen: DataOnScreenService
   ) {ogmaProvider.graphChanged.subscribe(()=> this.updateResult(this.searched))}
 
@@ -25,9 +24,9 @@ export class NodesViewPanelComponent implements OnInit {
 
   public getNodeById(nodeId: string): string {
     return (
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerName') +
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerName') +
       ' ' +
-      this.ogmaProvider.ogma.getNode(nodeId).getData('OwnerFamilyName')
+      this.ogmaProvider.ogma.getNode(nodeId).getData('ownerFamilyName')
     );
   }
 

@@ -112,6 +112,7 @@ export class GraphService {
     targetNodeId: string,
     nodeFilter: string[] = [],
     edgeFilter: string[] = [],
+    maxLength: number = 7,
     nodeOrderby: string = 'desc',
     edgeOrderby: string = 'desc',
     nodePageIndex: number = -1,
@@ -128,8 +129,8 @@ export class GraphService {
     for (let element of edgeFilter) {
       url += `edge=${element}&`;
     }
+    url += `maxLength=${maxLength}&`;
     url = url.substr(0, url.length - 1);
-
     return new Promise<JSON>((resolve) => {
       this.http.get<JSON>(url, this.httpOptions).pipe(
         tap(_ => this.log(`got paths`)),

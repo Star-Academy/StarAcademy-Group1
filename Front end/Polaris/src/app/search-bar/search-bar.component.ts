@@ -43,7 +43,6 @@ export class SearchBarComponent implements OnInit {
       this.dataOnScreen.updateResult(query);
     }
     if (this.searchPosition === 'selectionPanel') {
-      console.log('selection panel change');
     }
     if (this.searchPosition === 'mainSearch') {
       this.searchInput = query;

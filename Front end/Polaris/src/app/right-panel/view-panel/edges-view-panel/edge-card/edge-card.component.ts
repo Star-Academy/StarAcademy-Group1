@@ -1,3 +1,4 @@
+import { GraphHandlerService } from './../../../../services/main-graph.service';
 
 
 import { Component, OnInit, Input } from '@angular/core';
@@ -15,7 +16,7 @@ export class EdgeCardComponent implements OnInit {
   @Input()
   public isSelected: boolean;
 
-  constructor(public ogmaProvider: OgmaHandlerService , public componentCommunication : ComponentsCommunicationService) { }
+  constructor(public ogmaProvider: GraphHandlerService , public componentCommunication : ComponentsCommunicationService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +24,6 @@ export class EdgeCardComponent implements OnInit {
 
     if (isChecked){
       this.ogmaProvider.ogma.getEdge(this.edgeId).setSelected(true);
-      console.log("helooo");
   }
     else{
       this.ogmaProvider.ogma.getEdge(this.edgeId).setSelected(false);
