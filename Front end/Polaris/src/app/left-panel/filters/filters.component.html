@@ -1,6 +1,6 @@
 <div id="mySidenav2" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
-
+  <h2 class="nav-title">{{componentCommunication.titleTextMap.get(panel)}}</h2>
   <mat-accordion>
 
     <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
@@ -11,7 +11,7 @@
       <app-time-filter> </app-time-filter>
     </mat-expansion-panel>
 
-    
+
     <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
       (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
 

@@ -22,6 +22,13 @@ export class ComponentsCommunicationService {
     ["addNode", "اضافه کردن راس"]
   ]);
 
+  public titleTextMap = new Map([
+    ["expansion", "بسط گراف"],
+    ["flow", "محاسبه شار دو راس"],
+    ["path", "نمایش مسیرهای بین دو راس"],
+    ["addNode", "اضافه کردن راس"]
+  ])
+
   public filtersToShowMap = new Map([
     // Account, Amount, Branch, Name, Time
     ["expansion", [true, true, true, true, true]],
