@@ -1,10 +1,10 @@
 <div id="mySidenav" class="sidenav" [hidden]="hidden">
   <span class="selection-search-bar-container">
-    <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
+    <app-real-time-search-bar (searched)="updateResult($event)" ></app-real-time-search-bar>
   </span>
   <span *ngIf="ogmaProvider.ogma.getNodes().size!=0">
     <span *ngIf="!dataOnScreen.nodeViewFirstInit">
-      <app-node-card *ngFor="let nodeId of ogmaProvider.ogma.getNodes().getId()" [nodeId]="nodeId"
+      <app-node-card *ngFor="let nodeId of nodes" [nodeId]="nodeId"
         [nodePerson]="getNodeById(nodeId)" [isSelected]="isNodeSelected(nodeId)"></app-node-card>
 
       </span>
