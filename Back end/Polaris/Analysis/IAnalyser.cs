@@ -8,7 +8,7 @@ namespace Analysis
 {
     public interface IAnalyser<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
-    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7);
 

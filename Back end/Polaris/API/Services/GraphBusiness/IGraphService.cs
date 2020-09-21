@@ -7,7 +7,7 @@ namespace API.Services.GraphBusiness
 {
     public interface IGraphService<TNodeId, TNodeData, TEdgeId, TEdgeData>
     where TNodeData : Entity<TNodeId>
-    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
+    where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, new()
     {
         GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> GetWholeGraph();
 
@@ -31,7 +31,7 @@ namespace API.Services.GraphBusiness
             Pagination edgePagination = null
         );
 
-        MaxFlowResult<TEdgeId> GetMaxFlow(
+        MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(
             TNodeId sourceNodeId,
             TNodeId targetNodeId,
             string[] nodeFilter = null,

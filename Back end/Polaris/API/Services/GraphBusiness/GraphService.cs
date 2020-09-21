@@ -114,7 +114,7 @@ namespace API.Services.GraphBusiness
             );
         }
 
-        public MaxFlowResult<TEdgeId> GetMaxFlow(
+        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(
             TNodeId sourceNodeId,
             TNodeId targetNodeId,
             string[] nodeFilter = null,
@@ -126,7 +126,7 @@ namespace API.Services.GraphBusiness
             var result = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 GetGraphWithFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
                 .GetMaxFlow(sourceNodeId, targetNodeId);
-            return new MaxFlowResult<TEdgeId>(result.MaxFlowAmount, 
+            return new MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData>(result.MaxFlowAmount, 
                 result.EdgeToFlow.Where(etf => etf.Value != 0).ToDictionary(x => x.Key, x => x.Value));
         }
 

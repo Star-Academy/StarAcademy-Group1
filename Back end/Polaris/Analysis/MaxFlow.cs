@@ -84,15 +84,7 @@ namespace Analysis
                         Result.EdgeToFlow[edge.Id] = edge.Flow;
                     }
 
-            ModifyContainer();
-
             return Result;
-        }
-
-        private void ModifyContainer()
-        {
-
-            throw new NotImplementedException();
         }
 
         private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target, ref Dictionary<TNodeId, int> start)
