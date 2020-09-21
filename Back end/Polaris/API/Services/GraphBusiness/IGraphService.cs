@@ -47,7 +47,7 @@ namespace API.Services.GraphBusiness
             string[] nodeFilter = null,
             string[] edgeFilter = null,
             Pagination nodePagination = null,
-            Pagination edgePagination = null, 
+            Pagination edgePagination = null,
             int maxLength = 7
         );
 

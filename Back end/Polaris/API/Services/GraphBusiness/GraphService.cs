@@ -154,7 +154,7 @@ namespace API.Services.GraphBusiness
             var result = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 GetGraphByFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
                 .GetMaxFlow(sourceNodeId, targetNodeId, maxLength);
-            return new MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData>(result.MaxFlowAmount, 
+            return new MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData>(result.MaxFlowAmount,
                 result.EdgeToFlow.Where(etf => etf.Value != 0).ToDictionary(x => x.Key, x => x.Value), result.GraphContainer);
         }
 

@@ -51,7 +51,7 @@ namespace API.Controllers.V1
             bool isTarget = true
         )
         {
-            if((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
+            if ((nodePagination.PageIndex == 0 && nodePagination.PageSize == 0) || (edgePagination.PageIndex == 0 && edgePagination.PageSize == 0))
                 return Ok(_graphService
                 .GetNodesExpansions(nodesIds, isSource, isTarget,
                     nodeFilter, edgeFilter, null, null));

@@ -1,7 +1,6 @@
 using API.Services.NodeBusiness;
 using Elastic.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 using Models.Banking;
 using Models.Network;
@@ -62,7 +61,7 @@ namespace API.Controllers.V1
         [HttpGet]
         public IActionResult GetNodesByFilter([FromQuery] string[] filter, [FromQuery] Pagination pagination)
         {
-            if(pagination != null && pagination.PageIndex == 0 && pagination.PageSize == 0)
+            if (pagination != null && pagination.PageIndex == 0 && pagination.PageSize == 0)
                 return Ok(_nodeService.GetNodesByFilter(filter, null));
             return Ok(_nodeService.GetNodesByFilter(filter, pagination));
         }

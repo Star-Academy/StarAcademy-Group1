@@ -115,9 +115,9 @@ namespace API.Services.EdgeBusiness
                     }
                 }
             };
-            var wrapperQueryContainer = (QueryContainer) new BoolQuery
+            var wrapperQueryContainer = (QueryContainer)new BoolQuery
             {
-                Must=new List<QueryContainer>
+                Must = new List<QueryContainer>
                 {
                     filterQueryContainer,
                     sideNodeQueryContainer
@@ -156,9 +156,9 @@ namespace API.Services.EdgeBusiness
                     }
                 }
             };
-            var wrapperQueryContainer = (QueryContainer) new BoolQuery
+            var wrapperQueryContainer = (QueryContainer)new BoolQuery
             {
-                Must=new List<QueryContainer>
+                Must = new List<QueryContainer>
                 {
                     filterQueryContainer,
                     sideNodeQueryContainer

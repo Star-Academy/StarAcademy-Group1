@@ -31,7 +31,7 @@ namespace Elastic.Filtering.Criteria
             {
                 Field = field,
                 GreaterThanOrEqualTo = Convert.ToDouble(value)
-            }; 
+            };
             return query;
         }
 
