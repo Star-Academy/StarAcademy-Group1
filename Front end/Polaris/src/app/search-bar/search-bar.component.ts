@@ -38,12 +38,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   public checkChange(query: string) {
-    if (this.searchPosition === 'branchFilter') {
-      this.dataOnScreen.branchFirstInit = false;
-      this.dataOnScreen.updateResult(query);
-    }
-    if (this.searchPosition === 'selectionPanel') {
-    }
     if (this.searchPosition === 'mainSearch') {
       this.searchInput = query;
     }

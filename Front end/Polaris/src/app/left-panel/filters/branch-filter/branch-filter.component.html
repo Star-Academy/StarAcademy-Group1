@@ -1,4 +1,4 @@
-<app-search-bar [searchPosition]="'branchFilter'"></app-search-bar>
+<app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
 
 <cdk-virtual-scroll-viewport
   itemSize="50"

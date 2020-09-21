@@ -5,6 +5,8 @@
     [ngxTimepicker]="toggleTimepicker"
     [disableClick]="false"
     [(ngModel)]="startTime"
+    (ngModelChange)="changeChecked()" (keyup)="changeChecked()"
+    [format]="24"
   />
   <ngx-material-timepicker-toggle matSuffix [for]="toggleTimepicker">
   </ngx-material-timepicker-toggle>
@@ -18,6 +20,8 @@
     [ngxTimepicker]="toggleTimepicker2"
     [disableClick]="false"
     [(ngModel)]="endTime"
+    (ngModelChange)="changeChecked()" (keyup)="changeChecked()"
+    [format]="24"
   />
   <ngx-material-timepicker-toggle matSuffix [for]="toggleTimepicker2">
   </ngx-material-timepicker-toggle>
@@ -40,14 +44,7 @@
 
 <mat-form-field class="example-full-width" appearance="fill">
   <mat-label>تاریخ پایان</mat-label>
-  <input
-    matInput
-    [matDatepicker]="picker2"
-    name="time2"
-    [(ngModel)]="endDate"
-    (dateChange)="changeChecked()"
-    (keyup)="changeChecked()"
-  />
+  <input matInput [matDatepicker]="picker2" name="time2" [(ngModel)]="endDate" (dateChange)="changeChecked()" (keyup)="changeChecked()" />
   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
   <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>

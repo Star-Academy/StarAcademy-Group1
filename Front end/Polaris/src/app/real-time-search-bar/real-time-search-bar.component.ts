@@ -27,4 +27,6 @@ export class RealTimeSearchBarComponent implements OnInit {
     this.dataOnScreen.edgeViewFirstInit = false;
     this.searched.emit(this.value);
   }
+
+  
 }
