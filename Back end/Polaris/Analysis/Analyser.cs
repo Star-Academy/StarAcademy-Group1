@@ -20,11 +20,18 @@ namespace Analysis
             graph = new Graph<TNodeId, TNodeData, TEdgeId, TEdgeData>(graphContainer);
         }
 
-        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target)
+        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target, int maxLength = 7)
         {
             var edges = GetPaths(source, target);
             var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph, graphContainer.Edges);
             var result = maxFlowSolver.DinicMaxFlow(source, target);
+            ModifyResult(edges, result);
+            return result;
+
+        }
+
+        private void ModifyResult(List<List<List<TEdgeId>>> edges, MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> result)
+        {
             var edgeSet = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
             var nodeSet = new HashSet<Node<TNodeData, TNodeId>>();
             foreach (var list in edges)
@@ -38,8 +45,6 @@ namespace Analysis
                     }
 
             result.GraphContainer = new GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData>(nodeSet.ToList(), edgeSet.ToList());
-            return result;
-
         }
 
         public List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7)

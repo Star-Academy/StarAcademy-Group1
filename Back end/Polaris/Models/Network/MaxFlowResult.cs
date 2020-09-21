@@ -17,10 +17,11 @@ namespace Models.Network
             EdgeToFlow = new Dictionary<TEdgeId, long>();
         }
 
-        public MaxFlowResult(long maxFlowAmount, Dictionary<TEdgeId, long> edgeToFlow)
+        public MaxFlowResult(long maxFlowAmount, Dictionary<TEdgeId, long> edgeToFlow, GraphContainer<TNodeId, TNodeData, TEdgeId, TEdgeData> container)
         {
             MaxFlowAmount = maxFlowAmount;
             EdgeToFlow = edgeToFlow;
+            GraphContainer = container;
         }
     }
 }

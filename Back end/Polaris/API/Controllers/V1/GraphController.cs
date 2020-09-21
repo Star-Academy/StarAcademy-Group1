@@ -84,11 +84,12 @@ namespace API.Controllers.V1
             [FromQuery(Name = "node")] string[] nodeFilter,
             [FromQuery(Name = "edge")] string[] edgeFilter,
             [FromQuery(Name = "node")] Pagination nodePagination,
-            [FromQuery(Name = "edge")] Pagination edgePagination
+            [FromQuery(Name = "edge")] Pagination edgePagination,
+            int maxLength = 7
         )
         {
             return Ok(_graphService
-                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null));
+                .GetMaxFlow(sourceNodeId, targetNodeId, nodeFilter, edgeFilter, null, null, maxLength));
         }
 
         [HttpGet]

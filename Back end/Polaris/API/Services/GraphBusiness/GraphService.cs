@@ -147,14 +147,15 @@ namespace API.Services.GraphBusiness
             string[] nodeFilter = null,
             string[] edgeFilter = null,
             Pagination nodePagination = null,
-            Pagination edgePagination = null
+            Pagination edgePagination = null,
+            int maxLength = 7
         )
         {
             var result = new Analyser<TNodeId, TNodeData, TEdgeId, TEdgeData>(
                 GetGraphByFilter(nodeFilter, edgeFilter, nodePagination, edgePagination))
-                .GetMaxFlow(sourceNodeId, targetNodeId);
+                .GetMaxFlow(sourceNodeId, targetNodeId, maxLength);
             return new MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData>(result.MaxFlowAmount, 
-                result.EdgeToFlow.Where(etf => etf.Value != 0).ToDictionary(x => x.Key, x => x.Value));
+                result.EdgeToFlow.Where(etf => etf.Value != 0).ToDictionary(x => x.Key, x => x.Value), result.GraphContainer);
         }
 
         public Dictionary<string, object> Stats()
