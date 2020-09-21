@@ -1,90 +1,97 @@
 <div id="mySidenav2" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
-  <h2 class="nav-title">{{componentCommunication.titleTextMap.get(panel)}}</h2>
-  <mat-accordion>
+  <div class="header-style">
+    <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&lt;</a>
+    <h2 class="nav-title">{{componentCommunication.titleTextMap.get(panel)}}</h2>
+  </div>
 
-    <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>زمان تراکنش</mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-time-filter> </app-time-filter>
-    </mat-expansion-panel>
+  <div class="content-style">
 
+    <mat-accordion>
+  
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>زمان تراکنش</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-time-filter> </app-time-filter>
+      </mat-expansion-panel>
+  
+  
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
+  
+        <mat-expansion-panel-header>
+          <mat-panel-title>مقدار تراکنش</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-amount-filter></app-amount-filter>
+  
+      </mat-expansion-panel>
+  
+  
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>نوع حساب</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-accuount-type-filter></app-accuount-type-filter>
+        </p>
+      </mat-expansion-panel>
+  
+  
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>نام صاحب حساب</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-name-filter></app-name-filter>
+        </p>
+      </mat-expansion-panel>
+  
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>شعبه</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-branch-filter></app-branch-filter>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  
+  
+  
+    <br>
+    <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'">
+  
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>شماره حساب میدا</mat-label>
+        <input matInput name="sourceId" [(ngModel)]="sourceId">
+      </mat-form-field><br>
+  
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>شماره حساب مقصد</mat-label>
+        <input matInput name="targetId" [(ngModel)]="targetId">
+      </mat-form-field>
+  
+  
+      <mat-form-field class="example-full-width" *ngIf="panel === 'path' || panel === 'flow'">
+        <mat-label>حداکثر طول مسیر</mat-label>
+        <input matInput name="maxLength" [(ngModel)]="maxLength">
+      </mat-form-field>
+  
+  
+    </form>
+  </div>
 
-    <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
-
-      <mat-expansion-panel-header>
-        <mat-panel-title>مقدار تراکنش</mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-amount-filter></app-amount-filter>
-
-    </mat-expansion-panel>
-
-
-    <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>نوع حساب</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-accuount-type-filter></app-accuount-type-filter>
-      </p>
-    </mat-expansion-panel>
-
-
-    <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>نام صاحب حساب</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-name-filter></app-name-filter>
-      </p>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>شعبه</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-branch-filter></app-branch-filter>
-      </p>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
-
-  <br>
-  <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'">
-
-
-    <mat-form-field class="example-full-width">
-      <mat-label>شماره حساب میدا</mat-label>
-      <input matInput name="sourceId" [(ngModel)]="sourceId">
-    </mat-form-field><br>
-
-
-    <mat-form-field class="example-full-width">
-      <mat-label>شماره حساب مقصد</mat-label>
-      <input matInput name="targetId" [(ngModel)]="targetId">
-    </mat-form-field>
-
-
-    <mat-form-field class="example-full-width" *ngIf="panel === 'path' || panel === 'flow'">
-      <mat-label>حداکثر طول مسیر</mat-label>
-      <input matInput name="maxLength" [(ngModel)]="maxLength">
-    </mat-form-field>
-
-
-  </form>
-
-
-  <br>
-  <br>
-  <button mat-raised-button class="button-style"
-    (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
+  <div class="footer-style">
+    <br>
+    <br>
+    <button mat-raised-button class="button-style"
+      (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
+  </div>
 
 </div>
