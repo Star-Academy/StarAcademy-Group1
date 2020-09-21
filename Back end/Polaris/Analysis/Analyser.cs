@@ -22,7 +22,7 @@ namespace Analysis
 
         public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> GetMaxFlow(TNodeId source, TNodeId target, int maxLength = 7)
         {
-            var edges = GetPaths(source, target);
+            var edges = GetPaths(source, target, maxLength);
             var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph, graphContainer.Edges);
             var result = maxFlowSolver.DinicMaxFlow(source, target);
             ModifyResult(edges, result);
@@ -50,7 +50,7 @@ namespace Analysis
         public List<List<List<TEdgeId>>> GetPaths(TNodeId source, TNodeId target, int maxLength = 7)
         {
             var pathFinder = new BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph);
-            return pathFinder.BiDirectionalSearch(source, target, maxLength);//filters should be added in here !
+            return pathFinder.BiDirectionalSearch(source, target, maxLength);
         }
     }
 }
