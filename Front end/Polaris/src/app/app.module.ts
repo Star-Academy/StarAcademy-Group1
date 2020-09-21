@@ -62,6 +62,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {ConstValuesService} from './../services/const-values.service';
 import {MatCardModule} from '@angular/material/card';
 import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-panel.component';
+import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-card/branch-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +94,8 @@ import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-pane
     EdgeCardComponent,
     NodeCardComponent,
     EdgeCardComponent,
-    AddNodePanelComponent
+    AddNodePanelComponent,
+    BranchCardComponent
 
   ],
   imports: [
