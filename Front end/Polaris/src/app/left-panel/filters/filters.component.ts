@@ -23,32 +23,36 @@ export class FiltersComponent implements OnInit {
     public componentCommunication: ComponentsCommunicationService,
     public filterService: FilterService,
     public graphHandler: GraphHandlerService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   sendData(): void {
     if ((this.panel != 'expansion' && this.panel != 'addNode') && (!this.sourceId || !this.targetId)) {
       this.showError();
       return;
     }
-
-    let filtersArray = this.filterService.getFilter();
     switch (this.panel) {
       case 'expansion':
-        // expand(filtersArray)
+        let nodeExpansionFilter: string[] = this.filterService.getNodeFilter();
+        let edgeExpansionFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.expandNodes(this.graphHandler.ogma.getSelectedNodes().getId(), nodeExpansionFilter, edgeExpansionFilter);
         break;
 
       case 'path':
-        // path(sourceId, targetId, maxLength, filtersArray)
+        let nodePathFilter: string[] = this.filterService.getNodeFilter();
+        let edgePathFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.findPaths(this.filterService.sourceId, this.filterService.targetId, nodePathFilter, edgePathFilter);
         break;
 
       case 'flow':
-        // flow(sourceId, targetId, filtersArray)
+        let nodeFlowFilter: string[] = this.filterService.getNodeFilter();
+        let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
+        this.graphHandler.getMaxFlow(this.filterService.sourceId, this.filterService.targetId, nodeFlowFilter, edgeFlowFilter);
         break;
 
       case 'addNode':
-        let filter: string[] = this.filterService.getFilter();
+        let filter: string[] = this.filterService.getNodeFilter();
         this.graphHandler.addNodes(filter);
         break;
     }
@@ -61,5 +65,14 @@ export class FiltersComponent implements OnInit {
       text: 'مقادیر خواسته شده را وارد نمایید...',
       confirmButtonText: 'حله',
     });
+  }
+
+  public checkChange(field: string, whichField: string) {
+    if (whichField === 'sourceId') {
+      this.filterService.sourceId = field;
+    }
+    else if (whichField === 'targetId') {
+      this.filterService.targetId = field;
+    }
   }
 }

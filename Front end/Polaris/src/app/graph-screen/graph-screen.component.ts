@@ -36,6 +36,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         backgroundColor: 'rgb(240, 240, 240)',
       },
     });
+    
+    this.randomOgma.ogma.styles.addRule({
+      edgeAttributes:{
+        shape: 'arrow'
+      }
+    });
     this.randomOgma.ogma.events.onHover(({ x, y, target }: HoverEvent) => {
       if (target.isNode) {
         this.hoveredContent = {

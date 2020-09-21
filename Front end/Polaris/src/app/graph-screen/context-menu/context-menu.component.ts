@@ -21,12 +21,8 @@ export class ContextMenuComponent implements OnInit {
     let removeOne: string[] = new Array(this.content.id);
     this.randomOgma.removeNodes(removeOne);
   }
-  // public deleteNodeFromSelected() {
-  //   this.randomOgma.deleteNodeFromSelected(this.content.id);
-  //   console.log(this.randomOgma.selectedNodes);
-  // }
-  // public addNodeToSelected() {
-  //   this.randomOgma.addNodeToSelected(this.content.id);
-  //   console.log(this.randomOgma.selectedNodes);
-  // }
+
+  public expandNode(){
+    this.randomOgma.expandOneNode(this.content.id);
+  }
 }

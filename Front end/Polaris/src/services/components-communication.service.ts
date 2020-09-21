@@ -24,7 +24,7 @@ export class ComponentsCommunicationService {
 
   public filtersToShowMap = new Map([
     // Account, Amount, Branch, Name, Time
-    ["expansion", [false, true, false, true, true]],
+    ["expansion", [true, true, true, true, true]],
     ["flow", [true, true, true, true, true]],
     ["path", [true, true, true, true, true]],
     ["addNode", [false, false, true, true, true]]
