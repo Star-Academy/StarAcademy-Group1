@@ -73,13 +73,18 @@ export class GraphHandlerService {
 
   public async getMaxFlow(sourceId: string,targetId: string,nodeFilters: string[],edgeFilters: string[]) {
     let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
+    ///
+    this.maxFlowModel = JSON.parse(JSON.stringify(flow));
+    this.ogma.addGraph(this.maxFlowModel.graphContainer);
+    console.log("to use max flow number: " + this.maxFlowModel.maxFlowAmount);
+    console.log("to use edges that has flow: " + this.maxFlowModel.edgeToFlow);
+    this.runLayout();
     console.log(flow);
   }
   public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[], maxLength: number) {
     let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters, maxLength);
     this.pathModel = JSON.parse(JSON.stringify(paths));
     this.ogma.addGraph(this.pathModel.graph);
-    console.log(this.pathModel.pathsList);
     this.pathsLoaded.emit();
     this.runLayout();
   }

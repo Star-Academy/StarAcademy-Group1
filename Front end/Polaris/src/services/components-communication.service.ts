@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { NodeInfo } from 'src/app/right-panel/information-panel/node-info-box/NodeInfo';
 import { EdgeInfo } from 'src/app/right-panel/information-panel/edge-info-box/EdgeInfo';
 
@@ -13,7 +13,8 @@ export class ComponentsCommunicationService {
   public graphInfo: {
     graphSize: number,
     edgeSize: number
-  }
+  };
+  public onClickContextMenu: EventEmitter<void> = new EventEmitter<void>();
 
   public buttonTextMap = new Map([
     ["expansion", "بسط بده"],

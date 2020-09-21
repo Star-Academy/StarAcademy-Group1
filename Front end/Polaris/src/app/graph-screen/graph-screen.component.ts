@@ -1,7 +1,6 @@
 import { GraphHandlerService } from './../services/main-graph.service';
 import { Component, OnInit, AfterContentInit, ViewChild } from '@angular/core';
 import * as initialGraph from '../../assets/ogma.min.js';
-import { OgmaHandlerService } from '../../services/ogma-handler.service';
 import { ComponentsCommunicationService } from '../../services/components-communication.service';
 import { NodeId } from '../../assets/ogma.min.js';
 import * as HoverEvent from '../../assets/ogma.min.js';
@@ -26,9 +25,12 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuContent: { id: NodeId };
   constructor(
     private randomOgma: GraphHandlerService,
-    public componentCommunication: ComponentsCommunicationService
-  ) {}
+    public componentCommunication: ComponentsCommunicationService,
+  ) {componentCommunication.onClickContextMenu.subscribe(() => this.onClickContext()) }
 
+  onClickContext(){
+    this.contextMenuContent = null;
+  }
   ngOnInit() {
     this.randomOgma.initOgma({
       graph: initialGraph,
@@ -66,8 +68,11 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         }
       }
     );
-    this.randomOgma.ogma.events.onClick(({ target }: ClickEvent) => {
+    this.randomOgma.ogma.events.onClick(({ target, button }: ClickEvent) => {
       this.hoveredContent = null;
+      if (button === 'left'){
+        this.contextMenuContent = null;
+      }
       if (target == null || !target.isNode) {
         this.contextMenuContent = null;
         this.contextMenuPosition = null;

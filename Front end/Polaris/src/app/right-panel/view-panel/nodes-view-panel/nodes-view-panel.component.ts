@@ -2,7 +2,6 @@ import { GraphHandlerService } from './../../../services/main-graph.service';
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
   selector: 'app-nodes-view-panel',
