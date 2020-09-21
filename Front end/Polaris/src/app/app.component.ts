@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Polaris';
+  public constructor(public ogmaService:OgmaHandlerService){
+  }
+
 }

@@ -20,21 +20,27 @@
 .search-wrapper button {
   background-color: white;
   height: 35px;
-  background-color: #eeeeee;
+  background-color: wheat;
   padding: 0 10px 0 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+
+  border-style: solid;
+  border-color: wheat;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+
 }
 
 .search-wrapper input {
-  background-color: #eeeeee;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+  background-color: wheat;  
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
   height: 35px;
   width: 200px;
   padding: 0;
   margin-right: 15px;
-  padding-right: 7px;
+  padding-right: 15px;
 
 }
 .in-branch-panel{
