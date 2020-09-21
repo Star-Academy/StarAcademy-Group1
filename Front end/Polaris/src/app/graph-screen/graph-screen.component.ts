@@ -18,7 +18,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   private container;
   hoveredContent: {
     id: NodeId;
-    accountId: number;
     name: string;
     familyName: string;
   };
@@ -26,22 +25,28 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   contextMenuPosition: { x: number; y: number };
   contextMenuContent: { id: NodeId };
   constructor(
-    private randomOgma: OgmaHandlerService,
+    private randomOgma: GraphHandlerService,
     public componentCommunication: ComponentsCommunicationService
   ) {}
 
   ngOnInit() {
-    this.randomOgma.initConfig({
+    this.randomOgma.initOgma({
       graph: initialGraph,
       options: {
         backgroundColor: 'rgb(240, 240, 240)',
       },
     });
+
+    this.randomOgma.ogma.styles.addRule({
+      edgeAttributes: {
+        shape: 'arrow'
+      }
+    });
+
     this.randomOgma.ogma.events.onHover(({ x, y, target }: HoverEvent) => {
       if (target.isNode) {
         this.hoveredContent = {
           id: target.getId(),
-          accountId: target.getData('AccountID'),
           name: target.getData('OwnerName'),
           familyName: target.getData('OwnerFamilyName'),
         };
@@ -72,16 +77,16 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
       if (target != null && target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'nodeInfo';
         this.componentCommunication.nodeInfo = {
-          ownerName: target.getData('OwnerName'),
-          ownerFamilyName: target.getData('OwnerFamilyName'),
+          ownerName: target.getData('ownerName'),
+          ownerFamilyName: target.getData('ownerFamilyName'),
           accountId: target.getId(),
-          accountType: target.getData('AccountType'),
-          sheba: target.getData('Sheba'),
-          cardId: target.getData('CardId'),
-          ownerId: target.getData('OwnerId'),
-          branchName: target.getData('BranchName'),
-          branchAddress: target.getData('BranchAddress'),
-          branchTelephone: target.getData('BranchTelephone'),
+          accountType: target.getData('accountType'),
+          sheba: target.getData('sheba'),
+          cardId: target.getData('cardId'),
+          ownerId: target.getData('ownerId'),
+          branchName: target.getData('branchName'),
+          branchAddress: target.getData('branchAddress'),
+          branchTelephone: target.getData('branchTelephone'),
         };
       } else if (target != null && !target.isNode && button === 'left') {
         this.componentCommunication.whichPanel = 'edgeInfo';
@@ -91,7 +96,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           target: target.getTarget().getId(),
           type: target.getData('type'),
           amount: target.getData('amount'),
-          date: target.getData('date'),
+          date: target.getData('date')
         };
       } else if ((target === null || !target.isNode) && button === 'left') {
         this.componentCommunication.whichPanel = 'graphInfo';
@@ -99,6 +104,18 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           graphSize: this.randomOgma.ogma.getNodes().size,
           edgeSize: this.randomOgma.ogma.getEdges().size,
         };
+      }
+    });
+
+    this.randomOgma.ogma.events.onDoubleClick(({ target, button }: ClickEvent) => {
+      if (button === 'left' && target !== null && (target.isNode || target.isEdge)) {
+        navigator.clipboard.writeText(target.getId())
+          .then(() => {
+            console.log('Text copied to clipboard');
+          })
+          .catch(err => {
+            console.error('Error in copying text: ', err);
+          });
       }
     });
 
@@ -113,7 +130,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
               { color: 'black' },
               { innerStroke: null }
             );
-        console.log(this.randomOgma.ogma.getEdge(edge).getSource());
       }
     });
 
@@ -129,8 +145,6 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           },
         });
       }
-      console.log(this.randomOgma.ogma.getSelectedNodes());
-      console.log(this.randomOgma.ogma.getSelectedEdges());
     });
   }
 

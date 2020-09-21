@@ -9,9 +9,10 @@ export class GraphHandlerService {
   public selectedNodes: Array<string>;
   public nodeColor: string;
   public edgeColor: string;
-  constructor(public nodeService: NodeService, public graphService: GraphService){
-
-  }
+  constructor(
+    public nodeService: NodeService,
+    public graphService: GraphService
+  ) { }
 
   public initOgma(configuration = {}) {
     this.ogma = new Ogma(configuration);
@@ -34,53 +35,43 @@ export class GraphHandlerService {
     return graphJson;
   }
 
-  public async addNode(id:string) {
+  public async addNode(id: string) {
     let nodeResult = await this.getNodeByid(id);
     this.ogma.addNode(nodeResult);
-    this.runLayout()
+    this.runLayout();
   }
 
-  public expandNodes(
-    ids: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let expansions = this.graphService.getExpansion(
-      ids,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public getMaxFlow(
-    sourceId: string,
-    targetId: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let flow = this.graphService.getFlow(
-      sourceId,
-      targetId,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public findPaths(
-    sourceId: string,
-    targetId: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let paths = this.graphService.getPaths(
-      sourceId,
-      targetId,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public addByFilter(filters: string[]) {
-    let nodes = this.nodeService.getNodes(filters, -1, -1);
+  public async getNodesByFilter(filter: string[]): Promise<JSON> {
+    let graphJson = await this.nodeService.getNodes(filter);
+    return graphJson;
   }
 
+  public async addNodes(filter: string[]) {
+    let filterResults = await this.getNodesByFilter(filter);
+    this.ogma.addNodes(filterResults);
+    this.runLayout();
+  }
+
+  public async expandOneNode(id: string) {
+    let expandResult = await this.graphService.getExpansion(id);
+    this.ogma.addGraph(expandResult);
+    this.runLayout();
+  }
+
+  public async expandNodes(ids: string[], nodeFilters: string[], edgeFilters: string[]) {
+    let expansions = await this.graphService.getNodesExpansion(ids, nodeFilters, edgeFilters);
+    this.ogma.addGraph(expansions);
+    this.runLayout();
+  }
+
+  public async getMaxFlow(sourceId: string,targetId: string,nodeFilters: string[],edgeFilters: string[]) {
+    let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
+    console.log(flow);
+  }
+  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[]) {
+    let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters);
+    console.log(paths);
+  }
   public removeNodes(ids: string[]) {
     this.ogma.removeNodes(ids);
   }

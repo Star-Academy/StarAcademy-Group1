@@ -1,5 +1,6 @@
 import { OgmaHandlerService } from './../../../services/ogma-handler.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { GraphHandlerService } from './../../services/main-graph.service';
 
 @Component({
   selector: 'app-context-menu',
@@ -12,20 +13,25 @@ export class ContextMenuComponent implements OnInit {
   @Input()
   position: { x: number; y: number };
 
-  constructor(private randomOgma: OgmaHandlerService) {}
+  constructor(private randomOgma: GraphHandlerService) {}
 
   ngOnInit(): void {}
 
   public deleteNode() {
     let removeOne: string[] = new Array(this.content.id);
-    this.randomOgma.removeGraphNode(removeOne);
+    this.randomOgma.removeNodes(removeOne);
   }
-  // public deleteNodeFromSelected() {
-  //   this.randomOgma.deleteNodeFromSelected(this.content.id);
-  //   console.log(this.randomOgma.selectedNodes);
-  // }
-  // public addNodeToSelected() {
-  //   this.randomOgma.addNodeToSelected(this.content.id);
-  //   console.log(this.randomOgma.selectedNodes);
-  // }
+
+  public expandNode() {
+    this.randomOgma.expandOneNode(this.content.id);
+  }
+  public copyNodeId() {
+    navigator.clipboard.writeText(this.content.id)
+      .then(() => {
+        console.log('Text copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Error in copying text: ', err);
+      });
+  }
 }
