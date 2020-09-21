@@ -1,10 +1,25 @@
-.left-panel-style {
-  width: 20%;
-  height: 100vh;
-  float: left;
-}
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .right-panel-style {
   width: 20%;
-  height: 100vh;
+  height: 100%;
   float: right;
+}
+
+.left-panel-style {
+  width: 3%;
+  height: 100%;
+  float: left;
+
+}
+
+
+.graph-screen-style{
+  height: 100%;
+  width: 75%;
+  float: left;
 }

@@ -93,7 +93,8 @@ import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-pane
     EdgeCardComponent,
     NodeCardComponent,
     EdgeCardComponent,
-    AddNodePanelComponent,
+    AddNodePanelComponent
+
   ],
   imports: [
     BrowserModule,
@@ -114,7 +115,8 @@ import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-pane
     HttpClientModule,
     MatTabsModule,
     MatTooltipModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCardModule
   ],
   providers: [
     OgmaHandlerService,

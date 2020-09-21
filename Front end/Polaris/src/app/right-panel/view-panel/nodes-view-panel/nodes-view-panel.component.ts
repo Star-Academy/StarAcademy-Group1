@@ -13,11 +13,13 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 export class NodesViewPanelComponent implements OnInit {
   public nodes;
   public hidden = false;
+  public searched : string = "";
+
   constructor(
     public componentCommunication: ComponentsCommunicationService,
     public ogmaProvider: OgmaHandlerService,
     public dataOnScreen: DataOnScreenService
-  ) {}
+  ) {ogmaProvider.graphChanged.subscribe(()=> this.updateResult(this.searched))}
 
   ngOnInit(): void {}
 
@@ -33,13 +35,13 @@ export class NodesViewPanelComponent implements OnInit {
     return this.ogmaProvider.ogma.getNode(nodeId).isSelected();
   }
 
-  public updateResult(input: string) {
+  public updateResult(input : string) {
+    this.searched = input ;
     this.nodes = [];
     this.ogmaProvider.ogma.getNodes().getId().forEach((element) => {
-
       if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
           this.nodes.push(element);
       });
-      console.log("yessss");
+
   }
 }

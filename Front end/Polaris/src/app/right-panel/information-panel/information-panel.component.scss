@@ -6,15 +6,36 @@ $forth: #fbd46d;
 
 .info-container {
   width: auto;
-  height: auto;
+  height: 30%;
+  position: relative;
   border-style: solid;
   border-radius: 10px;
   background-color: $first;
   border-color: $first;
   margin: 10px;
-  font-size: 16;
+  font-size: 13px;
   text-align: center;
+  overflow-y: auto;
 }
 .test{
   margin: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $first;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $first;
 }

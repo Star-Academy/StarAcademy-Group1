@@ -1,15 +1,24 @@
-/* The sidebar menu */
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 2%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 3;
-  background-color: rgba(0, 0, 0, 0.767); /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-  padding-left: 1%;
+  height: calc(100% - 20px);
+  width: 80%;
+  background-color: $second;
+  border-style: solid;
+  border-radius: 15px;
+  margin: 10px;
+  text-align: center;
+}
+.icon-styles{
+  margin: 5px;
+}
+fa-icon{
+  color: $first;
+  cursor: pointer;
 }
 
 /* The navigation menu links */
@@ -32,11 +41,9 @@
   padding: 0px 10px;
 }
 
-fa-icon{
-  color: #f1f1f1;
-  cursor: pointer;
+faIcon{
+  font-size : 20%;
 }
-
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}

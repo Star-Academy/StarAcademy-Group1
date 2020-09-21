@@ -11,6 +11,8 @@ $forth: #fbd46d;
   background-color: $third;
   overflow-x: hidden;
   transition: 0.5s;
+  overflow: auto;
+  overflow-x: hidden;
 
   border-style: solid;
   border-radius: 15px;
@@ -61,4 +63,25 @@ $forth: #fbd46d;
   .sidenav a {
     font-size: 18px;
   }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -14,11 +14,12 @@ export class EdgesViewPanelComponent implements OnInit {
   public flag: boolean = true;
   public edges: string[];
   public hidden = false;
+  public searched : string = "";
   constructor(
     public componentCommunication: ComponentsCommunicationService,
     public ogmaProvider: OgmaHandlerService,
     public dataOnScreen: DataOnScreenService
-  ) {}
+  ) {ogmaProvider.graphChanged.subscribe(()=> this.updateResult(this.searched))}
 
   ngOnInit(): void {}
 
@@ -26,6 +27,7 @@ export class EdgesViewPanelComponent implements OnInit {
     return this.ogmaProvider.ogma.getEdge(edgeId).isSelected();
   }
   public updateResult(input: string) {
+    this.searched = input ;
     this.edges = [];
     this.ogmaProvider.ogma.getEdges().getId().forEach((element) => {
         if (element.indexOf(input) != -1) this.edges.push(element);
