@@ -27,7 +27,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
   constructor(
     private randomOgma: GraphHandlerService,
     public componentCommunication: ComponentsCommunicationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.randomOgma.initOgma({
@@ -36,9 +36,9 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
         backgroundColor: 'rgb(240, 240, 240)',
       },
     });
-    
+
     this.randomOgma.ogma.styles.addRule({
-      edgeAttributes:{
+      edgeAttributes: {
         shape: 'arrow'
       }
     });
@@ -103,6 +103,18 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           graphSize: this.randomOgma.ogma.getNodes().size,
           edgeSize: this.randomOgma.ogma.getEdges().size,
         };
+      }
+    });
+
+    this.randomOgma.ogma.events.onDoubleClick(({ target, button }: ClickEvent) => {
+      if (button === 'left' && target !== null && (target.isNode || target.isEdge)) {
+        navigator.clipboard.writeText(target.getId())
+          .then(() => {
+            console.log('Text copied to clipboard');
+          })
+          .catch(err => {
+            console.error('Error in copying text: ', err);
+          });
       }
     });
 
