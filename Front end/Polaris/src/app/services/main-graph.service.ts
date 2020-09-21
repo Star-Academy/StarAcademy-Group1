@@ -11,6 +11,7 @@ export class GraphHandlerService {
   public pathModel;
   public maxFlowModel;
   public graphChanged : EventEmitter<void> = new EventEmitter<void>();
+  public pathsLoaded : EventEmitter<void> = new EventEmitter<void>();
   constructor(
     public nodeService: NodeService,
     public graphService: GraphService
@@ -79,6 +80,7 @@ export class GraphHandlerService {
     this.pathModel = JSON.parse(JSON.stringify(paths));
     this.ogma.addGraph(this.pathModel.graph);
     console.log(this.pathModel.pathsList);
+    this.pathsLoaded.emit();
     this.runLayout();
   }
   public removeNodes(ids: string[]) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConstValuesService } from 'src/services/const-values.service';
-import { OgmaHandlerService } from 'src/services/ogma-handler.service';
+import { ConstValuesService } from '../../../../services/const-values.service';
+import {GraphHandlerService} from '../../../services/main-graph.service';
 
 @Component({
   selector: 'app-result-paths',
@@ -8,13 +8,17 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
   styleUrls: ['./result-paths.component.scss']
 })
 export class ResultPathsComponent implements OnInit {
-  public paths : string[][][]=[[["10","11"],["9","12"]],[["10","11"],["7"],["8","13"]]];
+  public paths : string[][][]=[[[]]];
   constructor(
-    public ogmaHandler: OgmaHandlerService ,
+    public ogmaHandler: GraphHandlerService ,
     public constValues : ConstValuesService ,
-  ) { }
+  ) {ogmaHandler.pathsLoaded.subscribe(()=> this.initPaths()) }
 
   ngOnInit(): void {
+  }
+  // ngOnDestroy()
+  public initPaths(){
+    this.paths = this.ogmaHandler.pathModel.pathsList;
   }
   public updateGraph(){
 
