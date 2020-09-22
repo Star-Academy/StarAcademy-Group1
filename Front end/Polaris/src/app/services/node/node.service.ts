@@ -41,6 +41,7 @@ export class NodeService {
           catchError(this.handleError<JSON>('deleteNode'))
         )
         .subscribe((json: JSON) => {
+          console.log(json);
           resolve(json);
         });
     });

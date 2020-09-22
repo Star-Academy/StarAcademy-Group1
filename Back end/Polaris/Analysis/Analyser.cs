@@ -23,7 +23,7 @@ namespace Analysis
         {
             var edges = GetPaths(source, target, maxLength);
             var maxFlowSolver = new MaxFlow<TNodeId, TNodeData, TEdgeId, TEdgeData>(graph, graphContainer.Edges);
-            var result = maxFlowSolver.DinicMaxFlow(source, target);
+            var result = maxFlowSolver.DinicMaxFlow(source, target, maxLength);
             ModifyResult(edges, result);
             return result;
 
