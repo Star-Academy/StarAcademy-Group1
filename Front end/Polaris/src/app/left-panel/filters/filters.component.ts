@@ -23,7 +23,7 @@ export class FiltersComponent implements OnInit {
     public componentCommunication: ComponentsCommunicationService,
     public filterService: FilterService,
     public graphHandler: GraphHandlerService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
   }
@@ -50,6 +50,8 @@ export class FiltersComponent implements OnInit {
       case "flow":
         let nodeFlowFilter: string[] = this.filterService.getNodeFilter();
         let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
+        this.filterService.sourceId = this.sourceId;
+        this.filterService.targetId = this.targetId;
         this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFlowFilter, edgeFlowFilter);
         break;
 

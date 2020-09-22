@@ -65,11 +65,9 @@ namespace Analysis
                 return Result;
             }
 
-            int counter = 0;
-            maxLength = 2000;
-            while (BFS(source, target, maxLength) && counter < 2000)
+            maxLength = 2000;// we don't need to shorten the flow lengths now.
+            while (BFS(source, target, maxLength))
             {
-                counter++;
                 start = new Dictionary<TNodeId, int>();
                 foreach (var item in graph.Adj)
                     start[item.Key] = 0;
@@ -122,22 +120,21 @@ namespace Analysis
                 level[item.Key] = -1;
 
             level[source] = 0;
-            var q = new List<TNodeId>
-            {
-                source
-            };
+            var q = new LinkedList<TNodeId>();
+            q.AddLast(source);
 
             while (q.Any())
             {
-                var nodeId = q.Last();
-                q.RemoveAt(q.Count - 1);
+                var nodeId = q.First();
+                q.RemoveFirst();
+
                 foreach (var edge in graph.Adj[nodeId])
                 {
                     var neighbor = edge.Target;
                     if (level[neighbor] < 0 && edge.Flow < edge.Amount)
                     {
                         level[neighbor] = level[nodeId] + 1;
-                        q.Add(neighbor);
+                        q.AddLast(neighbor);
                     }
                 }
             }
