@@ -7,6 +7,7 @@ export class DataOnScreenService {
   public nodeViewFirstInit: boolean = true;
   public edgeViewFirstInit: boolean = true;
   public showMaxFlow: boolean = false;
+  public maxFlow:
   public selectedPath: EventEmitter<number> = new EventEmitter<number>();
   constructor() {
     this.selectedPath.emit(-1);
