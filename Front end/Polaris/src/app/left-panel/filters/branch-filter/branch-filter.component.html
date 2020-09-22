@@ -7,7 +7,7 @@
     <mat-checkbox *cdkVirtualFor="let branch of searchedBranches" class="example-item"
       (change)="changeChecked(branch, $event.checked)" [checked]="isBranchSelected(branch)">
       <div class="text-style">
-        {{h()}}{{ branch }}
+       {{ branch }}
       </div>
     </mat-checkbox>
 

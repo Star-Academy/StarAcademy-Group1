@@ -1,6 +1,7 @@
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FilterService } from 'src/services/filter.service';
+import * as Branches from '../../../../assets/branches.json';
 
 @Component({
   selector: 'app-branch-filter',
@@ -9,29 +10,38 @@ import { FilterService } from 'src/services/filter.service';
 })
 export class BranchFilterComponent implements OnInit {
   // @Input()
-  public branches: string[] = ["آزادی - یادگار", "چهارراه وليعصر", "نازی آباد", "خیابان ایت اله طالقانی", "پاستور",
-  "گاندی", "میدان حسین آباد", "امیر آباد شمالی", "احمدیه", "استاد حسن بنا", "جمالزاده جنوبی",
-  "شهید صابونیان", "استاد نجات الهی شمالی", "چهارراه نیاکان", "سید خندان", "بیست متری نبرد"];
+  public branches: string[] ;
   public selectedBranches: string[] = [];
   public searchedBranches: string[] = [];
   constructor(
     public filterService: FilterService,
-    public dataOnScreen: DataOnScreenService
   ) {}
 
   ngOnInit(): void {
+    this.branches = JSON.parse(JSON.stringify(Branches)).branches;
+    this.searchedBranches = this.branches;
 
   }
 
 
   public updateResult(input: string){
-    let index = this.selectedBranches.indexOf(branch, 0);
-    this.searchedBranches = this.branches;
-    this.searchedBranches.forEach((element) => {
-      console.log(element);
-      if (element.indexOf(input) != -1 )
-          this.searchedBranches.splice(element);
+
+    this.searchedBranches = [];
+    this.branches.forEach((element) => {
+          this.searchedBranches.push(element);
       });
+
+    let temp : string[]=[];
+    for(let i=0 ; i<this.searchedBranches.length ; i++) {
+      if (this.searchedBranches[i].indexOf(input) != -1 ){
+          temp.push(this.searchedBranches[i]);
+          }
+      }
+     this.searchedBranches = [];
+     temp.forEach((element)=>{
+        this.searchedBranches.push(element);
+        console.log(element);
+     });
   }
   public isBranchSelected(branchName : string){
     return this.selectedBranches.indexOf(branchName) === -1 ? false : true ;
