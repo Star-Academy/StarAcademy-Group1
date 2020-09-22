@@ -116,11 +116,11 @@ namespace API.Services.GraphBusiness
             if (!isSource && !isTarget)
                 throw new BadExpansionRequest("Either parameters \"isSource\" or \"target\" must be true");
             else if (isSource && isTarget)
-                edges = _edgeService.GetEdgesBySideIds(nodeIds).ToHashSet();
+                edges = _edgeService.GetEdgesBySideIds(nodeIds, edgeFilter).ToHashSet();
             else if (isSource)
-                edges = _edgeService.GetEdgesBySourceIds(nodeIds).ToHashSet();
+                edges = _edgeService.GetEdgesBySourceIds(nodeIds, edgeFilter).ToHashSet();
             else
-                edges = _edgeService.GetEdgesByTargetIds(nodeIds).ToHashSet();
+                edges = _edgeService.GetEdgesByTargetIds(nodeIds, edgeFilter).ToHashSet();
 
             var filteredNodes = _nodeService.GetNodesByFilter(nodeFilter, nodePagination);
             var filteredNodesIds = filteredNodes.Select(fn => fn.Id);

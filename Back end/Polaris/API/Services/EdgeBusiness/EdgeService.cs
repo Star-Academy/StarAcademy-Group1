@@ -67,7 +67,7 @@ namespace API.Services.EdgeBusiness
         private Dictionary<string, string> GetModelMapping()
         {
             return new Dictionary<string, string>{{"id", "text"}, {"source", "text"}, {"target", "text"},
-                {"amount", "numeric"}, {"timestamp", "text"}, {"date", "text"}, {"time", "text"},
+                {"amount", "numeric"}, {"date", "numeric"}, {"time", "numeric"},
                 {"trackingId", "numeric"}, {"type", "text"}};
         }
 
