@@ -25,7 +25,7 @@ export class TimeFilterComponent implements OnInit {
       startHour = this.startTime.substr(0, 2);
       startMinute = this.startTime.substr(3, 4);
     }
-    if  (this.endTime) {
+    if (this.endTime) {
       endHour = this.endTime.substr(0, 2);
       endMinute = this.endTime.substr(3, 4);
     }
@@ -38,12 +38,14 @@ export class TimeFilterComponent implements OnInit {
     if (Number.isNaN(endTimeUnix)) {
       endTimeUnix = null;
     }
-    console.log (startTimeUnix + " " + endTimeUnix);
+    console.log(startTimeUnix + " " + endTimeUnix);
 
-    this.filterService.startDate = this.startDate;
-    this.filterService.endDate = this.endDate;
+    this.filterService.startDate = +this.startDate;
+    this.filterService.endDate = +this.endDate;
 
-    this.filterService.startTime = startTimeUnix ? startTimeUnix.toString():null;
-    this.filterService.endTime = endTimeUnix ? endTimeUnix.toString():null;
+    console.log(this.filterService.startDate + " " + this.filterService.endDate );
+
+    this.filterService.startTime = startTimeUnix ? startTimeUnix.toString() : null;
+    this.filterService.endTime = endTimeUnix ? endTimeUnix.toString() : null;
   }
 }
