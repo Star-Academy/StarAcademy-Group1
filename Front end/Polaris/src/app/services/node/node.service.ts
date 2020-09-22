@@ -93,6 +93,7 @@ export class NodeService {
       url += `filter=${element}&`;
     }
     url = url.substr(0, url.length-1);
+    console.log(url);
     return new Promise<JSON>((resolve) => {
       this.http
         .get(url)
