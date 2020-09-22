@@ -49,12 +49,12 @@ namespace Elastic.Filtering
             {
                 case "text":
                     @operator = match.Groups["operator"].Value;
-                    value = match.Groups["value"].Value;
+                    value = match.Groups["value"].Value.Trim();
                     return new TextNestCriteria(selectedField, @operator, value);
 
                 case "numeric":
                     @operator = match.Groups["operator"].Value;
-                    value = match.Groups["value"].Value;
+                    value = match.Groups["value"].Value.Trim();
                     return new NumericNestCriteria(selectedField, @operator, value);
 
                 default:
