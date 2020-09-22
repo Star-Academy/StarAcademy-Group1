@@ -65,6 +65,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-panel.component';
 import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-card/branch-card.component';
 import { ResultPathsComponent } from './left-panel/paths-panel/result-paths/result-paths.component';
+import { ResultMaxflowComponent } from './left-panel/max-flow-panel/result-maxflow/result-maxflow.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +100,7 @@ import { ResultPathsComponent } from './left-panel/paths-panel/result-paths/resu
     AddNodePanelComponent,
     BranchCardComponent,
     ResultPathsComponent,
+    ResultMaxflowComponent,
 
   ],
   imports: [

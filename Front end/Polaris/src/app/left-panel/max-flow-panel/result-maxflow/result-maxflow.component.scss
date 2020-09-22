@@ -1,0 +1,29 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+.all-path{
+  width: 20%;
+  z-index: 10;
+  position: absolute;
+  top: calc(50% + 20px);
+  height: calc(50% - 30px);
+  left: calc(3% + 10px);
+  background-color: $second;
+
+  border-style: solid;
+  border-radius: 15px;
+  border-color: $second;
+}
+.toggle-style{
+  position: relative;
+  color: #eeeeee;
+  margin: 15px;
+  direction: rtl;
+  height: 10%;
+}
+
+.maxflow-amount {
+  color: #eeeeee;
+}

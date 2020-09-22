@@ -41,7 +41,7 @@ export class NodeCardComponent implements OnInit {
       cardId: node.getData('cardId'),
       ownerId: node.getData('ownerId'),
       branchName: node.getData('branchName'),
-      branchAddress: node.getData('branchAddress'),
+      branchAdress: node.getData('branchAdress'),
       branchTelephone: node.getData('branchTelephone'),
     }
   }
