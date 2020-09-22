@@ -9,11 +9,13 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Elastic\Elastic.csproj" />
+    <ProjectReference Include="..\Analysis\Analysis.csproj" />
   </ItemGroup>
 
 

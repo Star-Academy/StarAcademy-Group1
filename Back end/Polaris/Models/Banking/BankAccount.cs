@@ -10,6 +10,7 @@ namespace Models.Banking
         public string BranchAdress { get; set; }
         public string BranchName { get; set; }
         public string OwnerName { get; set; }
+        public string OwnerPrimaryName { get; set; }
         public string OwnerFamilyName { get; set; }
         public string OwnerId { get; set; }
     }

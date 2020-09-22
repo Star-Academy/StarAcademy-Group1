@@ -9,7 +9,11 @@ namespace API.Services.NodeBusiness
     where TDataModel : Entity<TTypeDataId>
     {
         Node<TDataModel, TTypeDataId> GetNodeById(TTypeDataId id);
-        IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(string[] filter, Pagination pagination);
+        IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesById(TTypeDataId[] ids);
+        IEnumerable<Node<TDataModel, TTypeDataId>> GetNodesByFilter(
+            string[] filter = null,
+            Pagination pagination = null
+        );
         void InsertNode(Node<TDataModel, TTypeDataId> node);
         void UpdateNode(Node<TDataModel, TTypeDataId> newNode);
         void DeleteNodeById(TTypeDataId id);

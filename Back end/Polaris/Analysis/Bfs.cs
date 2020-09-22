@@ -5,7 +5,7 @@ using Models.Network;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Analysis.Analyser
+namespace Analysis
 {
     public class BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>
@@ -19,9 +19,9 @@ namespace Analysis.Analyser
         }
 
         // filters weren't applied yet
-        public HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> BiDirectionalSearch(TNodeId source, TNodeId target/*, Filter filter*/)
+        public List<List<List<TEdgeId>>> BiDirectionalSearch(TNodeId source, TNodeId target, int maxLength = 7)
         {
-            var edges = new HashSet<Edge<TEdgeData, TEdgeId, TNodeId>>();
+            var edges = new HashSet<List<List<TEdgeId>>>();
 
             var paths = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>[2];
             paths[0] = new Dictionary<TNodeId, List<LinkedList<TNodeId>>>();
@@ -54,8 +54,9 @@ namespace Analysis.Analyser
 
             while (queue[0].Any() && queue[1].Any())
             {
-                BreadthFirstSearch(ref queue[0], ref paths[0]);
-                BreadthFirstSearch(ref queue[1], ref paths[1], 0);
+                int len = (maxLength + 1) / 2;
+                BreadthFirstSearch(ref queue[0], ref paths[0], len);
+                BreadthFirstSearch(ref queue[1], ref paths[1], maxLength - len, 0);
             }
 
             foreach (var item in graph.Adj)
@@ -68,10 +69,10 @@ namespace Analysis.Analyser
                 paths[1][item.Key].Clear();
             }
 
-            return edges;
+            return edges.ToList();
         }
         private void BreadthFirstSearch
-            (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int src = 1)
+            (ref List<LinkedList<TNodeId>> queue, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>> paths, int maxLength, int src = 1)
         {
             var current = queue.First();
             queue.RemoveAt(0);
@@ -87,7 +88,7 @@ namespace Analysis.Analyser
                 {
                     LinkedList<TNodeId> newPath = new LinkedList<TNodeId>(current);
                     newPath.AddLast(adjId);
-                    if (newPath.Count() > 3 + src) continue;
+                    if (newPath.Count() > maxLength) continue;
                     paths[adjId].Add(newPath);
                     queue.Add(newPath);
                 }
@@ -95,15 +96,17 @@ namespace Analysis.Analyser
         }
 
         private void TakePath
-            (TNodeId nodeId, ref HashSet<Edge<TEdgeData, TEdgeId, TNodeId>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
+            (TNodeId nodeId, ref HashSet<List<List<TEdgeId>>> edges, ref Dictionary<TNodeId, List<LinkedList<TNodeId>>>[] paths)
         {
             foreach (var item in paths[0][nodeId])
             {
-                bool flag = false;
                 int iterator = -1;
                 List<int> rm = new List<int>();
                 foreach (var item2 in paths[1][nodeId])
                 {
+                    int difference = item.Count - item2.Count;
+                    if (difference < 0 || difference > 1)
+                        continue;
                     iterator++;
                     var set = new HashSet<TNodeId>();
                     foreach (var tmp in item)
@@ -112,14 +115,14 @@ namespace Analysis.Analyser
                         set.Add(tmp);
                     if (set.Count != item.Count + item2.Count - 1)
                         continue;
-                    flag = true;
                     rm.Add(iterator);
-                    for (int i = item2.Count - 1; i > 0; i--)
-                        edges.UnionWith(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
-                }
-                if (flag)
+                    var pathToAdd = new List<List<TEdgeId>>();
                     for (int i = 0; i + 1 < item.Count(); i++)
-                        edges.UnionWith(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                        pathToAdd.Add(graph.GetEdges(item.ElementAt(i), item.ElementAt(i + 1)));
+                    for (int i = item2.Count - 1; i > 0; i--)
+                        pathToAdd.Add(graph.GetEdges(item2.ElementAt(i), item2.ElementAt(i - 1)));
+                    edges.Add(pathToAdd);
+                }
                 rm.Reverse();
                 foreach (var tmp in rm)
                     paths[1][nodeId].RemoveAt(tmp);

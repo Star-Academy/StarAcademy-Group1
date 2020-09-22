@@ -1,4 +1,5 @@
 using API.Services.EdgeBusiness;
+using API.Services.GraphBusiness;
 using API.Services.Importer;
 using API.Services.NodeBusiness;
 using Elastic.Communication;
@@ -25,7 +26,6 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddScoped<,>(); // TODO
             services.AddControllers();
             services.AddCors();
             services.AddSingleton<IEntityHandler<BankAccount, string>, NestEntityHandler<BankAccount, string>>();
@@ -34,6 +34,7 @@ namespace API
             services.AddSingleton<IImporterService<Transaction>, ElasticImporterService<Transaction>>();
             services.AddSingleton<INodeService<BankAccount, string>, NodeService<BankAccount, string>>();
             services.AddSingleton<IEdgeService<Transaction, string, string>, EdgeService<Transaction, string, string>>();
+            services.AddSingleton<IGraphService<string, BankAccount, string, Transaction>, GraphService<string, BankAccount, string, Transaction>>();
             services.AddSingleton<IElasticHandler<BankAccount>, NestElasticHandler<BankAccount>>();
             services.AddSingleton<IElasticHandler<Transaction>, NestElasticHandler<Transaction>>();
         }

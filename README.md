@@ -8,4 +8,5 @@ Graph Analysis Project.
 ## API Documentation
 - [Polaris API Version 1](https://app.swaggerhub.com/apis/intenvy/PolarisApi/v1)
 
-## Contributors
+## Contributors 
+

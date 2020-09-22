@@ -1,7 +1,9 @@
 using Elastic.Exceptions;
 using Models;
 using Nest;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Elastic.Communication.Nest
 {
@@ -30,6 +32,29 @@ namespace Elastic.Communication.Nest
                 throw new EntityNotFoundException($"Entity with id: \"{id}\" not found in index \"{indexName}\"");
             }
             return response.ToList()[0] as TModel;
+        }
+
+        public IEnumerable<TModel> GetEntities(TType[] ids, string indexName)
+        {
+            if (!ids.Any())
+                return new List<TModel> { };
+            var value = new StringBuilder();
+            foreach (var id in ids)
+            {
+                value.Append(id);
+                value.Append(" ");
+            }
+            var queryContainer = new MatchQuery
+            {
+                Field = "id",
+                Query = value.ToString()
+            };
+            var response = RetrieveQueryDocuments(queryContainer, indexName);
+            if (!response.Any())
+            {
+                throw new EntityNotFoundException($"Entities with ids: \"{ids}\" not found in index \"{indexName}\"");
+            }
+            return response;
         }
 
         public void UpdateEntity(TModel newEntity, string indexName)
