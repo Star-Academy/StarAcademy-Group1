@@ -1,7 +1,7 @@
-.example-full-width {
+/* .example-full-width {
   font-family: IRANSans, sans-serif;
   text-align: right;
-  width: 140px;
+  width: 30%;
 }
 
 mat-label {
@@ -11,4 +11,41 @@ mat-label {
 
 .time-start {
   margin-right: 15px;
+}
+ */
+
+ .time-style{
+  width: auto;
+  height: auto;
+  text-align: center;
+ }
+ .date-style{
+   width: auto;
+   height: auto;
+   text-align: center;
+ }
+ .time-start{
+   width: calc(50% - 15px);
+   margin: 5px;
+   float: left;
+
+ }
+ .time-end{
+   width: calc(50% - 15px);
+   margin: 5px;
+   float: right;
+
+ }
+
+ .date-start{
+  width: calc(50% - 15px);
+  margin: 5px;
+  float: left;
+
+}
+.date-end{
+  width: calc(50% - 15px);
+  margin: 5px;
+  float: right;
+
 }

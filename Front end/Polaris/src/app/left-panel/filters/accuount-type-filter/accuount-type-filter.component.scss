@@ -1,13 +1,14 @@
-.example-section {
-  margin: 12px 0;
-  text-align: right;
-}
+.example-section{
+   width: 100%;
+   height: auto;
+   display: flex;
+   justify-content: center;
+  align-items: center;
+   flex-wrap: wrap;
+ }
 
-.example-margin {
-  margin: 0 12px;
-  font-family: IRANSans, sans-serif;
-  direction: rtl;
-}
-.example-margin span{
-  padding: 0 4px 0 0;
-}
+ .example-margin{
+   width: 25%;
+   width: auto;
+   margin: 5%;
+ }
