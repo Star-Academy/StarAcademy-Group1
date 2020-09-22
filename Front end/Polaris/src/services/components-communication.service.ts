@@ -26,7 +26,7 @@ export class ComponentsCommunicationService {
   public titleTextMap = new Map([
     ["expansion", "بسط گراف"],
     ["flow", "محاسبه شار دو راس"],
-    ["path", "نمایش مسیرهای بین دو راس"],
+    ["path", "مسیرهای بین دو راس"],
     ["addNode", "اضافه کردن راس"]
   ])
 

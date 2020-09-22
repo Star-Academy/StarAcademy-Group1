@@ -1,13 +1,44 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .example-viewport {
   height: 200px;
   width: 96%;
-  border: 1px solid black;
-  direction: rtl;
   padding: 5px;
+  overflow-x: hidden;
 }
 
 .example-item {
   height: 50px;
   display: block;
   font-family: IRANSans, sans-serif;
+  direction: rtl;
+}
+
+.text-style{
+  margin-right: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $second;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:$forth;
 }

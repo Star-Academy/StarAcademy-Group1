@@ -27,8 +27,8 @@ $forth: #fbd46d;
 
 .nav-title{
   float: right;
-  font-size: 15px;
-  margin: 15px;
+  font-size: 18px;
+  margin: 18px;
   color: $first;
 }
 
@@ -55,7 +55,7 @@ $forth: #fbd46d;
 }
 
 .sidenav .closebtn {
-  width: 30%;
+  width: 36px;
   float: left;
   position: relative;
   font-size: 36px;
@@ -114,12 +114,13 @@ mat-form-field {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: $first;
+  background: $second;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: $forth;
+  border-radius: 5px;
 }
 
 /* Handle on hover */
