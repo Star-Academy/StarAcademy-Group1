@@ -45,6 +45,8 @@ export class BranchFilterComponent implements OnInit {
     else if(!isChecked && index !=-1){
       this.selectedBranches.splice(index, 1);
     }
+    this.filterService.branches = this.selectedBranches;
+    console.log("filter service" + this.filterService.branches);
   }
   public h(){
     console.log("helllo saba $ mahla");

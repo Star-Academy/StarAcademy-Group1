@@ -69,4 +69,17 @@ export class FilterService {
 
     return result;
   }
+
+  public clearVars() {
+  this.startDate = null;
+  this.endDate = null;
+  this.startTime= null;
+  this.endTime= null;
+  this.minAmount= null;
+  this.maxAmount= null;
+  this.accountTypes = [];
+  this.name= null;
+  this.branches= [];
+}
+
 }

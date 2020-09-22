@@ -38,12 +38,14 @@ export class FiltersComponent implements OnInit {
       case "expansion":
         let nodeExpansionFilter: string[] = this.filterService.getNodeFilter();
         let edgeExpansionFilter: string[] = this.filterService.getEdgeFilter();
+        this.filterService.clearVars();
         this.graphHandler.expandNodes(this.graphHandler.ogma.getSelectedNodes().getId(), nodeExpansionFilter, edgeExpansionFilter);
         break;
 
       case "path":
         let nodePathFilter: string[] = this.filterService.getNodeFilter();
         let edgePathFilter: string[] = this.filterService.getEdgeFilter();
+        this.filterService.clearVars();
         this.graphHandler.findPaths(this.sourceId, this.targetId, nodePathFilter, edgePathFilter, this.maxLength);
         break;
 
@@ -52,11 +54,13 @@ export class FiltersComponent implements OnInit {
         let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
         this.filterService.sourceId = this.sourceId;
         this.filterService.targetId = this.targetId;
+        this.filterService.clearVars();
         this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFlowFilter, edgeFlowFilter);
         break;
 
       case "addNode":
         let filter: string[] = this.filterService.getNodeFilter();
+        this.filterService.clearVars();
         this.graphHandler.addNodes(filter);
         break;
     }
