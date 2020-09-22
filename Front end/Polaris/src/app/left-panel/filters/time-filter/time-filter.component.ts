@@ -17,28 +17,33 @@ export class TimeFilterComponent implements OnInit {
   ngOnInit(): void { }
 
   public changeChecked() {
-    let sd = new Date(+this.startDate);
-    let syear = sd.getFullYear();
-    let smonth: string = sd.getMonth() < 10 ? `0${sd.getMonth().toString()}` : sd.getMonth().toString();
-    let sday: string = sd.getDate() < 10 ? `0${sd.getDate().toString()}` : sd.getDate().toString();
-    if (sd.getDay() >= 0)
-      this.filterService.startDate = `${syear}-${smonth}-${sday}`;
-
-    let ed = new Date(+this.endDate);
-    let eyear = ed.getFullYear();
-    let emonth: string = ed.getMonth() < 10 ? `0${ed.getMonth().toString()}` : ed.getMonth().toString();
-    let eday: string = ed.getDate() < 10 ? `0${ed.getDate().toString()}` : ed.getDate().toString();
-    if (ed.getDay() >= 0)
-      this.filterService.endDate = `${eyear}-${emonth}-${eday}`;
-
-    this.filterService.startTime = this.startTime;
-    this.filterService.endTime = this.endTime;
-    if (this.filterService.startTime){
-      this.filterService.startTime += ":00";
+    let startHour;
+    let startMinute;
+    let endHour;
+    let endMinute;
+    if (this.startTime) {
+      startHour = this.startTime.substr(0, 2);
+      startMinute = this.startTime.substr(3, 4);
     }
-    if (this.filterService.endTime){
-      this.filterService.endTime += ":00";
+    if  (this.endTime) {
+      endHour = this.endTime.substr(0, 2);
+      endMinute = this.endTime.substr(3, 4);
     }
-    console.log(this.filterService.startDate + " " + this.filterService.endDate + " " + this.filterService.startTime + " " + this.filterService.endTime);
+    let startTimeUnix = (parseInt(startHour) * 3600) + (parseInt(startMinute) * 60);
+    let endTimeUnix = (parseInt(endHour) * 3600) + (parseInt(endMinute) * 60);
+
+    if (Number.isNaN(startTimeUnix)) {
+      startTimeUnix = null;
+    }
+    if (Number.isNaN(endTimeUnix)) {
+      endTimeUnix = null;
+    }
+    console.log (startTimeUnix + " " + endTimeUnix);
+
+    this.filterService.startDate = this.startDate;
+    this.filterService.endDate = this.endDate;
+
+    this.filterService.startTime = startTimeUnix ? startTimeUnix.toString():null;
+    this.filterService.endTime = endTimeUnix ? endTimeUnix.toString():null;
   }
 }
