@@ -2,13 +2,8 @@
   <span class="selection-search-bar-container">
     <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
   </span>
-  <span *ngIf="componentCommunication.graphCreated">
-    <span *ngIf="!dataOnScreen.edgeViewFirstInit">
-      <app-node-card *ngFor="let edge of edges" [nodeId]="edge" [isSelected]="isEdgeSelected(edge)"></app-node-card>
+    <span>
+      <app-edge-card *ngFor="let edge of edges" [edgeId]="edge" [isSelected]="isEdgeSelected(edge)"></app-edge-card>
     </span>
-    <span *ngIf="dataOnScreen.edgeViewFirstInit">
-      <app-node-card *ngFor="let edge of ogmaProvider.ogma.getEdges().getId()" [nodeId]="edge"
-        [isSelected]="isEdgeSelected(edge)"></app-node-card>
-    </span>
-  </span>
+
 </div>

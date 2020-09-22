@@ -77,6 +77,7 @@ namespace API.Services.EdgeBusiness
             Pagination pagination = null
         )
         {
+
             var queryContainer = (QueryContainer)new MultiMatchQuery
             {
                 Fields = fields,
@@ -101,6 +102,7 @@ namespace API.Services.EdgeBusiness
             var filterQueryContainer = new NestFilter(filter, GetModelMapping()).Interpret();
             var sideNodeQueryContainer = new BoolQuery
             {
+
                 Should = new List<QueryContainer>
                 {
                     new MatchQuery

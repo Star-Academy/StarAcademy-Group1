@@ -1,0 +1,17 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+mat-card{
+  width: auto;
+  direction: rtl;
+  background-color: $second;
+}
+
+mat-card:hover{
+  width: auto;
+  direction: rtl;
+  background-color: $forth;
+  color: $second;
+}

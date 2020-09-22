@@ -1,7 +1,42 @@
-.info-container{
-    font-family: IRANSans, sans-serif;
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
+.info-container {
+  width: auto;
+  height: 30%;
+  position: relative;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: $first;
+  border-color: $first;
+  margin: 10px;
+  font-size: 13px;
+  text-align: center;
+  overflow-y: auto;
 }
-.info-panel-style{
-    padding-right: 15px;
-    padding-top: 20px;
+.test{
+  margin: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
 }

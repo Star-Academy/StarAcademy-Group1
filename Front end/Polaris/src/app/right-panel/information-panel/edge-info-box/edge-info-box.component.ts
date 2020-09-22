@@ -4,13 +4,10 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
 @Component({
   selector: 'app-edge-info-box',
   templateUrl: './edge-info-box.component.html',
-  styleUrls: ['./edge-info-box.component.scss']
+  styleUrls: ['./edge-info-box.component.scss'],
 })
 export class EdgeInfoBoxComponent implements OnInit {
+  constructor(public componentsCommunication: ComponentsCommunicationService) {}
 
-  constructor(public componentsCommunication: ComponentsCommunicationService) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

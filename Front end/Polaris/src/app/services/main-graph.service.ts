@@ -1,21 +1,30 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import * as Ogma from '../../assets/ogma.min.js';
 import { NodeService } from './node/node.service';
 import { GraphService } from './graph/graph.service';
-import { isDataSource } from '@angular/cdk/collections';
 @Injectable()
 export class GraphHandlerService {
   public ogma: Ogma;
   public selectedNodes: Array<string>;
-  public nodeService: NodeService;
-  public graphService: GraphService;
   public nodeColor: string;
   public edgeColor: string;
+  public pathModel;
+  public maxFlowModel;
+  public graphChanged : EventEmitter<void> = new EventEmitter<void>();
+  public pathsLoaded : EventEmitter<void> = new EventEmitter<void>();
+  constructor(
+    public nodeService: NodeService,
+    public graphService: GraphService
+  ) { }
 
   public initOgma(configuration = {}) {
     this.ogma = new Ogma(configuration);
+    this.selectedNodes = new Array<string>();
+    this.ogma.styles.setSelectedNodeAttributes({outerStroke: function (node) {return node.isSelected() ? 'green' : null;}})
+    this.ogma.styles.setSelectedEdgeAttributes({color: function (node) {return node.isSelected() ? 'green' : "gray"}})
   }
   public runLayout(): Promise<void> {
+    this.graphChanged.emit();
     return this.ogma.layouts.force({ locate: true });
   }
   public getJsonGraph() {
@@ -33,51 +42,52 @@ export class GraphHandlerService {
     return graphJson;
   }
 
-  public async addNode(node: JSON) {
-    this.ogma.addNode(node);
+  public async addNode(id: string) {
+    let nodeResult = await this.getNodeByid(id);
+    this.ogma.addNode(nodeResult);
+    this.runLayout();
   }
 
-  public expandNodes(
-    ids: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let expansions = this.graphService.getExpansion(
-      ids,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public getMaxFlow(
-    sourceId: string,
-    targetId: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let flow = this.graphService.getFlow(
-      sourceId,
-      targetId,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public findPaths(
-    sourceId: string,
-    targetId: string,
-    nodeFilters: string[],
-    edgeFilters: string[]
-  ) {
-    let paths = this.graphService.getPaths(
-      sourceId,
-      targetId,
-      nodeFilters,
-      edgeFilters
-    );
-  }
-  public addByFilter(filters: string[]) {
-    let nodes = this.nodeService.getNodes(filters, -1, -1);
+  public async getNodesByFilter(filter: string[]): Promise<JSON> {
+    let graphJson = await this.nodeService.getNodes(filter);
+    return graphJson;
   }
 
+  public async addNodes(filter: string[]) {
+    let filterResults = await this.getNodesByFilter(filter);
+    this.ogma.addNodes(filterResults);
+    this.runLayout();
+  }
+
+  public async expandOneNode(id: string) {
+    let expandResult = await this.graphService.getExpansion(id);
+    this.ogma.addGraph(expandResult);
+    this.runLayout();
+  }
+
+  public async expandNodes(ids: string[], nodeFilters: string[], edgeFilters: string[]) {
+    let expansions = await this.graphService.getNodesExpansion(ids, nodeFilters, edgeFilters);
+    this.ogma.addGraph(expansions);
+    this.runLayout();
+  }
+
+  public async getMaxFlow(sourceId: string,targetId: string,nodeFilters: string[],edgeFilters: string[]) {
+    let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
+    ///
+    this.maxFlowModel = JSON.parse(JSON.stringify(flow));
+    this.ogma.addGraph(this.maxFlowModel.graphContainer);
+    console.log("to use max flow number: " + this.maxFlowModel.maxFlowAmount);
+    console.log("to use edges that has flow: " + this.maxFlowModel.edgeToFlow);
+    this.runLayout();
+    console.log(flow);
+  }
+  public async findPaths(sourceId: string, targetId: string, nodeFilters: string[], edgeFilters: string[], maxLength: number) {
+    let paths = await this.graphService.getPaths(sourceId, targetId, nodeFilters, edgeFilters, maxLength);
+    this.pathModel = JSON.parse(JSON.stringify(paths));
+    this.ogma.addGraph(this.pathModel.graph);
+    this.pathsLoaded.emit();
+    this.runLayout();
+  }
   public removeNodes(ids: string[]) {
     this.ogma.removeNodes(ids);
   }

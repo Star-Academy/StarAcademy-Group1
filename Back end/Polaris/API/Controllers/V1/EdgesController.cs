@@ -70,5 +70,12 @@ namespace API.Controllers
             _edgeService.UpdateEdge(edge);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("side/{sideNodeId}")]
+        public IActionResult GetEdgeBySideId(string sideNodeId)
+        {
+            return Ok(_edgeService.GetEdgesBySideId(sideNodeId));
+        }
     }
 }

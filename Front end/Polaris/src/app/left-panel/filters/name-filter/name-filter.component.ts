@@ -4,20 +4,15 @@ import { FilterService } from 'src/services/filter.service';
 @Component({
   selector: 'app-name-filter',
   templateUrl: './name-filter.component.html',
-  styleUrls: ['./name-filter.component.scss']
+  styleUrls: ['./name-filter.component.scss'],
 })
 export class NameFilterComponent implements OnInit {
+  constructor(public filterService: FilterService) {}
 
-  constructor(public filterService : FilterService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-
-  }
-
-  public checkChange(field : string){
-    this.filterService.name = field ;
+  public checkChange(field: string) {
+    this.filterService.name = field;
     console.log(this.filterService.name);
   }
-
-
 }

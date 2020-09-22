@@ -9,5 +9,4 @@ export class NodeInfo {
   public ownerName: string;
   public ownerFamilyName: string;
   public ownerId: string;
-
 }

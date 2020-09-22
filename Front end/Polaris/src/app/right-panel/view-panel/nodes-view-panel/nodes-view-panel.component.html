@@ -2,14 +2,9 @@
   <span class="selection-search-bar-container">
     <app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
   </span>
-  <span *ngIf="componentCommunication.graphCreated">
-    <span *ngIf="!dataOnScreen.nodeViewFirstInit">
-    <app-node-card *ngFor="let node of nodes" [nodeId]="node" 
-      [nodePerson]="getNodeById(node)" [isSelected]="isNodeSelected(node)"></app-node-card>
-    </span>
-    <span *ngIf="dataOnScreen.nodeViewFirstInit">
-      <app-node-card *ngFor="let node of ogmaProvider.ogma.getNodes().getId()" [nodeId]="node" 
-      [nodePerson]="getNodeById(node)" [isSelected]="isNodeSelected(node)"></app-node-card>
-    </span>
-  </span>
+    <div class="info-container">
+      <app-node-card *ngFor="let nodeId of nodes" [nodeId]="nodeId"
+        [nodePerson]="getNodeById(nodeId)" [isSelected]="isNodeSelected(nodeId)"></app-node-card>
+    </div>
 </div>
+
