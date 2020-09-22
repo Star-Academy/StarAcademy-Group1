@@ -45,7 +45,8 @@ export class GraphHandlerService {
 
   public async addNode(id: string) {
     let nodeResult = await this.getNodeByid(id);
-    this.ogma.addNode(nodeResult);
+    if(nodeResult!=undefined)
+       this.ogma.addNode(nodeResult);
     this.runLayout();
   }
 

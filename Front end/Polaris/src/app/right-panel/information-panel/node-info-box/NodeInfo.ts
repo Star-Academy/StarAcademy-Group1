@@ -4,7 +4,7 @@ export class NodeInfo {
   public sheba: number;
   public accountType: string;
   public branchTelephone: string;
-  public branchAddress: string;
+  public branchAdress: string;
   public branchName: number;
   public ownerName: string;
   public ownerFamilyName: string;
