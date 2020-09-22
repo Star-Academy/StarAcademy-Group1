@@ -28,8 +28,9 @@ export class FilterService {
       result.push(`ownerName cnt ${this.name}`);
     }
 
-    if (this.branches.length != 0) {
-      let branchResult: string = `branch eq`;
+    if (this.branches.length !== 0) {
+      console.log('hete')
+      let branchResult: string = `branchName eq`;
       for (let item of this.branches) {
         branchResult += ` ${item}`;
       }
