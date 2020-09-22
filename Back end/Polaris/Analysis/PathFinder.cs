@@ -7,13 +7,13 @@ using System.Linq;
 
 namespace Analysis
 {
-    public class BFS<TNodeId, TNodeData, TEdgeId, TEdgeData>
+    public class PathFinder<TNodeId, TNodeData, TEdgeId, TEdgeData>
         where TNodeData : Entity<TNodeId>
         where TEdgeData : AmountedEntity<TEdgeId, TNodeId>
     {
         private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
 
-        public BFS(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
+        public PathFinder(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
         }
