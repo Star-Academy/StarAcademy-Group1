@@ -8,28 +8,17 @@ $forth: #fbd46d;
 }
 
 .header-style{
-  width: auto;
-  height: 15%;
-  overflow: hidden;
+  width: calc(100%);
+  height: 80px;
 }
 
-.content-style{
-  height: calc(65%);
-  width: auto;
-  overflow: auto;
-}
-
-
-.footer-style{
-  height: 20%;
-  overflow: hidden;
-}
 
 .nav-title{
   float: right;
   font-size: 18px;
   margin: 18px;
   color: $first;
+  width: auto
 }
 
 .sidenav {
@@ -104,6 +93,7 @@ mat-form-field {
   text-align: center;
   width: 150px;
   margin-left: calc(50% - 75px);
+  margin-bottom: 15px;
   background-color: $third;
 }
 
