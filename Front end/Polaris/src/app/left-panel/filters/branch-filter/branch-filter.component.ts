@@ -1,6 +1,7 @@
 import { DataOnScreenService } from './../../../../services/data-on-screen.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FilterService } from 'src/services/filter.service';
+import * as Branches from '../../../../assets/branches.json';
 
 @Component({
   selector: 'app-branch-filter',
@@ -8,22 +9,42 @@ import { FilterService } from 'src/services/filter.service';
   styleUrls: ['./branch-filter.component.scss'],
 })
 export class BranchFilterComponent implements OnInit {
-  @Input()
-  public branches: string[];
-
-  public selectedBranches: string[]=[];
-
+  // @Input()
+  public branches: string[] ;
+  public selectedBranches: string[] = [];
+  public searchedBranches: string[] = [];
   constructor(
     public filterService: FilterService,
-    public dataOnScreen: DataOnScreenService
   ) {}
 
   ngOnInit(): void {
-    this.branches = this.dataOnScreen.branchList;
+    this.branches = JSON.parse(JSON.stringify(Branches)).branches;
+    this.searchedBranches = this.branches;
+
   }
 
 
-  public updateResult(field: string){
+  public updateResult(input: string){
+
+    this.searchedBranches = [];
+    this.branches.forEach((element) => {
+          this.searchedBranches.push(element);
+      });
+
+    let temp : string[]=[];
+    for(let i=0 ; i<this.searchedBranches.length ; i++) {
+      if (this.searchedBranches[i].indexOf(input) != -1 ){
+          temp.push(this.searchedBranches[i]);
+          }
+      }
+     this.searchedBranches = [];
+     temp.forEach((element)=>{
+        this.searchedBranches.push(element);
+        console.log(element);
+     });
+  }
+  public isBranchSelected(branchName : string){
+    return this.selectedBranches.indexOf(branchName) === -1 ? false : true ;
   }
 
   public changeChecked(branch: string, isChecked: boolean) {
@@ -35,6 +56,8 @@ export class BranchFilterComponent implements OnInit {
     else if(!isChecked && index !=-1){
       this.selectedBranches.splice(index, 1);
     }
-    console.log(this.selectedBranches);
+  }
+  public h(){
+    console.log("helllo saba $ mahla");
   }
 }

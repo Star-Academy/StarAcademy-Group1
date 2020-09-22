@@ -22,12 +22,7 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.searchPosition === 'branchFilter') {
-      this.placeHolderValue = 'شعبه مورد نظر خود را انتخاب کنید';
-    }
-    if (this.searchPosition === 'selectionPanel') {
-      this.placeHolderValue = 'حساب مورد نظر خود را جست و جو کنید';
-    }
+
     if (this.searchPosition === 'mainSearch') {
       this.placeHolderValue = 'در پولاریس جست و جو کنید...';
     }
@@ -36,7 +31,6 @@ export class SearchBarComponent implements OnInit {
   onSubmit() {
     this.graphHandler.addNode(this.searchInput);
   }
-
   public checkChange(query: string) {
     if (this.searchPosition === 'mainSearch') {
       this.searchInput = query;
