@@ -1,26 +1,23 @@
 <div class="amount-wrapper">
-  <p>
-    کمترین مقدار:
+    <mat-form-field class="amount-input">
+    <mat-label>:کمترین مقدار</mat-label>
     <input
       type="number"
+      matInput
       [(ngModel)]="minValue"
       (change)="changeChecked()"
       class="amount-input"
     />
-  </p>
-  <p>
-    بیشترین مقدار:
+</mat-form-field>
+<mat-form-field class="amount-input" style="margin-right: 10px;">
+    <mat-label>:بیشترین مقدار</mat-label>
     <input
       type="number"
+      matInput
       [(ngModel)]="maxValue"
       (change)="changeChecked()"
       class="amount-input"
     />
-  </p>
-  <!-- <ng5-slider
-    [(value)]="minValue"
-    [(highValue)]="maxValue"
-    [options]="options"
-    (mouseup)="changeChecked()"
-  ></ng5-slider> -->
+
+</mat-form-field>
 </div>

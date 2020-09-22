@@ -11,6 +11,8 @@ export class FilterService {
   public accountTypes: string[] = [];
   public name: string;
   public branches: string[] = [];
+  public sourceId: string = "";
+  public targetId: string = "";
 
   public getNodeFilter(): string[] {
     let result = [];

@@ -8,6 +8,7 @@ export class ConstValuesService {
     public maxFlowNodeColor : string = "gray";
     public allNodesInPathsColor : string = "#4f8a8b";
 
+    public sourcetargetColor: string = "#ebad05";
     public standardEdgeColor : string = "gray";
     public selectedEdgeColor : string = "green";
     public inPathEdgeColor : string = "#222831";

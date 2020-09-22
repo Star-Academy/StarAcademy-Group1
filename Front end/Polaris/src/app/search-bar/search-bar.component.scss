@@ -1,3 +1,4 @@
+$rang: #d6d6d6;
 .search-container-all {
   direction: rtl;
 }
@@ -19,20 +20,20 @@
 
 .search-wrapper button {
   height: 35px;
-  background-color: wheat;
+  background-color: $rang;
   padding: 0 10px 0 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 
   border-style: solid;
-  border-color: wheat;
+  border-color: $rang;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 
 }
 
 .search-wrapper input {
-  background-color: wheat;  
+  background-color: $rang;
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
   height: 35px;
@@ -47,7 +48,7 @@
 }
 
 .in-branch-panel input {
-  background-color: wheat;
+  background-color: $rang;
   height: 30px;
   padding: 0;
   padding-right: 10px;
@@ -57,7 +58,7 @@
 }
 
 .in-branch-panel button {
-  background-color: wheat;
+  background-color: $rang;
   height: 30px;
   width: 10%;
   border-top-left-radius: 4px;
