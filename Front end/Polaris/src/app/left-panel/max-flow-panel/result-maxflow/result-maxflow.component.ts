@@ -26,13 +26,14 @@ export class ResultMaxflowComponent implements OnInit {
 
   public initFlow() {
     this.maxFlow = this.graphHandler.maxFlowModel.maxFlowAmount;
+    this.edgesToFlow = this.graphHandler.maxFlowModel.edgeToFlow
   }
 
   public showFlowOnGraph(isChecked: boolean) {
 
     this.dataOnScreen.showMaxFlow = isChecked ? true : false ;
     for (let edgeId of this.graphHandler.ogma.getEdges().getId()) {
-      if (this.graphHandler.maxFlowModel.edgeToFlow[edgeId]) {
+      if (this.edgesToFlow[edgeId]) {
         let edge = this.graphHandler.ogma.getEdge(edgeId);
         edge.setAttributes({
           color: isChecked ? this.constValues.allEdgesInPathsColor
