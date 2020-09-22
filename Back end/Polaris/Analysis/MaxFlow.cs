@@ -12,15 +12,17 @@ namespace Analysis
         where TNodeData : Entity<TNodeId>
         where TEdgeData : AmountedEntity<TEdgeId, TNodeId>, IModel, new()
     {
-        private const Int64 inf = 1_000_000_000_000_000_000;
+        private const Int64 inf = 1000000000000000;
 
         private readonly Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph;
-        private Dictionary<TNodeId, int> level;
+        private Dictionary<TNodeId, int> level, start;
         private MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> Result { get; set; }
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph)
         {
             this.graph = graph;
             level = new Dictionary<TNodeId, int>();
+            start = new Dictionary<TNodeId, int>();
+
         }
 
         public MaxFlow(Graph<TNodeId, TNodeData, TEdgeId, TEdgeData> graph, List<Edge<TEdgeData, TEdgeId, TNodeId>> edges)
@@ -55,7 +57,7 @@ namespace Analysis
             }
         }
 
-        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> DinicMaxFlow(TNodeId source, TNodeId target)
+        public MaxFlowResult<TNodeId, TNodeData, TEdgeId, TEdgeData> DinicMaxFlow(TNodeId source, TNodeId target, int maxLength)
         {
             if (source.Equals(target))
             {
@@ -63,15 +65,18 @@ namespace Analysis
                 return Result;
             }
 
-            while (BFS(source, target))
+            int counter = 0;
+            while (BFS(source, target, 1000) && counter < 2000)
             {
-                var start = new Dictionary<TNodeId, int>();
-
+                counter++;
+                start = new Dictionary<TNodeId, int>();
+                foreach (var item in graph.Adj)
+                    start[item.Key] = 0;
                 {
                     long flow;
                     do
                     {
-                        flow = SendFlow(source, inf, target, ref start);
+                        flow = SendFlow(source, inf, target);
                         Result.MaxFlowAmount += flow;
                     } while (flow > 0);
                 }
@@ -87,22 +92,20 @@ namespace Analysis
             return Result;
         }
 
-        private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target, ref Dictionary<TNodeId, int> start)
+        private Int64 SendFlow(TNodeId v, Int64 flow, TNodeId target)
         {
             if (v.Equals(target))
                 return flow;
-            if (!start.ContainsKey(v))
-                start[v] = 0;
             for (; start[v] < graph.Adj[v].Count; start[v]++)
             {
                 var edge = graph.Adj[v][start[v]];
                 if (level[edge.Target] == level[v] + 1 && edge.Flow < edge.Amount)
                 {
-                    Int64 currFlow = (Int64)Math.Min(flow, edge.Amount - edge.Flow);
-                    Int64 tempFlow = SendFlow(edge.Target, currFlow, target, ref start);
+                    Int64 currFlow = flow < edge.Amount - edge.Flow ? flow : edge.Amount - edge.Flow;
+                    Int64 tempFlow = SendFlow(edge.Target, currFlow, target);
                     if (tempFlow > 0)
                     {
-                        edge.Flow += tempFlow;
+                        graph.Adj[v][start[v]].Flow += tempFlow;
                         graph.Adj[edge.Target][edge.Address].Flow -= tempFlow;
                         return tempFlow;
                     }
@@ -112,14 +115,16 @@ namespace Analysis
         }
 
 
-        private bool BFS(TNodeId source, TNodeId target)
+        private bool BFS(TNodeId source, TNodeId target, int maxLenghth)
         {
             foreach (var item in graph.Adj)
                 level[item.Key] = -1;
 
             level[source] = 0;
-            var q = new List<TNodeId>();
-            q.Add(source);
+            var q = new List<TNodeId>
+            {
+                source
+            };
 
             while (q.Any())
             {
@@ -135,8 +140,8 @@ namespace Analysis
                     }
                 }
             }
-
-            return level[target] != -1;
+            bool ret = level[target] < 0 ? false : true;
+            return ret && level[target] <= maxLenghth;
         }
     }
 }
