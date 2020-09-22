@@ -65,7 +65,7 @@ namespace API.Services.NodeBusiness
         private Dictionary<string, string> GetModelMapping()
         {
             return new Dictionary<string, string>{{"id", "text"}, {"cardId", "text"}, {"sheba", "text"},
-                {"accountType", "text"}, {"branchTelephone", "text"}, {"branchAddress", "text"}, {"branchName", "text"},
+                {"accountType", "text"}, {"branchTelephone", "text"}, {"branchAdress", "text"}, {"branchName", "text"},
                 {"ownerName", "text"}, {"ownerFamilyName", "text"}, {"ownerId", "text"}, {"ownerPrimaryName", "text"}};
         }
     }

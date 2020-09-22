@@ -37,6 +37,7 @@ export class NodesViewPanelComponent implements OnInit {
     this.searched = input ;
     this.nodes = [];
     this.ogmaProvider.ogma.getNodes().getId().forEach((element) => {
+      console.log(element);
       if (element.indexOf(input) != -1 || this.getNodeById(element).indexOf(input) != -1)
           this.nodes.push(element);
       });

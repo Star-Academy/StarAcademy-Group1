@@ -90,7 +90,7 @@ export class GraphScreenComponent implements OnInit, AfterContentInit {
           cardId: target.getData('cardId'),
           ownerId: target.getData('ownerId'),
           branchName: target.getData('branchName'),
-          branchAddress: target.getData('branchAddress'),
+          branchAdress: target.getData('branchAdress'),
           branchTelephone: target.getData('branchTelephone'),
         };
       } else if (target != null && !target.isNode && button === 'left') {
