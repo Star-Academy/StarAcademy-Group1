@@ -83,15 +83,16 @@ $forth: #fbd46d;
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: $first;
+  background: $third;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $forth;
+  background: $second;
+  border-radius: 15px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $forth;
+  background: $second;
 }
