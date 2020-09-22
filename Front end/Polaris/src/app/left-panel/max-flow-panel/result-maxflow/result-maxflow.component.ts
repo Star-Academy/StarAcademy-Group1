@@ -1,3 +1,4 @@
+import { FilterService } from 'src/services/filter.service';
 import { ConstValuesService } from 'src/services/const-values.service';
 import { GraphHandlerService } from './../../../services/main-graph.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class ResultMaxflowComponent implements OnInit {
 
   public maxFlow: number = null;
   public edgesToFlow = null;
-  constructor(public graphHandler: GraphHandlerService, private constValues: ConstValuesService) {
+  constructor(public graphHandler: GraphHandlerService, private constValues: ConstValuesService, private filterService: FilterService) {
     graphHandler.flowLoaded.subscribe(() => this.initFlow())
   }
 
@@ -40,6 +41,12 @@ export class ResultMaxflowComponent implements OnInit {
           text: isChecked ? '0' : null
         });
       }
+    }
+    if (this.filterService.sourceId !== "" && this.filterService.targetId !== "") {
+      this.graphHandler.ogma.getNode(this.filterService.sourceId).setAttributes(
+        { color: isChecked ? this.constValues.sourcetargetColor : this.constValues.standardNodeColor })
+      this.graphHandler.ogma.getNode(this.filterService.targetId).setAttributes(
+        { color: isChecked ? this.constValues.sourcetargetColor : this.constValues.standardNodeColor })
     }
   }
 
