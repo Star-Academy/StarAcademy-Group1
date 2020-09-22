@@ -1,0 +1,12 @@
+<span class="all-path">
+  <div class="toggle-style">
+    <mat-slide-toggle (change)="updateGraph($event.checked)">&nbsp;&nbsp;&nbsp;نشان دادن تمام مسیرها</mat-slide-toggle>
+  </div>
+  <div class="path-cards-style">
+    <span *ngIf="paths.length !== 0">
+    <app-path-card *ngFor="let path  of paths; index as i;" [pathId]="i" (id)="showSelectedPath($event)"
+      [pathLength]="getPathLenghtById(i)">
+    </app-path-card>
+  </span>
+  </div>
+</span>

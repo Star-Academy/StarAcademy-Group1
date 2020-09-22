@@ -1,12 +1,25 @@
-<app-search-bar [searchPosition]="'branchFilter'"></app-search-bar>
+<app-real-time-search-bar (searched)="updateResult($event)"></app-real-time-search-bar>
 
-<cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400" class="example-viewport">
+<cdk-virtual-scroll-viewport
+  itemSize="50"
+  minBufferPx="200"
+  maxBufferPx="400"
+  class="example-viewport"
+>
   <span *ngIf="dataOnScreen.branchFirstInit">
-    <mat-checkbox *cdkVirtualFor="let branch of dataOnScreen.branchList" class="example-item"
-      (change)="changeChecked(branch,$event.checked)">{{branch}}</mat-checkbox>
+    <mat-checkbox
+      *cdkVirtualFor="let branch of dataOnScreen.branchList"
+      class="example-item"
+      (change)="changeChecked(branch, $event.checked)"
+      >{{ branch }}</mat-checkbox
+    >
   </span>
   <span *ngIf="!dataOnScreen.branchFirstInit">
-    <mat-checkbox *cdkVirtualFor="let branch of dataOnScreen.resultArr" class="example-item"
-      (change)="changeChecked(branch,$event.checked)">{{branch}}</mat-checkbox>
+    <mat-checkbox
+      *cdkVirtualFor="let branch of dataOnScreen.resultArr"
+      class="example-item"
+      (change)="changeChecked(branch, $event.checked)"
+      >{{ branch }}</mat-checkbox
+    >
   </span>
 </cdk-virtual-scroll-viewport>

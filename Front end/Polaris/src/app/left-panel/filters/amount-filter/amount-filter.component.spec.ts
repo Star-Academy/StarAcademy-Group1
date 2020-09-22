@@ -8,9 +8,8 @@ describe('AmountFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AmountFilterComponent ]
-    })
-    .compileComponents();
+      declarations: [AmountFilterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,5 @@
-import {ChangeDetectorRef, Component, Input, OnDestroy} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-
 
 /** @title Responsive sidenav */
 @Component({
@@ -9,11 +8,9 @@ import { ComponentsCommunicationService } from 'src/services/components-communic
   styleUrls: ['left-panel.component.scss'],
 })
 export class LeftPanelComponent implements OnDestroy {
-@Input()
-public info:string
-  constructor(public componentCommunication: ComponentsCommunicationService) {
-  }
+  @Input()
+  public info: string;
+  constructor(public componentCommunication: ComponentsCommunicationService) {}
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

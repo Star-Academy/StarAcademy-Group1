@@ -1,5 +1,32 @@
 <div class="sidenav">
-  <span id= "selection-icon" (click)="componentCommunication.whichLeftSideNav = 1"><p><fa-icon [icon]="expansionIcon"></fa-icon></p></span>
-  <span id="path-icon"  (click)="componentCommunication.whichLeftSideNav = 2"><p><fa-icon [icon]="notDecidedIcon"></fa-icon></p></span>
-  <span id="flow-icon"  (click)="componentCommunication.whichLeftSideNav = 3"><p><fa-icon [icon]="notDecidedIcon"></fa-icon></p></span>
+
+  <span id="selection-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 1">
+    <p>
+      <fa-icon [icon]="expansionIcon"></fa-icon>
+    </p>
+  </span>
+
+
+  <span id="path-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 2">
+    <p>
+      <fa-icon [icon]="notDecidedIcon"></fa-icon>
+    </p>
+  </span>
+
+
+  <span id="flow-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 3">
+    <p>
+      <fa-icon [icon]="notDecidedIcon"></fa-icon>
+    </p>
+  </span>
+
+
+
+  <span id="add-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 4">
+    <p>
+      <fa-icon [icon]="addNewNodeIcon"></fa-icon>
+    </p>
+  </span>
+
+
 </div>

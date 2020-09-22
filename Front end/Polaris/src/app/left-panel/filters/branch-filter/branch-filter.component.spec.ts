@@ -8,9 +8,8 @@ describe('BranchFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BranchFilterComponent ]
-    })
-    .compileComponents();
+      declarations: [BranchFilterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

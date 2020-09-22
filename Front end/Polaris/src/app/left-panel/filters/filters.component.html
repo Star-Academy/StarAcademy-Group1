@@ -1,68 +1,97 @@
 <div id="mySidenav2" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
+  <div class="header-style">
+    <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&lt;</a>
+    <h2 class="nav-title">{{componentCommunication.titleTextMap.get(panel)}}</h2>
+  </div>
 
-  <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال تاریخ
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p style="text-align: right;">
+  <div class="content-style">
+
+    <mat-accordion>
+
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>زمان تراکنش</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-time-filter> </app-time-filter>
-      </p>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال مقدار
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
+
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[1]">
+
+        <mat-expansion-panel-header>
+          <mat-panel-title>مقدار تراکنش</mat-panel-title>
+        </mat-expansion-panel-header>
         <app-amount-filter></app-amount-filter>
-      </p>
-    </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال نوع حساب
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-accuount-type-filter></app-accuount-type-filter>
-      </p>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال نام و نام خانوادگی
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-name-filter></app-name-filter>
-      </p>
-    </mat-expansion-panel>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-      *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          اعمال شعبه
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>
-        <app-branch-filter></app-branch-filter>
-      </p>
-    </mat-expansion-panel>
-  </mat-accordion>
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[2]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>نوع حساب</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-accuount-type-filter></app-accuount-type-filter>
+        </p>
+      </mat-expansion-panel>
 
-  <br><br><br>
-  <button mat-raised-button color="primary">اعمال فیلترها</button>
+
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[3]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>نام صاحب حساب</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-name-filter></app-name-filter>
+        </p>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[4]">
+        <mat-expansion-panel-header>
+          <mat-panel-title>شعبه</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <app-branch-filter></app-branch-filter>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+    <br>
+    <form class="example-form" *ngIf="panel !== 'expansion' && panel !== 'addNode'">
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>شماره حساب میدا</mat-label>
+        <input matInput name="sourceId" [(ngModel)]="sourceId" class="white-color">
+      </mat-form-field><br>
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>شماره حساب مقصد</mat-label>
+        <input matInput name="targetId" [(ngModel)]="targetId" class="white-color">
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" *ngIf="panel === 'path' || panel === 'flow'">
+        <mat-label>حداکثر طول مسیر</mat-label>
+        <input matInput name="maxLength" [(ngModel)]="maxLength" class="white-color">
+      </mat-form-field>
+
+
+    </form>
+  </div>
+
+  <div class="footer-style">
+    <br>
+    <br>
+    <button mat-raised-button class="button-style"
+      (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
+  </div>
+
 </div>

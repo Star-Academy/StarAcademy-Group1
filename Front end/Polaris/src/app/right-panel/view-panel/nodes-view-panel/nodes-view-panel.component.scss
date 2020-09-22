@@ -1,14 +1,24 @@
+$first: #eeeeee;
+$second: #222831;
+$third: #4f8a8b;
+$forth: #fbd46d;
+
+
 .sidenav {
-  height: 50%;
-  width: 16%; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 0; /* Stay on top */
- bottom: 0; /* Stay at the top */
-  right: 0;
-  background-color: rgb(241, 170, 170); /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
+  height: 100%;
+  width: auto;
+  z-index: 0;
+  background-color: $third;
+  overflow-x: hidden;
   transition: 0.5s;
+
+  border-style: solid;
+  border-radius: 15px;
+  border-color: $third;
+  margin: 15px;
+
+  overflow: hidden;
+
 }
 
 .sidenav a {
@@ -33,10 +43,10 @@
 }
 
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 20px;
 }
-#first-tab{
+#first-tab {
   margin-top: 200px;
   top: 200px;
 }
@@ -44,10 +54,44 @@
 .selection-search-bar-container {
   margin-bottom: 10px;
   text-align: center;
+  height: 10%;
+}
+
+.info-container{
+  height: 90%;
+
+
+  overflow: auto;
+  overflow-x: hidden;
 
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+} 
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $first;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
 }

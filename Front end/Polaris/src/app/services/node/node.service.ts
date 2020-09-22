@@ -17,7 +17,7 @@ export class NodeService {
   ) {}
 
   public async getType(): Promise<JSON> {
-    var url = `${this.baseAddress}/nodes/typing`;
+    let url = `${this.baseAddress}/nodes/typing`;
     return new Promise<JSON>((resolve) => {
       this.http
         .get(url)
@@ -32,7 +32,7 @@ export class NodeService {
   }
 
   public async getNode(nodeId: string): Promise<JSON> {
-    var url = `${this.baseAddress}/nodes/${nodeId}`;
+    let url = `${this.baseAddress}/nodes/${nodeId}`;
     return new Promise<JSON>((resolve) => {
       this.http
         .get(url)
@@ -47,7 +47,7 @@ export class NodeService {
   }
 
   public deleteNode(nodeId: string) {
-    var url = `${this.baseAddress}/nodes/${nodeId}`;
+    let url = `${this.baseAddress}/nodes/${nodeId}`;
     this.http
       .delete(url)
       .pipe(
@@ -58,8 +58,8 @@ export class NodeService {
   }
 
   public addNode(node: JSON) {
-    var url = `${this.baseAddress}/nodes`;
-    var httpOptions = {
+    let url = `${this.baseAddress}/nodes`;
+    let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     this.http
@@ -72,8 +72,8 @@ export class NodeService {
   }
 
   public updateNode(node: JSON) {
-    var url = `${this.baseAddress}/nodes`;
-    var httpOptions = {
+    let url = `${this.baseAddress}/nodes`;
+    let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
@@ -86,20 +86,15 @@ export class NodeService {
       .subscribe();
   }
 
-  public async getNodes(filters: string[], pageIndex, pageSize): Promise<JSON> {
-    var url = `${this.baseAddress}/nodes`;
-    var params = new HttpParams();
-    params = params.append('filters', JSON.stringify(filters));
-    params = params.append('pageIndex', pageIndex);
-    params = params.append('pageSize', pageSize);
-    var httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      params: params,
-    };
-
+  public async getNodes(filter: string[]): Promise<JSON> {
+    let url = `${this.baseAddress}/nodes?`;
+    for(let element of filter) {
+      url += `filter=${element}&`;
+    }
+    url = url.substr(0, url.length-1);
     return new Promise<JSON>((resolve) => {
       this.http
-        .get(url, httpOptions)
+        .get(url)
         .pipe(
           tap((_) => this.log(`got nodes`)),
           catchError(this.handleError<JSON>('getNodes'))

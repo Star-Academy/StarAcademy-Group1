@@ -10,10 +10,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {
+  MatFormFieldModule,
+  MatFormFieldControl,
+} from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TooltipComponent } from './graph-screen/tooltip/tooltip.component'
+import { TooltipComponent } from './graph-screen/tooltip/tooltip.component';
 import { OgmaHandlerService } from '../services/ogma-handler.service';
 import { ComponentsCommunicationService } from '../services/components-communication.service';
 import { FormsModule } from '@angular/forms';
@@ -35,8 +39,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FilterService } from 'src/services/filter.service';
 import { AmountFilterComponent } from './left-panel/filters/amount-filter/amount-filter.component';
 import { DataOnScreenService } from './../services/data-on-screen.service';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material.persian-date.adapter';
+import {DateAdapter,MAT_DATE_FORMATS,MAT_DATE_LOCALE,} from '@angular/material/core';
+import {MaterialPersianDateAdapter,PERSIAN_DATE_FORMATS} from './shared/material.persian-date.adapter';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './left-panel/filters/filters.component';
 import { ExpansionPanelComponent } from './left-panel/expansion-panel/expansion-panel.component';
@@ -44,7 +48,7 @@ import { MaxFlowPanelComponent } from './left-panel/max-flow-panel/max-flow-pane
 import { PathsPanelComponent } from './left-panel/paths-panel/paths-panel.component';
 import { NodesViewPanelComponent } from './right-panel/view-panel/nodes-view-panel/nodes-view-panel.component';
 import { EdgesViewPanelComponent } from './right-panel/view-panel/edges-view-panel/edges-view-panel.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 import { ViewPanelComponent } from './right-panel/view-panel/view-panel.component';
 import { GraphInfoBoxComponent } from './right-panel/information-panel/graph-info-box/graph-info-box.component';
 import { MessageService } from './services/message/message.service';
@@ -53,7 +57,14 @@ import { GraphService } from './services/graph/graph.service';
 import { RealTimeSearchBarComponent } from './real-time-search-bar/real-time-search-bar.component';
 import { EdgeCardComponent } from './right-panel/view-panel/edges-view-panel/edge-card/edge-card.component';
 import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/node-card/node-card.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { PathCardComponent } from './left-panel/paths-panel/path-card/path-card.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {ConstValuesService} from './../services/const-values.service';
+import {MatCardModule} from '@angular/material/card';
+import { AddNodePanelComponent } from './left-panel/add-node-panel/add-node-panel.component';
+import { BranchCardComponent } from './left-panel/filters/branch-filter/branch-card/branch-card.component';
+import { ResultPathsComponent } from './left-panel/paths-panel/result-paths/result-paths.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +85,7 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     BranchFilterComponent,
     AmountFilterComponent,
     ExpansionPanelComponent,
+    PathCardComponent,
     MaxFlowPanelComponent,
     PathsPanelComponent,
     ViewPanelComponent,
@@ -84,6 +96,10 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     EdgeCardComponent,
     NodeCardComponent,
     EdgeCardComponent,
+    AddNodePanelComponent,
+    BranchCardComponent,
+    ResultPathsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -101,7 +117,12 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     MatCheckboxModule,
     MatButtonModule,
     ScrollingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatSlideToggleModule
   ],
   providers: [
     OgmaHandlerService,
@@ -114,9 +135,14 @@ import { NodeCardComponent } from './right-panel/view-panel/nodes-view-panel/nod
     EdgeService,
     GraphService,
     GraphHandlerService,
-    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
+    ConstValuesService,
+    {
+      provide: DateAdapter,
+      useClass: MaterialPersianDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

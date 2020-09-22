@@ -1,7 +1,13 @@
-<div class="ogma-context-menu" #ngTooltip [style.top.px]="position.y" [style.left.px]="position.x">
+<div
+  class="ogma-context-menu"
+  #ngTooltip
+  [style.top.px]="position.y"
+  [style.left.px]="position.x"
+>
   <div class="arrow"></div>
   <div class="ogma-context-menu-body">
-          <a>Expand</a>
-          <a (click)="deleteNode()">Delete</a>
+    <a (click)="expandNode()">بسط</a>
+    <a (click)="deleteNode()">پاک کردن</a>
+    <a (click)="copyNodeId()">کپی</a>
   </div>
 </div>
