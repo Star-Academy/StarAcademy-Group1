@@ -40,10 +40,9 @@ export class TimeFilterComponent implements OnInit {
     }
     console.log(startTimeUnix + " " + endTimeUnix);
 
-    this.filterService.startDate = +this.startDate;
-    this.filterService.endDate = +this.endDate;
+    this.filterService.startDate = (+this.startDate) / 1000;
+    this.filterService.endDate = (+this.endDate) / 1000;
 
-    console.log(this.filterService.startDate + " " + this.filterService.endDate );
 
     this.filterService.startTime = startTimeUnix ? startTimeUnix.toString() : null;
     this.filterService.endTime = endTimeUnix ? endTimeUnix.toString() : null;
