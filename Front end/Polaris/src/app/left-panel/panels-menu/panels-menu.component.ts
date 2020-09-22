@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentsCommunicationService } from 'src/services/components-communication.service';
-import { faExpand, faBug, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-panels-menu',
@@ -8,9 +7,10 @@ import { faExpand, faBug, faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./panels-menu.component.scss'],
 })
 export class PanelsMenuComponent implements OnInit {
-  expansionIcon = faExpand;
-  notDecidedIcon = faBug;
-  addNewNodeIcon = faPlus;
+  flowIconPath = '../../../assets/flowIcon.png';
+  pathIconPath = '../../../assets/pathIcon.png';
+  expandIconPath = '../../../assets/expandIcon.png';
+  addNodeIconPath = '../../../assets/addIcon.png';
 
   constructor(public componentCommunication: ComponentsCommunicationService) {}
 
