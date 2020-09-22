@@ -1,0 +1,12 @@
+<span class="all-path">
+
+  <div class="maxflow-amount">
+    <h3>max flow:</h3>
+    <p *ngIf="maxFlow">{{maxFlow}}</p>
+  </div>
+
+  <div class="toggle-style">
+    <mat-slide-toggle (change)="showFlowOnGraph($event.checked)">&nbsp;&nbsp;&nbsp;نشان دادن شار روی گراف</mat-slide-toggle>
+  </div> 
+
+</span>

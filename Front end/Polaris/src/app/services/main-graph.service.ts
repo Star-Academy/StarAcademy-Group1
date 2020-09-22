@@ -12,6 +12,7 @@ export class GraphHandlerService {
   public maxFlowModel;
   public graphChanged : EventEmitter<void> = new EventEmitter<void>();
   public pathsLoaded : EventEmitter<void> = new EventEmitter<void>();
+  public flowLoaded : EventEmitter<void> = new EventEmitter<void>();
   constructor(
     public nodeService: NodeService,
     public graphService: GraphService
@@ -73,11 +74,11 @@ export class GraphHandlerService {
 
   public async getMaxFlow(sourceId: string,targetId: string,nodeFilters: string[],edgeFilters: string[]) {
     let flow = await this.graphService.getFlow(sourceId,targetId,nodeFilters,edgeFilters);
-    ///
     this.maxFlowModel = JSON.parse(JSON.stringify(flow));
     this.ogma.addGraph(this.maxFlowModel.graphContainer);
     console.log("to use max flow number: " + this.maxFlowModel.maxFlowAmount);
     console.log("to use edges that has flow: " + this.maxFlowModel.edgeToFlow);
+    this.flowLoaded.emit();
     this.runLayout();
     console.log(flow);
   }
