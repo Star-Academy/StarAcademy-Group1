@@ -66,7 +66,8 @@ namespace Analysis
             }
 
             int counter = 0;
-            while (BFS(source, target, 1000) && counter < 2000)
+            maxLength = 2000;
+            while (BFS(source, target, maxLength) && counter < 2000)
             {
                 counter++;
                 start = new Dictionary<TNodeId, int>();
