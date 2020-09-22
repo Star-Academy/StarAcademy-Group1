@@ -18,7 +18,7 @@ export class ComponentsCommunicationService {
 
   public buttonTextMap = new Map([
     ["expansion", "بسط بده"],
-    ["flow", "محاسبه فلو :-؟"],
+    ["flow", "محاسبه شار"],
     ["path", "نمایش مسیرها"],
     ["addNode", "اضافه کردن راس"]
   ]);
