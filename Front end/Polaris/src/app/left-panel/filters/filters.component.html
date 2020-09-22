@@ -4,7 +4,7 @@
     <a href="javascript:void(0)" class="closebtn" (click)="componentCommunication.whichLeftSideNav = 0">&times;</a>
     <h2 class="nav-title">{{componentCommunication.titleTextMap.get(panel)}}</h2>
   </div>
-  
+
     <mat-accordion>
       <mat-expansion-panel class="expansion-panel-style" (opened)="panelOpenState = true"
         (closed)="panelOpenState = false" *ngIf="componentCommunication.filtersToShowMap.get(panel)[0]">
@@ -62,7 +62,7 @@
 
 
       <mat-form-field class="example-full-width">
-        <mat-label>شماره حساب میدا</mat-label>
+        <mat-label>شماره حساب مبدا</mat-label>
         <input matInput name="sourceId" [(ngModel)]="sourceId" class="white-color">
       </mat-form-field><br>
 
@@ -81,11 +81,11 @@
 
     </form>
 
-  
+
     <br>
     <br>
     <button mat-raised-button class="button-style"
       (click)="sendData()">{{componentCommunication.buttonTextMap.get(panel)}}</button>
-  
+
 
 </div>
