@@ -31,7 +31,6 @@ export class BranchFilterComponent implements OnInit {
      this.searchedBranches = [];
      temp.forEach((element)=>{
         this.searchedBranches.push(element);
-        console.log(element);
      });
   }
   public isBranchSelected(branchName : string){
@@ -46,7 +45,6 @@ export class BranchFilterComponent implements OnInit {
       this.selectedBranches.splice(index, 1);
     }
     this.filterService.branches = this.selectedBranches;
-    console.log("filter service" + this.filterService.branches);
   }
   public h(){
     console.log("helllo saba $ mahla");

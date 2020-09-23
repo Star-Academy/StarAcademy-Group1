@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OgmaHandlerService } from 'src/services/ogma-handler.service';
+import { GraphHandlerService } from './services/main-graph.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 })
 export class AppComponent {
   title = 'Polaris';
-  public constructor(public ogmaService:OgmaHandlerService){
+  public constructor(public ogmaService:GraphHandlerService){
   }
 
 }
