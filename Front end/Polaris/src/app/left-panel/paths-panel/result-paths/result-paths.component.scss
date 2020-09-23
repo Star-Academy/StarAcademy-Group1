@@ -15,6 +15,8 @@ $forth: #fbd46d;
   border-style: solid;
   border-radius: 15px;
   border-color: $second;
+  overflow: auto;
+  overflow-x: hidden;
 }
 .show-button{
   margin-top: 80%;
@@ -35,7 +37,29 @@ $forth: #fbd46d;
 
 .path-cards-style{
   position: relative;
-  height: 90%;
+  height: auto;
   margin: 15px;
   box-shadow: none;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $second;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
 }

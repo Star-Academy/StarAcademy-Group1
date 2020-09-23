@@ -15,6 +15,10 @@ $forth: #fbd46d;
   border-style: solid;
   border-radius: 15px;
   border-color: $second;
+
+
+  overflow: auto;
+  overflow-x: hidden;
 }
 .toggle-style{
   position: relative;
@@ -30,4 +34,25 @@ $forth: #fbd46d;
   text-align: right;
   margin-top: 20px;
   margin-right: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $second;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $forth;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $forth;
 }
