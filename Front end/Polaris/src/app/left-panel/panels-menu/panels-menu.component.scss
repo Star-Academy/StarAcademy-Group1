@@ -17,6 +17,17 @@ $forth: #fbd46d;
   cursor: pointer;
   margin: 5px;
 }
+
+.icon-style{
+  width: 50%;
+}
+
+.icon-style:onclick{
+  width: 60%;
+  transform: rotate(360deg);
+  transition-duration: 1s;
+}
+
 fa-icon{
   color: $first;
   cursor: pointer;
