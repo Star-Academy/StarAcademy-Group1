@@ -46,15 +46,15 @@ export class PanelsMenuComponent implements OnInit {
     this.graphProvider.ogma.getNodes().setAttributes({color: this.constVlues.standardNodeColor, text: null});
   }
   private setDefaultStyle(){
-    document.getElementById("selection").setAttribute("style" , "width: 50%;transform: rotate(-360deg);");
+    /* document.getElementById("selection").setAttribute("style" , "width: 50%;transform: rotate(-360deg);");
     document.getElementById("path").setAttribute("style" , "width: 50%;transform: rotate(-360deg);");
     document.getElementById("flow").setAttribute("style" , "width: 50%;transform: rotate(-360deg);");
     document.getElementById("add").setAttribute("style" , "width: 50%;transform: rotate(-360deg);");
-  
+   */
   }
 
   private rotate(id:string){
-    document.getElementById(id).setAttribute("style" , "width: 60%;transform: rotate(360deg);transition-duration: 1s;");
+    /* document.getElementById(id).setAttribute("style" , "width: 60%;transform: rotate(360deg);transition-duration: 1s;"); */
   }
 
 

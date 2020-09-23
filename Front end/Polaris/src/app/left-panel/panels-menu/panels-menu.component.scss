@@ -22,6 +22,10 @@ $forth: #fbd46d;
   width: 50%;
 }
 
+.icon-style:hover{
+  width: 60%;
+}
+
 .icon-style:onclick{
   width: 60%;
   transform: rotate(360deg);
