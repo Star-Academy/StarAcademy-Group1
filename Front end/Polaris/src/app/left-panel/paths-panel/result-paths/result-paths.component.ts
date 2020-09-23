@@ -8,7 +8,7 @@ import { GraphHandlerService } from '../../../services/main-graph.service';
   styleUrls: ['./result-paths.component.scss']
 })
 export class ResultPathsComponent implements OnInit {
-  public paths: string[][][] = [[[]]];
+  public paths: string[][][] = [];
   constructor(
     public ogmaHandler: GraphHandlerService,
     public constValues: ConstValuesService,
