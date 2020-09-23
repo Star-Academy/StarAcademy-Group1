@@ -37,7 +37,7 @@ export class ResultMaxflowComponent implements OnInit {
         let edge = this.graphHandler.ogma.getEdge(edgeId);
         edge.setAttributes({
           color: isChecked ? this.constValues.allEdgesInPathsColor
-            : this.constValues.standardEdgeColor, width: 1, text: isChecked ? this.edgesToFlow[edgeId] : null
+            : this.constValues.standardEdgeColor, width:isChecked ? 2 : 1, text: isChecked ? this.edgesToFlow[edgeId] : null
         });
         edge.getSource().setAttributes({ color: isChecked ? this.constValues.allNodesInPathsColor : this.constValues.standardNodeColor });
         edge.getTarget().setAttributes({ color: isChecked ? this.constValues.allNodesInPathsColor : this.constValues.standardNodeColor });

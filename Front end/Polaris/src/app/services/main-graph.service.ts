@@ -23,6 +23,12 @@ export class GraphHandlerService {
     this.selectedNodes = new Array<string>();
     this.ogma.styles.setSelectedNodeAttributes({outerStroke: function (node) {return node.isSelected() ? 'green' : null;}})
     this.ogma.styles.setSelectedEdgeAttributes({color: function (node) {return node.isSelected() ? 'green' : "gray"}})
+    this.ogma.styles.addEdgeRule({
+      text: {
+        minVisibleSize: 4,
+        size:20
+      }
+    });
   }
   public runLayout(): Promise<void> {
     this.graphChanged.emit();
