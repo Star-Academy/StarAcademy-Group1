@@ -10,4 +10,12 @@ export class EdgeInfoBoxComponent implements OnInit {
   constructor(public componentsCommunication: ComponentsCommunicationService) {}
 
   ngOnInit(): void {}
+
+  public dateGenerator(): string {
+    let date = new Date(+this.componentsCommunication.edgeInfo.date * 1000);
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    return year + "/" + month + "/" + day;
+  }
 }

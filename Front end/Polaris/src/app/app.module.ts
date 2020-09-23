@@ -18,6 +18,7 @@ import {
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipComponent } from './graph-screen/tooltip/tooltip.component';
+import { OgmaHandlerService } from '../services/ogma-handler.service';
 import { ComponentsCommunicationService } from '../services/components-communication.service';
 import { FormsModule } from '@angular/forms';
 import { ContextMenuComponent } from './graph-screen/context-menu/context-menu.component';
@@ -126,10 +127,12 @@ import { ResultMaxflowComponent } from './left-panel/max-flow-panel/result-maxfl
     MatSlideToggleModule
   ],
   providers: [
+    OgmaHandlerService,
     ComponentsCommunicationService,
     MatNativeDateModule,
     FilterService,
     DataOnScreenService,
+    OgmaHandlerService,
     MessageService,
     EdgeService,
     GraphService,

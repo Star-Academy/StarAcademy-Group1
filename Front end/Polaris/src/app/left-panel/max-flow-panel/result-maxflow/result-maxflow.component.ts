@@ -2,6 +2,7 @@ import { FilterService } from 'src/services/filter.service';
 import { ConstValuesService } from 'src/services/const-values.service';
 import { GraphHandlerService } from './../../../services/main-graph.service';
 import { Component, OnInit } from '@angular/core';
+import { DataOnScreenService } from 'src/services/data-on-screen.service';
 
 @Component({
   selector: 'app-result-maxflow',
@@ -12,7 +13,11 @@ export class ResultMaxflowComponent implements OnInit {
 
   public maxFlow: number = null;
   public edgesToFlow = null;
-  constructor(public graphHandler: GraphHandlerService, private constValues: ConstValuesService, private filterService: FilterService) {
+  constructor(
+    public graphHandler: GraphHandlerService,
+    private constValues: ConstValuesService,
+    private filterService: FilterService,
+    public dataOnScreen: DataOnScreenService) {
     graphHandler.flowLoaded.subscribe(() => this.initFlow())
   }
 
@@ -21,10 +26,12 @@ export class ResultMaxflowComponent implements OnInit {
 
   public initFlow() {
     this.maxFlow = this.graphHandler.maxFlowModel.maxFlowAmount;
-    this.edgesToFlow = this.graphHandler.maxFlowModel.edgeToFlow;
+    this.edgesToFlow = this.graphHandler.maxFlowModel.edgeToFlow
   }
 
   public showFlowOnGraph(isChecked: boolean) {
+
+    this.dataOnScreen.showMaxFlow = isChecked ? true : false ;
     for (let edgeId of this.graphHandler.ogma.getEdges().getId()) {
       if (this.edgesToFlow[edgeId]) {
         let edge = this.graphHandler.ogma.getEdge(edgeId);

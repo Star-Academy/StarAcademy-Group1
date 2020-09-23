@@ -4,12 +4,14 @@ $third: #4f8a8b;
 $forth: #fbd46d;
 
 
+
 .example-viewport {
   height: 200px;
   width: 96%;
   padding: 5px;
   overflow-x: hidden;
 }
+
 
 .example-item {
   height: 50px;
@@ -18,25 +20,30 @@ $forth: #fbd46d;
   direction: rtl;
 }
 
+
 .text-style{
   margin-right: 10px;
 }
+
 
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
+
 /* Track */
 ::-webkit-scrollbar-track {
   background: $second;
 }
+
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: $forth;
   border-radius: 5px;
 }
+
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {

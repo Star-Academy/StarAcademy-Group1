@@ -33,31 +33,31 @@ export class FiltersComponent implements OnInit {
       this.showError();
       return;
     }
+        let nodeFilters: string[] = this.filterService.getNodeFilter();
+        let edgeFilters: string[] = this.filterService.getEdgeFilter();
 
     switch (this.panel) {
       case "expansion":
-        let nodeExpansionFilter: string[] = this.filterService.getNodeFilter();
-        let edgeExpansionFilter: string[] = this.filterService.getEdgeFilter();
-        this.graphHandler.expandNodes(this.graphHandler.ogma.getSelectedNodes().getId(), nodeExpansionFilter, edgeExpansionFilter);
+
+        this.filterService.clearVars();
+        this.graphHandler.expandNodes(this.graphHandler.ogma.getSelectedNodes().getId(), nodeFilters, edgeFilters);
         break;
 
       case "path":
-        let nodePathFilter: string[] = this.filterService.getNodeFilter();
-        let edgePathFilter: string[] = this.filterService.getEdgeFilter();
-        this.graphHandler.findPaths(this.sourceId, this.targetId, nodePathFilter, edgePathFilter, this.maxLength);
+        this.filterService.clearVars();
+        this.graphHandler.findPaths(this.sourceId, this.targetId, nodeFilters, edgeFilters, this.maxLength);
         break;
 
       case "flow":
-        let nodeFlowFilter: string[] = this.filterService.getNodeFilter();
-        let edgeFlowFilter: string[] = this.filterService.getEdgeFilter();
         this.filterService.sourceId = this.sourceId;
         this.filterService.targetId = this.targetId;
-        this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFlowFilter, edgeFlowFilter);
+        this.filterService.clearVars();
+        this.graphHandler.getMaxFlow(this.sourceId, this.targetId, nodeFilters, edgeFilters);
         break;
 
       case "addNode":
-        let filter: string[] = this.filterService.getNodeFilter();
-        this.graphHandler.addNodes(filter);
+        this.filterService.clearVars();
+        this.graphHandler.addNodes(nodeFilters);
         break;
     }
   }

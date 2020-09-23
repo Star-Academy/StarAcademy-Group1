@@ -6,7 +6,7 @@
   </div>
 
   <div class="toggle-style">
-    <mat-slide-toggle (change)="showFlowOnGraph($event.checked)">&nbsp;&nbsp;&nbsp;نشان دادن شار روی گراف</mat-slide-toggle>
+    <mat-slide-toggle (change)="showFlowOnGraph($event.checked)" [checked]="dataOnScreen.showMaxFlow">&nbsp;&nbsp;&nbsp;نشان دادن شار روی گراف</mat-slide-toggle>
   </div>
 
 </span>

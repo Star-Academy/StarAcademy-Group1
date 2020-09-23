@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FilterService {
-  public startDate: string;
-  public endDate: string;
+  public startDate: number;
+  public endDate: number;
   public startTime: string;
   public endTime: string;
   public minAmount: number;
@@ -69,4 +69,17 @@ export class FilterService {
 
     return result;
   }
+
+  public clearVars() {
+  this.startDate = null;
+  this.endDate = null;
+  this.startTime= null;
+  this.endTime= null;
+  this.minAmount= null;
+  this.maxAmount= null;
+  this.accountTypes = [];
+  this.name= null;
+  this.branches= [];
+}
+
 }
