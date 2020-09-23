@@ -26,7 +26,7 @@ export class ResultPathsComponent implements OnInit {
         for (let edgeId of path) {
           let edge = this.ogmaHandler.ogma.getEdge(edgeId)
           edge.setAttributes({ color: isChecked ? this.constValues.allEdgesInPathsColor
-             : this.constValues.standardEdgeColor, width: 1});
+             : this.constValues.standardEdgeColor, width: isChecked ? 2 : 1});
           edge.getSource().setAttributes({ color: isChecked ? this.constValues.allNodesInPathsColor : this.constValues.standardNodeColor });
           edge.getTarget().setAttributes({ color: isChecked ? this.constValues.allNodesInPathsColor : this.constValues.standardNodeColor });
         }
