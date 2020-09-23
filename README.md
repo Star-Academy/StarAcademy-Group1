@@ -42,6 +42,7 @@ npm install sweetalert2
 
 
 ## Screenshots 
+![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(18).png)
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(13).png)
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(14).png)
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(15).png)
