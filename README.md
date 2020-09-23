@@ -5,6 +5,7 @@ Graph Analysis Project.
 - [API Documentation](#API-Documentation)
 - [Quick Start](#Quick-Start)
 - [Contributers](#Contributers)
+- [Screenshots](#Screenshots)
 
 ## API Documentation
 - [Polaris API Version 1](https://app.swaggerhub.com/apis/intenvy/PolarisApi/v1)
@@ -40,7 +41,7 @@ npm install sweetalert2
 - Special thanks to Danyal Esfini Farahani
 
 
-## screenshots 
+## Screenshots 
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(13).png)
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(14).png)
 ![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(15).png)
