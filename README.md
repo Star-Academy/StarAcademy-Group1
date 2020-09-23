@@ -38,3 +38,10 @@ npm install sweetalert2
 - Parsa Saberi
 - Saba Ebrahimi
 - Special thanks to Danyal Esfini Farahani
+
+
+## screenshots 
+![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(13).png)
+![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(14).png)
+![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(15).png)
+![alt text](https://github.com/Star-Academy/StarAcademy-Group1/blob/master/asset/Screenshot%20(17).png)
