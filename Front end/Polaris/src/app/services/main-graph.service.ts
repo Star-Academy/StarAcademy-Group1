@@ -110,13 +110,11 @@ export class GraphHandlerService {
     this.ogma.removeNodes(ids);
   }
   public setNodesAttributes(ids: string[]) {
-    this.graphStarted = true ;
     for (let node of ids) {
       this.ogma.getNode(node).setAttributes({ color: this.nodeColor });
     }
   }
   public setEdgesAttributes(ids: string[]) {
-    this.graphStarted = true ;
     for (let id of ids) {
       this.ogma.getEdge(id).setAttributes({ color: this.edgeColor });
     }
