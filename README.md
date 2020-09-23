@@ -29,7 +29,7 @@ npm install sweetalert2
 ```
 - Now you can use `ng serve` to run front-end!
 
-## Contributors
+## Contributers
 - Alireze TajmirRiahi
 - Farshid Nooshi
 - Kimia Noorbakhsh
