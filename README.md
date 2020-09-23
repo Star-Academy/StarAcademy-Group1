@@ -32,7 +32,7 @@ npm install sweetalert2
 ## Contributors
 - Alireze TajmirRiahi
 - Farshid Nooshi
-- Kimia Nourbakhsh
+- Kimia Noorbakhsh
 - Mahla Sharifi
 - MohammadHossein Heidarzade
 - Parsa Mohammadian
