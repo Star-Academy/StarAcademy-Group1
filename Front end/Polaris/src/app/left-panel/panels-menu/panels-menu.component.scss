@@ -8,7 +8,7 @@ $forth: #fbd46d;
   height: calc(100% - 20px);
   width: 80%;
   background-color: $second;
-  border-style: solid;
+  border-style: none;
   border-radius: 15px;
   margin: 10px;
   text-align: center;
@@ -19,17 +19,17 @@ $forth: #fbd46d;
 }
 
 .icon-style{
-  width: 50%;
+  width: 60%;
 }
 
 .icon-style:hover{
-  width: 60%;
+  width: 80%;
 }
 
 .icon-style:onclick{
-  width: 60%;
-  transform: rotate(360deg);
-  transition-duration: 1s;
+  width: 80%;
+  // transform: rotate(360deg);
+  // transition-duration: 1s;
 }
 
 fa-icon{
