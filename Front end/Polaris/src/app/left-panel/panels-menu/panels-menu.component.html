@@ -1,20 +1,20 @@
 <div class="sidenav">
 
-  <span id="selection-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 1">
+  <span id="selection-icon" class="icon-styles" (click)="onIconClick('selection-icon')">
     <p>
       <img src="{{expandIconPath}}" width="80%">
     </p>
   </span>
 
 
-  <span id="path-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 2">
+  <span id="path-icon" class="icon-styles" (click)="onIconClick('path-icon')">
     <p>
       <img src="{{pathIconPath}}" width="80%">
     </p>
   </span>
 
 
-  <span id="flow-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 3">
+  <span id="flow-icon" class="icon-styles" (click)="onIconClick('flow-icon')">
     <p>
       <img src="{{flowIconPath}}" width="80%">
     </p>
@@ -22,7 +22,7 @@
 
 
 
-  <span id="add-icon" class="icon-styles" (click)="componentCommunication.whichLeftSideNav = 4">
+  <span id="add-icon" class="icon-styles" (click)="onIconClick('add-icon')">
     <p>
       <img src="{{addNodeIconPath}}" width="80%">
     </p>
