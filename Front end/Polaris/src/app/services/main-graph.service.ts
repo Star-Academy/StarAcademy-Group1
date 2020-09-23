@@ -26,7 +26,7 @@ export class GraphHandlerService {
     this.ogma.styles.addEdgeRule({
       text: {
         minVisibleSize: 4,
-        size:20
+        size:14
       }
     });
   }

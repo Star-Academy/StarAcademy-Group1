@@ -11,7 +11,6 @@ import { OgmaHandlerService } from 'src/services/ogma-handler.service';
 export class PathsPanelComponent implements OnInit {
 
 
-   public paths : string[][][]=[[["10","11"],["9","12"]],[["10","11"],["7"],["8","13"]]];
 
   constructor(
     public ogmaHandler: OgmaHandlerService ,
@@ -23,7 +22,7 @@ export class PathsPanelComponent implements OnInit {
   ngOnDestroy() {
 
   }
- 
+
 }
 
 
